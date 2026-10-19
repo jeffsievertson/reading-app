@@ -60,6 +60,13 @@ Notes
 - If the browser supports `SpeechRecognition`/`webkitSpeechRecognition`, a big 🎤 button
   listens once and checks the answer (accepts several recognizer alternatives, common
   homophones like sun/son, and ~75% of the words for sentences).
+- Listening can never lock the screen: a watchdog gives up if the recognizer hasn't
+  started within ~3–4 s (e.g. stuck behind the first mic-permission prompt; the first try
+  is retried once automatically) and caps listening at 7–12 s. While listening the 🎤
+  becomes ⏹ (tap to stop). 👍 appears after any miss or failure.
+- On an iPhone home-screen app (standalone mode), where Apple's recognizer is unreliable,
+  👍 is the main button and the 🎤 is an optional extra; if it doesn't start it is hidden
+  for the rest of the session.
 - After 2 misses, or if the mic is blocked/unsupported/turned off in ⚙️, a 👍 "I said it"
   button appears. Without recognition the step is simply "read it aloud, tap 👍".
 
@@ -97,6 +104,9 @@ LICENSES.md           third-party content (none shipped)
   worker activates, the app reloads **offline**, and the no-microphone fallback (👍)
   completes a lesson. Zero console errors, page errors, or failed requests.
   Run: `npm i playwright-core` then `node tools/smoke-test.mjs` (server must be running).
+- `tools/mic-robust-test.mjs`: misbehaving fake recognizers (never fires any event, starts
+  but never ends, throws on start, first start dies then works, every error code, iOS
+  home-screen mode) – checks the say-step never stays blocked and always offers ⏹ / 👍.
 - `tools/mic-test.mjs`: fakes a speech recognizer to check the 🎤 path – correct word ✓ + ▶,
   wrong word shows what was heard, mic permission denied → 👍 fallback.
 - Not yet tested on a real iPhone or Android phone (needs HTTPS hosting – see below).

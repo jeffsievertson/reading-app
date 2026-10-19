@@ -98,40 +98,114 @@ window.Speech = (function () {
   }
 
   // ---------------- Speech recognition ----------------
-  let current = null;
+  // Recognition is fragile on phones (especially iOS, and above all an iOS home-screen
+  // "standalone" web app, where webkitSpeechRecognition exists but often never fires
+  // onstart/onend, or stalls right after the first microphone permission prompt).
+  // listen() therefore ALWAYS resolves: a start watchdog aborts if onstart/onaudiostart
+  // doesn't arrive in time, and a hard cap aborts a session that never ends.
+  const nav = typeof navigator !== 'undefined' ? navigator : {};
+  const ua = nav.userAgent || '';
+  const isIOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && (nav.maxTouchPoints || 0) > 1);
+  function isStandalone() {
+    try {
+      if (nav.standalone === true) return true;
+      return !!(window.matchMedia && (window.matchMedia('(display-mode: standalone)').matches ||
+        window.matchMedia('(display-mode: fullscreen)').matches));
+    } catch (e) { return false; }
+  }
+  const isIOSStandalone = isIOS && isStandalone();
+
+  let current = null;   // { r, end } of the active session
   function canListen() { return !!Rec; }
 
+  function detach(r) {
+    if (!r) return;
+    try { r.onresult = r.onerror = r.onend = r.onstart = r.onaudiostart = r.onnomatch = null; } catch (e) {}
+    try { r.abort(); } catch (e) {}
+  }
+
   /**
-   * Listen once. Resolves with { ok:true, alts:[strings] } or { ok:false, error }.
+   * Listen once. Always resolves with { ok:true, alts:[strings], started:true }
+   * or { ok:false, error, started }. error 'cancelled' = stopped by the app (cancelListen / a newer listen). `started` = onstart/onaudiostart was seen.
+   * opts.timeout       max listening time once started (ms, default 7000)
+   * opts.startTimeout  max wait for onstart/onaudiostart (ms, default 3000)
+   * opts.delay         wait after cancelling speech before starting (ms; iOS needs the
+   *                    audio session to switch from playback to recording)
+   * opts.onstart       called when the recognizer has actually started
    */
   function listen(opts = {}) {
     return new Promise((resolve) => {
-      if (!Rec) { resolve({ ok: false, error: 'unsupported' }); return; }
-      stop(); // don't let the app hear itself
-      try { if (current) current.abort(); } catch (e) { /* ignore */ }
-      const r = new Rec();
-      current = r;
-      r.lang = 'en-US';
-      r.interimResults = false;
-      r.continuous = false;
-      r.maxAlternatives = 5;
-      let settled = false;
-      const end = (val) => { if (!settled) { settled = true; clearTimeout(t); current = null; resolve(val); } };
-      const t = setTimeout(() => { try { r.stop(); } catch (e) {} end({ ok: false, error: 'timeout' }); }, opts.timeout || 8000);
-      r.onresult = (ev) => {
-        const alts = [];
-        for (let i = 0; i < ev.results.length; i++) {
-          for (let j = 0; j < ev.results[i].length; j++) alts.push(ev.results[i][j].transcript);
-        }
-        end({ ok: true, alts });
+      if (!Rec) { resolve({ ok: false, error: 'unsupported', started: false }); return; }
+      // Guard against double starts: finish any session still running.
+      if (current) { try { current.end({ ok: false, error: 'cancelled' }); } catch (e) {} }
+      try { stop(); } catch (e) {} // don't let the app hear itself / iOS audio-session conflict
+
+      let r = null, settled = false, started = false, tStart = null, tMax = null, tDelay = null;
+      const session = {};
+      const end = (val) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(tStart); clearTimeout(tMax); clearTimeout(tDelay);
+        if (current === session) current = null;
+        detach(r);
+        val.started = started;
+        resolve(val);
       };
-      r.onerror = (ev) => end({ ok: false, error: ev.error || 'error' });
-      r.onend = () => end({ ok: false, error: 'no-speech' });
-      if (opts.onstart) r.onstart = opts.onstart;
-      try { r.start(); } catch (e) { end({ ok: false, error: 'start-failed' }); }
+      session.end = end;
+      current = session;
+
+      const listenMs = Math.max(1000, opts.timeout || 7000);
+      const startMs = Math.max(500, opts.startTimeout || 3000);
+      const markStarted = () => {
+        if (started || settled) return;
+        started = true;
+        clearTimeout(tStart);
+        // hard cap on listening time, counted from the real start
+        tMax = setTimeout(() => end({ ok: false, error: 'timeout' }), listenMs);
+        try { if (opts.onstart) opts.onstart(); } catch (e) {}
+      };
+
+      const begin = () => {
+        if (settled) return;
+        try {
+          r = new Rec();
+          r.lang = 'en-US';
+          r.interimResults = false;
+          r.continuous = false;
+          r.maxAlternatives = 5;
+          r.onstart = markStarted;
+          r.onaudiostart = markStarted;
+          r.onresult = (ev) => {
+            try {
+              const alts = [];
+              const res = (ev && ev.results) || [];
+              for (let i = 0; i < res.length; i++) {
+                for (let j = 0; j < res[i].length; j++) {
+                  const t = res[i][j] && res[i][j].transcript;
+                  if (t) alts.push(t);
+                }
+              }
+              end(alts.length ? { ok: true, alts } : { ok: false, error: 'no-match' });
+            } catch (e) { end({ ok: false, error: 'error' }); }
+          };
+          r.onnomatch = () => end({ ok: false, error: 'no-match' });
+          r.onerror = (ev) => end({ ok: false, error: (ev && ev.error) || 'error' });
+          r.onend = () => end({ ok: false, error: started ? 'no-speech' : 'ended-early' });
+        } catch (e) { end({ ok: false, error: 'start-failed' }); return; }
+        // The start watchdog also covers the time a permission prompt is on screen.
+        // (If the user is slow to answer it, we give up and the 👍 button takes over.)
+        tStart = setTimeout(() => end({ ok: false, error: 'start-timeout' }), startMs);
+        try { r.start(); } catch (e) { end({ ok: false, error: 'start-failed' }); }
+      };
+      const delay = opts.delay != null ? opts.delay : (isIOS ? 250 : 0);
+      if (delay > 0) tDelay = setTimeout(begin, delay); else begin();
     });
   }
-  function cancelListen() { try { if (current) current.abort(); } catch (e) {} current = null; }
+  function cancelListen() {
+    if (current) { try { current.end({ ok: false, error: 'cancelled' }); } catch (e) {} }
+    current = null;
+  }
+  function isListening() { return !!current; }
 
   // ---------------- Matching ----------------
   const norm = (s) => s.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
@@ -186,6 +260,9 @@ window.Speech = (function () {
     canListen,
     listen,
     cancelListen,
+    isListening,
+    isIOS,
+    isIOSStandalone,
     say,
     stop,
     clipOrSay,

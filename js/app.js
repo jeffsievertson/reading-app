@@ -318,7 +318,7 @@
     if (i >= steps.length) return renderDone();
     steps[i](it);
   }
-  function nextStep() { lesson.i++; renderStep(); }
+  function nextStep() { sayToken++; try { S.cancelListen(); } catch (e) {} lesson.i++; renderStep(); }
   function dots() {
     const { steps, i } = lesson;
     return el('div', { class: 'dots', 'aria-label': 'Step ' + (i + 1) + ' of ' + steps.length },
@@ -474,10 +474,23 @@
   }
 
   // ---- Say it (speech recognition or self-check)
-  let micBlocked = false;
+  // The UI must never get stuck waiting on the recognizer: Speech.listen() always resolves
+  // (start watchdog + max-listen cap), the 🎤 turns into a ⏹ stop button while listening,
+  // and the 👍 "I said it" button appears after any failure. On an iPhone home-screen app
+  // (iOS standalone), where recognition is unreliable, 👍 is the main path and the 🎤 is an
+  // optional extra with a short watchdog.
+  let micBlocked = false;       // mic permanently unusable this session (denied / broken)
+  let micAttempts = 0;          // listen attempts this session (first one may hit the permission prompt)
+  let sayToken = 0;             // changes whenever a say-step is left, so stale results are ignored
+  const HARD_FAIL = ['not-allowed', 'service-not-allowed', 'unsupported', 'audio-capture', 'language-not-supported'];
   function stepSayIt(it) {
+    const my = ++sayToken;
+    const alive = () => my === sayToken && lesson && lesson.it === it;
     const target = spoken(it);
-    const useMic = state.settings.mic && S.canListen() && !micBlocked;
+    const iosPwa = !!S.isIOSStandalone;
+    const micOn = state.settings.mic && S.canListen() && !micBlocked;
+    const micMain = micOn && !iosPwa;   // big mic button
+    const micExtra = micOn && iosPwa;   // small optional mic next to a big 👍
     let fails = 0;
     let busy = false;
 
@@ -488,63 +501,117 @@
 
     const status = el('div', { class: 'status', 'aria-live': 'polite' });
     const reveal = el('div', { class: 'emoji big reveal' });
-    const hear = () => S.say(it.kind === 'menu' ? it.t : target);
-    const micBtn = btn('🎤', 'Tap, then say it', listen, 'mic grow');
-    const okBtn = btn('👍', 'I said it', () => success(null), 'ok-btn' + (useMic ? '' : ' grow'));
+    const hear = () => { if (busy) cancel(); S.say(it.kind === 'menu' ? it.t : target); };
+    const micBtn = btn('🎤', 'Tap, then say it', () => (busy ? cancel() : listen()), micMain ? 'mic grow' : 'mic icon-btn');
+    const okBtn = btn('👍', 'I said it', () => { if (busy) cancel(); success(null); }, 'ok-btn' + (micMain ? '' : ' grow'));
     const hearBtn = btn('🔊', 'Hear it', hear, 'icon-btn');
 
     const ui = lessonScreen({
-      help: useMic
+      help: micMain
         ? 'Now you read it. Tap the microphone, then say it out loud. If you need help, tap the speaker.'
         : 'Now you read it out loud. If you need help, tap the speaker. When you got it, tap the thumbs up.',
       body: el('div', { class: 'center' }, el('div', { class: 'say-target' }, display), reveal, status),
-      footer: useMic ? [hearBtn, micBtn] : [hearBtn, okBtn]
+      footer: micMain ? [hearBtn, micBtn] : micExtra ? [hearBtn, micBtn, okBtn] : [hearBtn, okBtn]
     });
-    S.say(useMic ? 'Now you read it. Tap the microphone, then say it.' : 'Now you read it out loud. Then tap the thumbs up.');
+    S.say(micMain ? 'Now you read it. Tap the microphone, then say it.' : 'Now you read it out loud. Then tap the thumbs up.');
 
     function showOk() {
       if (!ui.foot.contains(okBtn)) ui.foot.append(okBtn);
     }
+    function setListening(on) {
+      busy = on;
+      micBtn.classList.toggle('listening', on);
+      micBtn.setAttribute('aria-label', on ? 'Stop' : 'Tap, then say it');
+      micBtn.dataset.say = on ? 'Stop' : 'Tap, then say it';
+      const ico = micBtn.querySelector('.ico');
+      if (ico) ico.textContent = on ? '⏹' : '🎤';
+    }
+    function cancel() {
+      try { S.cancelListen(); } catch (e) {}
+      setListening(false);
+    }
+    function dropMic(msg) {
+      micBlocked = true;
+      micBtn.remove(); okBtn.classList.add('grow'); showOk();
+      status.textContent = '🎤 ✗';
+      status.className = 'status no';
+      if (msg) S.say(msg);
+    }
+    async function attempt(first) {
+      const startTimeout = first ? 4000 : iosPwa ? 2500 : 3000; // first try may sit behind the permission prompt
+      return S.listen({
+        timeout: it.kind === 'verse' ? 12000 : it.kind === 'sentence' ? 9000 : 7000,
+        startTimeout,
+        onstart: () => { if (alive()) status.textContent = '👂'; }
+      });
+    }
     async function listen() {
-      if (busy) return;
-      busy = true;
-      micBtn.classList.add('listening');
+      if (busy || !alive()) return;
+      setListening(true);
       status.textContent = '…';
       status.className = 'status';
-      const res = await S.listen({ timeout: it.kind === 'verse' ? 12000 : 7000 });
-      micBtn.classList.remove('listening');
-      busy = false;
-      if (res.ok && S.matches(target, res.alts, C.homophones)) { success(res.alts[0]); return; }
-      if (!res.ok && (res.error === 'not-allowed' || res.error === 'service-not-allowed' || res.error === 'unsupported' || res.error === 'start-failed' || res.error === 'audio-capture')) {
-        micBlocked = true;
-        micBtn.remove(); okBtn.classList.add('grow'); showOk();
-        status.textContent = '🎤 ✗';
-        S.say('The microphone is not working here. Read it out loud, then tap the thumbs up.');
-        return;
+      let res;
+      try {
+        const first = micAttempts === 0;
+        micAttempts++;
+        const t0 = Date.now();
+        res = await attempt(first);
+        const quick = Date.now() - t0 < 1500; // died almost at once (typical right after the permission grant)
+        // The very first attempt often dies because the permission prompt was on screen.
+        // Now that permission is (probably) granted, retry once automatically.
+        if (alive() && busy && first && !res.ok && (!res.started || quick) &&
+            ['start-timeout', 'ended-early', 'start-failed', 'aborted', 'cancelled', 'no-speech', 'network', 'error'].includes(res.error)) {
+          status.textContent = '…';
+          res = await attempt(false);
+        }
+      } catch (e) {
+        res = { ok: false, error: 'error', started: false };
+      } finally {
+        if (alive()) setListening(false);
       }
-      fails++;
-      bad();
-      if (fails >= 2) showOk();
-      if (res.ok) {
-        status.textContent = '“' + res.alts[0] + '”';
-        status.className = 'status no';
-        await S.say({ text: 'Not quite. Listen.', pause: 200 });
-        await S.say({ text: target, rateMul: 0.8, pause: 300 }, { queue: true });
-        await S.say(fails >= 2 ? 'Try again. Or tap the thumbs up if you said it.' : 'Now you try.', { queue: true });
-      } else {
-        status.textContent = '🔇';
-        status.className = 'status no';
-        S.say(fails >= 2 ? 'I did not hear you. Try again, or tap the thumbs up if you said it.' : 'I did not hear you. Tap the microphone and try again.');
+      if (!alive()) return;              // user left the screen meanwhile
+      if (res.error === 'cancelled') return; // user tapped stop / 👍 / speaker
+      try {
+        if (res.ok && S.matches(target, res.alts, C.homophones)) { success(res.alts[0]); return; }
+        if (!res.ok && HARD_FAIL.includes(res.error)) {
+          dropMic('The microphone is not working here. Read it out loud, then tap the thumbs up.');
+          return;
+        }
+        // Recognizer never started (watchdog) on an iPhone home-screen app: it won't get better.
+        if (!res.ok && !res.started && iosPwa) {
+          dropMic('Read it out loud, then tap the thumbs up.');
+          return;
+        }
+        fails++;
+        bad();
+        showOk(); // 👍 after any failure
+        if (fails >= 3 && !res.started) { dropMic(); }
+        if (res.ok) {
+          status.textContent = '“' + res.alts[0] + '”';
+          status.className = 'status no';
+          if (!(await S.say({ text: 'Not quite. Listen.', pause: 200 })) || !alive()) return;
+          if (!(await S.say({ text: target, rateMul: 0.8, pause: 300 }, { queue: true })) || !alive()) return;
+          S.say('Try again. Or tap the thumbs up if you said it.', { queue: true });
+        } else {
+          status.textContent = '🔇';
+          status.className = 'status no';
+          S.say('I did not hear you. Try again, or tap the thumbs up if you said it.');
+        }
+      } catch (e) {
+        setListening(false); showOk();
       }
     }
     async function success(heard) {
+      if (!alive()) return;
+      try { S.cancelListen(); } catch (e) {}
+      busy = false;
       good(); vibrate(30);
       status.textContent = heard ? '✓ “' + heard + '”' : '✓';
       status.className = 'status yes';
       if (it.emoji && it.kind !== 'letter') reveal.textContent = it.emoji;
       ui.foot.replaceChildren(hearBtn, nextBtn('pulse'));
       await S.say({ text: heard ? 'Yes! You read it.' : 'Great.', pause: 250 });
-      if (it.kind === 'word' || it.kind === 'sight') S.say(target, { queue: true });
+      if (alive() && (it.kind === 'word' || it.kind === 'sight')) S.say(target, { queue: true });
     }
   }
 
@@ -671,7 +738,9 @@
 
   // ---------------------------------------------------------------- router
   function route() {
-    S.stop(); S.cancelListen(); picking = false;
+    sayToken++;
+    try { S.stop(); S.cancelListen(); } catch (e) {}
+    picking = false;
     const parts = location.hash.replace(/^#\/?/, '').split('/');
     if (!state.started && parts[0] !== 'settings') return viewWelcome();
     switch (parts[0]) {
@@ -683,6 +752,8 @@
   }
   window.addEventListener('popstate', route);   // phone back button / swipe
   window.addEventListener('hashchange', route); // manual URL edits
+  // Leaving the app mid-listen (home button, call, app switch): stop the recognizer.
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { try { S.cancelListen(); } catch (e) {} } });
   route();
 
   // ---------------------------------------------------------------- service worker (offline)

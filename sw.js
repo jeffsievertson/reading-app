@@ -1,5 +1,5 @@
 /* Offline support: precache the whole app, serve cache-first, update in background. */
-const CACHE = 'read-aloud-v1';
+const CACHE = 'read-aloud-v2';
 const ASSETS = [
   './', './index.html', './manifest.json',
   './css/styles.css', './js/content.js', './js/speech.js', './js/app.js',
