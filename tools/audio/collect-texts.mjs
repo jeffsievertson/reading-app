@@ -51,7 +51,11 @@ const wordsOf = (t) => t.split(/\s+/).map(cleanWord).filter(Boolean);
 for (const lv of [...C.levels, ...C.cats]) add(lv.say, 'level');
 for (const it of C.items) {
   add(spoken(it), 'item:' + it.id);
-  if (it.kind === 'letter') add(it.kw, 'keyword');
+  if (it.kind === 'letter') {
+    add(it.kw, 'keyword');
+    add(it.intro, 'intro:' + it.id, 'intro');
+    out.get(S.clipKey(it.intro)).letter = it.l;   // build forces the name via phonemes
+  }
   if (it.kind === 'sentence' || it.kind === 'verse') for (const w of wordsOf(it.say || it.text)) add(w, 'chip:' + it.id);
   if (it.mean) add(it.mean, 'meaning');
   if (it.kind === 'menu') { add(it.t, 'menu'); add(it.price, 'price'); }

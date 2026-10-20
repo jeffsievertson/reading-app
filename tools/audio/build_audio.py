@@ -84,10 +84,53 @@ def second_of_pair(x):
     g = max(runs, key=lambda r: r[1] - r[0])
     return x[max(0, (g[1] - 4) * fr):]
 
-def variants(speak):
+# Letter names as phonemes (espeak/Kokoro IPA). Lone letters are easily misread by TTS
+# ("A" as the article "uh"), so letter names are also rendered from these phonemes.
+NAME_IPA = {'a': 'ˈeɪ', 'b': 'bˈiː', 'c': 'sˈiː', 'd': 'dˈiː', 'e': 'ˈiː', 'f': 'ˈɛf', 'g': 'dʒˈiː', 'h': 'ˈeɪtʃ',
+            'i': 'ˈaɪ', 'j': 'dʒˈeɪ', 'k': 'kˈeɪ', 'l': 'ˈɛl', 'm': 'ˈɛm', 'n': 'ˈɛn', 'o': 'ˈoʊ', 'p': 'pˈiː',
+            'q': 'kjˈuː', 'r': 'ˈɑːɹ', 's': 'ˈɛs', 't': 'tˈiː', 'u': 'jˈuː', 'v': 'vˈiː', 'w': 'dˈʌbəljˌuː',
+            'x': 'ˈɛks', 'y': 'wˈaɪ', 'z': 'zˈiː'}
+# What Whisper may write for each spoken name ("This is the letter ___")
+NAME_HEARD = {'a': 'a ay', 'b': 'b bee be', 'c': 'c see sea', 'd': 'd dee', 'e': 'e ee', 'f': 'f eff', 'g': 'g gee jee',
+              'h': 'h aitch age', 'i': 'i eye aye', 'j': 'j jay', 'k': 'k kay', 'l': 'l el elle', 'm': 'm em',
+              'n': 'n en', 'o': 'o oh', 'p': 'p pee pea', 'q': 'q queue cue', 'r': 'r are ar', 's': 's es ess',
+              't': 't tee tea', 'u': 'u you', 'v': 'v vee', 'w': 'w double', 'x': 'x ex', 'y': 'y why',
+              'z': 'z zee'}
+INTRO_PRE = 'ðɪs ɪz ðə lˈɛɾɚ'
+
+def intro_ph(l, sep=' ', end='.'):
+    name = NAME_IPA[l]
+    link = 'ɹ' if name.lstrip('ˈ')[0] in 'eɛaɑoɔiɪuʊʌə' and sep == ' ' else ''
+    return INTRO_PRE + link + sep + name + end
+
+def letter_of(e):
+    if e.get('kind') == 'intro': return e.get('letter')
+    k = e['key']
+    return k if len(k) == 1 and k in NAME_IPA else None
+
+def variants(speak, e=None):
+    l = letter_of(e) if e else None
+    if e and e.get('kind') == 'intro':
+        return {
+            'txt092': lambda: synth(ENGINE_VOICE, text=speak, speed=SPEED),
+            'ph092': lambda: synth(ENGINE_VOICE, ph=intro_ph(l), speed=SPEED),
+            'ph088': lambda: synth(ENGINE_VOICE, ph=intro_ph(l), speed=0.88),
+            'ph100': lambda: synth(ENGINE_VOICE, ph=intro_ph(l), speed=1.0),
+            'phc092': lambda: synth(ENGINE_VOICE, ph=intro_ph(l, sep=', '), speed=SPEED),
+            'phx092': lambda: synth(ENGINE_VOICE, ph=intro_ph(l, end='!'), speed=SPEED),
+        }
     cap = speak[:1].upper() + speak[1:]
     dot = cap if cap.endswith(('.', '!', '?')) else cap + '.'
-    return {
+    extra = {}
+    if l:
+        extra = {
+            'name092': lambda: synth(ENGINE_VOICE, ph=NAME_IPA[l] + '.', speed=SPEED),
+            'name100': lambda: synth(ENGINE_VOICE, ph=NAME_IPA[l] + '.', speed=1.0),
+            'namenow': lambda: second_of_pair(synth(ENGINE_VOICE, ph='nˈaʊ… ' + NAME_IPA[l] + '.', speed=SPEED)),
+            'namecut': lambda: second_of_pair(synth(ENGINE_VOICE, ph=INTRO_PRE + '… ' + NAME_IPA[l] + '.', speed=SPEED)),
+            'namecutx': lambda: second_of_pair(synth(ENGINE_VOICE, ph=INTRO_PRE + '… ' + NAME_IPA[l] + '!', speed=SPEED)),
+        }
+    return {**extra,
         'v092': lambda: synth(ENGINE_VOICE, text=speak, speed=SPEED),
         'dot092': lambda: synth(ENGINE_VOICE, text=dot, speed=SPEED),
         'dot100': lambda: synth(ENGINE_VOICE, text=dot, speed=1.0),
@@ -127,7 +170,7 @@ def pick_short(entries, picks):
     tmp = tempfile.mkdtemp()
     wavs, meta = [], {}
     for e in todo:
-        for name, fn in variants(e['speak']).items():
+        for name, fn in variants(e['speak'], e).items():
             x = fn()
             if x is None or len(x) < SR * 0.1: continue
             f = os.path.join(tmp, f"{slug(e['key'])}-{sha(e['key'])}-{name}.wav")
@@ -136,21 +179,42 @@ def pick_short(entries, picks):
     if heard is None:
         print('  (phoneme judge not available: short texts use the default rendering)')
         return
+    # Whisper as a second judge for the letter-name sentences
+    intro_files = [f for f, (e, _) in meta.items() if e.get('kind') == 'intro']
+    wh = {}
+    if intro_files:
+        try: wh = whisper(intro_files)
+        except Exception as ex: print('  (whisper not available for intros:', ex, ')')
+    ORDER = ['ph092', 'txt092', 'phc092', 'ph088', 'ph100', 'phx092', 'name092', 'namenow', 'name100', 'namecut', 'namecutx',
+             'dot092', 'v092', 'now092', 'ell092', 'dot100', 'v100', 'now085', 'pair092']
     best = {}
     for f, (e, name) in meta.items():
-        want = coarse(tok.phonemize(e['speak'], 'en-us'))
+        l = letter_of(e)
+        if e.get('kind') == 'intro': want = coarse(intro_ph(l))
+        elif l: want = coarse(NAME_IPA[l])
+        else: want = coarse(tok.phonemize(e['speak'], 'en-us'))
         got = coarse(heard.get(f, '').replace(' ', ''))
         d = lev(want, got) / max(1, len(want))
-        pref = ['dot092', 'v092', 'now092', 'ell092', 'dot100', 'v100', 'now085', 'pair092'].index(name) * 1e-3   # tie-break
-        if e['key'] not in best or d + pref < best[e['key']][0]:
-            best[e['key']] = (d + pref, name, want, got)
+        info = {}
+        if l:   # the name itself must be right: compare the end of what was heard with the name
+            n = coarse(NAME_IPA[l])
+            dn = min(lev(n, got[-k:]) for k in range(1, len(n) + 3)) / max(1, len(n)) if got else 1.0
+            d += 2 * dn; info['name_dist'] = round(dn, 3)
+        if e.get('kind') == 'intro':
+            t = re.sub(r"[^a-z ]", ' ', wh.get(f, '').lower()).split()
+            ok = len(t) >= 5 and t[:4] == ['this', 'is', 'the', 'letter'] and t[4] in NAME_HEARD[l].split()
+            if not ok: d += 1.5
+            info['whisper'] = wh.get(f, '')
+        d += ORDER.index(name) * 1e-3 if name in ORDER else 0.01   # tie-break
+        if e['key'] not in best or d < best[e['key']][0]:
+            best[e['key']] = (d, name, want, got, info)
     for e in todo:
         if e['key'] in best:
-            d, name, want, got = best[e['key']]
-            picks[e['key']] = {'speak': e['speak'], 'variant': name, 'dist': round(d, 3), 'want': want, 'heard': got}
+            d, name, want, got, info = best[e['key']]
+            picks[e['key']] = {'speak': e['speak'], 'variant': name, 'dist': round(d, 3), 'want': want, 'heard': got, **info}
 
-def render_variant(speak, variant):
-    x = variants(speak)[variant]()
+def render_variant(speak, variant, e=None):
+    x = variants(speak, e)[variant]()
     if x is None: x = synth(ENGINE_VOICE, text=speak, speed=SPEED)
     return finish(x)
 
@@ -198,7 +262,7 @@ def main():
     # ---- short texts: pick the cleanest rendering (see pick_short)
     picks_path = os.path.join(HERE, 'picks.json')
     picks = json.load(open(picks_path)) if os.path.exists(picks_path) else {}
-    short = [e for e in T['entries'] if len(e['key'].split()) <= 2 and not e['key'].startswith('$')]
+    short = [e for e in T['entries'] if (len(e['key'].split()) <= 2 and not e['key'].startswith('$')) or e['kind'] == 'intro']
     if not a.no_pick: pick_short(short, picks)
     picks = {k: v for k, v in picks.items() if any(e['key'] == k for e in short)}
     json.dump(picks, open(picks_path, 'w'), indent=1, ensure_ascii=False, sort_keys=True)
@@ -211,7 +275,7 @@ def main():
         rel = f"{VOICE}/{key_dir}/{slug(e['key'])}-{sha(GEN_VERSION, VOICE, v, slow_ver, e['speak'])}.mp3"
         dest = os.path.join(ROOT, 'audio', rel)
         if a.force or not os.path.exists(dest):
-            x = render_variant(e['speak'], v)
+            x = render_variant(e['speak'], v, e)
             to_mp3(slow_from(x) if slow_ver else x, dest); made += 1
         else:
             reused += 1
@@ -388,6 +452,14 @@ def write_listen_files(d, T, letters):
         seq += [snd, silence(800)]
         kw = load(keyclips[L['kw'].lower()]) if L['kw'].lower() in keyclips else silence(10)
         seq_kw += [kw, silence(350), snd, silence(350), snd, silence(350), kw, silence(1100)]
+    # the app's letter intro: "This is the letter E." "It makes the sound" [eh] [eh] (same pauses)
+    intro = []
+    ims = load(keyclips['it makes the sound'])
+    for L in T['letters']:
+        snd = load(letters['letters/' + L['l']])
+        nm = load(keyclips['this is the letter ' + L['l']])
+        intro += [nm, silence(250), ims, silence(150), snd, silence(350), snd, silence(1300)]
+    to_mp3(np.concatenate(intro), os.path.join(d, 'letter-intros-all.mp3'))
     to_mp3(np.concatenate(seq), os.path.join(d, 'letter-sounds-all.mp3'))
     to_mp3(np.concatenate(seq_kw), os.path.join(d, 'letter-sounds-with-keywords.mp3'))
     print('listen files ->', d)

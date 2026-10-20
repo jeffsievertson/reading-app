@@ -38,7 +38,11 @@ Notes
 
 ### Levels
 1. **Sounds 🔤** – the 26 letters A to Z, each with its usual sound (Q is taught with
-   the /kw/ sound in "queen"). Each: see the letter + a
+   the /kw/ sound in "queen"). Each lesson starts with the letter's **name, then its sound**:
+   "This is the letter E. It makes the sound … eh … eh." (the sound is the real cut-out
+   letter-sound clip, played twice), then the usual "This letter makes the first sound
+   in egg …". Names are generated from phonemes so "A" is "ay", not the article "uh";
+   the built-in-voice fallback uses respellings (ay, ee, eye, oh, you, why …). Each: see the letter + a
    keyword ("sun"), hear "sun … sss … sss … sun", then a hear-and-pick quiz
    ("Which letter starts the word sun?").
 2. **Words 🧩** – 36 CVC words (sat, pin, map, dog, cat, bed, sun, box…). Tap each
@@ -144,7 +148,7 @@ LICENSES.md           third-party content (none shipped)
   spoken text has a clip.
 - `tools/content-test.js` (node): Level 1 is the letters A–Z, keyed by letter, with Q (never
   "qu"); every letter has a sound clip; no spoken text says "qu"; all clip files exist.
-- `tools/level1-test.mjs`: Level 1 list A–Z, the Q lesson (shows Q q, says queen + the Q
+- `tools/level1-test.mjs`: name-then-sound intro for all 26 letters (clip order checked), Level 1 list A–Z, the Q lesson (shows Q q, says queen + the Q
   sound), quiz choices for every letter (no c/k/q mix-ups), migration of old "qu" progress,
   "keep going"/"next" follow A–Z. Writes screenshots 20–22.
 - `tools/mic-test.mjs`: fakes a speech recognizer to check the 🎤 path – correct word ✓ + ▶,

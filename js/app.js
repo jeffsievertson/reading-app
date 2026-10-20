@@ -378,8 +378,15 @@
         el('div', { class: 'keyword' }, el('span', { class: 'emoji', 'aria-hidden': 'true' }, it.emoji), el('span', null, kw))),
       footer: [btn('🔊', 'Hear the sound', () => playLetter(it), 'icon-btn'), nextBtn()]
     });
-    S.say({ text: it.pos === 'end' ? 'This letter makes the sound at the end of' : 'This letter makes the first sound in', pause: 150 })
-      .then((ok) => { if (ok) playLetter(it); });
+    // Name first, then the sound (the real letter-sound clip, twice), then the usual intro:
+    // "This is the letter E. It makes the sound … eh … eh. This letter makes the first sound in egg …"
+    S.say([
+      { text: it.intro, tts: it.introTts, pause: 250 },
+      { text: 'It makes the sound', pause: 150 },
+      { clipName: 'letters/' + it.l, text: it.sound, rateMul: 0.8, pause: 350 },
+      { clipName: 'letters/' + it.l, text: it.sound, rateMul: 0.8, pause: 700 },
+      { text: it.pos === 'end' ? 'This letter makes the sound at the end of' : 'This letter makes the first sound in', pause: 150 }
+    ]).then((ok) => { if (ok) playLetter(it); });
   }
 
   function stepFindLetter(it) {

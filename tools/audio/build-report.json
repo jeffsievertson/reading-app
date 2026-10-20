@@ -1,172 +1,172 @@
 {
- "texts": 429,
- "text_clips": 428,
+ "texts": 456,
+ "text_clips": 455,
  "slow_clips": 36,
  "letter_sounds": 26,
- "files": 491,
- "total_bytes": 5573044,
- "made": 52,
- "reused": 439,
- "pruned": 52,
+ "files": 518,
+ "total_bytes": 5831704,
+ "made": 1,
+ "reused": 517,
+ "pruned": 1,
  "uncovered_expressions": [],
- "version": "6819eff9",
- "seconds": 90,
+ "version": "5ca7f795",
+ "seconds": 23,
  "letters": [
   {
    "letter": "a",
    "keyword": "apple",
    "file": "af_heart/letters/a-fbc58c06.mp3",
-   "recipe": "vowel /æ/ cut from 'mˈæp' (closest formants to reference), lengthened"
+   "recipe": null
   },
   {
    "letter": "b",
    "keyword": "bus",
    "file": "af_heart/letters/b-86e046ed.mp3",
-   "recipe": "start of 'bug', clipped"
+   "recipe": null
   },
   {
    "letter": "c",
    "keyword": "cup",
    "file": "af_heart/letters/c-8c62e78c.mp3",
-   "recipe": "start of 'cup'/'kit', burst + breathy aspiration"
+   "recipe": null
   },
   {
    "letter": "d",
    "keyword": "dog",
    "file": "af_heart/letters/d-0ea1f154.mp3",
-   "recipe": "start of 'dug', clipped"
+   "recipe": null
   },
   {
    "letter": "e",
    "keyword": "egg",
    "file": "af_heart/letters/e-d14bd3cc.mp3",
-   "recipe": "vowel /ɛ/ cut from 'ˈɛɡ' (closest formants to reference), lengthened"
+   "recipe": null
   },
   {
    "letter": "f",
    "keyword": "fish",
    "file": "af_heart/letters/f-e32b08f1.mp3",
-   "recipe": "start of 'fˈæn', hiss lengthened"
+   "recipe": null
   },
   {
    "letter": "g",
    "keyword": "gas",
    "file": "af_heart/letters/g-bc3e3bd1.mp3",
-   "recipe": "start of 'gum', clipped"
+   "recipe": null
   },
   {
    "letter": "h",
    "keyword": "hat",
    "file": "af_heart/letters/h-81e1582c.mp3",
-   "recipe": "start of 'hat' (breath)"
+   "recipe": null
   },
   {
    "letter": "i",
    "keyword": "insect",
    "file": "af_heart/letters/i-6e5bc704.mp3",
-   "recipe": "vowel /ɪ/ cut from 'pˈɪn' (closest formants to reference), lengthened"
+   "recipe": null
   },
   {
    "letter": "j",
    "keyword": "jet",
    "file": "af_heart/letters/j-d41b894e.mp3",
-   "recipe": "start of 'jump', clipped"
+   "recipe": null
   },
   {
    "letter": "k",
    "keyword": "key",
    "file": "af_heart/letters/k-b997a802.mp3",
-   "recipe": "start of 'cup'/'kit', burst + breathy aspiration"
+   "recipe": null
   },
   {
    "letter": "l",
    "keyword": "lamp",
    "file": "af_heart/letters/l-d82c9ec9.mp3",
-   "recipe": "'l' cut from start of lot, lengthened"
+   "recipe": null
   },
   {
    "letter": "m",
    "keyword": "map",
    "file": "af_heart/letters/m-15b422fe.mp3",
-   "recipe": "hum cut from start of map, lengthened"
+   "recipe": null
   },
   {
    "letter": "n",
    "keyword": "nut",
    "file": "af_heart/letters/n-d182b238.mp3",
-   "recipe": "hum cut from start of not, lengthened"
+   "recipe": null
   },
   {
    "letter": "o",
    "keyword": "octopus",
    "file": "af_heart/letters/o-dd15ed37.mp3",
-   "recipe": "vowel /ɑ/ cut from 'tˈɑp' (closest formants to reference), lengthened"
+   "recipe": null
   },
   {
    "letter": "p",
    "keyword": "pan",
    "file": "af_heart/letters/p-72854255.mp3",
-   "recipe": "start of 'pot'/'pit'/'pan', burst + breathy aspiration"
+   "recipe": null
   },
   {
    "letter": "q",
    "keyword": "queen",
    "file": "af_heart/letters/q-bc8cf71f.mp3",
-   "recipe": "start of 'quick' (kw), clipped"
+   "recipe": null
   },
   {
    "letter": "r",
    "keyword": "run",
    "file": "af_heart/letters/r-2305bfb8.mp3",
-   "recipe": "'rrr' from start of run (lowest F3 = most r-like), lengthened"
+   "recipe": null
   },
   {
    "letter": "s",
    "keyword": "sun",
    "file": "af_heart/letters/s-3e87ee47.mp3",
-   "recipe": "start of 'sˈæt', hiss lengthened"
+   "recipe": null
   },
   {
    "letter": "t",
    "keyword": "tent",
    "file": "af_heart/letters/t-29c93488.mp3",
-   "recipe": "start of 'top'/'tip', burst + breathy aspiration"
+   "recipe": null
   },
   {
    "letter": "u",
    "keyword": "up",
    "file": "af_heart/letters/u-50dba4ee.mp3",
-   "recipe": "vowel /ʌ/ cut from 'kˈʌp' (closest formants to reference), lengthened"
+   "recipe": null
   },
   {
    "letter": "v",
    "keyword": "van",
    "file": "af_heart/letters/v-636cc57f.mp3",
-   "recipe": "start of 'van', lengthened"
+   "recipe": null
   },
   {
    "letter": "w",
    "keyword": "water",
    "file": "af_heart/letters/w-115dfa62.mp3",
-   "recipe": "start of 'wet' (glide), clipped"
+   "recipe": null
   },
   {
    "letter": "x",
    "keyword": "box",
    "file": "af_heart/letters/x-06264afa.mp3",
-   "recipe": "end of 'box' (ks)"
+   "recipe": null
   },
   {
    "letter": "y",
    "keyword": "yes",
    "file": "af_heart/letters/y-1e649d72.mp3",
-   "recipe": "start of 'yes' (glide), clipped"
+   "recipe": null
   },
   {
    "letter": "z",
    "keyword": "zero",
    "file": "af_heart/letters/z-35103278.mp3",
-   "recipe": "start of 'zip', lengthened"
+   "recipe": null
   }
  ],
  "qa": null

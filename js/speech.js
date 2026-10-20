@@ -255,7 +255,7 @@ window.Speech = (function () {
   async function ttsPart(part, my, reason) {
     if (part.onstart) part.onstart();
     if (part.text) note({ how: 'tts', key: clipKey(part.text), text: part.text, reason: reason || 'no-clip' });
-    await speakOne(part.text, part);
+    await speakOne(part.tts || part.text, part);   // part.tts: respelling for the built-in voice
     if (my !== token) return false;
     if (part.pause) await sleepCancellable(part.pause);
     return my === token;
@@ -343,7 +343,8 @@ window.Speech = (function () {
     return my === token;
   }
 
-  /** Speak a list of strings (or {text, rateMul, pause, onstart, clipName}) one after another.
+  /** Speak a list of strings (or {text, tts, rateMul, pause, onstart, clipName}) one after another.
+   *  text = what is said and the clip key; tts = optional respelling for the built-in voice.
    *  Resolves true if it finished without being cancelled. opts.queue = wait for the current
    *  speech instead of interrupting it. */
   let chain = Promise.resolve();

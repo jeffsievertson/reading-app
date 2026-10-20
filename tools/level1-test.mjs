@@ -1,7 +1,8 @@
 // Run: node tools/level1-test.mjs  (needs a local server: python3 -m http.server 8765)
 // Level 1 in the browser: A-Z list, the Q lesson (shown/said as Q, sound /kw/ from "queen"),
 // answer choices, progress migration from the old 'qu' id, "keep going" / "next" order.
-// Also writes screenshots/20-level1-az.png, 21-letter-q.png, 22-letter-q-find.png.
+// Also writes screenshots/20-level1-az.png, 21-letter-q.png, 22-letter-q-find.png,
+// 23-letter-intro-a.png, 24-letter-intro-e.png.
 import { chromium } from 'playwright-core';
 const BASE = process.env.BASE || 'http://127.0.0.1:8765/';
 const SHOTS = new URL('../screenshots/', import.meta.url).pathname;
@@ -32,7 +33,7 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
   // 2. Q lesson
   await p.waitForFunction(() => window.Speech.clipCount() > 400);
   await p.locator('.item.letter', { hasText: /^q$/ }).tap(); await p.waitForSelector('.big-letter');
-  await p.waitForTimeout(6000);
+  await p.waitForFunction(() => window.Speech.debugLog().filter((e) => e.key === 'queen').length >= 2, null, { timeout: 20000 }).catch(() => {});
   const big = await p.locator('.big-letter span').allTextContents();
   check('Q lesson shows "Q" and "q"', big[0] === 'Q' && big[1] === 'q', big);
   const kw = await p.locator('.keyword').textContent();
@@ -92,6 +93,45 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
   await p.locator('.letter-choice', { hasText: /^b$/ }).click(); await p.waitForSelector('.done-mark', { timeout: 6000 });
   await p.locator('.foot .primary').click(); await p.waitForSelector('.big-letter');
   check('after b, "next" opens c', p.url().endsWith('#/lesson/L1-c'), p.url());
+  await ctx.close();
+}
+// 5. Every letter lesson: NAME first, then the SOUND twice (real letter-sound clip), then the
+//    usual intro (keyword … sound … keyword) — all natural-voice clips, nothing missing
+//    (screenshots 23/24: the A and E intro screens)
+{
+  const { ctx, p } = await page({}, true);
+  await p.goto(BASE + '#/level/1'); await p.waitForSelector('.item.letter');
+  await p.waitForFunction(() => window.Speech.clipCount() > 400);
+  const bad = [];
+  for (const l of 'abcdefghijklmnopqrstuvwxyz') {
+    const it = await p.evaluate((l) => window.CONTENT.letters.find((x) => x.l === l), l);
+    await p.evaluate(() => window.Speech.stop());
+    const n0 = (await p.evaluate(() => window.Speech.debugLog().length));
+    await p.locator('.item.letter', { hasText: new RegExp('^' + l + '$') }).tap();
+    await p.waitForSelector('.big-letter');
+    await p.waitForFunction((n0) => { const L = window.Speech.debugLog(); return L.length - n0 >= 8 || L.length >= 300; }, n0, { timeout: 15000 }).catch(() => {});
+    const L = (await p.evaluate(() => window.Speech.debugLog())).slice(n0);
+    if (l === 'a' || l === 'e') await p.screenshot({ path: SHOTS + (l === 'a' ? '23-letter-intro-a.png' : '24-letter-intro-e.png') });
+    const keys = L.map((e) => e.key);
+    const intro = it.pos === 'end' ? 'this letter makes the sound at the end of' : 'this letter makes the first sound in';
+    const want = ['this is the letter ' + l, 'it makes the sound', 'letters/' + l, 'letters/' + l, intro, it.kw, 'letters/' + l, it.kw];
+    if (JSON.stringify(keys.slice(0, 8)) !== JSON.stringify(want) || L.slice(0, 8).some((e) => e.how !== 'clip')) bad.push({ l, keys: keys.slice(0, 8), how: L.slice(0, 8).map((e) => e.how) });
+    await p.goto(BASE + '#/level/1'); await p.waitForSelector('.item.letter');
+  }
+  check('all 26 letters: "This is the letter X." → "It makes the sound" → sound, sound → usual intro, all clips', !bad.length, bad);
+  await ctx.close();
+}
+// 6. Built-in voice fallback (phone voice chosen): letter names are respelled so they are said right
+{
+  const { ctx, p } = await page();
+  await p.goto(BASE + '#/settings'); await p.waitForSelector('.settings');
+  await p.evaluate(() => { const s = document.querySelector('select'); s.value = '__phone'; s.dispatchEvent(new Event('change')); });
+  const said = {};
+  for (const l of ['a', 'e', 'i', 'u', 'b']) {
+    await p.goto(BASE + '#/lesson/L1-' + l); await p.waitForSelector('.big-letter'); await p.waitForTimeout(600);
+    said[l] = (await p.evaluate(() => window.__tts)).filter((t) => /^This is the letter/.test(t)).pop();
+  }
+  check('phone voice says "letter ay / ee / eye / you / B"', said.a === 'This is the letter ay.' && said.e === 'This is the letter ee.' && said.i === 'This is the letter eye.' && said.u === 'This is the letter you.' && said.b === 'This is the letter B.', said);
   await ctx.close();
 }
 console.log(results.join('\n')); console.log(failed ? failed + ' FAILED' : 'all passed');

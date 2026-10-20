@@ -1,9 +1,10 @@
 {
  "a": {
-  "dist": 0.5,
+  "dist": 1.506,
   "heard": "e",
+  "name_dist": 0.5,
   "speak": "A.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "ei"
  },
  "address": {
@@ -35,10 +36,11 @@
   "want": "ap@l"
  },
  "b": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "bi",
+  "name_dist": 0.0,
   "speak": "B.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "bi"
  },
  "be": {
@@ -98,10 +100,11 @@
   "want": "bas"
  },
  "c": {
-  "dist": 0.002,
+  "dist": 0.008,
   "heard": "si",
+  "name_dist": 0.0,
   "speak": "C.",
-  "variant": "now092",
+  "variant": "name100",
   "want": "si"
  },
  "can": {
@@ -168,10 +171,11 @@
   "want": "kap"
  },
  "d": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "di",
+  "name_dist": 0.0,
   "speak": "D.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "di"
  },
  "dad": {
@@ -217,8 +221,9 @@
   "want": "dag"
  },
  "e": {
-  "dist": 0.002,
+  "dist": 0.011,
   "heard": "i",
+  "name_dist": 0.0,
   "speak": "E.",
   "variant": "now092",
   "want": "i"
@@ -266,10 +271,11 @@
   "want": "egzit"
  },
  "f": {
-  "dist": 0.002,
+  "dist": 0.008,
   "heard": "ef",
+  "name_dist": 0.0,
   "speak": "F.",
-  "variant": "now092",
+  "variant": "name100",
   "want": "ef"
  },
  "fast speech": {
@@ -322,10 +328,11 @@
   "want": "fan"
  },
  "g": {
-  "dist": 0.004,
+  "dist": 0.008,
   "heard": "Ji",
+  "name_dist": 0.0,
   "speak": "G.",
-  "variant": "dot100",
+  "variant": "name100",
   "want": "Ji"
  },
  "gas": {
@@ -371,10 +378,11 @@
   "want": "greit"
  },
  "h": {
-  "dist": 0.335,
-  "heard": "eit",
+  "dist": 0.01,
+  "heard": "eiC",
+  "name_dist": 0.0,
   "speak": "H.",
-  "variant": "now092",
+  "variant": "namecutx",
   "want": "eiC"
  },
  "had": {
@@ -448,10 +456,11 @@
   "want": "hat"
  },
  "i": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "ai",
+  "name_dist": 0.0,
   "speak": "I.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "ai"
  },
  "i sat": {
@@ -490,8 +499,9 @@
   "want": "it"
  },
  "j": {
-  "dist": 0.002,
+  "dist": 0.011,
   "heard": "Jei",
+  "name_dist": 0.0,
   "speak": "J.",
   "variant": "now092",
   "want": "Jei"
@@ -518,10 +528,11 @@
   "want": "Jet"
  },
  "k": {
-  "dist": 0.333,
+  "dist": 1.006,
   "heard": "ke",
+  "name_dist": 0.333,
   "speak": "K.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "kei"
  },
  "keep going": {
@@ -546,10 +557,11 @@
   "want": "kid"
  },
  "l": {
-  "dist": 0.002,
+  "dist": 0.008,
   "heard": "el",
+  "name_dist": 0.0,
   "speak": "L.",
-  "variant": "now092",
+  "variant": "name100",
   "want": "el"
  },
  "lamp": {
@@ -588,10 +600,11 @@
   "want": "lord"
  },
  "m": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "em",
+  "name_dist": 0.0,
   "speak": "M.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "em"
  },
  "mad": {
@@ -665,8 +678,9 @@
   "want": "mai"
  },
  "n": {
-  "dist": 0.002,
+  "dist": 0.011,
   "heard": "en",
+  "name_dist": 0.0,
   "speak": "N.",
   "variant": "now092",
   "want": "en"
@@ -714,10 +728,11 @@
   "want": "nat"
  },
  "o": {
-  "dist": 0.502,
+  "dist": 1.508,
   "heard": "au",
+  "name_dist": 0.5,
   "speak": "O.",
-  "variant": "now092",
+  "variant": "name100",
   "want": "ou"
  },
  "octopus": {
@@ -742,10 +757,11 @@
   "want": "oup@n"
  },
  "p": {
-  "dist": 0.002,
+  "dist": 0.008,
   "heard": "pi",
+  "name_dist": 0.0,
   "speak": "P.",
-  "variant": "now092",
+  "variant": "name100",
   "want": "pi"
  },
  "pan": {
@@ -819,8 +835,9 @@
   "want": "puS"
  },
  "q": {
-  "dist": 0.339,
+  "dist": 1.017,
   "heard": "ku",
+  "name_dist": 0.333,
   "speak": "Q.",
   "variant": "now085",
   "want": "kju"
@@ -833,8 +850,9 @@
   "want": "kwin"
  },
  "r": {
-  "dist": 0.003,
+  "dist": 0.012,
   "heard": "ar",
+  "name_dist": 0.0,
   "speak": "R.",
   "variant": "ell092",
   "want": "ar"
@@ -875,10 +893,11 @@
   "want": "ran"
  },
  "s": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "es",
+  "name_dist": 0.0,
   "speak": "S.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "es"
  },
  "said": {
@@ -994,10 +1013,11 @@
   "want": "san"
  },
  "t": {
-  "dist": 0.002,
+  "dist": 0.008,
   "heard": "ti",
+  "name_dist": 0.0,
   "speak": "T.",
-  "variant": "now092",
+  "variant": "name100",
   "want": "ti"
  },
  "tap": {
@@ -1049,6 +1069,240 @@
   "variant": "dot092",
   "want": "Dis"
  },
+ "this is the letter a": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rrei",
+  "name_dist": 0.0,
+  "speak": "This is the letter A.",
+  "variant": "ph092",
+  "want": "DisizD@let@rrei",
+  "whisper": "This is the letter A."
+ },
+ "this is the letter b": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rbi",
+  "name_dist": 0.0,
+  "speak": "This is the letter B.",
+  "variant": "ph092",
+  "want": "DisizD@let@rbi",
+  "whisper": "This is the letter B."
+ },
+ "this is the letter c": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rsi",
+  "name_dist": 0.0,
+  "speak": "This is the letter C.",
+  "variant": "ph092",
+  "want": "DisizD@let@rsi",
+  "whisper": "This is the letter C."
+ },
+ "this is the letter d": {
+  "dist": 0.002,
+  "heard": "DisizD@let@rdi",
+  "name_dist": 0.0,
+  "speak": "This is the letter D.",
+  "variant": "phc092",
+  "want": "DisizD@let@rdi",
+  "whisper": "This is the letter D."
+ },
+ "this is the letter e": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rri",
+  "name_dist": 0.0,
+  "speak": "This is the letter E.",
+  "variant": "ph092",
+  "want": "DisizD@let@rri",
+  "whisper": "This is the letter E."
+ },
+ "this is the letter f": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rref",
+  "name_dist": 0.0,
+  "speak": "This is the letter F.",
+  "variant": "ph092",
+  "want": "DisizD@let@rref",
+  "whisper": "This is the letter F."
+ },
+ "this is the letter g": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rJi",
+  "name_dist": 0.0,
+  "speak": "This is the letter G.",
+  "variant": "ph092",
+  "want": "DisizD@let@rJi",
+  "whisper": "This is the letter G."
+ },
+ "this is the letter h": {
+  "dist": 0.065,
+  "heard": "DisizD@let@reiC",
+  "name_dist": 0.0,
+  "speak": "This is the letter H.",
+  "variant": "phc092",
+  "want": "DisizD@let@rreiC",
+  "whisper": "This is the letter H."
+ },
+ "this is the letter i": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rrai",
+  "name_dist": 0.0,
+  "speak": "This is the letter I.",
+  "variant": "ph092",
+  "want": "DisizD@let@rrai",
+  "whisper": "This is the letter I."
+ },
+ "this is the letter j": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rJei",
+  "name_dist": 0.0,
+  "speak": "This is the letter J.",
+  "variant": "ph092",
+  "want": "DisizD@let@rJei",
+  "whisper": "This is the letter J."
+ },
+ "this is the letter k": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rkei",
+  "name_dist": 0.0,
+  "speak": "This is the letter K.",
+  "variant": "ph092",
+  "want": "DisizD@let@rkei",
+  "whisper": "This is the letter K."
+ },
+ "this is the letter l": {
+  "dist": 0.069,
+  "heard": "DisizD@let@rel",
+  "name_dist": 0.0,
+  "speak": "This is the letter L.",
+  "variant": "phc092",
+  "want": "DisizD@let@rrel",
+  "whisper": "This is the letter L."
+ },
+ "this is the letter m": {
+  "dist": 0.003,
+  "heard": "DisizD@let@rrem",
+  "name_dist": 0.0,
+  "speak": "This is the letter M.",
+  "variant": "ph088",
+  "want": "DisizD@let@rrem",
+  "whisper": "This is the letter M."
+ },
+ "this is the letter n": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rren",
+  "name_dist": 0.0,
+  "speak": "This is the letter N.",
+  "variant": "ph092",
+  "want": "DisizD@let@rren",
+  "whisper": "This is the letter N."
+ },
+ "this is the letter o": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rrou",
+  "name_dist": 0.0,
+  "speak": "This is the letter O.",
+  "variant": "ph092",
+  "want": "DisizD@let@rrou",
+  "whisper": "This is the letter O."
+ },
+ "this is the letter p": {
+  "dist": 0.002,
+  "heard": "DisizD@let@rpi",
+  "name_dist": 0.0,
+  "speak": "This is the letter P.",
+  "variant": "phc092",
+  "want": "DisizD@let@rpi",
+  "whisper": "This is the letter P."
+ },
+ "this is the letter q": {
+  "dist": 0.004,
+  "heard": "DisizD@let@rkju",
+  "name_dist": 0.0,
+  "speak": "This is the letter Q.",
+  "variant": "ph100",
+  "want": "DisizD@let@rkju",
+  "whisper": "This is the letter Q."
+ },
+ "this is the letter r": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rrar",
+  "name_dist": 0.0,
+  "speak": "This is the letter R.",
+  "variant": "ph092",
+  "want": "DisizD@let@rrar",
+  "whisper": "This is the letter R."
+ },
+ "this is the letter s": {
+  "dist": 0.069,
+  "heard": "DisizD@let@res",
+  "name_dist": 0.0,
+  "speak": "This is the letter S.",
+  "variant": "phc092",
+  "want": "DisizD@let@rres",
+  "whisper": "This is the letter S."
+ },
+ "this is the letter t": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rti",
+  "name_dist": 0.0,
+  "speak": "This is the letter T.",
+  "variant": "ph092",
+  "want": "DisizD@let@rti",
+  "whisper": "This is the letter T."
+ },
+ "this is the letter u": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rju",
+  "name_dist": 0.0,
+  "speak": "This is the letter U.",
+  "variant": "ph092",
+  "want": "DisizD@let@rju",
+  "whisper": "This is the letter U."
+ },
+ "this is the letter v": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rvi",
+  "name_dist": 0.0,
+  "speak": "This is the letter V.",
+  "variant": "ph092",
+  "want": "DisizD@let@rvi",
+  "whisper": "This is the letter V."
+ },
+ "this is the letter w": {
+  "dist": 0.053,
+  "heard": "DisizD@lat@rdab@lju",
+  "name_dist": 0.0,
+  "speak": "This is the letter W.",
+  "variant": "ph092",
+  "want": "DisizD@let@rdab@lju",
+  "whisper": "This is the letter W."
+ },
+ "this is the letter x": {
+  "dist": 0.065,
+  "heard": "DisizD@let@reks",
+  "name_dist": 0.0,
+  "speak": "This is the letter X.",
+  "variant": "phc092",
+  "want": "DisizD@let@rreks",
+  "whisper": "This is the letter X."
+ },
+ "this is the letter y": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rwai",
+  "name_dist": 0.0,
+  "speak": "This is the letter Y.",
+  "variant": "ph092",
+  "want": "DisizD@let@rwai",
+  "whisper": "This is the letter Y."
+ },
+ "this is the letter z": {
+  "dist": 0.0,
+  "heard": "DisizD@let@rzi",
+  "name_dist": 0.0,
+  "speak": "This is the letter Z.",
+  "variant": "ph092",
+  "want": "DisizD@let@rzi",
+  "whisper": "This is the letter Z."
+ },
  "this says": {
   "dist": 0.149,
   "heard": "Dissez",
@@ -1085,10 +1339,11 @@
   "want": "tap"
  },
  "u": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "ju",
+  "name_dist": 0.0,
   "speak": "U.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "ju"
  },
  "up": {
@@ -1099,10 +1354,11 @@
   "want": "ap"
  },
  "v": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "vi",
+  "name_dist": 0.0,
   "speak": "V.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "vi"
  },
  "van": {
@@ -1113,8 +1369,9 @@
   "want": "van"
  },
  "w": {
-  "dist": 0.002,
+  "dist": 0.011,
   "heard": "dab@lju",
+  "name_dist": 0.0,
   "speak": "W.",
   "variant": "now092",
   "want": "dab@lju"
@@ -1183,17 +1440,19 @@
   "want": "wiDaut"
  },
  "x": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "eks",
+  "name_dist": 0.0,
   "speak": "X.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "eks"
  },
  "y": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "wai",
+  "name_dist": 0.0,
   "speak": "Y.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "wai"
  },
  "yes": {
@@ -1211,10 +1470,11 @@
   "want": "ju"
  },
  "z": {
-  "dist": 0.0,
+  "dist": 0.006,
   "heard": "zi",
+  "name_dist": 0.0,
   "speak": "Z.",
-  "variant": "dot092",
+  "variant": "name092",
   "want": "zi"
  },
  "zero": {

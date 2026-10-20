@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 429,
+ "count": 456,
  "letters": [
   {
    "l": "a",
@@ -301,6 +301,16 @@
    ]
   },
   {
+   "key": "this is the letter a",
+   "text": "This is the letter A.",
+   "speak": "This is the letter A.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-a"
+   ],
+   "letter": "a"
+  },
+  {
    "key": "b",
    "text": "b",
    "speak": "B.",
@@ -319,6 +329,16 @@
     "item:L2-bus",
     "chip:L3-s10"
    ]
+  },
+  {
+   "key": "this is the letter b",
+   "text": "This is the letter B.",
+   "speak": "This is the letter B.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-b"
+   ],
+   "letter": "b"
   },
   {
    "key": "c",
@@ -341,6 +361,16 @@
    ]
   },
   {
+   "key": "this is the letter c",
+   "text": "This is the letter C.",
+   "speak": "This is the letter C.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-c"
+   ],
+   "letter": "c"
+  },
+  {
    "key": "d",
    "text": "d",
    "speak": "D.",
@@ -361,6 +391,16 @@
    ]
   },
   {
+   "key": "this is the letter d",
+   "text": "This is the letter D.",
+   "speak": "This is the letter D.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-d"
+   ],
+   "letter": "d"
+  },
+  {
    "key": "e",
    "text": "e",
    "speak": "E.",
@@ -377,6 +417,16 @@
    "sources": [
     "keyword"
    ]
+  },
+  {
+   "key": "this is the letter e",
+   "text": "This is the letter E.",
+   "speak": "This is the letter E.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-e"
+   ],
+   "letter": "e"
   },
   {
    "key": "f",
@@ -397,6 +447,16 @@
    ]
   },
   {
+   "key": "this is the letter f",
+   "text": "This is the letter F.",
+   "speak": "This is the letter F.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-f"
+   ],
+   "letter": "f"
+  },
+  {
    "key": "g",
    "text": "g",
    "speak": "G.",
@@ -413,6 +473,16 @@
    "sources": [
     "keyword"
    ]
+  },
+  {
+   "key": "this is the letter g",
+   "text": "This is the letter G.",
+   "speak": "This is the letter G.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-g"
+   ],
+   "letter": "g"
   },
   {
    "key": "h",
@@ -432,6 +502,16 @@
     "keyword",
     "item:L2-hat"
    ]
+  },
+  {
+   "key": "this is the letter h",
+   "text": "This is the letter H.",
+   "speak": "This is the letter H.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-h"
+   ],
+   "letter": "h"
   },
   {
    "key": "i",
@@ -458,6 +538,16 @@
    ]
   },
   {
+   "key": "this is the letter i",
+   "text": "This is the letter I.",
+   "speak": "This is the letter I.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-i"
+   ],
+   "letter": "i"
+  },
+  {
    "key": "j",
    "text": "j",
    "speak": "J.",
@@ -475,6 +565,16 @@
     "keyword",
     "item:L2-jet"
    ]
+  },
+  {
+   "key": "this is the letter j",
+   "text": "This is the letter J.",
+   "speak": "This is the letter J.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-j"
+   ],
+   "letter": "j"
   },
   {
    "key": "k",
@@ -495,6 +595,16 @@
    ]
   },
   {
+   "key": "this is the letter k",
+   "text": "This is the letter K.",
+   "speak": "This is the letter K.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-k"
+   ],
+   "letter": "k"
+  },
+  {
    "key": "l",
    "text": "l",
    "speak": "L.",
@@ -511,6 +621,16 @@
    "sources": [
     "keyword"
    ]
+  },
+  {
+   "key": "this is the letter l",
+   "text": "This is the letter L.",
+   "speak": "This is the letter L.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-l"
+   ],
+   "letter": "l"
   },
   {
    "key": "m",
@@ -532,6 +652,16 @@
    ]
   },
   {
+   "key": "this is the letter m",
+   "text": "This is the letter M.",
+   "speak": "This is the letter M.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-m"
+   ],
+   "letter": "m"
+  },
+  {
    "key": "n",
    "text": "n",
    "speak": "N.",
@@ -550,6 +680,16 @@
    ]
   },
   {
+   "key": "this is the letter n",
+   "text": "This is the letter N.",
+   "speak": "This is the letter N.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-n"
+   ],
+   "letter": "n"
+  },
+  {
    "key": "o",
    "text": "o",
    "speak": "O.",
@@ -566,6 +706,16 @@
    "sources": [
     "keyword"
    ]
+  },
+  {
+   "key": "this is the letter o",
+   "text": "This is the letter O.",
+   "speak": "This is the letter O.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-o"
+   ],
+   "letter": "o"
   },
   {
    "key": "p",
@@ -587,6 +737,16 @@
    ]
   },
   {
+   "key": "this is the letter p",
+   "text": "This is the letter P.",
+   "speak": "This is the letter P.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-p"
+   ],
+   "letter": "p"
+  },
+  {
    "key": "q",
    "text": "q",
    "speak": "Q.",
@@ -603,6 +763,16 @@
    "sources": [
     "keyword"
    ]
+  },
+  {
+   "key": "this is the letter q",
+   "text": "This is the letter Q.",
+   "speak": "This is the letter Q.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-q"
+   ],
+   "letter": "q"
   },
   {
    "key": "r",
@@ -625,6 +795,16 @@
    ]
   },
   {
+   "key": "this is the letter r",
+   "text": "This is the letter R.",
+   "speak": "This is the letter R.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-r"
+   ],
+   "letter": "r"
+  },
+  {
    "key": "s",
    "text": "s",
    "speak": "S.",
@@ -645,6 +825,16 @@
    ]
   },
   {
+   "key": "this is the letter s",
+   "text": "This is the letter S.",
+   "speak": "This is the letter S.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-s"
+   ],
+   "letter": "s"
+  },
+  {
    "key": "t",
    "text": "t",
    "speak": "T.",
@@ -663,6 +853,16 @@
    ]
   },
   {
+   "key": "this is the letter t",
+   "text": "This is the letter T.",
+   "speak": "This is the letter T.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-t"
+   ],
+   "letter": "t"
+  },
+  {
    "key": "u",
    "text": "u",
    "speak": "U.",
@@ -679,6 +879,16 @@
    "sources": [
     "keyword"
    ]
+  },
+  {
+   "key": "this is the letter u",
+   "text": "This is the letter U.",
+   "speak": "This is the letter U.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-u"
+   ],
+   "letter": "u"
   },
   {
    "key": "v",
@@ -701,6 +911,16 @@
    ]
   },
   {
+   "key": "this is the letter v",
+   "text": "This is the letter V.",
+   "speak": "This is the letter V.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-v"
+   ],
+   "letter": "v"
+  },
+  {
    "key": "w",
    "text": "w",
    "speak": "W.",
@@ -721,6 +941,16 @@
    ]
   },
   {
+   "key": "this is the letter w",
+   "text": "This is the letter W.",
+   "speak": "This is the letter W.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-w"
+   ],
+   "letter": "w"
+  },
+  {
    "key": "x",
    "text": "x",
    "speak": "X.",
@@ -739,6 +969,16 @@
     "item:L2-box",
     "chip:L3-s13"
    ]
+  },
+  {
+   "key": "this is the letter x",
+   "text": "This is the letter X.",
+   "speak": "This is the letter X.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-x"
+   ],
+   "letter": "x"
   },
   {
    "key": "y",
@@ -762,6 +1002,16 @@
    ]
   },
   {
+   "key": "this is the letter y",
+   "text": "This is the letter Y.",
+   "speak": "This is the letter Y.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-y"
+   ],
+   "letter": "y"
+  },
+  {
    "key": "z",
    "text": "z",
    "speak": "Z.",
@@ -778,6 +1028,16 @@
    "sources": [
     "keyword"
    ]
+  },
+  {
+   "key": "this is the letter z",
+   "text": "This is the letter Z.",
+   "speak": "This is the letter Z.",
+   "kind": "intro",
+   "sources": [
+    "intro:L1-z"
+   ],
+   "letter": "z"
   },
   {
    "key": "sat",
@@ -3674,6 +3934,15 @@
    "key": "this letter makes the first sound in",
    "text": "This letter makes the first sound in ",
    "speak": "This letter makes the first sound in ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "it makes the sound",
+   "text": "It makes the sound",
+   "speak": "It makes the sound",
    "kind": "text",
    "sources": [
     "app.js"

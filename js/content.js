@@ -40,6 +40,15 @@ window.CONTENT = (function () {
     { l: 'q', sound: 'kwuh', kw: 'queen',  emoji: '👑' }   // the letter Q; its usual sound /kw/ as in queen
   ];
   letters.sort((a, b) => a.l.localeCompare(b.l));
+  // Letter names, said first in each letter lesson ("This is the letter E. It makes the
+  // sound eh, eh."). `tts` respells names the phone's built-in voice could misread
+  // (A as the article "uh", I, U …); the natural-voice clips are generated from phonemes.
+  const NAME_TTS = { a: 'ay', e: 'ee', i: 'eye', o: 'oh', u: 'you', y: 'why', w: 'double you', q: 'cue', r: 'are', h: 'aitch' };
+  letters.forEach((x) => {
+    x.name = x.l.toUpperCase();
+    x.intro = 'This is the letter ' + x.name + '.';
+    x.introTts = 'This is the letter ' + (NAME_TTS[x.l] || x.name) + '.';
+  });
 
   // ---------- Level 2: CVC words (roughly in letter-teaching order) ----------
   // The picture is shown only AFTER he reads the word, so he decodes rather than guesses.
