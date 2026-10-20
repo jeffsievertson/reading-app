@@ -56,22 +56,47 @@ Notes
    - Bible: 8 short **King James Version** verses (John 11:35, 1 Thess 5:16, 5:17,
      Genesis 1:3, Psalm 23:1, Genesis 1:1, Philippians 4:13, Psalm 118:24).
 
+### Natural voice (pre-recorded clips)
+- Everything the app says is pre-generated with the free **Kokoro-82M** neural voice
+  (voice `af_heart`, Apache-2.0) as small MP3 clips in `audio/af_heart/` (~500 files,
+  ~5.6 MB, cached for offline use). The same voice plays on every phone, iPhone included.
+- The 26 letter sounds are **cut from real words** (e.g. the /t/ from "tip", the /m/
+  from "map") instead of asking the voice to say "tuh", so stops are crisp and
+  continuous sounds (sss, mmm, fff, lll, rrr) are stretched without a vowel.
+- Playback goes through the Web Audio API: clips start after the first tap (iOS rule),
+  word blending plays the letter sounds back-to-back on the audio clock (gapless), and
+  the 🐢/🚶/🏃 speed setting speeds clips up/down without changing pitch.
+- **Fallback:** if a clip is missing, can't be loaded/decoded, or hasn't started within
+  ~1.5 s (slow network, locked audio), that text is spoken with the phone's built-in voice
+  instead, so the app never goes silent.
+- ⚙️ Voice: **Natural voice (recommended)** is the default; the phone's own voices are
+  listed as alternatives ("Phone voice: …"). Picking a phone voice turns the clips off.
+- On iOS 17+ the app asks for the "playback" audio session so clips are heard even with
+  the ring/silent switch on silent (older iOS: flip the switch off silent).
+- Rebuilding the clips (only needed after changing lesson text): see *Rebuilding the
+  audio* below.
+
 ### "Say it" step (speech recognition)
-- If the browser supports `SpeechRecognition`/`webkitSpeechRecognition`, a big 🎤 button
+- Every say-it step says: **"Tap the mic, then read it out loud. When you're done, tap
+  the thumbs up."** (sentences/verses: "…read the sentence/verse out loud…"). The screen
+  shows 🔊, 🎤 and 👍 in that order, 🎤 and 👍 the same big size, on every phone and in
+  the iPhone home-screen app.
+- If the browser supports `SpeechRecognition`/`webkitSpeechRecognition`, the 🎤 button
   listens once and checks the answer (accepts several recognizer alternatives, common
   homophones like sun/son, and ~75% of the words for sentences).
 - Listening can never lock the screen: a watchdog gives up if the recognizer hasn't
   started within ~3–4 s (e.g. stuck behind the first mic-permission prompt; the first try
   is retried once automatically) and caps listening at 7–12 s. While listening the 🎤
-  becomes ⏹ (tap to stop). 👍 appears after any miss or failure.
+  becomes ⏹ (tap to stop). 👍 always works, with or without the mic.
 - On an iPhone home-screen app (standalone mode), where Apple's recognizer is unreliable,
-  👍 is the main button and the 🎤 is an optional extra; if it doesn't start it is hidden
-  for the rest of the session.
-- After 2 misses, or if the mic is blocked/unsupported/turned off in ⚙️, a 👍 "I said it"
-  button appears. Without recognition the step is simply "read it aloud, tap 👍".
+  the mic uses a shorter watchdog; if it doesn't start it is hidden for the rest of the
+  session and the instruction changes to "Read it out loud. When you're done, tap the
+  thumbs up."
+- If the mic is blocked/unsupported/turned off in ⚙️ the step is simply "Read it out
+  loud. When you're done, tap the thumbs up." 
 
 ### Settings ⚙️
-Voice speed (🐢 🚶 🏃), voice choice, microphone on/off, erase progress (two taps),
+Voice speed (🐢 🚶 🏃), voice (Natural voice – recommended – or a phone voice), microphone on/off, erase progress (two taps),
 install instructions.
 
 ### Progress
@@ -87,11 +112,15 @@ manifest.json         PWA manifest
 sw.js                 service worker: precache + offline
 css/styles.css        all styling (signs/menu/forms drawn with CSS)
 js/content.js         all lesson content (edit here to add words/sentences/verses)
-js/speech.js          Web Speech API wrapper (TTS, recognition, answer matching)
+js/speech.js          speech: natural-voice clip player (Web Audio) with built-in-voice
+                      fallback, recognition with watchdogs, answer matching
 js/app.js             screens, lessons, progress, settings
 icons/                icon.svg + PNGs (192, 512, maskable 512, apple-touch 180)
-audio/                optional recorded letter sounds (see audio/README.md)
-tools/                dev-only tests (smoke-test.mjs, match-test.js, render-icons.mjs)
+audio/clips.json      text -> clip map (generated)
+audio/af_heart/       generated Kokoro af_heart MP3 clips (t/ texts, slow/ slow words,
+                      letters/ the 26 letter sounds) – see audio/README.md
+tools/                dev-only tests (smoke, mic, mic-robust, clip, match) + render-icons
+tools/audio/          dev-only audio build (build_audio.py, phonics.py, collect-texts.mjs)
 screenshots/          390×844 phone screenshots from the headless test
 LICENSES.md           third-party content (none shipped)
 ```
@@ -107,18 +136,24 @@ LICENSES.md           third-party content (none shipped)
 - `tools/mic-robust-test.mjs`: misbehaving fake recognizers (never fires any event, starts
   but never ends, throws on start, first start dies then works, every error code, iOS
   home-screen mode) – checks the say-step never stays blocked and always offers ⏹ / 👍.
+- `tools/clip-test.mjs`: natural-voice playback on an iPhone user agent – clip plays after
+  a tap; built-in voice takes over for locked audio, a missing text, a 404, a corrupt file
+  and a slow (>1.5 s) clip; speed setting → clip speed; blending is gapless; voice setting
+  (natural / phone / migrated old setting); say-it instruction, 🔊🎤👍 order and mic after
+  clips in Safari and home-screen mode; and a crawl of all 116 lessons checking every
+  spoken text has a clip.
 - `tools/mic-test.mjs`: fakes a speech recognizer to check the 🎤 path – correct word ✓ + ▶,
   wrong word shows what was heard, mic permission denied → 👍 fallback.
 - Not yet tested on a real iPhone or Android phone (needs HTTPS hosting – see below).
 
 ## Known limitations
-- **Letter sounds via computer voice are imperfect.** TTS engines are built to speak
-  words, not isolated phonemes. "sss", "mmm", "fff" usually work; stop sounds ("tuh",
-  "puh") add an extra "uh"; short vowels ("aah", "ih", "eh") are approximations and
-  some voices may say the letter *name*. That is why every sound is wrapped in a
-  keyword ("sun … sss … sun") and the quizzes ask about the keyword. **Best fix:** record
-  real sounds (a teacher/friend, ~26 short clips) into `audio/letters/` – the app plays
-  them automatically (see `audio/README.md`).
+- **Letter sounds are cut from computer-voice words.** They are much better than asking
+  a voice to say "tuh", but a few are still approximations: the glides (w, y), qu, j, the
+  voiced stops (b, d, g) and z/v/r/l. Every sound is still wrapped in a keyword
+  ("sun … sss … sun") and the quizzes ask about the keyword. A person can replace any
+  sound with a real recording (see `audio/README.md`).
+- With **Phone voice** selected in ⚙️ (or if clips can't play) the phone's own voice is
+  used, and its letter sounds are worse.
 - **Speech recognition support varies:**
   - *Android + Chrome:* works well. Needs internet (Google's servers do the
     recognition), mic permission, HTTPS.
@@ -137,17 +172,42 @@ LICENSES.md           third-party content (none shipped)
 - **Voices:** quality depends on the phone. iPhone: Settings → Accessibility → Spoken
   Content → Voices → download an "Enhanced" English voice for a better sound. Text-to-speech
   works offline on most phones; some Android voices download on first use.
-- iOS only lets web pages speak after a tap, so the app never talks before the first tap
-  on each launch.
+- iOS only lets web pages play sound after a tap, so the app never talks before the first
+  tap on each launch. If iOS interrupts audio (phone call, other app), the next text falls
+  back to the phone voice until the next tap.
 - The `say` check cannot tell if he *read* the word or repeated it after tapping 🔊 –
   this is a practice tool, not a test.
 - Content is a starter set (116 lessons). No digraphs (sh, ch, th, ck), long vowels or
   blends yet – the natural next levels.
 
-## Hosting (owner decision – nothing has been published)
-To use it on his phone it must be served over HTTPS. Free options for a static folder:
-GitHub Pages, Cloudflare Pages, Netlify (free tier). Any of them: upload the folder as-is
-(no build). Keeping the repo private or the URL unlisted is up to the owner.
+## Hosting
+Live on GitHub Pages: https://jeffsievertson.github.io/reading-app/ (static folder, no
+build step; any HTTPS static host works).
+
+### Getting an update on the phone
+Updates download by themselves when the app is opened online; the new version is used
+from the next launch. To get it right away: open the app (or the Safari page) while
+online, wait ~10 seconds, then close it completely (iPhone: swipe it away in the app
+switcher) and open it again. ⚙️ → Voice should say **Natural voice (recommended)**.
+
+## Rebuilding the audio (dev only, not part of the app)
+After changing any text in `js/content.js` or `js/app.js`:
+```
+python3 -m venv tts-venv && tts-venv/bin/pip install kokoro-onnx soundfile praat-parselmouth
+# model files kokoro-v1.0.onnx + voices-v1.0.bin (github.com/thewh1teagle/kokoro-onnx releases)
+TTS_MODELS=/path/to/models tts-venv/bin/python tools/audio/build_audio.py
+```
+It collects every spoken text (`tools/audio/collect-texts.mjs`, which also lists any text
+it can't cover), renders only new/changed clips, rewrites `audio/clips.json`, removes old
+files and stamps the audio version into `sw.js` (so phones download the new clips). For
+short words it renders a few variants and lets a phoneme recognizer pick the cleanest
+(`picks.json`); `--qa` checks longer texts with Whisper (`overrides.json`). Both
+recognizers are optional dev tools.
+
+**These generation tools are not shipped.** kokoro-onnx uses **espeak-ng** (via
+phonemizer / espeakng-loader) for phonemes, and the letter-sound cutting uses **Praat**
+(via praat-parselmouth); espeak-ng and Praat are **GPL**-licensed. They only run on the
+build machine. The app ships only the generated MP3 files, which contain no GPL code.
 
 ## Content sources
 - Word lists, sentences, sign/menu/form text and all instructions: written for this project.

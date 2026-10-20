@@ -58,6 +58,7 @@ const st = async (p) => p.evaluate(() => ({
   micIco: document.querySelector('.foot .mic .ico')?.textContent,
   listening: !!document.querySelector('.mic.listening'),
   ok: !!document.querySelector('.foot .ok-btn'),
+  order: [...document.querySelectorAll('.foot .btn .ico')].map((x) => x.textContent).join(''),
   next: !!document.querySelector('.foot .primary'),
   rec: window.__rec
 }));
@@ -174,11 +175,11 @@ for (const code of ['not-allowed', 'service-not-allowed', 'audio-capture', 'no-s
   check('iOS standalone: working mic still succeeds', s.next && /sat/.test(s.status), s);
   await ctx.close();
 }
-// 12. iOS Safari (not standalone) keeps the big mic
+// 12. iOS Safari (not standalone): mic -> read aloud -> thumbs up, both visible
 {
   const { ctx, p } = await setup(['result:sat'], { ios: true });
   const s = await st(p);
-  check('iOS Safari tab: big mic, no 👍 yet', s.mic && !s.ok, s);
+  check('iOS Safari tab: 🎤 and 👍 both shown, mic first', s.mic && s.ok && s.order === '🔊🎤👍', s);
   await ctx.close();
 }
 console.log(results.join('\n'));

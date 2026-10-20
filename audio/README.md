@@ -1,16 +1,18 @@
-# Optional recorded sounds
+# Natural-voice audio (generated)
 
-Computer voices are bad at saying single letter *sounds* (they often say the letter
-*name*, or a strange noise). For the best results a person can record real sounds.
+- `clips.json` – generated map from spoken text to clip file. Keys are normalised text
+  (`Speech.clipKey`: lower case, punctuation removed). `letters` maps `letters/<l>` to the
+  letter-sound clips, `fixed` lists keys that always play at natural length (the sound hints
+  like "sss", "tuh" used in blending), `slow` holds slow versions of the Level 2 words,
+  `files` is the full list the service worker caches for offline use.
+- `af_heart/t/`, `af_heart/slow/`, `af_heart/letters/` – MP3 clips (mono, 24 kHz, 48 kbps),
+  made with Kokoro-82M voice af_heart (Apache-2.0) by `tools/audio/build_audio.py`.
+  File names contain a content hash, so a changed clip always gets a new name.
 
-1. Record short MP3 clips, e.g. `letters/s.mp3` saying "sss", `letters/a.mp3` saying the
-   short "a" in *apple*. Record only the sound itself; the app adds the keyword
-   around it ("sun … [your sss] … sun") and also plays it when a letter in a word is tapped.
-2. Put them in this folder: `audio/letters/s.mp3`, `audio/letters/qu.mp3`, …
-3. List each clip name (without `.mp3`) in `audio/clips.json`, e.g.
-   `["letters/s", "letters/a"]`.
-4. Add the files to the `ASSETS` list in `sw.js` and bump `CACHE` (e.g. `read-aloud-v2`)
-   so they work offline.
+Do not edit by hand – re-run `tools/audio/build_audio.py` (see the main README).
 
-Clips not listed in `clips.json` are never requested; the app falls back to the phone's
-built-in voice. Only use recordings you made yourself or that you have the right to use.
+## Replacing a letter sound with a real recording
+Record a short clip of just the sound (e.g. "sss", or the short "a" in *apple*), save it
+as MP3 in `af_heart/letters/`, and point the matching `letters/<l>` entry (and the sound
+hint key in `clips`, e.g. `"sss"`) in `clips.json` at it. Note: the next build run will
+overwrite `clips.json`, so keep a note. Only use recordings you have the right to use.

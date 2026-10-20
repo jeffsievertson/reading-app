@@ -1,0 +1,1234 @@
+{
+ "a": {
+  "dist": 0.5,
+  "heard": "e",
+  "speak": "a",
+  "variant": "dot092",
+  "want": "ei"
+ },
+ "address": {
+  "dist": 0.0,
+  "heard": "adres",
+  "speak": "Address",
+  "variant": "dot092",
+  "want": "adres"
+ },
+ "all": {
+  "dist": 0.5,
+  "heard": "al",
+  "speak": "all",
+  "variant": "dot092",
+  "want": "ol"
+ },
+ "and": {
+  "dist": 0.004,
+  "heard": "and",
+  "speak": "And",
+  "variant": "dot100",
+  "want": "and"
+ },
+ "apple": {
+  "dist": 0.004,
+  "heard": "ap@l",
+  "speak": "apple",
+  "variant": "dot100",
+  "want": "ap@l"
+ },
+ "b": {
+  "dist": 0.0,
+  "heard": "bi",
+  "speak": "b",
+  "variant": "dot092",
+  "want": "bi"
+ },
+ "be": {
+  "dist": 0.0,
+  "heard": "bi",
+  "speak": "be",
+  "variant": "dot092",
+  "want": "bi"
+ },
+ "bed": {
+  "dist": 0.0,
+  "heard": "bed",
+  "speak": "bed",
+  "variant": "dot092",
+  "want": "bed"
+ },
+ "beginning": {
+  "dist": 0.0,
+  "heard": "biginiN",
+  "speak": "beginning",
+  "variant": "dot092",
+  "want": "biginiN"
+ },
+ "big": {
+  "dist": 0.002,
+  "heard": "big",
+  "speak": "big",
+  "variant": "now092",
+  "want": "big"
+ },
+ "box": {
+  "dist": 0.0,
+  "heard": "baks",
+  "speak": "box",
+  "variant": "dot092",
+  "want": "baks"
+ },
+ "bug": {
+  "dist": 0.0,
+  "heard": "bag",
+  "speak": "bug",
+  "variant": "dot092",
+  "want": "bag"
+ },
+ "burger": {
+  "dist": 0.002,
+  "heard": "b@g@r",
+  "speak": "Burger",
+  "variant": "now092",
+  "want": "b@g@r"
+ },
+ "bus": {
+  "dist": 0.0,
+  "heard": "bas",
+  "speak": "bus",
+  "variant": "dot092",
+  "want": "bas"
+ },
+ "c": {
+  "dist": 0.002,
+  "heard": "si",
+  "speak": "c",
+  "variant": "now092",
+  "want": "si"
+ },
+ "can": {
+  "dist": 0.333,
+  "heard": "ken",
+  "speak": "can",
+  "variant": "dot092",
+  "want": "kan"
+ },
+ "cat": {
+  "dist": 0.0,
+  "heard": "kat",
+  "speak": "cat",
+  "variant": "dot092",
+  "want": "kat"
+ },
+ "ceasing": {
+  "dist": 0.0,
+  "heard": "sisiN",
+  "speak": "ceasing",
+  "variant": "dot092",
+  "want": "sisiN"
+ },
+ "chicken": {
+  "dist": 0.002,
+  "heard": "Cikin",
+  "speak": "Chicken",
+  "variant": "now092",
+  "want": "Cikin"
+ },
+ "christ": {
+  "dist": 0.0,
+  "heard": "kraist",
+  "speak": "Christ",
+  "variant": "dot092",
+  "want": "kraist"
+ },
+ "closed": {
+  "dist": 0.0,
+  "heard": "klouzd",
+  "speak": "Closed",
+  "variant": "dot092",
+  "want": "klouzd"
+ },
+ "coffee": {
+  "dist": 0.25,
+  "heard": "kafi",
+  "speak": "Coffee",
+  "variant": "dot092",
+  "want": "kofi"
+ },
+ "created": {
+  "dist": 0.001,
+  "heard": "krieitid",
+  "speak": "created",
+  "variant": "v092",
+  "want": "krieitid"
+ },
+ "cup": {
+  "dist": 0.006,
+  "heard": "kap",
+  "speak": "cup",
+  "variant": "now085",
+  "want": "kap"
+ },
+ "d": {
+  "dist": 0.0,
+  "heard": "di",
+  "speak": "d",
+  "variant": "dot092",
+  "want": "di"
+ },
+ "dad": {
+  "dist": 0.0,
+  "heard": "dad",
+  "speak": "dad",
+  "variant": "dot092",
+  "want": "dad"
+ },
+ "danger": {
+  "dist": 0.0,
+  "heard": "deinJ@r",
+  "speak": "Danger",
+  "variant": "dot092",
+  "want": "deinJ@r"
+ },
+ "day": {
+  "dist": 0.0,
+  "heard": "dei",
+  "speak": "day",
+  "variant": "dot092",
+  "want": "dei"
+ },
+ "dig": {
+  "dist": 0.002,
+  "heard": "dig",
+  "speak": "dig",
+  "variant": "now092",
+  "want": "dig"
+ },
+ "do": {
+  "dist": 0.002,
+  "heard": "du",
+  "speak": "do",
+  "variant": "now092",
+  "want": "du"
+ },
+ "dog": {
+  "dist": 0.0,
+  "heard": "dag",
+  "speak": "dog",
+  "variant": "dot092",
+  "want": "dag"
+ },
+ "e": {
+  "dist": 0.002,
+  "heard": "i",
+  "speak": "e",
+  "variant": "now092",
+  "want": "i"
+ },
+ "earth": {
+  "dist": 0.001,
+  "heard": "@T",
+  "speak": "earth",
+  "variant": "v092",
+  "want": "@T"
+ },
+ "egg": {
+  "dist": 0.002,
+  "heard": "eg",
+  "speak": "egg",
+  "variant": "now092",
+  "want": "eg"
+ },
+ "eggs": {
+  "dist": 0.0,
+  "heard": "egz",
+  "speak": "Eggs",
+  "variant": "dot092",
+  "want": "egz"
+ },
+ "erase progress": {
+  "dist": 0.0,
+  "heard": "ireispragres",
+  "speak": "Erase progress",
+  "variant": "dot092",
+  "want": "ireispragres"
+ },
+ "evermore": {
+  "dist": 0.001,
+  "heard": "ev@rmor",
+  "speak": "evermore",
+  "variant": "v092",
+  "want": "ev@rmor"
+ },
+ "exit": {
+  "dist": 0.0,
+  "heard": "egzit",
+  "speak": "Exit",
+  "variant": "dot092",
+  "want": "egzit"
+ },
+ "f": {
+  "dist": 0.001,
+  "heard": "ef",
+  "speak": "f",
+  "variant": "v092",
+  "want": "ef"
+ },
+ "fast speech": {
+  "dist": 0.126,
+  "heard": "vastspiC",
+  "speak": "Fast speech",
+  "variant": "v092",
+  "want": "fastspiC"
+ },
+ "fish": {
+  "dist": 0.006,
+  "heard": "fiS",
+  "speak": "fish",
+  "variant": "now085",
+  "want": "fiS"
+ },
+ "fix": {
+  "dist": 0.002,
+  "heard": "fiks",
+  "speak": "fix",
+  "variant": "now092",
+  "want": "fiks"
+ },
+ "forms": {
+  "dist": 0.0,
+  "heard": "formz",
+  "speak": "Forms.",
+  "variant": "dot092",
+  "want": "formz"
+ },
+ "fox": {
+  "dist": 0.006,
+  "heard": "faks",
+  "speak": "fox",
+  "variant": "now085",
+  "want": "faks"
+ },
+ "fries": {
+  "dist": 0.0,
+  "heard": "fraiz",
+  "speak": "Fries",
+  "variant": "dot092",
+  "want": "fraiz"
+ },
+ "fun": {
+  "dist": 0.0,
+  "heard": "fan",
+  "speak": "fun",
+  "variant": "dot092",
+  "want": "fan"
+ },
+ "g": {
+  "dist": 0.004,
+  "heard": "Ji",
+  "speak": "g",
+  "variant": "dot100",
+  "want": "Ji"
+ },
+ "gas": {
+  "dist": 0.0,
+  "heard": "gas",
+  "speak": "gas",
+  "variant": "dot092",
+  "want": "gas"
+ },
+ "get": {
+  "dist": 0.002,
+  "heard": "get",
+  "speak": "get",
+  "variant": "now092",
+  "want": "get"
+ },
+ "glad": {
+  "dist": 0.0,
+  "heard": "glad",
+  "speak": "glad",
+  "variant": "dot092",
+  "want": "glad"
+ },
+ "go back": {
+  "dist": 0.0,
+  "heard": "goubak",
+  "speak": "Go back",
+  "variant": "dot092",
+  "want": "goubak"
+ },
+ "god": {
+  "dist": 0.0,
+  "heard": "gad",
+  "speak": "God",
+  "variant": "dot092",
+  "want": "gad"
+ },
+ "great": {
+  "dist": 0.0,
+  "heard": "greit",
+  "speak": "Great.",
+  "variant": "dot092",
+  "want": "greit"
+ },
+ "h": {
+  "dist": 0.335,
+  "heard": "eit",
+  "speak": "h",
+  "variant": "now092",
+  "want": "eiC"
+ },
+ "had": {
+  "dist": 0.0,
+  "heard": "had",
+  "speak": "had",
+  "variant": "dot092",
+  "want": "had"
+ },
+ "hat": {
+  "dist": 0.0,
+  "heard": "hat",
+  "speak": "hat",
+  "variant": "dot092",
+  "want": "hat"
+ },
+ "hath": {
+  "dist": 0.333,
+  "heard": "hat",
+  "speak": "hath",
+  "variant": "dot092",
+  "want": "haT"
+ },
+ "he": {
+  "dist": 0.001,
+  "heard": "hi",
+  "speak": "he",
+  "variant": "v092",
+  "want": "hi"
+ },
+ "hear help": {
+  "dist": 0.001,
+  "heard": "hirhelp",
+  "speak": "Hear help",
+  "variant": "v092",
+  "want": "hirhelp"
+ },
+ "hear it": {
+  "dist": 0.0,
+  "heard": "hirit",
+  "speak": "Hear it",
+  "variant": "dot092",
+  "want": "hirit"
+ },
+ "heaven": {
+  "dist": 0.0,
+  "heard": "hev@n",
+  "speak": "heaven",
+  "variant": "dot092",
+  "want": "hev@n"
+ },
+ "hen": {
+  "dist": 0.001,
+  "heard": "hen",
+  "speak": "hen",
+  "variant": "v092",
+  "want": "hen"
+ },
+ "home": {
+  "dist": 0.252,
+  "heard": "hom",
+  "speak": "Home",
+  "variant": "now092",
+  "want": "houm"
+ },
+ "hot": {
+  "dist": 0.0,
+  "heard": "hat",
+  "speak": "hot",
+  "variant": "dot092",
+  "want": "hat"
+ },
+ "i": {
+  "dist": 0.0,
+  "heard": "ai",
+  "speak": "i",
+  "variant": "dot092",
+  "want": "ai"
+ },
+ "i sat": {
+  "dist": 0.0,
+  "heard": "aisat",
+  "speak": "I sat.",
+  "variant": "dot092",
+  "want": "aisat"
+ },
+ "in": {
+  "dist": 0.0,
+  "heard": "in",
+  "speak": "in",
+  "variant": "dot092",
+  "want": "in"
+ },
+ "insect": {
+  "dist": 0.0,
+  "heard": "insekt",
+  "speak": "insect",
+  "variant": "dot092",
+  "want": "insekt"
+ },
+ "is": {
+  "dist": 0.0,
+  "heard": "iz",
+  "speak": "is",
+  "variant": "dot092",
+  "want": "iz"
+ },
+ "it": {
+  "dist": 0.002,
+  "heard": "it",
+  "speak": "it",
+  "variant": "now092",
+  "want": "it"
+ },
+ "j": {
+  "dist": 0.002,
+  "heard": "Jei",
+  "speak": "j",
+  "variant": "now092",
+  "want": "Jei"
+ },
+ "jesus": {
+  "dist": 0.0,
+  "heard": "Jiz@s",
+  "speak": "Jesus",
+  "variant": "dot092",
+  "want": "Jiz@s"
+ },
+ "jesus wept": {
+  "dist": 0.0,
+  "heard": "Jiz@swept",
+  "speak": "Jesus wept.",
+  "variant": "dot092",
+  "want": "Jiz@swept"
+ },
+ "jet": {
+  "dist": 0.335,
+  "heard": "Jat",
+  "speak": "jet",
+  "variant": "now092",
+  "want": "Jet"
+ },
+ "k": {
+  "dist": 0.333,
+  "heard": "ke",
+  "speak": "k",
+  "variant": "dot092",
+  "want": "kei"
+ },
+ "keep going": {
+  "dist": 0.0,
+  "heard": "kipgouiN",
+  "speak": "Keep going",
+  "variant": "dot092",
+  "want": "kipgouiN"
+ },
+ "key": {
+  "dist": 0.0,
+  "heard": "ki",
+  "speak": "key",
+  "variant": "dot092",
+  "want": "ki"
+ },
+ "kid": {
+  "dist": 0.002,
+  "heard": "kid",
+  "speak": "kid",
+  "variant": "now092",
+  "want": "kid"
+ },
+ "l": {
+  "dist": 0.002,
+  "heard": "el",
+  "speak": "l",
+  "variant": "now092",
+  "want": "el"
+ },
+ "lamp": {
+  "dist": 0.005,
+  "heard": "lamp",
+  "speak": "lamp",
+  "variant": "v100",
+  "want": "lamp"
+ },
+ "leg": {
+  "dist": 0.001,
+  "heard": "leg",
+  "speak": "leg",
+  "variant": "v092",
+  "want": "leg"
+ },
+ "let": {
+  "dist": 0.001,
+  "heard": "let",
+  "speak": "Let",
+  "variant": "v092",
+  "want": "let"
+ },
+ "light": {
+  "dist": 0.0,
+  "heard": "lait",
+  "speak": "light",
+  "variant": "dot092",
+  "want": "lait"
+ },
+ "lord": {
+  "dist": 0.0,
+  "heard": "lord",
+  "speak": "Lord",
+  "variant": "dot092",
+  "want": "lord"
+ },
+ "m": {
+  "dist": 0.0,
+  "heard": "em",
+  "speak": "m",
+  "variant": "dot092",
+  "want": "em"
+ },
+ "mad": {
+  "dist": 0.0,
+  "heard": "mad",
+  "speak": "mad",
+  "variant": "dot092",
+  "want": "mad"
+ },
+ "made": {
+  "dist": 0.0,
+  "heard": "meid",
+  "speak": "made",
+  "variant": "dot092",
+  "want": "meid"
+ },
+ "man": {
+  "dist": 0.0,
+  "heard": "man",
+  "speak": "man",
+  "variant": "dot092",
+  "want": "man"
+ },
+ "map": {
+  "dist": 0.0,
+  "heard": "map",
+  "speak": "map",
+  "variant": "dot092",
+  "want": "map"
+ },
+ "mat": {
+  "dist": 0.0,
+  "heard": "mat",
+  "speak": "mat",
+  "variant": "dot092",
+  "want": "mat"
+ },
+ "me": {
+  "dist": 0.0,
+  "heard": "mi",
+  "speak": "me",
+  "variant": "dot092",
+  "want": "mi"
+ },
+ "menu": {
+  "dist": 0.2,
+  "heard": "menjo",
+  "speak": "Menu.",
+  "variant": "dot092",
+  "want": "menju"
+ },
+ "microphone on": {
+  "dist": 0.0,
+  "heard": "maikr@founon",
+  "speak": "Microphone on.",
+  "variant": "dot092",
+  "want": "maikr@founon"
+ },
+ "mud": {
+  "dist": 0.0,
+  "heard": "mad",
+  "speak": "mud",
+  "variant": "dot092",
+  "want": "mad"
+ },
+ "my": {
+  "dist": 0.0,
+  "heard": "mai",
+  "speak": "my",
+  "variant": "dot092",
+  "want": "mai"
+ },
+ "n": {
+  "dist": 0.002,
+  "heard": "en",
+  "speak": "n",
+  "variant": "now092",
+  "want": "en"
+ },
+ "name": {
+  "dist": 0.0,
+  "heard": "neim",
+  "speak": "Name",
+  "variant": "dot092",
+  "want": "neim"
+ },
+ "nap": {
+  "dist": 0.004,
+  "heard": "nap",
+  "speak": "nap",
+  "variant": "dot100",
+  "want": "nap"
+ },
+ "next": {
+  "dist": 0.0,
+  "heard": "nekst",
+  "speak": "Next",
+  "variant": "dot092",
+  "want": "nekst"
+ },
+ "normal speech": {
+  "dist": 0.0,
+  "heard": "norm@lspiC",
+  "speak": "Normal speech",
+  "variant": "dot092",
+  "want": "norm@lspiC"
+ },
+ "not": {
+  "dist": 0.0,
+  "heard": "nat",
+  "speak": "not",
+  "variant": "dot092",
+  "want": "nat"
+ },
+ "nut": {
+  "dist": 0.0,
+  "heard": "nat",
+  "speak": "nut",
+  "variant": "dot092",
+  "want": "nat"
+ },
+ "o": {
+  "dist": 0.501,
+  "heard": "au",
+  "speak": "o",
+  "variant": "v092",
+  "want": "ou"
+ },
+ "octopus": {
+  "dist": 0.286,
+  "heard": "aktipis",
+  "speak": "octopus",
+  "variant": "dot092",
+  "want": "akt@p@s"
+ },
+ "on": {
+  "dist": 0.5,
+  "heard": "an",
+  "speak": "on",
+  "variant": "dot092",
+  "want": "on"
+ },
+ "open": {
+  "dist": 0.202,
+  "heard": "oupen",
+  "speak": "Open",
+  "variant": "now092",
+  "want": "oup@n"
+ },
+ "p": {
+  "dist": 0.002,
+  "heard": "pi",
+  "speak": "p",
+  "variant": "now092",
+  "want": "pi"
+ },
+ "pan": {
+  "dist": 0.001,
+  "heard": "pan",
+  "speak": "pan",
+  "variant": "v092",
+  "want": "pan"
+ },
+ "phone": {
+  "dist": 0.25,
+  "heard": "fon",
+  "speak": "Phone",
+  "variant": "dot092",
+  "want": "foun"
+ },
+ "phone voice": {
+  "dist": 0.111,
+  "heard": "founvois",
+  "speak": "Phone voice: ",
+  "variant": "dot092",
+  "want": "founvois:"
+ },
+ "pig": {
+  "dist": 0.002,
+  "heard": "pig",
+  "speak": "pig",
+  "variant": "now092",
+  "want": "pig"
+ },
+ "pin": {
+  "dist": 0.0,
+  "heard": "pin",
+  "speak": "pin",
+  "variant": "dot092",
+  "want": "pin"
+ },
+ "pizza": {
+  "dist": 0.202,
+  "heard": "pitsa",
+  "speak": "Pizza",
+  "variant": "now092",
+  "want": "pits@"
+ },
+ "pray": {
+  "dist": 0.0,
+  "heard": "prei",
+  "speak": "Pray",
+  "variant": "dot092",
+  "want": "prei"
+ },
+ "progress erased": {
+  "dist": 0.0,
+  "heard": "pragresireist",
+  "speak": "Progress erased.",
+  "variant": "dot092",
+  "want": "pragresireist"
+ },
+ "pull": {
+  "dist": 0.334,
+  "heard": "pal",
+  "speak": "Pull",
+  "variant": "v092",
+  "want": "pul"
+ },
+ "push": {
+  "dist": 0.335,
+  "heard": "poS",
+  "speak": "Push",
+  "variant": "now092",
+  "want": "puS"
+ },
+ "qu": {
+  "dist": 0.404,
+  "heard": "kiju",
+  "speak": "Q U.",
+  "variant": "dot100",
+  "want": "kjuju"
+ },
+ "queen": {
+  "dist": 0.0,
+  "heard": "kwin",
+  "speak": "queen",
+  "variant": "dot092",
+  "want": "kwin"
+ },
+ "r": {
+  "dist": 0.003,
+  "heard": "ar",
+  "speak": "r",
+  "variant": "ell092",
+  "want": "ar"
+ },
+ "red": {
+  "dist": 0.0,
+  "heard": "red",
+  "speak": "red",
+  "variant": "dot092",
+  "want": "red"
+ },
+ "rejoice": {
+  "dist": 0.002,
+  "heard": "riJois",
+  "speak": "Rejoice",
+  "variant": "now092",
+  "want": "riJois"
+ },
+ "rejoice evermore": {
+  "dist": 0.0,
+  "heard": "riJoisev@rmor",
+  "speak": "Rejoice evermore.",
+  "variant": "dot092",
+  "want": "riJoisev@rmor"
+ },
+ "restroom": {
+  "dist": 0.001,
+  "heard": "restrum",
+  "speak": "Restroom",
+  "variant": "v092",
+  "want": "restrum"
+ },
+ "run": {
+  "dist": 0.0,
+  "heard": "ran",
+  "speak": "run",
+  "variant": "dot092",
+  "want": "ran"
+ },
+ "s": {
+  "dist": 0.0,
+  "heard": "es",
+  "speak": "s",
+  "variant": "dot092",
+  "want": "es"
+ },
+ "said": {
+  "dist": 0.001,
+  "heard": "sed",
+  "speak": "said",
+  "variant": "v092",
+  "want": "sed"
+ },
+ "salad": {
+  "dist": 0.2,
+  "heard": "salid",
+  "speak": "Salad",
+  "variant": "dot092",
+  "want": "sal@d"
+ },
+ "sat": {
+  "dist": 0.002,
+  "heard": "sat",
+  "speak": "sat",
+  "variant": "now092",
+  "want": "sat"
+ },
+ "see": {
+  "dist": 0.002,
+  "heard": "si",
+  "speak": "see",
+  "variant": "now092",
+  "want": "si"
+ },
+ "settings": {
+  "dist": 0.002,
+  "heard": "setiNz",
+  "speak": "Settings",
+  "variant": "now092",
+  "want": "setiNz"
+ },
+ "shall": {
+  "dist": 0.333,
+  "heard": "iSal",
+  "speak": "shall",
+  "variant": "dot092",
+  "want": "Sal"
+ },
+ "shepherd": {
+  "dist": 0.0,
+  "heard": "Sep@rd",
+  "speak": "shepherd",
+  "variant": "dot092",
+  "want": "Sep@rd"
+ },
+ "signature": {
+  "dist": 0.0,
+  "heard": "signiC@r",
+  "speak": "Signature",
+  "variant": "dot092",
+  "want": "signiC@r"
+ },
+ "signs": {
+  "dist": 0.002,
+  "heard": "sainz",
+  "speak": "Signs.",
+  "variant": "now092",
+  "want": "sainz"
+ },
+ "sit": {
+  "dist": 0.006,
+  "heard": "sit",
+  "speak": "sit",
+  "variant": "now085",
+  "want": "sit"
+ },
+ "slow speech": {
+  "dist": 0.003,
+  "heard": "slouspiC",
+  "speak": "Slow speech",
+  "variant": "ell092",
+  "want": "slouspiC"
+ },
+ "soup": {
+  "dist": 0.002,
+  "heard": "sup",
+  "speak": "Soup",
+  "variant": "now092",
+  "want": "sup"
+ },
+ "start": {
+  "dist": 0.004,
+  "heard": "start",
+  "speak": "Start",
+  "variant": "dot100",
+  "want": "start"
+ },
+ "stop": {
+  "dist": 0.004,
+  "heard": "stap",
+  "speak": "Stop",
+  "variant": "dot100",
+  "want": "stap"
+ },
+ "strengtheneth": {
+  "dist": 0.2,
+  "heard": "streNkTineT",
+  "speak": "strengtheneth",
+  "variant": "dot092",
+  "want": "streNTin@T"
+ },
+ "sun": {
+  "dist": 0.0,
+  "heard": "san",
+  "speak": "sun",
+  "variant": "dot092",
+  "want": "san"
+ },
+ "t": {
+  "dist": 0.002,
+  "heard": "ti",
+  "speak": "t",
+  "variant": "now092",
+  "want": "ti"
+ },
+ "tap": {
+  "dist": 0.002,
+  "heard": "tap",
+  "speak": "tap",
+  "variant": "now092",
+  "want": "tap"
+ },
+ "ten": {
+  "dist": 0.0,
+  "heard": "ten",
+  "speak": "ten",
+  "variant": "dot092",
+  "want": "ten"
+ },
+ "tent": {
+  "dist": 0.001,
+  "heard": "tent",
+  "speak": "tent",
+  "variant": "v092",
+  "want": "tent"
+ },
+ "the": {
+  "dist": 0.5,
+  "heard": "Da",
+  "speak": "the",
+  "variant": "dot092",
+  "want": "D@"
+ },
+ "there": {
+  "dist": 0.334,
+  "heard": "Deir",
+  "speak": "there",
+  "variant": "v092",
+  "want": "Der"
+ },
+ "things": {
+  "dist": 0.0,
+  "heard": "TiNz",
+  "speak": "things",
+  "variant": "dot092",
+  "want": "TiNz"
+ },
+ "this": {
+  "dist": 0.0,
+  "heard": "Dis",
+  "speak": "This",
+  "variant": "dot092",
+  "want": "Dis"
+ },
+ "this says": {
+  "dist": 0.149,
+  "heard": "Dissez",
+  "speak": "This says:",
+  "variant": "now085",
+  "want": "Dissez:"
+ },
+ "through": {
+  "dist": 0.0,
+  "heard": "Tru",
+  "speak": "through",
+  "variant": "dot092",
+  "want": "Tru"
+ },
+ "tin": {
+  "dist": 0.002,
+  "heard": "tin",
+  "speak": "tin",
+  "variant": "now092",
+  "want": "tin"
+ },
+ "to": {
+  "dist": 0.504,
+  "heard": "du",
+  "speak": "to",
+  "variant": "dot100",
+  "want": "tu"
+ },
+ "top": {
+  "dist": 0.002,
+  "heard": "tap",
+  "speak": "top",
+  "variant": "now092",
+  "want": "tap"
+ },
+ "u": {
+  "dist": 0.0,
+  "heard": "ju",
+  "speak": "u",
+  "variant": "dot092",
+  "want": "ju"
+ },
+ "up": {
+  "dist": 0.502,
+  "heard": "ab",
+  "speak": "up",
+  "variant": "now092",
+  "want": "ap"
+ },
+ "v": {
+  "dist": 0.0,
+  "heard": "vi",
+  "speak": "v",
+  "variant": "dot092",
+  "want": "vi"
+ },
+ "van": {
+  "dist": 0.333,
+  "heard": "ven",
+  "speak": "van",
+  "variant": "dot092",
+  "want": "van"
+ },
+ "w": {
+  "dist": 0.002,
+  "heard": "dab@lju",
+  "speak": "w",
+  "variant": "now092",
+  "want": "dab@lju"
+ },
+ "want": {
+  "dist": 0.25,
+  "heard": "want",
+  "speak": "want",
+  "variant": "dot092",
+  "want": "wont"
+ },
+ "was": {
+  "dist": 0.0,
+  "heard": "waz",
+  "speak": "was",
+  "variant": "dot092",
+  "want": "waz"
+ },
+ "water": {
+  "dist": 0.2,
+  "heard": "wat@r",
+  "speak": "water",
+  "variant": "dot092",
+  "want": "wot@r"
+ },
+ "we": {
+  "dist": 0.0,
+  "heard": "wi",
+  "speak": "we",
+  "variant": "dot092",
+  "want": "wi"
+ },
+ "wept": {
+  "dist": 0.0,
+  "heard": "wept",
+  "speak": "wept",
+  "variant": "dot092",
+  "want": "wept"
+ },
+ "wet": {
+  "dist": 0.0,
+  "heard": "wet",
+  "speak": "wet",
+  "variant": "dot092",
+  "want": "wet"
+ },
+ "which": {
+  "dist": 0.001,
+  "heard": "wiC",
+  "speak": "which",
+  "variant": "v092",
+  "want": "wiC"
+ },
+ "will": {
+  "dist": 0.004,
+  "heard": "wil",
+  "speak": "will",
+  "variant": "dot100",
+  "want": "wil"
+ },
+ "without": {
+  "dist": 0.0,
+  "heard": "wiDaut",
+  "speak": "without",
+  "variant": "dot092",
+  "want": "wiDaut"
+ },
+ "x": {
+  "dist": 0.0,
+  "heard": "eks",
+  "speak": "x",
+  "variant": "dot092",
+  "want": "eks"
+ },
+ "y": {
+  "dist": 0.0,
+  "heard": "wai",
+  "speak": "y",
+  "variant": "dot092",
+  "want": "wai"
+ },
+ "yes": {
+  "dist": 0.0,
+  "heard": "jes",
+  "speak": "yes",
+  "variant": "dot092",
+  "want": "jes"
+ },
+ "you": {
+  "dist": 0.002,
+  "heard": "ju",
+  "speak": "you",
+  "variant": "now092",
+  "want": "ju"
+ },
+ "z": {
+  "dist": 0.0,
+  "heard": "zi",
+  "speak": "z",
+  "variant": "dot092",
+  "want": "zi"
+ },
+ "zero": {
+  "dist": 0.167,
+  "heard": "zirou",
+  "speak": "zero",
+  "variant": "dot092",
+  "want": "zi@rou"
+ },
+ "zip": {
+  "dist": 0.337,
+  "heard": "zep",
+  "speak": "zip",
+  "variant": "dot100",
+  "want": "zip"
+ }
+}

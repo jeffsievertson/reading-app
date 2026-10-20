@@ -1,0 +1,4169 @@
+{
+ "generatedBy": "tools/audio/collect-texts.mjs",
+ "count": 429,
+ "letters": [
+  {
+   "l": "s",
+   "sound": "sss",
+   "kw": "sun",
+   "soundKey": "sss"
+  },
+  {
+   "l": "a",
+   "sound": "aah",
+   "kw": "apple",
+   "soundKey": "aah"
+  },
+  {
+   "l": "t",
+   "sound": "tuh",
+   "kw": "tent",
+   "soundKey": "tuh"
+  },
+  {
+   "l": "p",
+   "sound": "puh",
+   "kw": "pan",
+   "soundKey": "puh"
+  },
+  {
+   "l": "i",
+   "sound": "ih",
+   "kw": "insect",
+   "soundKey": "ih"
+  },
+  {
+   "l": "n",
+   "sound": "nnn",
+   "kw": "nut",
+   "soundKey": "nnn"
+  },
+  {
+   "l": "m",
+   "sound": "mmm",
+   "kw": "map",
+   "soundKey": "mmm"
+  },
+  {
+   "l": "d",
+   "sound": "duh",
+   "kw": "dog",
+   "soundKey": "duh"
+  },
+  {
+   "l": "g",
+   "sound": "guh",
+   "kw": "gas",
+   "soundKey": "guh"
+  },
+  {
+   "l": "o",
+   "sound": "ah",
+   "kw": "octopus",
+   "soundKey": "ah"
+  },
+  {
+   "l": "c",
+   "sound": "kuh",
+   "kw": "cup",
+   "soundKey": "kuh"
+  },
+  {
+   "l": "k",
+   "sound": "kuh",
+   "kw": "key",
+   "soundKey": "kuh"
+  },
+  {
+   "l": "e",
+   "sound": "eh",
+   "kw": "egg",
+   "soundKey": "eh"
+  },
+  {
+   "l": "u",
+   "sound": "uh",
+   "kw": "up",
+   "soundKey": "uh"
+  },
+  {
+   "l": "r",
+   "sound": "rrr",
+   "kw": "run",
+   "soundKey": "rrr"
+  },
+  {
+   "l": "h",
+   "sound": "hhh",
+   "kw": "hat",
+   "soundKey": "hhh"
+  },
+  {
+   "l": "b",
+   "sound": "buh",
+   "kw": "bus",
+   "soundKey": "buh"
+  },
+  {
+   "l": "f",
+   "sound": "fff",
+   "kw": "fish",
+   "soundKey": "fff"
+  },
+  {
+   "l": "l",
+   "sound": "lll",
+   "kw": "lamp",
+   "soundKey": "lll"
+  },
+  {
+   "l": "j",
+   "sound": "juh",
+   "kw": "jet",
+   "soundKey": "juh"
+  },
+  {
+   "l": "w",
+   "sound": "wuh",
+   "kw": "water",
+   "soundKey": "wuh"
+  },
+  {
+   "l": "v",
+   "sound": "vvv",
+   "kw": "van",
+   "soundKey": "vvv"
+  },
+  {
+   "l": "y",
+   "sound": "yuh",
+   "kw": "yes",
+   "soundKey": "yuh"
+  },
+  {
+   "l": "z",
+   "sound": "zzz",
+   "kw": "zero",
+   "soundKey": "zzz"
+  },
+  {
+   "l": "x",
+   "sound": "ks",
+   "kw": "box",
+   "soundKey": "ks"
+  },
+  {
+   "l": "qu",
+   "sound": "kwuh",
+   "kw": "queen",
+   "soundKey": "kwuh"
+  }
+ ],
+ "slowWords": [
+  "sat",
+  "sit",
+  "pin",
+  "tin",
+  "tap",
+  "map",
+  "man",
+  "pan",
+  "nap",
+  "mad",
+  "dad",
+  "dig",
+  "pig",
+  "dog",
+  "top",
+  "cat",
+  "cup",
+  "kid",
+  "red",
+  "ten",
+  "hen",
+  "bed",
+  "bus",
+  "sun",
+  "run",
+  "hat",
+  "hot",
+  "bug",
+  "leg",
+  "jet",
+  "wet",
+  "van",
+  "yes",
+  "zip",
+  "box",
+  "fox"
+ ],
+ "templates": [
+  "'This letter makes the sound at the end of ' + it.kw",
+  "'Which letter is at the end of ' + it.kw",
+  "'This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it)",
+  "prompt + ' ' + name",
+  "name + ' speech'"
+ ],
+ "uncovered": [],
+ "entries": [
+  {
+   "key": "level 1 letter sounds",
+   "text": "Level 1. Letter sounds.",
+   "speak": "Level 1. Letter sounds.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 2 words",
+   "text": "Level 2. Words.",
+   "speak": "Level 2. Words.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 3 sentences",
+   "text": "Level 3. Sentences.",
+   "speak": "Level 3. Sentences.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 4 real life reading",
+   "text": "Level 4. Real life reading.",
+   "speak": "Level 4. Real life reading.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "signs",
+   "text": "Signs.",
+   "speak": "Signs.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "menu",
+   "text": "Menu.",
+   "speak": "Menu.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "forms",
+   "text": "Forms.",
+   "speak": "Forms.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "bible verses king james version",
+   "text": "Bible verses. King James Version.",
+   "speak": "Bible verses. King James Version.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "s",
+   "text": "s",
+   "speak": "s",
+   "kind": "text",
+   "sources": [
+    "item:L1-s"
+   ]
+  },
+  {
+   "key": "sun",
+   "text": "sun",
+   "speak": "sun",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-sun",
+    "chip:L3-s6"
+   ]
+  },
+  {
+   "key": "a",
+   "text": "a",
+   "speak": "a",
+   "kind": "text",
+   "sources": [
+    "item:L1-a",
+    "chip:L3-s2",
+    "chip:L3-s3",
+    "chip:L3-s5",
+    "chip:L3-s11"
+   ]
+  },
+  {
+   "key": "apple",
+   "text": "apple",
+   "speak": "apple",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "t",
+   "text": "t",
+   "speak": "t",
+   "kind": "text",
+   "sources": [
+    "item:L1-t"
+   ]
+  },
+  {
+   "key": "tent",
+   "text": "tent",
+   "speak": "tent",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "p",
+   "text": "p",
+   "speak": "p",
+   "kind": "text",
+   "sources": [
+    "item:L1-p"
+   ]
+  },
+  {
+   "key": "pan",
+   "text": "pan",
+   "speak": "pan",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-pan"
+   ]
+  },
+  {
+   "key": "i",
+   "text": "i",
+   "speak": "i",
+   "kind": "text",
+   "sources": [
+    "item:L1-i",
+    "item:L3-sw-i",
+    "chip:L3-s1",
+    "chip:L3-s5",
+    "chip:L3-s12",
+    "chip:L4-kjv-psalm-23-1",
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "insect",
+   "text": "insect",
+   "speak": "insect",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "n",
+   "text": "n",
+   "speak": "n",
+   "kind": "text",
+   "sources": [
+    "item:L1-n"
+   ]
+  },
+  {
+   "key": "nut",
+   "text": "nut",
+   "speak": "nut",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "m",
+   "text": "m",
+   "speak": "m",
+   "kind": "text",
+   "sources": [
+    "item:L1-m"
+   ]
+  },
+  {
+   "key": "map",
+   "text": "map",
+   "speak": "map",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-map"
+   ]
+  },
+  {
+   "key": "d",
+   "text": "d",
+   "speak": "d",
+   "kind": "text",
+   "sources": [
+    "item:L1-d"
+   ]
+  },
+  {
+   "key": "dog",
+   "text": "dog",
+   "speak": "dog",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-dog",
+    "chip:L3-s5"
+   ]
+  },
+  {
+   "key": "g",
+   "text": "g",
+   "speak": "g",
+   "kind": "text",
+   "sources": [
+    "item:L1-g"
+   ]
+  },
+  {
+   "key": "gas",
+   "text": "gas",
+   "speak": "gas",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "o",
+   "text": "o",
+   "speak": "o",
+   "kind": "text",
+   "sources": [
+    "item:L1-o"
+   ]
+  },
+  {
+   "key": "octopus",
+   "text": "octopus",
+   "speak": "octopus",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "c",
+   "text": "c",
+   "speak": "c",
+   "kind": "text",
+   "sources": [
+    "item:L1-c"
+   ]
+  },
+  {
+   "key": "cup",
+   "text": "cup",
+   "speak": "cup",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-cup",
+    "chip:L3-s7"
+   ]
+  },
+  {
+   "key": "k",
+   "text": "k",
+   "speak": "k",
+   "kind": "text",
+   "sources": [
+    "item:L1-k"
+   ]
+  },
+  {
+   "key": "key",
+   "text": "key",
+   "speak": "key",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "e",
+   "text": "e",
+   "speak": "e",
+   "kind": "text",
+   "sources": [
+    "item:L1-e"
+   ]
+  },
+  {
+   "key": "egg",
+   "text": "egg",
+   "speak": "egg",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "u",
+   "text": "u",
+   "speak": "u",
+   "kind": "text",
+   "sources": [
+    "item:L1-u"
+   ]
+  },
+  {
+   "key": "up",
+   "text": "up",
+   "speak": "up",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "r",
+   "text": "r",
+   "speak": "r",
+   "kind": "text",
+   "sources": [
+    "item:L1-r"
+   ]
+  },
+  {
+   "key": "run",
+   "text": "run",
+   "speak": "run",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-run",
+    "chip:L3-s4"
+   ]
+  },
+  {
+   "key": "h",
+   "text": "h",
+   "speak": "h",
+   "kind": "text",
+   "sources": [
+    "item:L1-h"
+   ]
+  },
+  {
+   "key": "hat",
+   "text": "hat",
+   "speak": "hat",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-hat"
+   ]
+  },
+  {
+   "key": "b",
+   "text": "b",
+   "speak": "b",
+   "kind": "text",
+   "sources": [
+    "item:L1-b"
+   ]
+  },
+  {
+   "key": "bus",
+   "text": "bus",
+   "speak": "bus",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-bus",
+    "chip:L3-s10"
+   ]
+  },
+  {
+   "key": "f",
+   "text": "f",
+   "speak": "f",
+   "kind": "text",
+   "sources": [
+    "item:L1-f"
+   ]
+  },
+  {
+   "key": "fish",
+   "text": "fish",
+   "speak": "fish",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "l",
+   "text": "l",
+   "speak": "l",
+   "kind": "text",
+   "sources": [
+    "item:L1-l"
+   ]
+  },
+  {
+   "key": "lamp",
+   "text": "lamp",
+   "speak": "lamp",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "j",
+   "text": "j",
+   "speak": "j",
+   "kind": "text",
+   "sources": [
+    "item:L1-j"
+   ]
+  },
+  {
+   "key": "jet",
+   "text": "jet",
+   "speak": "jet",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-jet"
+   ]
+  },
+  {
+   "key": "w",
+   "text": "w",
+   "speak": "w",
+   "kind": "text",
+   "sources": [
+    "item:L1-w"
+   ]
+  },
+  {
+   "key": "water",
+   "text": "water",
+   "speak": "water",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L4-menu-water",
+    "menu"
+   ]
+  },
+  {
+   "key": "v",
+   "text": "v",
+   "speak": "v",
+   "kind": "text",
+   "sources": [
+    "item:L1-v"
+   ]
+  },
+  {
+   "key": "van",
+   "text": "van",
+   "speak": "van",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-van",
+    "chip:L3-s8"
+   ]
+  },
+  {
+   "key": "y",
+   "text": "y",
+   "speak": "y",
+   "kind": "text",
+   "sources": [
+    "item:L1-y"
+   ]
+  },
+  {
+   "key": "yes",
+   "text": "yes",
+   "speak": "yes",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-yes",
+    "chip:L3-s14",
+    "app.js"
+   ]
+  },
+  {
+   "key": "z",
+   "text": "z",
+   "speak": "z",
+   "kind": "text",
+   "sources": [
+    "item:L1-z"
+   ]
+  },
+  {
+   "key": "zero",
+   "text": "zero",
+   "speak": "zero",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "x",
+   "text": "x",
+   "speak": "x",
+   "kind": "text",
+   "sources": [
+    "item:L1-x"
+   ]
+  },
+  {
+   "key": "box",
+   "text": "box",
+   "speak": "box",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-box",
+    "chip:L3-s13"
+   ]
+  },
+  {
+   "key": "qu",
+   "text": "qu",
+   "speak": "Q U.",
+   "kind": "text",
+   "sources": [
+    "item:L1-qu"
+   ]
+  },
+  {
+   "key": "queen",
+   "text": "queen",
+   "speak": "queen",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "sat",
+   "text": "sat",
+   "speak": "sat",
+   "kind": "text",
+   "sources": [
+    "item:L2-sat",
+    "chip:L3-s1",
+    "chip:L3-s2",
+    "chip:L3-s3"
+   ]
+  },
+  {
+   "key": "sit",
+   "text": "sit",
+   "speak": "sit",
+   "kind": "text",
+   "sources": [
+    "item:L2-sit"
+   ]
+  },
+  {
+   "key": "pin",
+   "text": "pin",
+   "speak": "pin",
+   "kind": "text",
+   "sources": [
+    "item:L2-pin"
+   ]
+  },
+  {
+   "key": "tin",
+   "text": "tin",
+   "speak": "tin",
+   "kind": "text",
+   "sources": [
+    "item:L2-tin"
+   ]
+  },
+  {
+   "key": "tap",
+   "text": "tap",
+   "speak": "tap",
+   "kind": "text",
+   "sources": [
+    "item:L2-tap"
+   ]
+  },
+  {
+   "key": "man",
+   "text": "man",
+   "speak": "man",
+   "kind": "text",
+   "sources": [
+    "item:L2-man"
+   ]
+  },
+  {
+   "key": "nap",
+   "text": "nap",
+   "speak": "nap",
+   "kind": "text",
+   "sources": [
+    "item:L2-nap",
+    "chip:L3-s11"
+   ]
+  },
+  {
+   "key": "mad",
+   "text": "mad",
+   "speak": "mad",
+   "kind": "text",
+   "sources": [
+    "item:L2-mad"
+   ]
+  },
+  {
+   "key": "dad",
+   "text": "dad",
+   "speak": "dad",
+   "kind": "text",
+   "sources": [
+    "item:L2-dad",
+    "chip:L3-s4",
+    "chip:L3-s13"
+   ]
+  },
+  {
+   "key": "dig",
+   "text": "dig",
+   "speak": "dig",
+   "kind": "text",
+   "sources": [
+    "item:L2-dig"
+   ]
+  },
+  {
+   "key": "pig",
+   "text": "pig",
+   "speak": "pig",
+   "kind": "text",
+   "sources": [
+    "item:L2-pig",
+    "chip:L3-s9"
+   ]
+  },
+  {
+   "key": "top",
+   "text": "top",
+   "speak": "top",
+   "kind": "text",
+   "sources": [
+    "item:L2-top"
+   ]
+  },
+  {
+   "key": "cat",
+   "text": "cat",
+   "speak": "cat",
+   "kind": "text",
+   "sources": [
+    "item:L2-cat",
+    "chip:L3-s2",
+    "chip:L3-s3"
+   ]
+  },
+  {
+   "key": "kid",
+   "text": "kid",
+   "speak": "kid",
+   "kind": "text",
+   "sources": [
+    "item:L2-kid"
+   ]
+  },
+  {
+   "key": "red",
+   "text": "red",
+   "speak": "red",
+   "kind": "text",
+   "sources": [
+    "item:L2-red",
+    "chip:L3-s10"
+   ]
+  },
+  {
+   "key": "ten",
+   "text": "ten",
+   "speak": "ten",
+   "kind": "text",
+   "sources": [
+    "item:L2-ten"
+   ]
+  },
+  {
+   "key": "hen",
+   "text": "hen",
+   "speak": "hen",
+   "kind": "text",
+   "sources": [
+    "item:L2-hen"
+   ]
+  },
+  {
+   "key": "bed",
+   "text": "bed",
+   "speak": "bed",
+   "kind": "text",
+   "sources": [
+    "item:L2-bed"
+   ]
+  },
+  {
+   "key": "hot",
+   "text": "hot",
+   "speak": "hot",
+   "kind": "text",
+   "sources": [
+    "item:L2-hot",
+    "chip:L3-s6"
+   ]
+  },
+  {
+   "key": "bug",
+   "text": "bug",
+   "speak": "bug",
+   "kind": "text",
+   "sources": [
+    "item:L2-bug"
+   ]
+  },
+  {
+   "key": "leg",
+   "text": "leg",
+   "speak": "leg",
+   "kind": "text",
+   "sources": [
+    "item:L2-leg"
+   ]
+  },
+  {
+   "key": "wet",
+   "text": "wet",
+   "speak": "wet",
+   "kind": "text",
+   "sources": [
+    "item:L2-wet",
+    "chip:L3-s7"
+   ]
+  },
+  {
+   "key": "zip",
+   "text": "zip",
+   "speak": "zip",
+   "kind": "text",
+   "sources": [
+    "item:L2-zip"
+   ]
+  },
+  {
+   "key": "fox",
+   "text": "fox",
+   "speak": "fox",
+   "kind": "text",
+   "sources": [
+    "item:L2-fox"
+   ]
+  },
+  {
+   "key": "the",
+   "text": "the",
+   "speak": "the",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-the",
+    "chip:L3-s3",
+    "chip:L3-s6",
+    "chip:L3-s8",
+    "chip:L3-s9",
+    "chip:L3-s10",
+    "chip:L3-s13",
+    "chip:L4-kjv-psalm-23-1",
+    "chip:L4-kjv-genesis-1-1",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "is",
+   "text": "is",
+   "speak": "is",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-is",
+    "chip:L3-s6",
+    "chip:L3-s7",
+    "chip:L3-s9",
+    "chip:L3-s10",
+    "chip:L4-kjv-psalm-23-1",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "to",
+   "text": "to",
+   "speak": "to",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-to",
+    "chip:L3-s13"
+   ]
+  },
+  {
+   "key": "my",
+   "text": "my",
+   "speak": "my",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-my",
+    "chip:L3-s7",
+    "chip:L4-kjv-psalm-23-1"
+   ]
+  },
+  {
+   "key": "we",
+   "text": "we",
+   "speak": "we",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-we",
+    "chip:L3-s8",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "he",
+   "text": "he",
+   "speak": "he",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-he",
+    "chip:L3-s11"
+   ]
+  },
+  {
+   "key": "see",
+   "text": "see",
+   "speak": "see",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-see",
+    "chip:L3-s5"
+   ]
+  },
+  {
+   "key": "was",
+   "text": "was",
+   "speak": "was",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-was",
+    "chip:L3-s14",
+    "chip:L4-kjv-genesis-1-3"
+   ]
+  },
+  {
+   "key": "you",
+   "text": "you",
+   "speak": "you",
+   "kind": "text",
+   "sources": [
+    "item:L3-sw-you"
+   ]
+  },
+  {
+   "key": "i sat",
+   "text": "I sat.",
+   "speak": "I sat.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s1"
+   ]
+  },
+  {
+   "key": "a cat sat",
+   "text": "A cat sat.",
+   "speak": "A cat sat.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s2"
+   ]
+  },
+  {
+   "key": "the cat sat on a mat",
+   "text": "The cat sat on a mat.",
+   "speak": "The cat sat on a mat.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s3"
+   ]
+  },
+  {
+   "key": "on",
+   "text": "on",
+   "speak": "on",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s3"
+   ]
+  },
+  {
+   "key": "mat",
+   "text": "mat",
+   "speak": "mat",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s3"
+   ]
+  },
+  {
+   "key": "dad can run",
+   "text": "Dad can run.",
+   "speak": "Dad can run.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s4"
+   ]
+  },
+  {
+   "key": "can",
+   "text": "can",
+   "speak": "can",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s4",
+    "chip:L3-s12",
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "i see a big dog",
+   "text": "I see a big dog.",
+   "speak": "I see a big dog.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s5"
+   ]
+  },
+  {
+   "key": "big",
+   "text": "big",
+   "speak": "big",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s5"
+   ]
+  },
+  {
+   "key": "the sun is hot",
+   "text": "The sun is hot.",
+   "speak": "The sun is hot.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s6"
+   ]
+  },
+  {
+   "key": "my cup is wet",
+   "text": "My cup is wet.",
+   "speak": "My cup is wet.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s7"
+   ]
+  },
+  {
+   "key": "we get in the van",
+   "text": "We get in the van.",
+   "speak": "We get in the van.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s8"
+   ]
+  },
+  {
+   "key": "get",
+   "text": "get",
+   "speak": "get",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s8",
+    "chip:L3-s13"
+   ]
+  },
+  {
+   "key": "in",
+   "text": "in",
+   "speak": "in",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s8",
+    "chip:L3-s9",
+    "chip:L4-kjv-genesis-1-1",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "the pig is in the mud",
+   "text": "The pig is in the mud.",
+   "speak": "The pig is in the mud.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s9"
+   ]
+  },
+  {
+   "key": "mud",
+   "text": "mud",
+   "speak": "mud",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s9"
+   ]
+  },
+  {
+   "key": "is the bus red",
+   "text": "Is the bus red?",
+   "speak": "Is the bus red?",
+   "kind": "text",
+   "sources": [
+    "item:L3-s10"
+   ]
+  },
+  {
+   "key": "he had a nap",
+   "text": "He had a nap.",
+   "speak": "He had a nap.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s11"
+   ]
+  },
+  {
+   "key": "had",
+   "text": "had",
+   "speak": "had",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s11"
+   ]
+  },
+  {
+   "key": "i can fix it",
+   "text": "I can fix it.",
+   "speak": "I can fix it.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s12"
+   ]
+  },
+  {
+   "key": "fix",
+   "text": "fix",
+   "speak": "fix",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s12"
+   ]
+  },
+  {
+   "key": "it",
+   "text": "it",
+   "speak": "it",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s12",
+    "chip:L3-s14",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "get the box to dad",
+   "text": "Get the box to Dad.",
+   "speak": "Get the box to Dad.",
+   "kind": "text",
+   "sources": [
+    "item:L3-s13"
+   ]
+  },
+  {
+   "key": "was it fun yes",
+   "text": "Was it fun? Yes!",
+   "speak": "Was it fun? Yes!",
+   "kind": "text",
+   "sources": [
+    "item:L3-s14"
+   ]
+  },
+  {
+   "key": "fun",
+   "text": "fun",
+   "speak": "fun",
+   "kind": "text",
+   "sources": [
+    "chip:L3-s14"
+   ]
+  },
+  {
+   "key": "stop",
+   "text": "Stop",
+   "speak": "Stop",
+   "kind": "text",
+   "sources": [
+    "item:L4-sign-stop",
+    "app.js"
+   ]
+  },
+  {
+   "key": "stop do not go",
+   "text": "Stop. Do not go.",
+   "speak": "Stop. Do not go.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "exit",
+   "text": "Exit",
+   "speak": "Exit",
+   "kind": "text",
+   "sources": [
+    "item:L4-sign-exit"
+   ]
+  },
+  {
+   "key": "exit this is the way out",
+   "text": "Exit. This is the way out.",
+   "speak": "Exit. This is the way out.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "open",
+   "text": "Open",
+   "speak": "Open",
+   "kind": "text",
+   "sources": [
+    "item:L4-sign-open"
+   ]
+  },
+  {
+   "key": "open you can go in the place is open",
+   "text": "Open. You can go in. The place is open.",
+   "speak": "Open. You can go in. The place is open.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "closed",
+   "text": "Closed",
+   "speak": "Closed",
+   "kind": "text",
+   "sources": [
+    "item:L4-sign-closed"
+   ]
+  },
+  {
+   "key": "closed the place is not open right now",
+   "text": "Closed. The place is not open right now.",
+   "speak": "Closed. The place is not open right now.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "push",
+   "text": "Push",
+   "speak": "Push",
+   "kind": "text",
+   "sources": [
+    "item:L4-sign-push"
+   ]
+  },
+  {
+   "key": "push push the door away from you",
+   "text": "Push. Push the door away from you.",
+   "speak": "Push. Push the door away from you.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "pull",
+   "text": "Pull",
+   "speak": "Pull",
+   "kind": "text",
+   "sources": [
+    "item:L4-sign-pull"
+   ]
+  },
+  {
+   "key": "pull pull the door toward you",
+   "text": "Pull. Pull the door toward you.",
+   "speak": "Pull. Pull the door toward you.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "restroom",
+   "text": "Restroom",
+   "speak": "Restroom",
+   "kind": "text",
+   "sources": [
+    "item:L4-sign-restroom"
+   ]
+  },
+  {
+   "key": "restroom this is the bathroom",
+   "text": "Restroom. This is the bathroom.",
+   "speak": "Restroom. This is the bathroom.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "danger",
+   "text": "Danger",
+   "speak": "Danger",
+   "kind": "text",
+   "sources": [
+    "item:L4-sign-danger"
+   ]
+  },
+  {
+   "key": "danger stay away it is not safe",
+   "text": "Danger. Stay away. It is not safe.",
+   "speak": "Danger. Stay away. It is not safe.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "coffee",
+   "text": "Coffee",
+   "speak": "Coffee",
+   "kind": "text",
+   "sources": [
+    "item:L4-menu-coffee",
+    "menu"
+   ]
+  },
+  {
+   "key": "$2.00",
+   "text": "$2.00",
+   "speak": "two dollars.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "eggs",
+   "text": "Eggs",
+   "speak": "Eggs",
+   "kind": "text",
+   "sources": [
+    "item:L4-menu-eggs",
+    "menu"
+   ]
+  },
+  {
+   "key": "$4.50",
+   "text": "$4.50",
+   "speak": "four dollars and fifty cents.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "burger",
+   "text": "Burger",
+   "speak": "Burger",
+   "kind": "text",
+   "sources": [
+    "item:L4-menu-burger",
+    "menu"
+   ]
+  },
+  {
+   "key": "$7.99",
+   "text": "$7.99",
+   "speak": "seven dollars and ninety-nine cents.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "fries",
+   "text": "Fries",
+   "speak": "Fries",
+   "kind": "text",
+   "sources": [
+    "item:L4-menu-fries",
+    "menu"
+   ]
+  },
+  {
+   "key": "$3.00",
+   "text": "$3.00",
+   "speak": "three dollars.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "chicken",
+   "text": "Chicken",
+   "speak": "Chicken",
+   "kind": "text",
+   "sources": [
+    "item:L4-menu-chicken",
+    "menu"
+   ]
+  },
+  {
+   "key": "$8.50",
+   "text": "$8.50",
+   "speak": "eight dollars and fifty cents.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "soup",
+   "text": "Soup",
+   "speak": "Soup",
+   "kind": "text",
+   "sources": [
+    "item:L4-menu-soup",
+    "menu"
+   ]
+  },
+  {
+   "key": "$4.00",
+   "text": "$4.00",
+   "speak": "four dollars.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "salad",
+   "text": "Salad",
+   "speak": "Salad",
+   "kind": "text",
+   "sources": [
+    "item:L4-menu-salad",
+    "menu"
+   ]
+  },
+  {
+   "key": "$6.00",
+   "text": "$6.00",
+   "speak": "six dollars.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "$1.00",
+   "text": "$1.00",
+   "speak": "one dollar.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "pizza",
+   "text": "Pizza",
+   "speak": "Pizza",
+   "kind": "text",
+   "sources": [
+    "item:L4-menu-pizza",
+    "menu"
+   ]
+  },
+  {
+   "key": "$9.00",
+   "text": "$9.00",
+   "speak": "nine dollars.",
+   "kind": "text",
+   "sources": [
+    "price"
+   ]
+  },
+  {
+   "key": "name",
+   "text": "Name",
+   "speak": "Name",
+   "kind": "text",
+   "sources": [
+    "item:L4-form-name",
+    "form"
+   ]
+  },
+  {
+   "key": "name write your name here first name then last name",
+   "text": "Name. Write your name here. First name, then last name.",
+   "speak": "Name. Write your name here. First name, then last name.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "address",
+   "text": "Address",
+   "speak": "Address",
+   "kind": "text",
+   "sources": [
+    "item:L4-form-address",
+    "form"
+   ]
+  },
+  {
+   "key": "address write where you live house number and street",
+   "text": "Address. Write where you live. House number and street.",
+   "speak": "Address. Write where you live. House number and street.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "phone",
+   "text": "Phone",
+   "speak": "Phone",
+   "kind": "text",
+   "sources": [
+    "item:L4-form-phone",
+    "form"
+   ]
+  },
+  {
+   "key": "phone write your phone number here",
+   "text": "Phone. Write your phone number here.",
+   "speak": "Phone. Write your phone number here.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "date of birth",
+   "text": "Date of Birth",
+   "speak": "Date of Birth",
+   "kind": "text",
+   "sources": [
+    "item:L4-form-date-of-birth",
+    "form"
+   ]
+  },
+  {
+   "key": "date of birth write the day you were born month day and year",
+   "text": "Date of birth. Write the day you were born. Month, day, and year.",
+   "speak": "Date of birth. Write the day you were born. Month, day, and year.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "signature",
+   "text": "Signature",
+   "speak": "Signature",
+   "kind": "text",
+   "sources": [
+    "item:L4-form-signature",
+    "form"
+   ]
+  },
+  {
+   "key": "signature sign your name here the way you always sign it",
+   "text": "Signature. Sign your name here, the way you always sign it.",
+   "speak": "Signature. Sign your name here, the way you always sign it.",
+   "kind": "text",
+   "sources": [
+    "meaning"
+   ]
+  },
+  {
+   "key": "jesus wept",
+   "text": "Jesus wept.",
+   "speak": "Jesus wept.",
+   "kind": "text",
+   "sources": [
+    "item:L4-kjv-john-11-35"
+   ]
+  },
+  {
+   "key": "jesus",
+   "text": "Jesus",
+   "speak": "Jesus",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-john-11-35"
+   ]
+  },
+  {
+   "key": "wept",
+   "text": "wept",
+   "speak": "wept",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-john-11-35"
+   ]
+  },
+  {
+   "key": "john chapter 11 verse 35",
+   "text": "John chapter 11, verse 35",
+   "speak": "John chapter 11, verse 35",
+   "kind": "text",
+   "sources": [
+    "ref"
+   ]
+  },
+  {
+   "key": "rejoice evermore",
+   "text": "Rejoice evermore.",
+   "speak": "Rejoice evermore.",
+   "kind": "text",
+   "sources": [
+    "item:L4-kjv-1-thessalonians-5-16"
+   ]
+  },
+  {
+   "key": "rejoice",
+   "text": "Rejoice",
+   "speak": "Rejoice",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-1-thessalonians-5-16",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "evermore",
+   "text": "evermore",
+   "speak": "evermore",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-1-thessalonians-5-16"
+   ]
+  },
+  {
+   "key": "first thessalonians chapter 5 verse 16",
+   "text": "First Thessalonians chapter 5, verse 16",
+   "speak": "First Thessalonians chapter 5, verse 16",
+   "kind": "text",
+   "sources": [
+    "ref"
+   ]
+  },
+  {
+   "key": "pray without ceasing",
+   "text": "Pray without ceasing.",
+   "speak": "Pray without ceasing.",
+   "kind": "text",
+   "sources": [
+    "item:L4-kjv-1-thessalonians-5-17"
+   ]
+  },
+  {
+   "key": "pray",
+   "text": "Pray",
+   "speak": "Pray",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-1-thessalonians-5-17"
+   ]
+  },
+  {
+   "key": "without",
+   "text": "without",
+   "speak": "without",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-1-thessalonians-5-17"
+   ]
+  },
+  {
+   "key": "ceasing",
+   "text": "ceasing",
+   "speak": "ceasing",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-1-thessalonians-5-17"
+   ]
+  },
+  {
+   "key": "first thessalonians chapter 5 verse 17",
+   "text": "First Thessalonians chapter 5, verse 17",
+   "speak": "First Thessalonians chapter 5, verse 17",
+   "kind": "text",
+   "sources": [
+    "ref"
+   ]
+  },
+  {
+   "key": "and god said let there be light and there was light",
+   "text": "And God said, Let there be light: and there was light.",
+   "speak": "And God said, Let there be light: and there was light.",
+   "kind": "text",
+   "sources": [
+    "item:L4-kjv-genesis-1-3"
+   ]
+  },
+  {
+   "key": "and",
+   "text": "And",
+   "speak": "And",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-3",
+    "chip:L4-kjv-genesis-1-1",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "god",
+   "text": "God",
+   "speak": "God",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-3",
+    "chip:L4-kjv-genesis-1-1"
+   ]
+  },
+  {
+   "key": "said",
+   "text": "said",
+   "speak": "said",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-3"
+   ]
+  },
+  {
+   "key": "let",
+   "text": "Let",
+   "speak": "Let",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-3"
+   ]
+  },
+  {
+   "key": "there",
+   "text": "there",
+   "speak": "there",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-3"
+   ]
+  },
+  {
+   "key": "be",
+   "text": "be",
+   "speak": "be",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-3",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "light",
+   "text": "light",
+   "speak": "light",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-3"
+   ]
+  },
+  {
+   "key": "genesis chapter 1 verse 3",
+   "text": "Genesis chapter 1, verse 3",
+   "speak": "Genesis chapter 1, verse 3",
+   "kind": "text",
+   "sources": [
+    "ref"
+   ]
+  },
+  {
+   "key": "the lord is my shepherd i shall not want",
+   "text": "The Lord is my shepherd; I shall not want.",
+   "speak": "The Lord is my shepherd; I shall not want.",
+   "kind": "text",
+   "sources": [
+    "item:L4-kjv-psalm-23-1"
+   ]
+  },
+  {
+   "key": "lord",
+   "text": "Lord",
+   "speak": "Lord",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-23-1",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "shepherd",
+   "text": "shepherd",
+   "speak": "shepherd",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-23-1"
+   ]
+  },
+  {
+   "key": "shall",
+   "text": "shall",
+   "speak": "shall",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-23-1"
+   ]
+  },
+  {
+   "key": "not",
+   "text": "not",
+   "speak": "not",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-23-1"
+   ]
+  },
+  {
+   "key": "want",
+   "text": "want",
+   "speak": "want",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-23-1"
+   ]
+  },
+  {
+   "key": "psalm 23 verse 1",
+   "text": "Psalm 23, verse 1",
+   "speak": "Psalm 23, verse 1",
+   "kind": "text",
+   "sources": [
+    "ref"
+   ]
+  },
+  {
+   "key": "in the beginning god created the heaven and the earth",
+   "text": "In the beginning God created the heaven and the earth.",
+   "speak": "In the beginning God created the heaven and the earth.",
+   "kind": "text",
+   "sources": [
+    "item:L4-kjv-genesis-1-1"
+   ]
+  },
+  {
+   "key": "beginning",
+   "text": "beginning",
+   "speak": "beginning",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-1"
+   ]
+  },
+  {
+   "key": "created",
+   "text": "created",
+   "speak": "created",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-1"
+   ]
+  },
+  {
+   "key": "heaven",
+   "text": "heaven",
+   "speak": "heaven",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-1"
+   ]
+  },
+  {
+   "key": "earth",
+   "text": "earth",
+   "speak": "earth",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-genesis-1-1"
+   ]
+  },
+  {
+   "key": "genesis chapter 1 verse 1",
+   "text": "Genesis chapter 1, verse 1",
+   "speak": "Genesis chapter 1, verse 1",
+   "kind": "text",
+   "sources": [
+    "ref"
+   ]
+  },
+  {
+   "key": "i can do all things through christ which strengtheneth me",
+   "text": "I can do all things through Christ which strengtheneth me.",
+   "speak": "I can do all things through Christ which strengtheneth me.",
+   "kind": "text",
+   "sources": [
+    "item:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "do",
+   "text": "do",
+   "speak": "do",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "all",
+   "text": "all",
+   "speak": "all",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "things",
+   "text": "things",
+   "speak": "things",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "through",
+   "text": "through",
+   "speak": "through",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "christ",
+   "text": "Christ",
+   "speak": "Christ",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "which",
+   "text": "which",
+   "speak": "which",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-philippians-4-13",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "strengtheneth",
+   "text": "strengtheneth",
+   "speak": "strengtheneth",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "me",
+   "text": "me",
+   "speak": "me",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-philippians-4-13"
+   ]
+  },
+  {
+   "key": "philippians chapter 4 verse 13",
+   "text": "Philippians chapter 4, verse 13",
+   "speak": "Philippians chapter 4, verse 13",
+   "kind": "text",
+   "sources": [
+    "ref"
+   ]
+  },
+  {
+   "key": "this is the day which the lord hath made we will rejoice and be glad in it",
+   "text": "This is the day which the Lord hath made; we will rejoice and be glad in it.",
+   "speak": "This is the day which the Lord hath made; we will rejoice and be glad in it.",
+   "kind": "text",
+   "sources": [
+    "item:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "this",
+   "text": "This",
+   "speak": "This",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "day",
+   "text": "day",
+   "speak": "day",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "hath",
+   "text": "hath",
+   "speak": "hath",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "made",
+   "text": "made",
+   "speak": "made",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "will",
+   "text": "will",
+   "speak": "will",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "glad",
+   "text": "glad",
+   "speak": "glad",
+   "kind": "text",
+   "sources": [
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "psalm 118 verse 24",
+   "text": "Psalm 118, verse 24",
+   "speak": "Psalm 118, verse 24",
+   "kind": "text",
+   "sources": [
+    "ref"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in sun tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in sun. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in sun. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in apple tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in apple. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in apple. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in tent tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in tent. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in tent. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in pan tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in pan. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in pan. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in insect tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in insect. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in insect. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in nut tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in nut. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in nut. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in map tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in map. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in map. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in dog tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in dog. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in dog. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in gas tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in gas. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in gas. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in octopus tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in octopus. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in octopus. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in cup tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in cup. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in cup. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in key tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in key. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in key. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in egg tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in egg. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in egg. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in up tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in up. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in up. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in run tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in run. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in run. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in hat tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in hat. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in hat. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in bus tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in bus. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in bus. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in fish tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in fish. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in fish. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in lamp tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in lamp. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in lamp. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in jet tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in jet. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in jet. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in water tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in water. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in water. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in van tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in van. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in van. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in yes tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in yes. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in yes. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in zero tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in zero. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in zero. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the sound at the end of box tap the letter to hear it again then tap play",
+   "text": "This letter makes the sound at the end of box. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the sound at the end of box. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in queen tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in queen. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in queen. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word sun",
+   "text": "Which letter starts the word sun?",
+   "speak": "Which letter starts the word sun?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word apple",
+   "text": "Which letter starts the word apple?",
+   "speak": "Which letter starts the word apple?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word tent",
+   "text": "Which letter starts the word tent?",
+   "speak": "Which letter starts the word tent?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word pan",
+   "text": "Which letter starts the word pan?",
+   "speak": "Which letter starts the word pan?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word insect",
+   "text": "Which letter starts the word insect?",
+   "speak": "Which letter starts the word insect?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word nut",
+   "text": "Which letter starts the word nut?",
+   "speak": "Which letter starts the word nut?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word map",
+   "text": "Which letter starts the word map?",
+   "speak": "Which letter starts the word map?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word dog",
+   "text": "Which letter starts the word dog?",
+   "speak": "Which letter starts the word dog?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word gas",
+   "text": "Which letter starts the word gas?",
+   "speak": "Which letter starts the word gas?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word octopus",
+   "text": "Which letter starts the word octopus?",
+   "speak": "Which letter starts the word octopus?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word cup",
+   "text": "Which letter starts the word cup?",
+   "speak": "Which letter starts the word cup?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word key",
+   "text": "Which letter starts the word key?",
+   "speak": "Which letter starts the word key?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word egg",
+   "text": "Which letter starts the word egg?",
+   "speak": "Which letter starts the word egg?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word up",
+   "text": "Which letter starts the word up?",
+   "speak": "Which letter starts the word up?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word run",
+   "text": "Which letter starts the word run?",
+   "speak": "Which letter starts the word run?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word hat",
+   "text": "Which letter starts the word hat?",
+   "speak": "Which letter starts the word hat?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word bus",
+   "text": "Which letter starts the word bus?",
+   "speak": "Which letter starts the word bus?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word fish",
+   "text": "Which letter starts the word fish?",
+   "speak": "Which letter starts the word fish?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word lamp",
+   "text": "Which letter starts the word lamp?",
+   "speak": "Which letter starts the word lamp?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word jet",
+   "text": "Which letter starts the word jet?",
+   "speak": "Which letter starts the word jet?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word water",
+   "text": "Which letter starts the word water?",
+   "speak": "Which letter starts the word water?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word van",
+   "text": "Which letter starts the word van?",
+   "speak": "Which letter starts the word van?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word yes",
+   "text": "Which letter starts the word yes?",
+   "speak": "Which letter starts the word yes?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word zero",
+   "text": "Which letter starts the word zero?",
+   "speak": "Which letter starts the word zero?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter is at the end of box",
+   "text": "Which letter is at the end of box?",
+   "speak": "Which letter is at the end of box?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word queen",
+   "text": "Which letter starts the word queen?",
+   "speak": "Which letter starts the word queen?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says the then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: the. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: the. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says i then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: I. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: I. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says is then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: is. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: is. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says to then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: to. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: to. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says my then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: my. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: my. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says we then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: we. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: we. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says he then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: he. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: he. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says see then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: see. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: see. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says was then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: was. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: was. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says you then tap play",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: you. Then tap play.",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: you. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "find the word sat",
+   "text": "Find the word: sat",
+   "speak": "Find the word: sat",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word sit",
+   "text": "Find the word: sit",
+   "speak": "Find the word: sit",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word pin",
+   "text": "Find the word: pin",
+   "speak": "Find the word: pin",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word tin",
+   "text": "Find the word: tin",
+   "speak": "Find the word: tin",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word tap",
+   "text": "Find the word: tap",
+   "speak": "Find the word: tap",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word map",
+   "text": "Find the word: map",
+   "speak": "Find the word: map",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word man",
+   "text": "Find the word: man",
+   "speak": "Find the word: man",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word pan",
+   "text": "Find the word: pan",
+   "speak": "Find the word: pan",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word nap",
+   "text": "Find the word: nap",
+   "speak": "Find the word: nap",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word mad",
+   "text": "Find the word: mad",
+   "speak": "Find the word: mad",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word dad",
+   "text": "Find the word: dad",
+   "speak": "Find the word: dad",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word dig",
+   "text": "Find the word: dig",
+   "speak": "Find the word: dig",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word pig",
+   "text": "Find the word: pig",
+   "speak": "Find the word: pig",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word dog",
+   "text": "Find the word: dog",
+   "speak": "Find the word: dog",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word top",
+   "text": "Find the word: top",
+   "speak": "Find the word: top",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word cat",
+   "text": "Find the word: cat",
+   "speak": "Find the word: cat",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word cup",
+   "text": "Find the word: cup",
+   "speak": "Find the word: cup",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word kid",
+   "text": "Find the word: kid",
+   "speak": "Find the word: kid",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word red",
+   "text": "Find the word: red",
+   "speak": "Find the word: red",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word ten",
+   "text": "Find the word: ten",
+   "speak": "Find the word: ten",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word hen",
+   "text": "Find the word: hen",
+   "speak": "Find the word: hen",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word bed",
+   "text": "Find the word: bed",
+   "speak": "Find the word: bed",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word bus",
+   "text": "Find the word: bus",
+   "speak": "Find the word: bus",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word sun",
+   "text": "Find the word: sun",
+   "speak": "Find the word: sun",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word run",
+   "text": "Find the word: run",
+   "speak": "Find the word: run",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word hat",
+   "text": "Find the word: hat",
+   "speak": "Find the word: hat",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word hot",
+   "text": "Find the word: hot",
+   "speak": "Find the word: hot",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word bug",
+   "text": "Find the word: bug",
+   "speak": "Find the word: bug",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word leg",
+   "text": "Find the word: leg",
+   "speak": "Find the word: leg",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word jet",
+   "text": "Find the word: jet",
+   "speak": "Find the word: jet",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word wet",
+   "text": "Find the word: wet",
+   "speak": "Find the word: wet",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word van",
+   "text": "Find the word: van",
+   "speak": "Find the word: van",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word yes",
+   "text": "Find the word: yes",
+   "speak": "Find the word: yes",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word zip",
+   "text": "Find the word: zip",
+   "speak": "Find the word: zip",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word box",
+   "text": "Find the word: box",
+   "speak": "Find the word: box",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word fox",
+   "text": "Find the word: fox",
+   "speak": "Find the word: fox",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word the",
+   "text": "Find the word: the",
+   "speak": "Find the word: the",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word i",
+   "text": "Find the word: I",
+   "speak": "Find the word: I",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word is",
+   "text": "Find the word: is",
+   "speak": "Find the word: is",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word to",
+   "text": "Find the word: to",
+   "speak": "Find the word: to",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word my",
+   "text": "Find the word: my",
+   "speak": "Find the word: my",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word we",
+   "text": "Find the word: we",
+   "speak": "Find the word: we",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word he",
+   "text": "Find the word: he",
+   "speak": "Find the word: he",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word see",
+   "text": "Find the word: see",
+   "speak": "Find the word: see",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word was",
+   "text": "Find the word: was",
+   "speak": "Find the word: was",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word you",
+   "text": "Find the word: you",
+   "speak": "Find the word: you",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the sign that says stop",
+   "text": "Find the sign that says: Stop",
+   "speak": "Find the sign that says: Stop",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the sign that says exit",
+   "text": "Find the sign that says: Exit",
+   "speak": "Find the sign that says: Exit",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the sign that says open",
+   "text": "Find the sign that says: Open",
+   "speak": "Find the sign that says: Open",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the sign that says closed",
+   "text": "Find the sign that says: Closed",
+   "speak": "Find the sign that says: Closed",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the sign that says push",
+   "text": "Find the sign that says: Push",
+   "speak": "Find the sign that says: Push",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the sign that says pull",
+   "text": "Find the sign that says: Pull",
+   "speak": "Find the sign that says: Pull",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the sign that says restroom",
+   "text": "Find the sign that says: Restroom",
+   "speak": "Find the sign that says: Restroom",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the sign that says danger",
+   "text": "Find the sign that says: Danger",
+   "speak": "Find the sign that says: Danger",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word coffee",
+   "text": "Find the word: Coffee",
+   "speak": "Find the word: Coffee",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word eggs",
+   "text": "Find the word: Eggs",
+   "speak": "Find the word: Eggs",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word burger",
+   "text": "Find the word: Burger",
+   "speak": "Find the word: Burger",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word fries",
+   "text": "Find the word: Fries",
+   "speak": "Find the word: Fries",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word chicken",
+   "text": "Find the word: Chicken",
+   "speak": "Find the word: Chicken",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word soup",
+   "text": "Find the word: Soup",
+   "speak": "Find the word: Soup",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word salad",
+   "text": "Find the word: Salad",
+   "speak": "Find the word: Salad",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word water",
+   "text": "Find the word: Water",
+   "speak": "Find the word: Water",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word pizza",
+   "text": "Find the word: Pizza",
+   "speak": "Find the word: Pizza",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the line that says name",
+   "text": "Find the line that says: Name",
+   "speak": "Find the line that says: Name",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the line that says address",
+   "text": "Find the line that says: Address",
+   "speak": "Find the line that says: Address",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the line that says phone",
+   "text": "Find the line that says: Phone",
+   "speak": "Find the line that says: Phone",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the line that says date of birth",
+   "text": "Find the line that says: Date of Birth",
+   "speak": "Find the line that says: Date of Birth",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the line that says signature",
+   "text": "Find the line that says: Signature",
+   "speak": "Find the line that says: Signature",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "slow speech",
+   "text": "Slow speech",
+   "speak": "Slow speech",
+   "kind": "text",
+   "sources": [
+    "label"
+   ]
+  },
+  {
+   "key": "normal speech",
+   "text": "Normal speech",
+   "speak": "Normal speech",
+   "kind": "text",
+   "sources": [
+    "label"
+   ]
+  },
+  {
+   "key": "fast speech",
+   "text": "Fast speech",
+   "speak": "Fast speech",
+   "kind": "text",
+   "sources": [
+    "label"
+   ]
+  },
+  {
+   "key": "home",
+   "text": "Home",
+   "speak": "Home",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "go back",
+   "text": "Go back",
+   "speak": "Go back",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hear help",
+   "text": "Hear help",
+   "speak": "Hear help",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "welcome tap the big button to start",
+   "text": "Welcome. Tap the big button to start.",
+   "speak": "Welcome. Tap the big button to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "start",
+   "text": "Start",
+   "speak": "Start",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "welcome this app will help you learn to read one sound at a time",
+   "text": "Welcome. This app will help you learn to read, one sound at a time.",
+   "speak": "Welcome. This app will help you learn to read, one sound at a time.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "any time you need help tap the speaker at the top",
+   "text": "Any time you need help, tap the speaker at the top.",
+   "speak": "Any time you need help, tap the speaker at the top.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hold your finger on any button to hear what it does",
+   "text": "Hold your finger on any button to hear what it does.",
+   "speak": "Hold your finger on any button to hear what it does.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap the big play button to begin",
+   "text": "Tap the big play button to begin.",
+   "speak": "Tap the big play button to begin.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "settings",
+   "text": "Settings",
+   "speak": "Settings",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "keep going",
+   "text": "Keep going",
+   "speak": "Keep going",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "add to home screen",
+   "text": "Add to home screen",
+   "speak": "Add to home screen",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap the big play button at the bottom to keep going or pick a level level 1 is letter sounds level 2 is words level 3 is sentences level 4 is real life reading",
+   "text": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is sentences. Level 4 is real life reading.",
+   "speak": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is sentences. Level 4 is real life reading.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "you finished everything great work pick any level to practice again",
+   "text": "You finished everything. Great work. Pick any level to practice again.",
+   "speak": "You finished everything. Great work. Pick any level to practice again.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap play to keep going or pick a level",
+   "text": "Tap play to keep going. Or pick a level.",
+   "speak": "Tap play to keep going. Or pick a level.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "you finished everything great work",
+   "text": "You finished everything. Great work.",
+   "speak": "You finished everything. Great work.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "real life reading pick one signs menu forms or bible verses",
+   "text": "Real life reading. Pick one: signs, menu, forms, or Bible verses.",
+   "speak": "Real life reading. Pick one: signs, menu, forms, or Bible verses.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "letter sounds every letter makes a sound tap play to start or tap a letter",
+   "text": "Letter sounds. Every letter makes a sound. Tap play to start, or tap a letter.",
+   "speak": "Letter sounds. Every letter makes a sound. Tap play to start, or tap a letter.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "words put the sounds together to read a word tap play to start",
+   "text": "Words. Put the sounds together to read a word. Tap play to start.",
+   "speak": "Words. Put the sounds together to read a word. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "sentences first some tricky words then short sentences tap play to start",
+   "text": "Sentences. First some tricky words, then short sentences. Tap play to start.",
+   "speak": "Sentences. First some tricky words, then short sentences. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "signs you see every day tap play to start",
+   "text": "Signs you see every day. Tap play to start.",
+   "speak": "Signs you see every day. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "reading a menu tap play to start",
+   "text": "Reading a menu. Tap play to start.",
+   "speak": "Reading a menu. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "words on forms like at a doctor or a job tap play to start",
+   "text": "Words on forms, like at a doctor or a job. Tap play to start.",
+   "speak": "Words on forms, like at a doctor or a job. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "short bible verses from the king james version tap play to start",
+   "text": "Short Bible verses, from the King James Version. Tap play to start.",
+   "speak": "Short Bible verses, from the King James Version. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "next",
+   "text": "Next",
+   "speak": "Next",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hear the sound",
+   "text": "Hear the sound",
+   "speak": "Hear the sound",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this letter makes the sound at the end of",
+   "text": "This letter makes the sound at the end of ",
+   "speak": "This letter makes the sound at the end of ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in",
+   "text": "This letter makes the first sound in ",
+   "speak": "This letter makes the first sound in ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "which letter is at the end of",
+   "text": "Which letter is at the end of ",
+   "speak": "Which letter is at the end of ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "which letter starts the word",
+   "text": "Which letter starts the word ",
+   "speak": "Which letter starts the word ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hear it again",
+   "text": "Hear it again",
+   "speak": "Hear it again",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "not that one try again",
+   "text": "Not that one. Try again.",
+   "speak": "Not that one. Try again.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hear this sound",
+   "text": "Hear this sound",
+   "speak": "Hear this sound",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap each letter to hear its sound then tap the puzzle button to put the sounds together then tap play",
+   "text": "Tap each letter to hear its sound. Then tap the puzzle button to put the sounds together. Then tap play.",
+   "speak": "Tap each letter to hear its sound. Then tap the puzzle button to put the sounds together. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "sound it out",
+   "text": "Sound it out",
+   "speak": "Sound it out",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap each letter to hear its sound then tap the puzzle to put them together",
+   "text": "Tap each letter to hear its sound. Then tap the puzzle to put them together.",
+   "speak": "Tap each letter to hear its sound. Then tap the puzzle to put them together.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this is a tricky word it does not sound out the normal way just remember it it says",
+   "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: ",
+   "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hear the word",
+   "text": "Hear the word",
+   "speak": "Hear the word",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this is a tricky word just remember it it says",
+   "text": "This is a tricky word. Just remember it. It says:",
+   "speak": "This is a tricky word. Just remember it. It says:",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap any word to hear it tap the turtle to hear it slowly one word at a time tap the speaker to hear it all then tap play",
+   "text": "Tap any word to hear it. Tap the turtle to hear it slowly, one word at a time. Tap the speaker to hear it all. Then tap play.",
+   "speak": "Tap any word to hear it. Tap the turtle to hear it slowly, one word at a time. Tap the speaker to hear it all. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "slow one word at a time",
+   "text": "Slow, one word at a time",
+   "speak": "Slow, one word at a time",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hear it all",
+   "text": "Hear it all",
+   "speak": "Hear it all",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap any word to hear it tap the turtle to hear it slowly",
+   "text": "Tap any word to hear it. Tap the turtle to hear it slowly.",
+   "speak": "Tap any word to hear it. Tap the turtle to hear it slowly.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this sign says",
+   "text": "This sign says:",
+   "speak": "This sign says:",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this says",
+   "text": "This says:",
+   "speak": "This says:",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hear it",
+   "text": "Hear it",
+   "speak": "Hear it",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap it to hear what it says then tap play",
+   "text": "Tap it to hear what it says. Then tap play.",
+   "speak": "Tap it to hear what it says. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap the mic then read it out loud",
+   "text": "Tap the mic, then read it out loud",
+   "speak": "Tap the mic, then read it out loud",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "thumbs up i read it",
+   "text": "Thumbs up: I read it",
+   "speak": "Thumbs up: I read it",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap the mic then read it out loud when you're done tap the thumbs up",
+   "text": "Tap the mic, then read it out loud. When you’re done, tap the thumbs up.",
+   "speak": "Tap the mic, then read it out loud. When you’re done, tap the thumbs up.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap the mic then read the sentence out loud when you're done tap the thumbs up",
+   "text": "Tap the mic, then read the sentence out loud. When you’re done, tap the thumbs up.",
+   "speak": "Tap the mic, then read the sentence out loud. When you’re done, tap the thumbs up.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap the mic then read the verse out loud when you're done tap the thumbs up",
+   "text": "Tap the mic, then read the verse out loud. When you’re done, tap the thumbs up.",
+   "speak": "Tap the mic, then read the verse out loud. When you’re done, tap the thumbs up.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "read it out loud when you're done tap the thumbs up",
+   "text": "Read it out loud. When you’re done, tap the thumbs up.",
+   "speak": "Read it out loud. When you’re done, tap the thumbs up.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "read the sentence out loud when you're done tap the thumbs up",
+   "text": "Read the sentence out loud. When you’re done, tap the thumbs up.",
+   "speak": "Read the sentence out loud. When you’re done, tap the thumbs up.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "read the verse out loud when you're done tap the thumbs up",
+   "text": "Read the verse out loud. When you’re done, tap the thumbs up.",
+   "speak": "Read the verse out loud. When you’re done, tap the thumbs up.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "if you need help tap the speaker",
+   "text": "If you need help, tap the speaker.",
+   "speak": "If you need help, tap the speaker.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "the mic is not working here read it out loud when you're done tap the thumbs up",
+   "text": "The mic is not working here. Read it out loud. When you’re done, tap the thumbs up.",
+   "speak": "The mic is not working here. Read it out loud. When you’re done, tap the thumbs up.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "not quite listen",
+   "text": "Not quite. Listen.",
+   "speak": "Not quite. Listen.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "try again or tap the thumbs up if you said it",
+   "text": "Try again. Or tap the thumbs up if you said it.",
+   "speak": "Try again. Or tap the thumbs up if you said it.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "i did not hear you try again or tap the thumbs up if you said it",
+   "text": "I did not hear you. Try again, or tap the thumbs up if you said it.",
+   "speak": "I did not hear you. Try again, or tap the thumbs up if you said it.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "yes you read it",
+   "text": "Yes! You read it.",
+   "speak": "Yes! You read it.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "great",
+   "text": "Great.",
+   "speak": "Great.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "find the sign that says",
+   "text": "Find the sign that says:",
+   "speak": "Find the sign that says:",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "find the line that says",
+   "text": "Find the line that says:",
+   "speak": "Find the line that says:",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "find the word",
+   "text": "Find the word:",
+   "speak": "Find the word:",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "great job tap play for the next one tap the circle arrow to do this one again",
+   "text": "Great job. Tap play for the next one. Tap the circle arrow to do this one again.",
+   "speak": "Great job. Tap play for the next one. Tap the circle arrow to do this one again.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "do it again",
+   "text": "Do it again",
+   "speak": "Do it again",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "amazing you finished this whole part tap play for the next one",
+   "text": "Amazing. You finished this whole part. Tap play for the next one.",
+   "speak": "Amazing. You finished this whole part. Tap play for the next one.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "great job tap play for the next one",
+   "text": "Great job. Tap play for the next one.",
+   "speak": "Great job. Tap play for the next one.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this is how fast i talk",
+   "text": "This is how fast I talk.",
+   "speak": "This is how fast I talk.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hello this is my voice",
+   "text": "Hello. This is my voice.",
+   "speak": "Hello. This is my voice.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "natural voice recommended",
+   "text": "Natural voice (recommended)",
+   "speak": "Natural voice (recommended)",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "phone voice automatic",
+   "text": "Phone voice: automatic",
+   "speak": "Phone voice: automatic",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "phone voice",
+   "text": "Phone voice: ",
+   "speak": "Phone voice: ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "microphone on or off",
+   "text": "Microphone on or off",
+   "speak": "Microphone on or off",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "microphone on",
+   "text": "Microphone on.",
+   "speak": "Microphone on.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "microphone off you will tap thumbs up instead",
+   "text": "Microphone off. You will tap thumbs up instead.",
+   "speak": "Microphone off. You will tap thumbs up instead.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "erase all progress",
+   "text": "Erase all progress",
+   "speak": "Erase all progress",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap again to erase all progress",
+   "text": "Tap again to erase all progress.",
+   "speak": "Tap again to erase all progress.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "progress erased",
+   "text": "Progress erased.",
+   "speak": "Progress erased.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "erase progress",
+   "text": "Erase progress",
+   "speak": "Erase progress",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "settings change how fast the voice talks pick a voice or turn the microphone on or off",
+   "text": "Settings. Change how fast the voice talks, pick a voice, or turn the microphone on or off.",
+   "speak": "Settings. Change how fast the voice talks, pick a voice, or turn the microphone on or off.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  }
+ ]
+}

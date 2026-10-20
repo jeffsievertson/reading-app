@@ -1,0 +1,26 @@
+{
+ "find the word cup": {
+  "orig": "Find the word: cup",
+  "speak": "Find the word: cup..."
+ },
+ "find the word mad": {
+  "orig": "Find the word: mad",
+  "speak": "Find the word: mad."
+ },
+ "find the word map": {
+  "orig": "Find the word: map",
+  "speak": "Find the word: map..."
+ },
+ "find the word nap": {
+  "orig": "Find the word: nap",
+  "speak": "Find the word: nap!"
+ },
+ "hear it all": {
+  "orig": "Hear it all",
+  "speak": "Hear it all."
+ },
+ "hear this sound": {
+  "orig": "Hear this sound",
+  "speak": "Hear this sound..."
+ }
+}

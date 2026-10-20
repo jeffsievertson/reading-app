@@ -69,12 +69,15 @@ await p.goto(BASE + '#/settings'); await p.waitForSelector('.settings');
 await p.screenshot({ path: SHOTS + '16-settings.png' });
 // service worker + offline
 const swOk = await p.evaluate(async () => { const r = await navigator.serviceWorker.ready; return !!r.active; });
+await p.waitForTimeout(4000); // let the worker finish precaching the audio
 await p.waitForTimeout(500);
 await ctx.setOffline(true);
 await p.goto(BASE + '#/home'); await p.waitForSelector('.tile');
 const offlineOk = await p.locator('.tile').count();
 await ctx.setOffline(false);
-const said = await p.evaluate(() => window.__said.slice(0, 6));
+const said = await p.evaluate(() => window.__said.slice(0, 6)); // built-in voice (should be ~empty: clips play)
+const voice = await p.evaluate(() => { const L = window.Speech.debugLog(); return { clips: L.filter((e) => e.how === 'clip').length, tts: L.filter((e) => e.how === 'tts').map((e) => e.reason + ': ' + e.text).slice(0, 8) }; });
+const cached = await p.evaluate(async () => { const m = await (await fetch('audio/clips.json')).json(); const c = await caches.open((await caches.keys()).find((k) => k.startsWith('read-aloud-'))); let n = 0; for (const f of m.files) if (await c.match('audio/' + f)) n++; return { files: m.files.length, cached: n, cache: (await caches.keys()).join(',') }; });
 // Fallback (no speech recognition) – full word lesson completes with thumbs up
 const f = await newPage({ noRec: true });
 await f.p.goto(BASE); await f.p.locator('.huge').click();
@@ -88,5 +91,5 @@ await tap(f.p, '.foot .primary'); await f.p.waitForSelector('.choice');
 await f.p.locator('.choice', { hasText: /^sun$/ }).click();
 await f.p.waitForSelector('.done-mark', { timeout: 5000 });
 const st2 = await f.p.evaluate(() => window.__readAloud.state().done);
-console.log(JSON.stringify({ swOk, offlineOk, fallbackDone: !!st2['L2-sun'], said, errors }, null, 1));
+console.log(JSON.stringify({ swOk, offlineOk, fallbackDone: !!st2['L2-sun'], said, voice, cached, errors }, null, 1));
 await b.close();

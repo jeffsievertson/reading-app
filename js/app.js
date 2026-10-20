@@ -22,11 +22,20 @@
   }
   let state = load();
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage full / private mode */ } }
+  // Voice setting: '' = natural voice (pre-generated clips, recommended),
+  // '__phone' = phone's automatic voice, any other value = a specific phone voice.
+  // One-time migration: everyone starts on the natural voice once clips exist.
+  if (state.settings.voiceVersion !== 2) { state.settings.voice = ''; state.settings.voiceVersion = 2; save(); }
+  function applyVoice() {
+    const v = state.settings.voice || '';
+    S.setUseClips(v === '');
+    S.setVoice(v === '' || v === '__phone' ? '' : v);
+  }
   S.setRate(state.settings.rate);
-  S.setVoice(state.settings.voice);
+  applyVoice();
 
   // Optional recorded clips (see audio/README.md)
-  fetch('audio/clips.json').then((r) => (r.ok ? r.json() : [])).then((l) => S.setClips(l)).catch(() => {});
+  S.loadClips('audio/clips.json');
 
   // ---------------------------------------------------------------- helpers
   const byId = {};
@@ -100,6 +109,7 @@
 
   // ---------------------------------------------------------------- layout
   let helpText = '';
+  function setHelp(h) { helpText = h || ''; }
   function screen({ title, back, help, body, footer, dots }) {
     helpText = help || '';
     const top = el('header', { class: 'top' },
@@ -475,10 +485,10 @@
 
   // ---- Say it (speech recognition or self-check)
   // The UI must never get stuck waiting on the recognizer: Speech.listen() always resolves
-  // (start watchdog + max-listen cap), the 🎤 turns into a ⏹ stop button while listening,
-  // and the 👍 "I said it" button appears after any failure. On an iPhone home-screen app
-  // (iOS standalone), where recognition is unreliable, 👍 is the main path and the 🎤 is an
-  // optional extra with a short watchdog.
+  // (start watchdog + max-listen cap) and the 🎤 turns into a ⏹ stop button while listening.
+  // 🎤 and 👍 are always both on screen (mic -> read aloud -> thumbs up). On an iPhone
+  // home-screen app (iOS standalone), where recognition is unreliable, the mic uses a
+  // shorter watchdog and is dropped if the recognizer never starts; 👍 always works.
   let micBlocked = false;       // mic permanently unusable this session (denied / broken)
   let micAttempts = 0;          // listen attempts this session (first one may hit the permission prompt)
   let sayToken = 0;             // changes whenever a say-step is left, so stale results are ignored
@@ -489,8 +499,8 @@
     const target = spoken(it);
     const iosPwa = !!S.isIOSStandalone;
     const micOn = state.settings.mic && S.canListen() && !micBlocked;
-    const micMain = micOn && !iosPwa;   // big mic button
-    const micExtra = micOn && iosPwa;   // small optional mic next to a big 👍
+    // Owner's flow on every say-it step: 🎤 mic, read it out loud, then 👍 thumbs up.
+    // Both buttons are always visible and the same size, in that order (also on iPhone).
     let fails = 0;
     let busy = false;
 
@@ -502,18 +512,27 @@
     const status = el('div', { class: 'status', 'aria-live': 'polite' });
     const reveal = el('div', { class: 'emoji big reveal' });
     const hear = () => { if (busy) cancel(); S.say(it.kind === 'menu' ? it.t : target); };
-    const micBtn = btn('🎤', 'Tap, then say it', () => (busy ? cancel() : listen()), micMain ? 'mic grow' : 'mic icon-btn');
-    const okBtn = btn('👍', 'I said it', () => { if (busy) cancel(); success(null); }, 'ok-btn' + (micMain ? '' : ' grow'));
+    const micBtn = btn('🎤', 'Tap the mic, then read it out loud', () => (busy ? cancel() : listen()), 'mic grow');
+    const okBtn = btn('👍', 'Thumbs up: I read it', () => { if (busy) cancel(); success(null); }, 'ok-btn grow');
+    const what = it.kind === 'sentence' ? 'sentence' : it.kind === 'verse' ? 'verse' : 'it';
+    const SAY = {
+      mic: { it: 'Tap the mic, then read it out loud. When you’re done, tap the thumbs up.',
+        sentence: 'Tap the mic, then read the sentence out loud. When you’re done, tap the thumbs up.',
+        verse: 'Tap the mic, then read the verse out loud. When you’re done, tap the thumbs up.' },
+      noMic: { it: 'Read it out loud. When you’re done, tap the thumbs up.',
+        sentence: 'Read the sentence out loud. When you’re done, tap the thumbs up.',
+        verse: 'Read the verse out loud. When you’re done, tap the thumbs up.' }
+    };
+    const HELP_EXTRA = 'If you need help, tap the speaker.';
     const hearBtn = btn('🔊', 'Hear it', hear, 'icon-btn');
 
+    const instr = (micOn ? SAY.mic : SAY.noMic)[what];
     const ui = lessonScreen({
-      help: micMain
-        ? 'Now you read it. Tap the microphone, then say it out loud. If you need help, tap the speaker.'
-        : 'Now you read it out loud. If you need help, tap the speaker. When you got it, tap the thumbs up.',
+      help: [instr, HELP_EXTRA],
       body: el('div', { class: 'center' }, el('div', { class: 'say-target' }, display), reveal, status),
-      footer: micMain ? [hearBtn, micBtn] : micExtra ? [hearBtn, micBtn, okBtn] : [hearBtn, okBtn]
+      footer: micOn ? [hearBtn, micBtn, okBtn] : [hearBtn, okBtn]
     });
-    S.say(micMain ? 'Now you read it. Tap the microphone, then say it.' : 'Now you read it out loud. Then tap the thumbs up.');
+    S.say(instr);
 
     function showOk() {
       if (!ui.foot.contains(okBtn)) ui.foot.append(okBtn);
@@ -521,8 +540,8 @@
     function setListening(on) {
       busy = on;
       micBtn.classList.toggle('listening', on);
-      micBtn.setAttribute('aria-label', on ? 'Stop' : 'Tap, then say it');
-      micBtn.dataset.say = on ? 'Stop' : 'Tap, then say it';
+      micBtn.setAttribute('aria-label', on ? 'Stop' : 'Tap the mic, then read it out loud');
+      micBtn.dataset.say = on ? 'Stop' : 'Tap the mic, then read it out loud';
       const ico = micBtn.querySelector('.ico');
       if (ico) ico.textContent = on ? '⏹' : '🎤';
     }
@@ -532,6 +551,7 @@
     }
     function dropMic(msg) {
       micBlocked = true;
+      setHelp([SAY.noMic[what], HELP_EXTRA]);
       micBtn.remove(); okBtn.classList.add('grow'); showOk();
       status.textContent = '🎤 ✗';
       status.className = 'status no';
@@ -574,12 +594,12 @@
       try {
         if (res.ok && S.matches(target, res.alts, C.homophones)) { success(res.alts[0]); return; }
         if (!res.ok && HARD_FAIL.includes(res.error)) {
-          dropMic('The microphone is not working here. Read it out loud, then tap the thumbs up.');
+          dropMic('The mic is not working here. Read it out loud. When you’re done, tap the thumbs up.');
           return;
         }
         // Recognizer never started (watchdog) on an iPhone home-screen app: it won't get better.
         if (!res.ok && !res.started && iosPwa) {
-          dropMic('Read it out loud, then tap the thumbs up.');
+          dropMic(SAY.noMic[what]);
           return;
         }
         fails++;
@@ -680,11 +700,15 @@
     }));
 
     const voiceSel = el('select', { class: 'select', 'aria-label': 'Voice', onchange: (e) => {
-      state.settings.voice = e.target.value; save(); S.setVoice(e.target.value); S.say('Hello. This is my voice.');
+      state.settings.voice = e.target.value; save(); applyVoice(); S.say('Hello. This is my voice.');
     } });
     function fillVoices() {
+      const cur = state.settings.voice || '';
       const vs = S.englishVoices();
-      voiceSel.replaceChildren(el('option', { value: '' }, 'Automatic'), ...vs.map((v) => el('option', { value: v.name, selected: v.name === state.settings.voice }, v.name + ' (' + v.lang + ')')));
+      voiceSel.replaceChildren(
+        el('option', { value: '', selected: cur === '' }, 'Natural voice (recommended)'),
+        el('option', { value: '__phone', selected: cur === '__phone' }, 'Phone voice: automatic'),
+        ...vs.map((v) => el('option', { value: v.name, selected: v.name === cur }, 'Phone voice: ' + v.name + ' (' + v.lang + ')')));
     }
     fillVoices();
     if (window.speechSynthesis && 'onvoiceschanged' in speechSynthesis) speechSynthesis.addEventListener('voiceschanged', fillVoices, { once: true });
@@ -762,5 +786,5 @@
   }
 
   // test hook (harmless): lets automated checks inspect state
-  window.__readAloud = { state: () => state, items: C.items.length };
+  window.__readAloud = { state: () => state, items: C.items.length, helpText: () => helpText };
 })();
