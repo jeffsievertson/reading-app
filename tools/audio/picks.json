@@ -2,7 +2,7 @@
  "a": {
   "dist": 0.5,
   "heard": "e",
-  "speak": "a",
+  "speak": "A.",
   "variant": "dot092",
   "want": "ei"
  },
@@ -37,7 +37,7 @@
  "b": {
   "dist": 0.0,
   "heard": "bi",
-  "speak": "b",
+  "speak": "B.",
   "variant": "dot092",
   "want": "bi"
  },
@@ -100,7 +100,7 @@
  "c": {
   "dist": 0.002,
   "heard": "si",
-  "speak": "c",
+  "speak": "C.",
   "variant": "now092",
   "want": "si"
  },
@@ -170,7 +170,7 @@
  "d": {
   "dist": 0.0,
   "heard": "di",
-  "speak": "d",
+  "speak": "D.",
   "variant": "dot092",
   "want": "di"
  },
@@ -219,7 +219,7 @@
  "e": {
   "dist": 0.002,
   "heard": "i",
-  "speak": "e",
+  "speak": "E.",
   "variant": "now092",
   "want": "i"
  },
@@ -266,10 +266,10 @@
   "want": "egzit"
  },
  "f": {
-  "dist": 0.001,
+  "dist": 0.002,
   "heard": "ef",
-  "speak": "f",
-  "variant": "v092",
+  "speak": "F.",
+  "variant": "now092",
   "want": "ef"
  },
  "fast speech": {
@@ -324,7 +324,7 @@
  "g": {
   "dist": 0.004,
   "heard": "Ji",
-  "speak": "g",
+  "speak": "G.",
   "variant": "dot100",
   "want": "Ji"
  },
@@ -373,7 +373,7 @@
  "h": {
   "dist": 0.335,
   "heard": "eit",
-  "speak": "h",
+  "speak": "H.",
   "variant": "now092",
   "want": "eiC"
  },
@@ -450,7 +450,7 @@
  "i": {
   "dist": 0.0,
   "heard": "ai",
-  "speak": "i",
+  "speak": "I.",
   "variant": "dot092",
   "want": "ai"
  },
@@ -492,7 +492,7 @@
  "j": {
   "dist": 0.002,
   "heard": "Jei",
-  "speak": "j",
+  "speak": "J.",
   "variant": "now092",
   "want": "Jei"
  },
@@ -520,7 +520,7 @@
  "k": {
   "dist": 0.333,
   "heard": "ke",
-  "speak": "k",
+  "speak": "K.",
   "variant": "dot092",
   "want": "kei"
  },
@@ -548,7 +548,7 @@
  "l": {
   "dist": 0.002,
   "heard": "el",
-  "speak": "l",
+  "speak": "L.",
   "variant": "now092",
   "want": "el"
  },
@@ -590,7 +590,7 @@
  "m": {
   "dist": 0.0,
   "heard": "em",
-  "speak": "m",
+  "speak": "M.",
   "variant": "dot092",
   "want": "em"
  },
@@ -667,7 +667,7 @@
  "n": {
   "dist": 0.002,
   "heard": "en",
-  "speak": "n",
+  "speak": "N.",
   "variant": "now092",
   "want": "en"
  },
@@ -714,10 +714,10 @@
   "want": "nat"
  },
  "o": {
-  "dist": 0.501,
+  "dist": 0.502,
   "heard": "au",
-  "speak": "o",
-  "variant": "v092",
+  "speak": "O.",
+  "variant": "now092",
   "want": "ou"
  },
  "octopus": {
@@ -744,7 +744,7 @@
  "p": {
   "dist": 0.002,
   "heard": "pi",
-  "speak": "p",
+  "speak": "P.",
   "variant": "now092",
   "want": "pi"
  },
@@ -818,12 +818,12 @@
   "variant": "now092",
   "want": "puS"
  },
- "qu": {
-  "dist": 0.404,
-  "heard": "kiju",
-  "speak": "Q U.",
-  "variant": "dot100",
-  "want": "kjuju"
+ "q": {
+  "dist": 0.339,
+  "heard": "ku",
+  "speak": "Q.",
+  "variant": "now085",
+  "want": "kju"
  },
  "queen": {
   "dist": 0.0,
@@ -835,7 +835,7 @@
  "r": {
   "dist": 0.003,
   "heard": "ar",
-  "speak": "r",
+  "speak": "R.",
   "variant": "ell092",
   "want": "ar"
  },
@@ -877,7 +877,7 @@
  "s": {
   "dist": 0.0,
   "heard": "es",
-  "speak": "s",
+  "speak": "S.",
   "variant": "dot092",
   "want": "es"
  },
@@ -996,7 +996,7 @@
  "t": {
   "dist": 0.002,
   "heard": "ti",
-  "speak": "t",
+  "speak": "T.",
   "variant": "now092",
   "want": "ti"
  },
@@ -1087,7 +1087,7 @@
  "u": {
   "dist": 0.0,
   "heard": "ju",
-  "speak": "u",
+  "speak": "U.",
   "variant": "dot092",
   "want": "ju"
  },
@@ -1101,7 +1101,7 @@
  "v": {
   "dist": 0.0,
   "heard": "vi",
-  "speak": "v",
+  "speak": "V.",
   "variant": "dot092",
   "want": "vi"
  },
@@ -1115,7 +1115,7 @@
  "w": {
   "dist": 0.002,
   "heard": "dab@lju",
-  "speak": "w",
+  "speak": "W.",
   "variant": "now092",
   "want": "dab@lju"
  },
@@ -1185,14 +1185,14 @@
  "x": {
   "dist": 0.0,
   "heard": "eks",
-  "speak": "x",
+  "speak": "X.",
   "variant": "dot092",
   "want": "eks"
  },
  "y": {
   "dist": 0.0,
   "heard": "wai",
-  "speak": "y",
+  "speak": "Y.",
   "variant": "dot092",
   "want": "wai"
  },
@@ -1213,7 +1213,7 @@
  "z": {
   "dist": 0.0,
   "heard": "zi",
-  "speak": "z",
+  "speak": "Z.",
   "variant": "dot092",
   "want": "zi"
  },

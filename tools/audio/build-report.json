@@ -4,169 +4,169 @@
  "slow_clips": 36,
  "letter_sounds": 26,
  "files": 491,
- "total_bytes": 5574772,
+ "total_bytes": 5573044,
  "made": 52,
  "reused": 439,
  "pruned": 52,
  "uncovered_expressions": [],
- "version": "3a4dda5a",
- "seconds": 451,
+ "version": "6819eff9",
+ "seconds": 90,
  "letters": [
-  {
-   "letter": "s",
-   "keyword": "sun",
-   "file": "af_heart/letters/s-a3eabfd9.mp3",
-   "recipe": null
-  },
   {
    "letter": "a",
    "keyword": "apple",
-   "file": "af_heart/letters/a-e00530cc.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "t",
-   "keyword": "tent",
-   "file": "af_heart/letters/t-7691df26.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "p",
-   "keyword": "pan",
-   "file": "af_heart/letters/p-c3b1435a.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "i",
-   "keyword": "insect",
-   "file": "af_heart/letters/i-e54202a0.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "n",
-   "keyword": "nut",
-   "file": "af_heart/letters/n-bd988806.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "m",
-   "keyword": "map",
-   "file": "af_heart/letters/m-3cef513b.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "d",
-   "keyword": "dog",
-   "file": "af_heart/letters/d-4cb20adb.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "g",
-   "keyword": "gas",
-   "file": "af_heart/letters/g-dab67b51.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "o",
-   "keyword": "octopus",
-   "file": "af_heart/letters/o-5681ef52.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "c",
-   "keyword": "cup",
-   "file": "af_heart/letters/c-3c0b2480.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "k",
-   "keyword": "key",
-   "file": "af_heart/letters/k-80b48a8e.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "e",
-   "keyword": "egg",
-   "file": "af_heart/letters/e-1357d677.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "u",
-   "keyword": "up",
-   "file": "af_heart/letters/u-1d33431a.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "r",
-   "keyword": "run",
-   "file": "af_heart/letters/r-36d7855c.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "h",
-   "keyword": "hat",
-   "file": "af_heart/letters/h-d57d3063.mp3",
-   "recipe": null
+   "file": "af_heart/letters/a-fbc58c06.mp3",
+   "recipe": "vowel /æ/ cut from 'mˈæp' (closest formants to reference), lengthened"
   },
   {
    "letter": "b",
    "keyword": "bus",
-   "file": "af_heart/letters/b-3aef4404.mp3",
-   "recipe": null
+   "file": "af_heart/letters/b-86e046ed.mp3",
+   "recipe": "start of 'bug', clipped"
+  },
+  {
+   "letter": "c",
+   "keyword": "cup",
+   "file": "af_heart/letters/c-8c62e78c.mp3",
+   "recipe": "start of 'cup'/'kit', burst + breathy aspiration"
+  },
+  {
+   "letter": "d",
+   "keyword": "dog",
+   "file": "af_heart/letters/d-0ea1f154.mp3",
+   "recipe": "start of 'dug', clipped"
+  },
+  {
+   "letter": "e",
+   "keyword": "egg",
+   "file": "af_heart/letters/e-d14bd3cc.mp3",
+   "recipe": "vowel /ɛ/ cut from 'ˈɛɡ' (closest formants to reference), lengthened"
   },
   {
    "letter": "f",
    "keyword": "fish",
-   "file": "af_heart/letters/f-45a24eac.mp3",
-   "recipe": null
+   "file": "af_heart/letters/f-e32b08f1.mp3",
+   "recipe": "start of 'fˈæn', hiss lengthened"
   },
   {
-   "letter": "l",
-   "keyword": "lamp",
-   "file": "af_heart/letters/l-a8ca9754.mp3",
-   "recipe": null
+   "letter": "g",
+   "keyword": "gas",
+   "file": "af_heart/letters/g-bc3e3bd1.mp3",
+   "recipe": "start of 'gum', clipped"
+  },
+  {
+   "letter": "h",
+   "keyword": "hat",
+   "file": "af_heart/letters/h-81e1582c.mp3",
+   "recipe": "start of 'hat' (breath)"
+  },
+  {
+   "letter": "i",
+   "keyword": "insect",
+   "file": "af_heart/letters/i-6e5bc704.mp3",
+   "recipe": "vowel /ɪ/ cut from 'pˈɪn' (closest formants to reference), lengthened"
   },
   {
    "letter": "j",
    "keyword": "jet",
-   "file": "af_heart/letters/j-1b5bea1a.mp3",
-   "recipe": null
+   "file": "af_heart/letters/j-d41b894e.mp3",
+   "recipe": "start of 'jump', clipped"
   },
   {
-   "letter": "w",
-   "keyword": "water",
-   "file": "af_heart/letters/w-24ca5528.mp3",
-   "recipe": null
+   "letter": "k",
+   "keyword": "key",
+   "file": "af_heart/letters/k-b997a802.mp3",
+   "recipe": "start of 'cup'/'kit', burst + breathy aspiration"
+  },
+  {
+   "letter": "l",
+   "keyword": "lamp",
+   "file": "af_heart/letters/l-d82c9ec9.mp3",
+   "recipe": "'l' cut from start of lot, lengthened"
+  },
+  {
+   "letter": "m",
+   "keyword": "map",
+   "file": "af_heart/letters/m-15b422fe.mp3",
+   "recipe": "hum cut from start of map, lengthened"
+  },
+  {
+   "letter": "n",
+   "keyword": "nut",
+   "file": "af_heart/letters/n-d182b238.mp3",
+   "recipe": "hum cut from start of not, lengthened"
+  },
+  {
+   "letter": "o",
+   "keyword": "octopus",
+   "file": "af_heart/letters/o-dd15ed37.mp3",
+   "recipe": "vowel /ɑ/ cut from 'tˈɑp' (closest formants to reference), lengthened"
+  },
+  {
+   "letter": "p",
+   "keyword": "pan",
+   "file": "af_heart/letters/p-72854255.mp3",
+   "recipe": "start of 'pot'/'pit'/'pan', burst + breathy aspiration"
+  },
+  {
+   "letter": "q",
+   "keyword": "queen",
+   "file": "af_heart/letters/q-bc8cf71f.mp3",
+   "recipe": "start of 'quick' (kw), clipped"
+  },
+  {
+   "letter": "r",
+   "keyword": "run",
+   "file": "af_heart/letters/r-2305bfb8.mp3",
+   "recipe": "'rrr' from start of run (lowest F3 = most r-like), lengthened"
+  },
+  {
+   "letter": "s",
+   "keyword": "sun",
+   "file": "af_heart/letters/s-3e87ee47.mp3",
+   "recipe": "start of 'sˈæt', hiss lengthened"
+  },
+  {
+   "letter": "t",
+   "keyword": "tent",
+   "file": "af_heart/letters/t-29c93488.mp3",
+   "recipe": "start of 'top'/'tip', burst + breathy aspiration"
+  },
+  {
+   "letter": "u",
+   "keyword": "up",
+   "file": "af_heart/letters/u-50dba4ee.mp3",
+   "recipe": "vowel /ʌ/ cut from 'kˈʌp' (closest formants to reference), lengthened"
   },
   {
    "letter": "v",
    "keyword": "van",
-   "file": "af_heart/letters/v-983cbb48.mp3",
-   "recipe": null
+   "file": "af_heart/letters/v-636cc57f.mp3",
+   "recipe": "start of 'van', lengthened"
   },
   {
-   "letter": "y",
-   "keyword": "yes",
-   "file": "af_heart/letters/y-7cdbe1a5.mp3",
-   "recipe": null
-  },
-  {
-   "letter": "z",
-   "keyword": "zero",
-   "file": "af_heart/letters/z-d8301705.mp3",
-   "recipe": null
+   "letter": "w",
+   "keyword": "water",
+   "file": "af_heart/letters/w-115dfa62.mp3",
+   "recipe": "start of 'wet' (glide), clipped"
   },
   {
    "letter": "x",
    "keyword": "box",
-   "file": "af_heart/letters/x-991cdfce.mp3",
-   "recipe": null
+   "file": "af_heart/letters/x-06264afa.mp3",
+   "recipe": "end of 'box' (ks)"
   },
   {
-   "letter": "qu",
-   "keyword": "queen",
-   "file": "af_heart/letters/qu-442d627b.mp3",
-   "recipe": null
+   "letter": "y",
+   "keyword": "yes",
+   "file": "af_heart/letters/y-1e649d72.mp3",
+   "recipe": "start of 'yes' (glide), clipped"
+  },
+  {
+   "letter": "z",
+   "keyword": "zero",
+   "file": "af_heart/letters/z-35103278.mp3",
+   "recipe": "start of 'zip', lengthened"
   }
  ],
  "qa": null

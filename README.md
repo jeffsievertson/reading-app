@@ -37,8 +37,8 @@ Notes
 - Dots at the top show the steps of the current lesson.
 
 ### Levels
-1. **Sounds 🔤** – 26 letters/sounds in a systematic-phonics order
-   (s a t p i n m d g o c k e u r h b f l j w v y z x qu). Each: see the letter + a
+1. **Sounds 🔤** – the 26 letters A to Z, each with its usual sound (Q is taught with
+   the /kw/ sound in "queen"). Each: see the letter + a
    keyword ("sun"), hear "sun … sss … sss … sun", then a hear-and-pick quiz
    ("Which letter starts the word sun?").
 2. **Words 🧩** – 36 CVC words (sat, pin, map, dog, cat, bed, sun, box…). Tap each
@@ -142,13 +142,18 @@ LICENSES.md           third-party content (none shipped)
   (natural / phone / migrated old setting); say-it instruction, 🔊🎤👍 order and mic after
   clips in Safari and home-screen mode; and a crawl of all 116 lessons checking every
   spoken text has a clip.
+- `tools/content-test.js` (node): Level 1 is the letters A–Z, keyed by letter, with Q (never
+  "qu"); every letter has a sound clip; no spoken text says "qu"; all clip files exist.
+- `tools/level1-test.mjs`: Level 1 list A–Z, the Q lesson (shows Q q, says queen + the Q
+  sound), quiz choices for every letter (no c/k/q mix-ups), migration of old "qu" progress,
+  "keep going"/"next" follow A–Z. Writes screenshots 20–22.
 - `tools/mic-test.mjs`: fakes a speech recognizer to check the 🎤 path – correct word ✓ + ▶,
   wrong word shows what was heard, mic permission denied → 👍 fallback.
 - Not yet tested on a real iPhone or Android phone (needs HTTPS hosting – see below).
 
 ## Known limitations
 - **Letter sounds are cut from computer-voice words.** They are much better than asking
-  a voice to say "tuh", but a few are still approximations: the glides (w, y), qu, j, the
+  a voice to say "tuh", but a few are still approximations: the glides (w, y), q (/kw/), j, the
   voiced stops (b, d, g) and z/v/r/l. Every sound is still wrapped in a keyword
   ("sun … sss … sun") and the quizzes ask about the keyword. A person can replace any
   sound with a real recording (see `audio/README.md`).

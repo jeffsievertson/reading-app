@@ -1,7 +1,7 @@
 /* Offline support: precache the whole app (including the natural-voice audio clips),
    serve cache-first, update app files in the background. */
-const AUDIO_VERSION = '3a4dda5a'; // stamped by tools/audio/build_audio.py
-const CACHE = 'read-aloud-v4-' + AUDIO_VERSION;
+const AUDIO_VERSION = '6819eff9'; // stamped by tools/audio/build_audio.py
+const CACHE = 'read-aloud-v5-' + AUDIO_VERSION;
 const ASSETS = [
   './', './index.html', './manifest.json',
   './css/styles.css', './js/content.js', './js/speech.js', './js/app.js',

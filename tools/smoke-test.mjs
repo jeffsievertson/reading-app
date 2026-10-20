@@ -39,13 +39,13 @@ await p.waitForSelector('.letter-choice');
 await p.screenshot({ path: SHOTS + '05-letter-find.png' });
 // pick wrong then right
 const letters = await p.locator('.letter-choice').allTextContents();
-const wrongIdx = letters.findIndex((l) => l !== 's');
+const wrongIdx = letters.findIndex((l) => l !== 'a');
 await p.locator('.letter-choice').nth(wrongIdx).click(); await p.waitForTimeout(800);
-await p.locator('.letter-choice').nth(letters.indexOf('s')).click();
+await p.locator('.letter-choice').nth(letters.indexOf('a')).click();
 await p.waitForSelector('.done-mark', { timeout: 5000 });
 await p.screenshot({ path: SHOTS + '06-done.png' });
 const st = await p.evaluate(() => window.__readAloud.state());
-if (!st.done['L1-s']) errors.push('progress not saved');
+if (!st.done['L1-a']) errors.push('progress not saved');
 // Level 2 word
 await p.goto(BASE + '#/lesson/L2-cat'); await p.waitForSelector('.tile-letter');
 await tap(p, '.secondary'); await p.waitForTimeout(500);

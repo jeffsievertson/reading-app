@@ -183,7 +183,7 @@ def final_voiced_cont(voice, ph, target_ms=550, drop_db=4.0):
     return fade(lengthen(x[a:b], target_ms), 30)
 
 def clipped_onset(voice, ph, keep_voiced_ms=45, fade_ms=25, loud_db=12):
-    """Voiced stops / affricates / glides that cannot be held (b, d, g, j, w, y, qu):
+    """Voiced stops / affricates / glides that cannot be held (b, d, g, j, w, y, q):
     keep the release plus just a sliver of the vowel, then fade fast - a clipped 'b',
     not 'buh'."""
     x = word(voice, ph)
@@ -293,7 +293,7 @@ def make_letter(voice, l):
     if l == 'j': return clipped_onset(V, 'dʒˈʌmp', 45, 25, loud_db=6), "start of 'jump', clipped"
     if l == 'w': return glide_onset(V, 'wˈɛt', 170), "start of 'wet' (glide), clipped"
     if l == 'y': return glide_onset(V, 'jˈɛs', 160), "start of 'yes' (glide), clipped"
-    if l == 'qu': return clipped_onset(V, 'kwˈɪk', 60, 35, loud_db=6), "start of 'quick' (kw), clipped"
+    if l in ('q', 'qu'): return clipped_onset(V, 'kwˈɪk', 60, 35, loud_db=6), "start of 'quick' (kw), clipped"
     if l == 'x': return final_unvoiced(V, 'bˈɑks'), "end of 'box' (ks)"
     raise ValueError(l)
 

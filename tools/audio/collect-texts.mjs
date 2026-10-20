@@ -39,7 +39,7 @@ function speakable(t) {
     const dollars = num(d) + (d === 1 ? ' dollar' : ' dollars');
     return (c ? `${dollars} and ${num(c)} ${c === 1 ? 'cent' : 'cents'}` : dollars) + '.';
   }
-  if (t === 'qu') return 'Q U.';
+  if (/^[a-z]$/.test(t)) return t.toUpperCase() + '.'; // a lone letter: say its name ("Q.")
   return t;
 }
 

@@ -7,9 +7,10 @@
  *   say    - optional text to SPEAK instead of the displayed text (pronunciation fixes)
  */
 window.CONTENT = (function () {
-  // ---------- Level 1: letter sounds (taught in this order) ----------
-  // Order follows a common systematic-phonics sequence: s a t p i n first,
-  // so real words can be built very early.
+  // ---------- Level 1: letter sounds, A to Z ----------
+  // Listed here grouped by a common phonics sequence (s a t p i n …) for reference;
+  // the lessons are shown and taught in alphabetical order (sorted below).
+  // Progress is saved by letter id ('L1-a'), so the order can change freely.
   const letters = [
     { l: 's', sound: 'sss',  kw: 'sun',     emoji: '☀️' },
     { l: 'a', sound: 'aah',  kw: 'apple',   emoji: '🍎' },
@@ -36,8 +37,9 @@ window.CONTENT = (function () {
     { l: 'y', sound: 'yuh',  kw: 'yes',     emoji: '✅' },
     { l: 'z', sound: 'zzz',  kw: 'zero',    emoji: '0️⃣' },
     { l: 'x', sound: 'ks',   kw: 'box',     emoji: '📦', pos: 'end' },
-    { l: 'qu', sound: 'kwuh', kw: 'queen',  emoji: '👑' }
+    { l: 'q', sound: 'kwuh', kw: 'queen',  emoji: '👑' }   // the letter Q; its usual sound /kw/ as in queen
   ];
+  letters.sort((a, b) => a.l.localeCompare(b.l));
 
   // ---------- Level 2: CVC words (roughly in letter-teaching order) ----------
   // The picture is shown only AFTER he reads the word, so he decodes rather than guesses.

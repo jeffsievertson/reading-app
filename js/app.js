@@ -22,6 +22,12 @@
   }
   let state = load();
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* storage full / private mode */ } }
+  // Migration: the Q lesson used to be 'qu' (id L1-qu). Progress is keyed by letter, so
+  // the A-Z reorder needs nothing else.
+  if (state.done['L1-qu']) {
+    if (!state.done['L1-q']) state.done['L1-q'] = state.done['L1-qu'];
+    delete state.done['L1-qu']; save();
+  }
   // Voice setting: '' = natural voice (pre-generated clips, recommended),
   // '__phone' = phone's automatic voice, any other value = a specific phone voice.
   // One-time migration: everyone starts on the natural voice once clips exist.
@@ -377,7 +383,10 @@
   }
 
   function stepFindLetter(it) {
-    const sameSound = (x) => x.sound === it.sound;
+    // Wrong choices: letters that come before this one (A-Z), or the first letters for A/B.
+    // Never a letter that also makes this word's first sound (c/k, and c/k for Q's /kw/).
+    const CONFUSE = { c: ['k', 'q'], k: ['c', 'q'], q: ['c', 'k'] };
+    const sameSound = (x) => x.l === it.l || x.sound === it.sound || (CONFUSE[it.l] || []).includes(x.l);
     const idx = C.letters.findIndex((x) => x.l === it.l);
     const learned = C.letters.slice(0, Math.max(idx, 3)).filter((x) => !sameSound(x));
     const others = (learned.length >= 2 ? learned : C.letters.filter((x) => !sameSound(x)));

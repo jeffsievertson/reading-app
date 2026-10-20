@@ -3,100 +3,10 @@
  "count": 429,
  "letters": [
   {
-   "l": "s",
-   "sound": "sss",
-   "kw": "sun",
-   "soundKey": "sss"
-  },
-  {
    "l": "a",
    "sound": "aah",
    "kw": "apple",
    "soundKey": "aah"
-  },
-  {
-   "l": "t",
-   "sound": "tuh",
-   "kw": "tent",
-   "soundKey": "tuh"
-  },
-  {
-   "l": "p",
-   "sound": "puh",
-   "kw": "pan",
-   "soundKey": "puh"
-  },
-  {
-   "l": "i",
-   "sound": "ih",
-   "kw": "insect",
-   "soundKey": "ih"
-  },
-  {
-   "l": "n",
-   "sound": "nnn",
-   "kw": "nut",
-   "soundKey": "nnn"
-  },
-  {
-   "l": "m",
-   "sound": "mmm",
-   "kw": "map",
-   "soundKey": "mmm"
-  },
-  {
-   "l": "d",
-   "sound": "duh",
-   "kw": "dog",
-   "soundKey": "duh"
-  },
-  {
-   "l": "g",
-   "sound": "guh",
-   "kw": "gas",
-   "soundKey": "guh"
-  },
-  {
-   "l": "o",
-   "sound": "ah",
-   "kw": "octopus",
-   "soundKey": "ah"
-  },
-  {
-   "l": "c",
-   "sound": "kuh",
-   "kw": "cup",
-   "soundKey": "kuh"
-  },
-  {
-   "l": "k",
-   "sound": "kuh",
-   "kw": "key",
-   "soundKey": "kuh"
-  },
-  {
-   "l": "e",
-   "sound": "eh",
-   "kw": "egg",
-   "soundKey": "eh"
-  },
-  {
-   "l": "u",
-   "sound": "uh",
-   "kw": "up",
-   "soundKey": "uh"
-  },
-  {
-   "l": "r",
-   "sound": "rrr",
-   "kw": "run",
-   "soundKey": "rrr"
-  },
-  {
-   "l": "h",
-   "sound": "hhh",
-   "kw": "hat",
-   "soundKey": "hhh"
   },
   {
    "l": "b",
@@ -105,16 +15,46 @@
    "soundKey": "buh"
   },
   {
+   "l": "c",
+   "sound": "kuh",
+   "kw": "cup",
+   "soundKey": "kuh"
+  },
+  {
+   "l": "d",
+   "sound": "duh",
+   "kw": "dog",
+   "soundKey": "duh"
+  },
+  {
+   "l": "e",
+   "sound": "eh",
+   "kw": "egg",
+   "soundKey": "eh"
+  },
+  {
    "l": "f",
    "sound": "fff",
    "kw": "fish",
    "soundKey": "fff"
   },
   {
-   "l": "l",
-   "sound": "lll",
-   "kw": "lamp",
-   "soundKey": "lll"
+   "l": "g",
+   "sound": "guh",
+   "kw": "gas",
+   "soundKey": "guh"
+  },
+  {
+   "l": "h",
+   "sound": "hhh",
+   "kw": "hat",
+   "soundKey": "hhh"
+  },
+  {
+   "l": "i",
+   "sound": "ih",
+   "kw": "insect",
+   "soundKey": "ih"
   },
   {
    "l": "j",
@@ -123,16 +63,88 @@
    "soundKey": "juh"
   },
   {
-   "l": "w",
-   "sound": "wuh",
-   "kw": "water",
-   "soundKey": "wuh"
+   "l": "k",
+   "sound": "kuh",
+   "kw": "key",
+   "soundKey": "kuh"
+  },
+  {
+   "l": "l",
+   "sound": "lll",
+   "kw": "lamp",
+   "soundKey": "lll"
+  },
+  {
+   "l": "m",
+   "sound": "mmm",
+   "kw": "map",
+   "soundKey": "mmm"
+  },
+  {
+   "l": "n",
+   "sound": "nnn",
+   "kw": "nut",
+   "soundKey": "nnn"
+  },
+  {
+   "l": "o",
+   "sound": "ah",
+   "kw": "octopus",
+   "soundKey": "ah"
+  },
+  {
+   "l": "p",
+   "sound": "puh",
+   "kw": "pan",
+   "soundKey": "puh"
+  },
+  {
+   "l": "q",
+   "sound": "kwuh",
+   "kw": "queen",
+   "soundKey": "kwuh"
+  },
+  {
+   "l": "r",
+   "sound": "rrr",
+   "kw": "run",
+   "soundKey": "rrr"
+  },
+  {
+   "l": "s",
+   "sound": "sss",
+   "kw": "sun",
+   "soundKey": "sss"
+  },
+  {
+   "l": "t",
+   "sound": "tuh",
+   "kw": "tent",
+   "soundKey": "tuh"
+  },
+  {
+   "l": "u",
+   "sound": "uh",
+   "kw": "up",
+   "soundKey": "uh"
   },
   {
    "l": "v",
    "sound": "vvv",
    "kw": "van",
    "soundKey": "vvv"
+  },
+  {
+   "l": "w",
+   "sound": "wuh",
+   "kw": "water",
+   "soundKey": "wuh"
+  },
+  {
+   "l": "x",
+   "sound": "ks",
+   "kw": "box",
+   "soundKey": "ks"
   },
   {
    "l": "y",
@@ -145,18 +157,6 @@
    "sound": "zzz",
    "kw": "zero",
    "soundKey": "zzz"
-  },
-  {
-   "l": "x",
-   "sound": "ks",
-   "kw": "box",
-   "soundKey": "ks"
-  },
-  {
-   "l": "qu",
-   "sound": "kwuh",
-   "kw": "queen",
-   "soundKey": "kwuh"
   }
  ],
  "slowWords": [
@@ -279,29 +279,9 @@
    ]
   },
   {
-   "key": "s",
-   "text": "s",
-   "speak": "s",
-   "kind": "text",
-   "sources": [
-    "item:L1-s"
-   ]
-  },
-  {
-   "key": "sun",
-   "text": "sun",
-   "speak": "sun",
-   "kind": "text",
-   "sources": [
-    "keyword",
-    "item:L2-sun",
-    "chip:L3-s6"
-   ]
-  },
-  {
    "key": "a",
    "text": "a",
-   "speak": "a",
+   "speak": "A.",
    "kind": "text",
    "sources": [
     "item:L1-a",
@@ -321,46 +301,142 @@
    ]
   },
   {
-   "key": "t",
-   "text": "t",
-   "speak": "t",
+   "key": "b",
+   "text": "b",
+   "speak": "B.",
    "kind": "text",
    "sources": [
-    "item:L1-t"
+    "item:L1-b"
    ]
   },
   {
-   "key": "tent",
-   "text": "tent",
-   "speak": "tent",
+   "key": "bus",
+   "text": "bus",
+   "speak": "bus",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-bus",
+    "chip:L3-s10"
+   ]
+  },
+  {
+   "key": "c",
+   "text": "c",
+   "speak": "C.",
+   "kind": "text",
+   "sources": [
+    "item:L1-c"
+   ]
+  },
+  {
+   "key": "cup",
+   "text": "cup",
+   "speak": "cup",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-cup",
+    "chip:L3-s7"
+   ]
+  },
+  {
+   "key": "d",
+   "text": "d",
+   "speak": "D.",
+   "kind": "text",
+   "sources": [
+    "item:L1-d"
+   ]
+  },
+  {
+   "key": "dog",
+   "text": "dog",
+   "speak": "dog",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-dog",
+    "chip:L3-s5"
+   ]
+  },
+  {
+   "key": "e",
+   "text": "e",
+   "speak": "E.",
+   "kind": "text",
+   "sources": [
+    "item:L1-e"
+   ]
+  },
+  {
+   "key": "egg",
+   "text": "egg",
+   "speak": "egg",
    "kind": "text",
    "sources": [
     "keyword"
    ]
   },
   {
-   "key": "p",
-   "text": "p",
-   "speak": "p",
+   "key": "f",
+   "text": "f",
+   "speak": "F.",
    "kind": "text",
    "sources": [
-    "item:L1-p"
+    "item:L1-f"
    ]
   },
   {
-   "key": "pan",
-   "text": "pan",
-   "speak": "pan",
+   "key": "fish",
+   "text": "fish",
+   "speak": "fish",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "g",
+   "text": "g",
+   "speak": "G.",
+   "kind": "text",
+   "sources": [
+    "item:L1-g"
+   ]
+  },
+  {
+   "key": "gas",
+   "text": "gas",
+   "speak": "gas",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "h",
+   "text": "h",
+   "speak": "H.",
+   "kind": "text",
+   "sources": [
+    "item:L1-h"
+   ]
+  },
+  {
+   "key": "hat",
+   "text": "hat",
+   "speak": "hat",
    "kind": "text",
    "sources": [
     "keyword",
-    "item:L2-pan"
+    "item:L2-hat"
    ]
   },
   {
    "key": "i",
    "text": "i",
-   "speak": "i",
+   "speak": "I.",
    "kind": "text",
    "sources": [
     "item:L1-i",
@@ -382,18 +458,55 @@
    ]
   },
   {
-   "key": "n",
-   "text": "n",
-   "speak": "n",
+   "key": "j",
+   "text": "j",
+   "speak": "J.",
    "kind": "text",
    "sources": [
-    "item:L1-n"
+    "item:L1-j"
    ]
   },
   {
-   "key": "nut",
-   "text": "nut",
-   "speak": "nut",
+   "key": "jet",
+   "text": "jet",
+   "speak": "jet",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-jet"
+   ]
+  },
+  {
+   "key": "k",
+   "text": "k",
+   "speak": "K.",
+   "kind": "text",
+   "sources": [
+    "item:L1-k"
+   ]
+  },
+  {
+   "key": "key",
+   "text": "key",
+   "speak": "key",
+   "kind": "text",
+   "sources": [
+    "keyword"
+   ]
+  },
+  {
+   "key": "l",
+   "text": "l",
+   "speak": "L.",
+   "kind": "text",
+   "sources": [
+    "item:L1-l"
+   ]
+  },
+  {
+   "key": "lamp",
+   "text": "lamp",
+   "speak": "lamp",
    "kind": "text",
    "sources": [
     "keyword"
@@ -402,7 +515,7 @@
   {
    "key": "m",
    "text": "m",
-   "speak": "m",
+   "speak": "M.",
    "kind": "text",
    "sources": [
     "item:L1-m"
@@ -419,38 +532,18 @@
    ]
   },
   {
-   "key": "d",
-   "text": "d",
-   "speak": "d",
+   "key": "n",
+   "text": "n",
+   "speak": "N.",
    "kind": "text",
    "sources": [
-    "item:L1-d"
+    "item:L1-n"
    ]
   },
   {
-   "key": "dog",
-   "text": "dog",
-   "speak": "dog",
-   "kind": "text",
-   "sources": [
-    "keyword",
-    "item:L2-dog",
-    "chip:L3-s5"
-   ]
-  },
-  {
-   "key": "g",
-   "text": "g",
-   "speak": "g",
-   "kind": "text",
-   "sources": [
-    "item:L1-g"
-   ]
-  },
-  {
-   "key": "gas",
-   "text": "gas",
-   "speak": "gas",
+   "key": "nut",
+   "text": "nut",
+   "speak": "nut",
    "kind": "text",
    "sources": [
     "keyword"
@@ -459,7 +552,7 @@
   {
    "key": "o",
    "text": "o",
-   "speak": "o",
+   "speak": "O.",
    "kind": "text",
    "sources": [
     "item:L1-o"
@@ -475,74 +568,37 @@
    ]
   },
   {
-   "key": "c",
-   "text": "c",
-   "speak": "c",
+   "key": "p",
+   "text": "p",
+   "speak": "P.",
    "kind": "text",
    "sources": [
-    "item:L1-c"
+    "item:L1-p"
    ]
   },
   {
-   "key": "cup",
-   "text": "cup",
-   "speak": "cup",
+   "key": "pan",
+   "text": "pan",
+   "speak": "pan",
    "kind": "text",
    "sources": [
     "keyword",
-    "item:L2-cup",
-    "chip:L3-s7"
+    "item:L2-pan"
    ]
   },
   {
-   "key": "k",
-   "text": "k",
-   "speak": "k",
+   "key": "q",
+   "text": "q",
+   "speak": "Q.",
    "kind": "text",
    "sources": [
-    "item:L1-k"
+    "item:L1-q"
    ]
   },
   {
-   "key": "key",
-   "text": "key",
-   "speak": "key",
-   "kind": "text",
-   "sources": [
-    "keyword"
-   ]
-  },
-  {
-   "key": "e",
-   "text": "e",
-   "speak": "e",
-   "kind": "text",
-   "sources": [
-    "item:L1-e"
-   ]
-  },
-  {
-   "key": "egg",
-   "text": "egg",
-   "speak": "egg",
-   "kind": "text",
-   "sources": [
-    "keyword"
-   ]
-  },
-  {
-   "key": "u",
-   "text": "u",
-   "speak": "u",
-   "kind": "text",
-   "sources": [
-    "item:L1-u"
-   ]
-  },
-  {
-   "key": "up",
-   "text": "up",
-   "speak": "up",
+   "key": "queen",
+   "text": "queen",
+   "speak": "queen",
    "kind": "text",
    "sources": [
     "keyword"
@@ -551,7 +607,7 @@
   {
    "key": "r",
    "text": "r",
-   "speak": "r",
+   "speak": "R.",
    "kind": "text",
    "sources": [
     "item:L1-r"
@@ -569,123 +625,65 @@
    ]
   },
   {
-   "key": "h",
-   "text": "h",
-   "speak": "h",
+   "key": "s",
+   "text": "s",
+   "speak": "S.",
    "kind": "text",
    "sources": [
-    "item:L1-h"
+    "item:L1-s"
    ]
   },
   {
-   "key": "hat",
-   "text": "hat",
-   "speak": "hat",
-   "kind": "text",
-   "sources": [
-    "keyword",
-    "item:L2-hat"
-   ]
-  },
-  {
-   "key": "b",
-   "text": "b",
-   "speak": "b",
-   "kind": "text",
-   "sources": [
-    "item:L1-b"
-   ]
-  },
-  {
-   "key": "bus",
-   "text": "bus",
-   "speak": "bus",
+   "key": "sun",
+   "text": "sun",
+   "speak": "sun",
    "kind": "text",
    "sources": [
     "keyword",
-    "item:L2-bus",
-    "chip:L3-s10"
+    "item:L2-sun",
+    "chip:L3-s6"
    ]
   },
   {
-   "key": "f",
-   "text": "f",
-   "speak": "f",
+   "key": "t",
+   "text": "t",
+   "speak": "T.",
    "kind": "text",
    "sources": [
-    "item:L1-f"
+    "item:L1-t"
    ]
   },
   {
-   "key": "fish",
-   "text": "fish",
-   "speak": "fish",
+   "key": "tent",
+   "text": "tent",
+   "speak": "tent",
    "kind": "text",
    "sources": [
     "keyword"
    ]
   },
   {
-   "key": "l",
-   "text": "l",
-   "speak": "l",
+   "key": "u",
+   "text": "u",
+   "speak": "U.",
    "kind": "text",
    "sources": [
-    "item:L1-l"
+    "item:L1-u"
    ]
   },
   {
-   "key": "lamp",
-   "text": "lamp",
-   "speak": "lamp",
+   "key": "up",
+   "text": "up",
+   "speak": "up",
    "kind": "text",
    "sources": [
     "keyword"
-   ]
-  },
-  {
-   "key": "j",
-   "text": "j",
-   "speak": "j",
-   "kind": "text",
-   "sources": [
-    "item:L1-j"
-   ]
-  },
-  {
-   "key": "jet",
-   "text": "jet",
-   "speak": "jet",
-   "kind": "text",
-   "sources": [
-    "keyword",
-    "item:L2-jet"
-   ]
-  },
-  {
-   "key": "w",
-   "text": "w",
-   "speak": "w",
-   "kind": "text",
-   "sources": [
-    "item:L1-w"
-   ]
-  },
-  {
-   "key": "water",
-   "text": "water",
-   "speak": "water",
-   "kind": "text",
-   "sources": [
-    "keyword",
-    "item:L4-menu-water",
-    "menu"
    ]
   },
   {
    "key": "v",
    "text": "v",
-   "speak": "v",
+   "speak": "V.",
    "kind": "text",
    "sources": [
     "item:L1-v"
@@ -703,9 +701,49 @@
    ]
   },
   {
+   "key": "w",
+   "text": "w",
+   "speak": "W.",
+   "kind": "text",
+   "sources": [
+    "item:L1-w"
+   ]
+  },
+  {
+   "key": "water",
+   "text": "water",
+   "speak": "water",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L4-menu-water",
+    "menu"
+   ]
+  },
+  {
+   "key": "x",
+   "text": "x",
+   "speak": "X.",
+   "kind": "text",
+   "sources": [
+    "item:L1-x"
+   ]
+  },
+  {
+   "key": "box",
+   "text": "box",
+   "speak": "box",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:L2-box",
+    "chip:L3-s13"
+   ]
+  },
+  {
    "key": "y",
    "text": "y",
-   "speak": "y",
+   "speak": "Y.",
    "kind": "text",
    "sources": [
     "item:L1-y"
@@ -726,7 +764,7 @@
   {
    "key": "z",
    "text": "z",
-   "speak": "z",
+   "speak": "Z.",
    "kind": "text",
    "sources": [
     "item:L1-z"
@@ -736,44 +774,6 @@
    "key": "zero",
    "text": "zero",
    "speak": "zero",
-   "kind": "text",
-   "sources": [
-    "keyword"
-   ]
-  },
-  {
-   "key": "x",
-   "text": "x",
-   "speak": "x",
-   "kind": "text",
-   "sources": [
-    "item:L1-x"
-   ]
-  },
-  {
-   "key": "box",
-   "text": "box",
-   "speak": "box",
-   "kind": "text",
-   "sources": [
-    "keyword",
-    "item:L2-box",
-    "chip:L3-s13"
-   ]
-  },
-  {
-   "key": "qu",
-   "text": "qu",
-   "speak": "Q U.",
-   "kind": "text",
-   "sources": [
-    "item:L1-qu"
-   ]
-  },
-  {
-   "key": "queen",
-   "text": "queen",
-   "speak": "queen",
    "kind": "text",
    "sources": [
     "keyword"
@@ -2231,144 +2231,9 @@
    ]
   },
   {
-   "key": "this letter makes the first sound in sun tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in sun. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in sun. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
    "key": "this letter makes the first sound in apple tap the letter to hear it again then tap play",
    "text": "This letter makes the first sound in apple. Tap the letter to hear it again. Then tap play.",
    "speak": "This letter makes the first sound in apple. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in tent tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in tent. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in tent. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in pan tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in pan. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in pan. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in insect tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in insect. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in insect. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in nut tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in nut. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in nut. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in map tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in map. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in map. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in dog tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in dog. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in dog. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in gas tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in gas. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in gas. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in octopus tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in octopus. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in octopus. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in cup tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in cup. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in cup. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in key tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in key. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in key. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in egg tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in egg. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in egg. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in up tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in up. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in up. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in run tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in run. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in run. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in hat tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in hat. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in hat. Tap the letter to hear it again. Then tap play.",
    "kind": "text",
    "sources": [
     "help:letter"
@@ -2384,6 +2249,33 @@
    ]
   },
   {
+   "key": "this letter makes the first sound in cup tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in cup. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in cup. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in dog tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in dog. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in dog. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in egg tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in egg. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in egg. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
    "key": "this letter makes the first sound in fish tap the letter to hear it again then tap play",
    "text": "This letter makes the first sound in fish. Tap the letter to hear it again. Then tap play.",
    "speak": "This letter makes the first sound in fish. Tap the letter to hear it again. Then tap play.",
@@ -2393,9 +2285,27 @@
    ]
   },
   {
-   "key": "this letter makes the first sound in lamp tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in lamp. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in lamp. Tap the letter to hear it again. Then tap play.",
+   "key": "this letter makes the first sound in gas tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in gas. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in gas. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in hat tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in hat. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in hat. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in insect tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in insect. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in insect. Tap the letter to hear it again. Then tap play.",
    "kind": "text",
    "sources": [
     "help:letter"
@@ -2411,9 +2321,99 @@
    ]
   },
   {
-   "key": "this letter makes the first sound in water tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in water. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in water. Tap the letter to hear it again. Then tap play.",
+   "key": "this letter makes the first sound in key tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in key. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in key. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in lamp tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in lamp. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in lamp. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in map tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in map. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in map. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in nut tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in nut. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in nut. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in octopus tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in octopus. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in octopus. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in pan tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in pan. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in pan. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in queen tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in queen. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in queen. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in run tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in run. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in run. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in sun tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in sun. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in sun. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in tent tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in tent. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in tent. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in up tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in up. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in up. Tap the letter to hear it again. Then tap play.",
    "kind": "text",
    "sources": [
     "help:letter"
@@ -2423,6 +2423,24 @@
    "key": "this letter makes the first sound in van tap the letter to hear it again then tap play",
    "text": "This letter makes the first sound in van. Tap the letter to hear it again. Then tap play.",
    "speak": "This letter makes the first sound in van. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the first sound in water tap the letter to hear it again then tap play",
+   "text": "This letter makes the first sound in water. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the first sound in water. Tap the letter to hear it again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:letter"
+   ]
+  },
+  {
+   "key": "this letter makes the sound at the end of box tap the letter to hear it again then tap play",
+   "text": "This letter makes the sound at the end of box. Tap the letter to hear it again. Then tap play.",
+   "speak": "This letter makes the sound at the end of box. Tap the letter to hear it again. Then tap play.",
    "kind": "text",
    "sources": [
     "help:letter"
@@ -2447,162 +2465,9 @@
    ]
   },
   {
-   "key": "this letter makes the sound at the end of box tap the letter to hear it again then tap play",
-   "text": "This letter makes the sound at the end of box. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the sound at the end of box. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "this letter makes the first sound in queen tap the letter to hear it again then tap play",
-   "text": "This letter makes the first sound in queen. Tap the letter to hear it again. Then tap play.",
-   "speak": "This letter makes the first sound in queen. Tap the letter to hear it again. Then tap play.",
-   "kind": "text",
-   "sources": [
-    "help:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word sun",
-   "text": "Which letter starts the word sun?",
-   "speak": "Which letter starts the word sun?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
    "key": "which letter starts the word apple",
    "text": "Which letter starts the word apple?",
    "speak": "Which letter starts the word apple?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word tent",
-   "text": "Which letter starts the word tent?",
-   "speak": "Which letter starts the word tent?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word pan",
-   "text": "Which letter starts the word pan?",
-   "speak": "Which letter starts the word pan?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word insect",
-   "text": "Which letter starts the word insect?",
-   "speak": "Which letter starts the word insect?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word nut",
-   "text": "Which letter starts the word nut?",
-   "speak": "Which letter starts the word nut?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word map",
-   "text": "Which letter starts the word map?",
-   "speak": "Which letter starts the word map?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word dog",
-   "text": "Which letter starts the word dog?",
-   "speak": "Which letter starts the word dog?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word gas",
-   "text": "Which letter starts the word gas?",
-   "speak": "Which letter starts the word gas?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word octopus",
-   "text": "Which letter starts the word octopus?",
-   "speak": "Which letter starts the word octopus?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word cup",
-   "text": "Which letter starts the word cup?",
-   "speak": "Which letter starts the word cup?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word key",
-   "text": "Which letter starts the word key?",
-   "speak": "Which letter starts the word key?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word egg",
-   "text": "Which letter starts the word egg?",
-   "speak": "Which letter starts the word egg?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word up",
-   "text": "Which letter starts the word up?",
-   "speak": "Which letter starts the word up?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word run",
-   "text": "Which letter starts the word run?",
-   "speak": "Which letter starts the word run?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word hat",
-   "text": "Which letter starts the word hat?",
-   "speak": "Which letter starts the word hat?",
    "kind": "text",
    "sources": [
     "prompt:letter"
@@ -2618,6 +2483,33 @@
    ]
   },
   {
+   "key": "which letter starts the word cup",
+   "text": "Which letter starts the word cup?",
+   "speak": "Which letter starts the word cup?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word dog",
+   "text": "Which letter starts the word dog?",
+   "speak": "Which letter starts the word dog?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word egg",
+   "text": "Which letter starts the word egg?",
+   "speak": "Which letter starts the word egg?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
    "key": "which letter starts the word fish",
    "text": "Which letter starts the word fish?",
    "speak": "Which letter starts the word fish?",
@@ -2627,9 +2519,27 @@
    ]
   },
   {
-   "key": "which letter starts the word lamp",
-   "text": "Which letter starts the word lamp?",
-   "speak": "Which letter starts the word lamp?",
+   "key": "which letter starts the word gas",
+   "text": "Which letter starts the word gas?",
+   "speak": "Which letter starts the word gas?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word hat",
+   "text": "Which letter starts the word hat?",
+   "speak": "Which letter starts the word hat?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word insect",
+   "text": "Which letter starts the word insect?",
+   "speak": "Which letter starts the word insect?",
    "kind": "text",
    "sources": [
     "prompt:letter"
@@ -2645,9 +2555,99 @@
    ]
   },
   {
-   "key": "which letter starts the word water",
-   "text": "Which letter starts the word water?",
-   "speak": "Which letter starts the word water?",
+   "key": "which letter starts the word key",
+   "text": "Which letter starts the word key?",
+   "speak": "Which letter starts the word key?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word lamp",
+   "text": "Which letter starts the word lamp?",
+   "speak": "Which letter starts the word lamp?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word map",
+   "text": "Which letter starts the word map?",
+   "speak": "Which letter starts the word map?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word nut",
+   "text": "Which letter starts the word nut?",
+   "speak": "Which letter starts the word nut?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word octopus",
+   "text": "Which letter starts the word octopus?",
+   "speak": "Which letter starts the word octopus?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word pan",
+   "text": "Which letter starts the word pan?",
+   "speak": "Which letter starts the word pan?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word queen",
+   "text": "Which letter starts the word queen?",
+   "speak": "Which letter starts the word queen?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word run",
+   "text": "Which letter starts the word run?",
+   "speak": "Which letter starts the word run?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word sun",
+   "text": "Which letter starts the word sun?",
+   "speak": "Which letter starts the word sun?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word tent",
+   "text": "Which letter starts the word tent?",
+   "speak": "Which letter starts the word tent?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word up",
+   "text": "Which letter starts the word up?",
+   "speak": "Which letter starts the word up?",
    "kind": "text",
    "sources": [
     "prompt:letter"
@@ -2657,6 +2657,24 @@
    "key": "which letter starts the word van",
    "text": "Which letter starts the word van?",
    "speak": "Which letter starts the word van?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter starts the word water",
+   "text": "Which letter starts the word water?",
+   "speak": "Which letter starts the word water?",
+   "kind": "text",
+   "sources": [
+    "prompt:letter"
+   ]
+  },
+  {
+   "key": "which letter is at the end of box",
+   "text": "Which letter is at the end of box?",
+   "speak": "Which letter is at the end of box?",
    "kind": "text",
    "sources": [
     "prompt:letter"
@@ -2675,24 +2693,6 @@
    "key": "which letter starts the word zero",
    "text": "Which letter starts the word zero?",
    "speak": "Which letter starts the word zero?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter is at the end of box",
-   "text": "Which letter is at the end of box?",
-   "speak": "Which letter is at the end of box?",
-   "kind": "text",
-   "sources": [
-    "prompt:letter"
-   ]
-  },
-  {
-   "key": "which letter starts the word queen",
-   "text": "Which letter starts the word queen?",
-   "speak": "Which letter starts the word queen?",
    "kind": "text",
    "sources": [
     "prompt:letter"
