@@ -9,7 +9,7 @@ window.Rewards = (function () {
   const REFILL_EVERY = 7;       // practiced days per skip refilled
   const WORD_MILESTONES = [25, 50, 100, 250, 500];
   const STREAK_MILESTONES = [7, 30];
-  const SMS_NUMBER = '+18125658267'; // Jeffrey (Google Voice) - approved to be public
+  const SMS_NUMBER = '+18127275260'; // team Google Voice - approved to be public
   // Lesson kinds whose item is a word for the word bank. Letters (Level 1), sentences,
   // form labels and verses are not.
   const BANK_KINDS = { word: 1, sight: 1, sign: 1, menu: 1 };

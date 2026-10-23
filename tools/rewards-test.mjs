@@ -73,8 +73,8 @@ const J = (x) => JSON.parse(JSON.stringify(x));
   R.addWord(r, bank[25]);
   check('26 words: milestone does not fire again', R.checkMilestones(r).length === 0 && !!r.milestones['words-25']);
   const ios = R.smsHref(m[0], 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X)');
-  check('Tell Jeffrey sms link (iOS form)', ios === 'sms:+18125658267&body=' + encodeURIComponent("Hi Jeffrey, it's Adam. I just reached 25 words in Read Aloud!"), ios);
-  check('Tell Jeffrey sms link (Android form)', R.smsHref(m[0], 'Mozilla/5.0 (Linux; Android 14)').startsWith('sms:+18125658267?body=Hi%20Jeffrey'));
+  check('Tell Jeffrey sms link (iOS form)', ios === 'sms:+18127275260&body=' + encodeURIComponent("Hi Jeffrey, it's Adam. I just reached 25 words in Read Aloud!"), ios);
+  check('Tell Jeffrey sms link (Android form)', R.smsHref(m[0], 'Mozilla/5.0 (Linux; Android 14)').startsWith('sms:+18127275260?body=Hi%20Jeffrey'));
   check('streak sms body', R.describe('streak-7').body === "Hi Jeffrey, it's Adam. I just practiced 7 days in a row in Read Aloud!");
 }
 
@@ -152,7 +152,7 @@ const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id
   const msgs = await p.locator('.milestone-msg').allTextContents();
   check('milestones shown: 25 words and 7-day streak', msgs.length === 2 && msgs.some((t) => /That’s 25 words\. Real progress\./.test(t)) && msgs.some((t) => /7 days in a row/.test(t)), msgs);
   const hrefs = await p.locator('a.tell').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
-  check('Tell Jeffrey buttons: iOS sms: link with encoded body', hrefs.length === 2 && hrefs.every((h) => h.startsWith('sms:+18125658267&body=Hi%20Jeffrey%2C%20it\'s%20Adam.')) && hrefs.some((h) => decodeURIComponent(h).endsWith('reached 25 words in Read Aloud!')), hrefs);
+  check('Tell Jeffrey buttons: iOS sms: link with encoded body', hrefs.length === 2 && hrefs.every((h) => h.startsWith('sms:+18127275260&body=Hi%20Jeffrey%2C%20it\'s%20Adam.')) && hrefs.some((h) => decodeURIComponent(h).endsWith('reached 25 words in Read Aloud!')), hrefs);
   check('Tell Jeffrey is readable aloud (data-say)', (await p.locator('a.tell').first().getAttribute('data-say')).startsWith('Tell Jeffrey'));
   await p.waitForTimeout(300);
   const said = await p.evaluate(() => window.Speech.debugLog().map((e) => e.text));

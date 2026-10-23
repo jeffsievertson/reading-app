@@ -117,7 +117,7 @@ Clearing browser data / uninstalling erases progress.
   2 free skip days; a missed day uses a skip. 1 skip comes back per 7 practiced days (max 2).
   Missing more days than skips left starts a new streak ("New start today"), with skips full.
 - **Milestones**: 25/50/100/250/500 words, 7/30-day streak. Recorded once; shown and read
-  aloud on the done screen with a 💬 **Tell Jeffrey** button: an `sms:` link that opens a
+  aloud on the done screen with a 💬 **Tell Jeffrey** button: an `sms:` link to +18127275260 (team Google Voice) that opens a
   pre-written text on the phone. Adam taps Send himself; nothing is sent automatically,
   no backend. Milestones already passed before the feature existed are recorded silently.
 
