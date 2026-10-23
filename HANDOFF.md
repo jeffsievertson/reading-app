@@ -13,6 +13,8 @@ streak, and milestones he can share with Jeffrey himself. No kid tone, big butto
   letter) is finished. 2 skips; a missed day uses one; +1 skip per 7 practiced days while
   below 2. More missed days than skips → "New start today", day 1 with skips full, best kept.
   Not backfilled (old progress only stores the last completion time per item).
+  Tapping the 📅 row (any state) reads it aloud, then opens the next unfinished lesson
+  (same as ▶ Keep going); all done → first lesson of the level last practiced.
 - **Milestones** (25/50/100/250/500 words, 7/30 days) fire once, on the done screen, read aloud.
   Ones already passed at backfill are recorded silently (`shown:false`).
 - **Tell Jeffrey** (approved Oct 23; number = team Google Voice): 💬 button on each milestone = `sms:+18127275260&body=…`
@@ -22,7 +24,7 @@ streak, and milestones he can share with Jeffrey himself. No kid tone, big butto
 
 ## Key files
 `js/rewards.js` (logic, key `readAloud.rewards.v1`), `js/app.js` (home stats, `#/words`,
-done-screen milestone card), `css/styles.css` (end of file), `sw.js` (cache v8, precaches
+done-screen milestone card), `css/styles.css` (end of file), `sw.js` (cache v9, precaches
 rewards.js), `tools/rewards-test.mjs`, `screenshots/25-home-rewards.png`, `26-word-bank.png`.
 
 ## Open questions
@@ -32,5 +34,5 @@ rewards.js), `tools/rewards-test.mjs`, `screenshots/25-home-rewards.png`, `26-wo
 - Kokoro clips for the new lines, if the built-in voice sounds off next to them.
 
 ## Next action
-On Adam's iPhone: open the app twice to pick up cache v8, check the 📅/📚 rows, and test
+On Adam's iPhone: open the app twice to pick up cache v9, check the 📅/📚 rows, and test
 💬 Tell Jeffrey on the next milestone (or with seeded data).

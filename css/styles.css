@@ -229,7 +229,10 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 .stat {
   border: 0; border-radius: 22px; background: var(--surface); min-height: var(--tap);
   display: flex; align-items: center; gap: 12px; padding: 10px 16px; text-align: left;
+  border: 2px solid #3a404c; cursor: pointer; touch-action: manipulation;
 }
+.stat:active { transform: scale(.97); background: var(--surface2); }
+.stat-go { font-size: 1.3rem; font-weight: 800; color: var(--accent); white-space: nowrap; }
 .stat-ico { font-size: 2.2rem; line-height: 1; }
 .stat-txt { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .stat-main { font-size: 1.3rem; font-weight: 800; }

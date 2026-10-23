@@ -80,17 +80,18 @@ const J = (x) => JSON.parse(JSON.stringify(x));
 
 // ---------------- part 2: in the app
 const b = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', args: ['--no-sandbox'] });
-async function page(done, rewards, shots) {
+async function page(done, rewards, shots, standalone) {
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: shots ? 2 : 1, isMobile: true, hasTouch: true,
     userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1' });
-  await ctx.addInitScript(([done, rewards]) => {
+  await ctx.addInitScript(([done, rewards, standalone]) => {
     if (!sessionStorage.getItem('seeded')) {
       sessionStorage.setItem('seeded', '1');
       localStorage.setItem('readAloud.v1', JSON.stringify({ started: true, done, settings: { mic: false } }));
       if (rewards) localStorage.setItem('readAloud.rewards.v1', JSON.stringify(rewards));
     }
     window.__tts = []; speechSynthesis.speak = (u) => { window.__tts.push(u.text); setTimeout(() => u.onend && u.onend(), 5); };
-  }, [done, rewards]);
+    if (standalone) Object.defineProperty(navigator, 'standalone', { get: () => true }); // iOS home-screen app
+  }, [done, rewards, !!standalone]);
   const p = await ctx.newPage(); const errors = [];
   p.on('pageerror', (e) => errors.push(e.message));
   return { ctx, p, errors };
@@ -106,12 +107,14 @@ const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id
   check('home: backfilled word count shown (36 + 10 + 8 = 54)', /54/.test(wordsTxt), wordsTxt);
   const stTxt = await p.locator('.stat.streak').textContent();
   check('home: "5 days in a row" + "2 skip days left"', /5 days in a row/.test(stTxt) && /2 skip days left/.test(stTxt), stTxt);
+  await p.waitForTimeout(400); await p.screenshot({ path: ROOT + 'screenshots/25-home-rewards.png' });
   await p.locator('.stat.streak').tap(); await p.waitForTimeout(300);
   const said = await p.evaluate(() => window.Speech.debugLog().map((e) => e.text));
   check('home: tapping the streak reads it aloud', said.some((t) => /5 days in a row/.test(t)), said.slice(-3));
   const rw = await p.evaluate(() => window.__readAloud.rewards());
   check('backfill saved; past milestones (25, 50) recorded silently', !!rw.milestones['words-25'] && rw.milestones['words-25'].shown === false && !!rw.milestones['words-50'] && !rw.milestones['words-100'], rw.milestones);
-  await p.waitForTimeout(400); await p.screenshot({ path: ROOT + 'screenshots/25-home-rewards.png' });
+  await p.waitForURL(/#\/lesson\//, { timeout: 8000 }).catch(() => {});
+  await p.goto(BASE + '#/home'); await p.reload(); await p.waitForSelector('.stat.words');
   await p.locator('.stat.words').tap(); await p.waitForSelector('.bank-count');
   const count = await p.locator('.bank-count').textContent();
   check('word bank: "You know 54 words."', /You know 54 words\./.test(count), count);
@@ -179,6 +182,46 @@ const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id
   const rw = await p.evaluate(() => window.__readAloud.rewards());
   check('practice after a long break: day 1 of a new streak, best kept', rw.streak.count === 1 && rw.streak.best === 12 && rw.streak.skips === 2, rw.streak);
   check('no page errors (restart)', errors.length === 0, errors);
+  await ctx.close();
+}
+{ // streak row tap (iOS standalone): reads the streak aloud, then opens the next lesson, in every state
+  const allDone = Object.fromEntries(C.items.map((it, i) => [it.id, 1700000000000 + i]));
+  allDone['L3-s2'] = 1800000000000; // most recently finished: a Level 3 lesson
+  const firstOf = (lv) => C.items.find((it) => it.level === lv).id;
+  const firstUndone = (done) => C.items.find((it) => !done[it.id]).id;
+  const partDone = Object.fromEntries(C.items.filter((it) => it.level === 1).map((it) => [it.id, 1700000000000]));
+  const cases = [
+    ['none', {}, null, /Practice today to start a streak/, 'L1-a'],
+    ['on', partDone, { count: 5, last: dayAgo(1), skips: 2, toRefill: 0, best: 5, days: 5 }, /5 days in a row\. 2 skip days left/, firstUndone(partDone)],
+    ['fresh', partDone, { count: 9, last: dayAgo(6), skips: 1, toRefill: 0, best: 9, days: 9 }, /Practice today to start a new streak/, firstUndone(partDone)],
+    ['all done', allDone, { count: 1, last: today, skips: 2, toRefill: 0, best: 3, days: 3 }, /Day 1\. 2 skip days left/, firstOf(3)]
+  ];
+  for (const [name, done, streak, sayRe, want] of cases) {
+    const { ctx, p, errors } = await page(done, streak ? { words: {}, streak, milestones: {} } : null, false, true);
+    await p.goto(BASE + '#/home'); await p.waitForSelector('.stat.streak');
+    const info = await p.evaluate(() => {
+      const b = document.querySelector('.stat.streak'); const r = b.getBoundingClientRect();
+      const hit = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+      return { tag: b.tagName, type: b.type, label: b.getAttribute('aria-label'), pe: getComputedStyle(b).pointerEvents,
+        hitInside: b.contains(hit), h: r.height, standalone: !!window.Speech.isIOSStandalone };
+    });
+    check('streak row [' + name + ']: real <button>, label, tappable (no pointer-events:none, not covered, ≥72px), iOS standalone',
+      info.tag === 'BUTTON' && info.type === 'button' && sayRe.test(info.label) && /Tap to practice/.test(info.label) && info.pe !== 'none' && info.hitInside && info.h >= 72 && info.standalone, info);
+    await p.locator('.stat.streak').tap();
+    await p.waitForURL(/#\/lesson\//, { timeout: 8000 }).catch(() => {});
+    const said = await p.evaluate(() => window.Speech.debugLog().map((e) => e.text));
+    const hash = await p.evaluate(() => location.hash);
+    check('streak row [' + name + ']: tap reads it aloud, then opens ' + want, said.some((t) => sayRe.test(t)) && hash === '#/lesson/' + want, { said: said.slice(-3), hash });
+    check('streak row [' + name + ']: no page errors', errors.length === 0, errors);
+    await ctx.close();
+  }
+  // a tap then leaving home before the speech ends must not yank him into a lesson
+  const { ctx, p } = await page({}, null, false, true);
+  await p.goto(BASE + '#/home'); await p.waitForSelector('.stat.streak');
+  await p.evaluate(() => { speechSynthesis.speak = (u) => setTimeout(() => u.onend && u.onend(), 1500); }); // a slow voice
+  await p.locator('.stat.streak').tap(); await p.locator('.stat.words').tap();
+  await p.waitForTimeout(2500);
+  check('streak row: leaving home right after the tap cancels the jump', await p.evaluate(() => location.hash) === '#/words');
   await ctx.close();
 }
 await b.close();

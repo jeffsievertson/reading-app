@@ -151,6 +151,28 @@
   function levelItems(n, cat) { return C.items.filter((it) => it.level === n && (!cat || it.cat === cat)); }
   function pct(list) { return list.length ? Math.round((100 * list.filter(isDone).length) / list.length) : 0; }
   function firstUndone(list) { return list.find((it) => !isDone(it)) || null; }
+  /** The lesson "keep going" opens: the next unfinished one; if all are done, the first
+   *  lesson of the current level (the level of the most recently finished lesson). */
+  function continueTarget() {
+    const next = firstUndone(C.items);
+    if (next) return next;
+    let last = null;
+    for (const it of C.items) if (state.done[it.id] && (!last || state.done[it.id] > state.done[last.id])) last = it;
+    return levelItems(last ? last.level : 1)[0] || C.items[0];
+  }
+  /** Streak row tap: read the streak aloud, then open the lesson to practice.
+   *  Waits for the speech (capped, in case a phone voice never reports the end) and
+   *  only navigates if nothing else happened meanwhile (another tap, back, etc.). */
+  function streakTap(text) {
+    const my = ++streakTapToken;
+    const target = continueTarget();
+    const said = S.say(text);
+    Promise.race([said, sleep(6000)]).then(() => {
+      if (my !== streakTapToken || !/^#?\/?(home)?$/.test(location.hash)) return;
+      go('#/lesson/' + target.id);
+    });
+  }
+  let streakTapToken = 0;
   function bar(list) {
     const p = pct(list);
     const fill = el('div', { class: 'fill' });
@@ -210,10 +232,10 @@
     const nWords = R.wordCount(rw);
     const wordsSay = 'Word bank. You know ' + nWords + (nWords === 1 ? ' word.' : ' words.');
     const stats = el('div', { class: 'stats' },
-      el('button', { class: 'stat streak', type: 'button', 'data-say': st.say, 'aria-label': st.say, onclick: () => S.say(st.say) },
+      el('button', { class: 'stat streak', type: 'button', 'data-say': st.say, 'aria-label': st.say + ' Tap to practice.', onclick: () => streakTap(st.say) },
         el('span', { class: 'stat-ico', 'aria-hidden': 'true' }, '📅'),
         el('span', { class: 'stat-txt' }, el('span', { class: 'stat-main' }, st.main), el('span', { class: 'stat-sub' }, st.sub)),
-        el('span', { class: 'stat-spk', 'aria-hidden': 'true' }, '🔊')),
+        el('span', { class: 'stat-go', 'aria-hidden': 'true' }, '🔊 ▶')),
       el('button', { class: 'stat words', type: 'button', 'data-say': wordsSay, 'aria-label': wordsSay, onclick: () => go('#/words') },
         el('span', { class: 'stat-ico', 'aria-hidden': 'true' }, '📚'),
         el('span', { class: 'stat-txt' }, el('span', { class: 'stat-main' }, el('span', { class: 'stat-main num' }, String(nWords)), nWords === 1 ? ' word' : ' words'), el('span', { class: 'stat-sub' }, 'Word bank')),
