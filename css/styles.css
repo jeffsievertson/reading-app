@@ -221,3 +221,34 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
   .tile-letter { width: 82px; height: 104px; font-size: 3.6rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* ---------- rewards: home stats, word bank, milestone ---------- */
+.home { margin: auto 0; display: flex; flex-direction: column; gap: 14px; }
+.home .grid2 { margin: 0; }
+.stats { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.stat {
+  border: 0; border-radius: 22px; background: var(--surface); min-height: var(--tap);
+  display: flex; align-items: center; gap: 12px; padding: 10px 16px; text-align: left;
+}
+.stat-ico { font-size: 2.2rem; line-height: 1; }
+.stat-txt { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.stat-main { font-size: 1.3rem; font-weight: 800; }
+.stat .stat-main.num { color: var(--accent); }
+.stat-sub { font-size: 1rem; color: var(--muted); font-weight: 600; }
+.stat-spk { font-size: 1.4rem; opacity: .8; }
+.bank { display: flex; flex-direction: column; gap: 16px; }
+.bank-count {
+  border: 0; border-radius: 20px; background: var(--surface); min-height: var(--tap);
+  font-size: 1.6rem; font-weight: 800; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px;
+}
+.bank-words .item { font-size: 1.6rem; min-height: 72px; }
+.added { font-size: 1.5rem; font-weight: 800; color: var(--muted); }
+.milestone { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.milestone-msg {
+  border: 3px solid var(--accent); border-radius: 20px; background: var(--surface);
+  font-size: 1.5rem; font-weight: 800; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left;
+}
+a.btn { text-decoration: none; color: inherit; }
+.tell { background: var(--ok); color: #08140d !important; min-height: 84px; font-size: 1.5rem; }
+.center.has-milestone { gap: 14px; }
+.has-milestone .done-mark { font-size: 4rem; }

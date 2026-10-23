@@ -13,6 +13,7 @@
 | Emoji (e.g. ☀️ 🍎 🔊) | Unicode characters drawn by the phone's own system emoji font; no emoji images are bundled | Not distributed by this app |
 | Natural-voice audio clips (`audio/af_heart/`, `audio/clips.json`) | Generated for this project with the **Kokoro-82M** v1.0 text-to-speech model (by hexgrad, https://huggingface.co/hexgrad/Kokoro-82M), voice `af_heart`, run locally with **kokoro-onnx** | Kokoro-82M model and voices: **Apache License 2.0**. The audio is our own output of that model; no recordings of real people are included. Letter sounds were cut from generated words with our own script. |
 | Fallback voices / speech recognition | The phone's built-in Web Speech API (Apple/Google/OS voices) | Provided by the browser/OS; not distributed by this app |
+| Word bank / streak / milestones (`js/rewards.js`) | Written for this project; no libraries | Same as code |
 | Success/error tones | Generated at runtime with the Web Audio API (sine waves) | Same as code |
 
 ## Kokoro-82M attribution

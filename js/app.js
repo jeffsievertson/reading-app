@@ -51,6 +51,17 @@
   const spoken = (it) => it.say || it.text || it.label;
   const cleanWord = (w) => w.replace(/[^A-Za-z']/g, '');
 
+  // ---------------------------------------------------------------- rewards (js/rewards.js)
+  // Word bank + gentle streak + milestones, saved under their own localStorage key.
+  // "Mastered" = the lesson was completed (state.done[id] set), the same rule as the ✓ marks.
+  const R = window.Rewards;
+  let rw = R.load();
+  (function initRewards() {
+    const added = R.backfill(rw, state.done, C.items); // words mastered before the word bank existed
+    if (added) R.checkMilestones(rw, { silent: true }); // past milestones: recorded, not announced
+    if (added || !localStorage.getItem(R.KEY)) R.save(rw);
+  })();
+
   function el(tag, props, ...kids) {
     const n = document.createElement(tag);
     if (props) {
@@ -194,12 +205,26 @@
       next ? btn('▶', 'Keep going', () => go('#/lesson/' + next.id), 'primary grow', next.level === 4 ? '' : next.label) : null,
       deferredInstall ? btn('📲', 'Add to home screen', installApp, 'icon-btn') : null
     ];
+    const sv = R.streakView(rw);
+    const st = R.streakText(sv);
+    const nWords = R.wordCount(rw);
+    const wordsSay = 'Word bank. You know ' + nWords + (nWords === 1 ? ' word.' : ' words.');
+    const stats = el('div', { class: 'stats' },
+      el('button', { class: 'stat streak', type: 'button', 'data-say': st.say, 'aria-label': st.say, onclick: () => S.say(st.say) },
+        el('span', { class: 'stat-ico', 'aria-hidden': 'true' }, '📅'),
+        el('span', { class: 'stat-txt' }, el('span', { class: 'stat-main' }, st.main), el('span', { class: 'stat-sub' }, st.sub)),
+        el('span', { class: 'stat-spk', 'aria-hidden': 'true' }, '🔊')),
+      el('button', { class: 'stat words', type: 'button', 'data-say': wordsSay, 'aria-label': wordsSay, onclick: () => go('#/words') },
+        el('span', { class: 'stat-ico', 'aria-hidden': 'true' }, '📚'),
+        el('span', { class: 'stat-txt' }, el('span', { class: 'stat-main' }, el('span', { class: 'stat-main num' }, String(nWords)), nWords === 1 ? ' word' : ' words'), el('span', { class: 'stat-sub' }, 'Word bank')),
+        el('span', { class: 'stat-spk', 'aria-hidden': 'true' }, '▶')));
     screen({
       title: 'Read Aloud',
-      help: next
+      help: [next
         ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is sentences. Level 4 is real life reading.'
         : 'You finished everything. Great work. Pick any level to practice again.',
-      body: el('div', { class: 'grid2' }, tiles),
+      st.say, 'Tap the books to see your word bank.'],
+      body: el('div', { class: 'home' }, stats, el('div', { class: 'grid2' }, tiles)),
       footer
     });
     if (introPending) { introPending = false; sayIntro(); return; }
@@ -685,22 +710,67 @@
     const wasDone = isDone(it);
     state.done[it.id] = Date.now();
     save();
+    const streak = R.practice(rw);              // any finished item counts as practice today
+    const newWord = R.addWord(rw, it, state.done[it.id]);
+    const milestones = R.checkMilestones(rw);   // each fires only once, ever
+    R.save(rw);
     const group = levelItems(it.level, it.level === 4 ? it.cat : null);
     const groupDone = !wasDone && pct(group) === 100;
     const nxt = nextItemAfter(it);
     screen({
       back: backFor(it),
       help: 'Great job. Tap play for the next one. Tap the circle arrow to do this one again.',
-      body: el('div', { class: 'center' },
+      body: el('div', { class: 'center' + (milestones.length ? ' has-milestone' : '') },
         el('div', { class: 'done-mark' }, groupDone ? '🏆' : '✓'),
-        el('div', { class: 'done-label' }, it.kind === 'verse' ? it.ref : it.label)),
+        el('div', { class: 'done-label' }, it.kind === 'verse' ? it.ref : it.label),
+        newWord ? el('div', { class: 'added', 'aria-label': 'Added to your word bank' }, '📚 +1') : null,
+        milestones.map(milestoneCard)),
       footer: [
         btn('🔁', 'Do it again', () => viewLesson(it.id), 'icon-btn'),
         nxt ? btn('▶', 'Next', () => go('#/lesson/' + nxt.id), 'primary grow') : btn('🏠', 'Home', () => go('#/home'), 'primary grow')
       ]
     });
     good();
-    S.say(groupDone ? 'Amazing. You finished this whole part. Tap play for the next one.' : 'Great job. Tap play for the next one.');
+    const lines = [];
+    if (streak.restarted) lines.push({ text: 'Welcome back. This is day 1 of a new streak.', pause: 300 });
+    milestones.forEach((m) => lines.push({ text: m.text, pause: 400 }));
+    if (milestones.length) lines.push({ text: 'Tap Tell Jeffrey to send him a text. Or tap play for the next one.' });
+    else lines.push(groupDone ? 'Amazing. You finished this whole part. Tap play for the next one.' : 'Great job. Tap play for the next one.');
+    S.say(lines);
+  }
+
+  // ---------------------------------------------------------------- word bank
+  function viewWords() {
+    const list = R.wordList(rw);
+    const n = list.length;
+    const countText = n === 0 ? 'No words yet.' : 'You know ' + n + (n === 1 ? ' word.' : ' words.');
+    const help = n === 0
+      ? 'This is your word bank. Every word you learn goes here. Finish a word lesson to add your first word.'
+      : countText + ' Tap any word to hear it.';
+    const sayCount = () => S.say(countText);
+    screen({
+      title: '📚 Word Bank', back: '#/home', help,
+      body: el('div', { class: 'bank' },
+        el('button', { class: 'bank-count', type: 'button', 'data-say': countText, 'aria-label': countText, onclick: sayCount },
+          el('span', null, countText), el('span', { class: 'stat-spk', 'aria-hidden': 'true' }, '🔊')),
+        n ? el('div', { class: 'items bank-words' }, list.map((x) => el('button', {
+          class: 'item bank-word', type: 'button', 'data-say': x.say, 'aria-label': x.say,
+          onclick: (e) => { flash(e.currentTarget); S.say(x.say); }
+        }, x.w))) : el('div', { class: 'emoji big', 'aria-hidden': 'true' }, '📚')),
+      footer: btn('🔊', 'Hear how many words', sayCount, 'icon-btn grow')
+    });
+    S.say(help);
+  }
+
+  // ---------------------------------------------------------------- milestone card
+  // Shown on the done screen when a milestone is reached for the first time. "Tell Jeffrey"
+  // is a plain sms: link: the phone opens a pre-written text and Adam taps Send himself.
+  function milestoneCard(m) {
+    return el('div', { class: 'milestone' },
+      el('button', { class: 'milestone-msg', type: 'button', 'data-say': m.text, 'aria-label': m.text, onclick: () => S.say(m.text) },
+        el('span', null, m.text), el('span', { class: 'stat-spk', 'aria-hidden': 'true' }, '🔊')),
+      el('a', { class: 'btn tell', href: R.smsHref(m), 'data-say': 'Tell Jeffrey. This opens a text message to Jeffrey. You tap send.', 'aria-label': 'Tell Jeffrey' },
+        el('span', { class: 'ico', 'aria-hidden': 'true' }, '💬'), el('span', { class: 'txt' }, 'Tell Jeffrey')));
   }
 
   // ---------------------------------------------------------------- settings
@@ -744,7 +814,7 @@
     let armed = false;
     const reset = btn('🗑️', 'Erase all progress', () => {
       if (!armed) { armed = true; reset.classList.add('danger'); reset.querySelector('.txt').textContent = 'Tap again to erase'; S.say('Tap again to erase all progress.'); return; }
-      state.done = {}; save(); S.say('Progress erased.'); go('#/home');
+      state.done = {}; save(); rw = R.blank(); R.save(rw); S.say('Progress erased.'); go('#/home');
     }, '', 'Erase progress');
 
     const done = Object.keys(state.done).length;
@@ -787,6 +857,7 @@
       case 'level': return parts[2] ? viewCat(parts[2]) : viewLevel(parseInt(parts[1], 10));
       case 'lesson': return viewLesson(decodeURIComponent(parts[1] || ''));
       case 'settings': return viewSettings();
+      case 'words': return viewWords();
       default: return viewHome();
     }
   }
@@ -802,5 +873,5 @@
   }
 
   // test hook (harmless): lets automated checks inspect state
-  window.__readAloud = { state: () => state, items: C.items.length, helpText: () => helpText };
+  window.__readAloud = { state: () => state, items: C.items.length, helpText: () => helpText, rewards: () => rw };
 })();

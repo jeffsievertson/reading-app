@@ -108,6 +108,19 @@ Saved only in `localStorage` on that phone (key `readAloud.v1`). No account, not
 leaves the device (except audio sent by the browser's own speech recognizer – see below).
 Clearing browser data / uninstalling erases progress.
 
+### Word bank, streak, milestones (`js/rewards.js`, key `readAloud.rewards.v1`)
+- **Word bank 📚** (home → 📚): every mastered word (lesson completed, same as the ✓) from
+  Level 2 words, Level 3 tricky words and Level 4 signs + menu. Letters, sentences, form
+  labels and verses are not words for the bank. Tap a word to hear it. Existing progress is
+  backfilled on first load.
+- **Streak 📅**: a local-calendar day counts when at least one lesson item is finished.
+  2 free skip days; a missed day uses a skip. 1 skip comes back per 7 practiced days (max 2).
+  Missing more days than skips left starts a new streak ("New start today"), with skips full.
+- **Milestones**: 25/50/100/250/500 words, 7/30-day streak. Recorded once; shown and read
+  aloud on the done screen with a 💬 **Tell Jeffrey** button: an `sms:` link that opens a
+  pre-written text on the phone. Adam taps Send himself; nothing is sent automatically,
+  no backend. Milestones already passed before the feature existed are recorded silently.
+
 ## Files
 
 ```
@@ -118,12 +131,13 @@ css/styles.css        all styling (signs/menu/forms drawn with CSS)
 js/content.js         all lesson content (edit here to add words/sentences/verses)
 js/speech.js          speech: natural-voice clip player (Web Audio) with built-in-voice
                       fallback, recognition with watchdogs, answer matching
-js/app.js             screens, lessons, progress, settings
+js/app.js             screens, lessons, progress, settings, word bank screen
+js/rewards.js         word bank, streak, milestones (pure logic, no DOM)
 icons/                icon.svg + PNGs (192, 512, maskable 512, apple-touch 180)
 audio/clips.json      text -> clip map (generated)
 audio/af_heart/       generated Kokoro af_heart MP3 clips (t/ texts, slow/ slow words,
                       letters/ the 26 letter sounds) – see audio/README.md
-tools/                dev-only tests (smoke, mic, mic-robust, clip, match) + render-icons
+tools/                dev-only tests (smoke, mic, mic-robust, clip, match, content, level1, rewards) + render-icons
 tools/audio/          dev-only audio build (build_audio.py, phonics.py, collect-texts.mjs)
 screenshots/          390×844 phone screenshots from the headless test
 LICENSES.md           third-party content (none shipped)
@@ -153,6 +167,8 @@ LICENSES.md           third-party content (none shipped)
   "keep going"/"next" follow A–Z. Writes screenshots 20–22.
 - `tools/mic-test.mjs`: fakes a speech recognizer to check the 🎤 path – correct word ✓ + ▶,
   wrong word shows what was heard, mic permission denied → 👍 fallback.
+- `tools/rewards-test.mjs`: word bank backfill + count, streak with a skip used, restart after
+  too many missed days, skip refill, milestones fire once, Tell Jeffrey sms link. Writes screenshots 25–26.
 - Not yet tested on a real iPhone or Android phone (needs HTTPS hosting – see below).
 
 ## Known limitations
