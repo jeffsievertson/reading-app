@@ -62,8 +62,9 @@ Notes
 
 ### Natural voice (pre-recorded clips)
 - Everything the app says is pre-generated with the free **Kokoro-82M** neural voice
-  (voice `af_heart`, Apache-2.0) as small MP3 clips in `audio/af_heart/` (~500 files,
-  ~5.6 MB, cached for offline use). The same voice plays on every phone, iPhone included.
+  (voice `af_heart`, Apache-2.0) as small MP3 clips in `audio/af_heart/` (~800 files,
+  ~9 MB, cached for offline use). Lines built at runtime (streak days, word counts) play
+  sentence by sentence, with one clip per value: 1–100 days, 0–150 words, 0–2 skip days. The same voice plays on every phone, iPhone included.
 - The 26 letter sounds are **cut from real words** (e.g. the /t/ from "tip", the /m/
   from "map") instead of asking the voice to say "tuh", so stops are crisp and
   continuous sounds (sss, mmm, fff, lll, rrr) are stretched without a vowel.

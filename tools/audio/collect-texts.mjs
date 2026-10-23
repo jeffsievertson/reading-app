@@ -13,7 +13,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const ctx = { window: {}, navigator: { userAgent: 'node' }, console };
 ctx.window.window = ctx.window;
 vm.createContext(ctx);
-for (const f of ['js/content.js', 'js/speech.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, f), 'utf8'), ctx, { filename: f });
+for (const f of ['js/content.js', 'js/speech.js', 'js/rewards.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, f), 'utf8'), ctx, { filename: f });
 const C = ctx.window.CONTENT;
 const S = ctx.window.Speech;
 const appSrc = fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8');
@@ -80,9 +80,37 @@ tpl("prompt + ' ' + name", () => C.items.filter((i) => ['word', 'sight', 'sign',
 }));
 tpl("name + ' speech'", () => ['Slow', 'Normal', 'Fast'].forEach((n) => add(n + ' speech', 'label')));
 
+// ---- (4) reward lines (js/rewards.js + the counts app.js builds). Dynamic lines are
+// played sentence by sentence (Speech.sentences), so each sentence gets its own clip, one
+// per value in a realistic range. Beyond it that one sentence uses the phone voice.
+const RW = ctx.window.Rewards;
+const bankable = C.items.filter(RW.isBankItem).length;
+const WORDS_MAX = Math.max(150, bankable + 50), DAYS_MAX = 100;
+const NUM_WORDS = (n) => n < 100 ? num(n) : n % 100 ? ONES[Math.floor(n / 100)] + ' hundred ' + num(n % 100) : ONES[Math.floor(n / 100)] + ' hundred';
+const sayNums = (t) => { const x = t.replace(/\b(\d{1,3})\b/g, (_, d) => NUM_WORDS(+d)); return x[0].toUpperCase() + x.slice(1); }; // "5 days" -> "Five days" for the TTS
+const addSentences = (t, src) => S.sentences(t).forEach((x) => add(x, src, 'reward', sayNums(x)));
+tpl('Rewards.streakText (all states, 1-' + DAYS_MAX + ' days, 0-2 skips)', () => {
+  addSentences(RW.streakText({ state: 'none', count: 0, skipsLeft: 2 }).say, 'streak');
+  for (let k = 0; k <= RW.MAX_SKIPS; k++) {
+    addSentences(RW.streakText({ state: 'fresh', count: 0, skipsLeft: k }).say, 'streak');
+    for (let d = 1; d <= DAYS_MAX; d++) addSentences(RW.streakText({ state: 'on', count: d, skipsLeft: k }).say, 'streak');
+  }
+});
+tpl("'You know ' + n + ' words.' (0-" + WORDS_MAX + ')', () => {
+  for (let n = 0; n <= WORDS_MAX; n++) {
+    addSentences('Word bank. You know ' + n + (n === 1 ? ' word.' : ' words.'), 'words');
+    if (n) addSentences('You know ' + n + (n === 1 ? ' word.' : ' words.') + ' Tap any word to hear it.', 'words');
+  }
+  addSentences('No words yet.', 'words');
+});
+tpl('Rewards.describe (milestone messages)', () => {
+  RW.WORD_MILESTONES.forEach((n) => add(RW.describe('words-' + n).text, 'milestone', 'reward', sayNums(RW.describe('words-' + n).text)));
+  RW.STREAK_MILESTONES.forEach((n) => add(RW.describe('streak-' + n).text, 'milestone', 'reward', sayNums(RW.describe('streak-' + n).text)));
+});
+
 // ---- (2) literals in app.js
 const SINGLE_WORD_LABELS = ['Home', 'Next', 'Start', 'Settings', 'Stop', 'Great.'];
-const DISPLAY_ONLY = [/^Step $/, /^Bible verses: King James/, /^iPhone: Safari/, /^Speech recognition is not available/, /^Tap again to erase$/, /^Automatic$/, /^Read Aloud$/];
+const DISPLAY_ONLY = [/^Word bank\. You know $/, /^You know $/, /^Step $/, /^Bible verses: King James/, /^iPhone: Safari/, /^Speech recognition is not available/, /^Tap again to erase$/, /^Automatic$/, /^Read Aloud$/];
 const lit = /'((?:[^'\\\n]|\\.)*)'/g;
 let m;
 while ((m = lit.exec(appSrc))) {

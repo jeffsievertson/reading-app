@@ -295,8 +295,28 @@ window.Speech = (function () {
     return my === token ? 'ok' : 'cancel';
   }
 
+  /** "5 days in a row. 2 skip days left." -> ["5 days in a row.", "2 skip days left."] */
+  function sentences(text) {
+    return String(text || '').split(/(?<=[.!?])\s+(?=[A-Z0-9"“‘'])/).map((x) => x.trim()).filter(Boolean);
+  }
+  /** A text with no clip of its own is played sentence by sentence, so lines built at
+   *  runtime ("Word bank." + "You know 54 words.") still use the natural voice. */
+  function splitForClips(list) {
+    const out = [];
+    for (const p of list) {
+      if (p.clipName || !p.text || p.tts || resolveClip(p)) { out.push(p); continue; }
+      const parts = sentences(p.text);
+      if (parts.length < 2 || !parts.some((t) => resolveClip({ text: t, rateMul: p.rateMul }))) { out.push(p); continue; }
+      parts.forEach((t, i) => out.push(Object.assign({}, p, {
+        text: t, pause: i === parts.length - 1 ? p.pause : 120, onstart: i === 0 ? p.onstart : undefined
+      })));
+    }
+    return out;
+  }
+
   async function sayNow(list, my) {
     if (clipsReady && useClips) { await Promise.race([clipsReady, timeout(1000)]); if (my !== token) return false; }
+    list = splitForClips(list);
     const plan = list.map((p) => ({ part: p, clip: resolveClip(p) }));
     if (plan.some((x) => x.clip)) {
       if (!(await ensureRunning(600))) {
@@ -549,6 +569,9 @@ window.Speech = (function () {
     unlockAudio,
     hasClip: (n) => !!(useClips && AC && letterMap[n]),
     hasClipFor: (text) => !!resolveClip({ text }),
+    /** true if the text plays fully in the natural voice (whole clip, or every sentence has one) */
+    naturalFor: (text) => splitForClips([{ text }]).every((p) => !!resolveClip(p)),
+    sentences,
     setUseClips(on) { useClips = !!on; if (!on) stopSources(); },
     usingClips: () => useClips && !!AC && clipCount() > 0,
     debugLog: () => log.slice(),

@@ -19,20 +19,20 @@ streak, and milestones he can share with Jeffrey himself. No kid tone, big butto
   Ones already passed at backfill are recorded silently (`shown:false`).
 - **Tell Jeffrey** (approved Oct 23; number = team Google Voice): 💬 button on each milestone = `sms:+18127275260&body=…`
   (`?body=` on Android). Opens a pre-written text; Adam taps Send. No backend, nothing automatic.
-- New spoken lines use the built-in voice (no new Kokoro clips).
+- Reward lines are Kokoro af_heart clips (+277, +3.2 MB), played sentence by sentence; one
+  clip per value (1–100 days, 0–150 words, 0–2 skips). Beyond that: phone voice.
 - Erase progress also erases the word bank, streak and milestones.
 
 ## Key files
 `js/rewards.js` (logic, key `readAloud.rewards.v1`), `js/app.js` (home stats, `#/words`,
-done-screen milestone card), `css/styles.css` (end of file), `sw.js` (cache v9, precaches
+done-screen milestone card), `css/styles.css` (end of file), `sw.js` (cache v10, precaches
 rewards.js), `tools/rewards-test.mjs`, `screenshots/25-home-rewards.png`, `26-word-bank.png`.
 
 ## Open questions
 - Only 63 bank words exist, so 100/250/500 can't fire until more content is added.
 - Should finishing a *repeat* lesson count for the streak? (Currently yes.)
-- Real-iPhone check of the sms: link and message wording.
-- Kokoro clips for the new lines, if the built-in voice sounds off next to them.
+- Real-iPhone check of the sms: link, message wording, reward clips.
 
 ## Next action
-On Adam's iPhone: open the app twice to pick up cache v9, check the 📅/📚 rows, and test
+On Adam's iPhone: open the app twice to pick up cache v10, check the 📅/📚 rows, and test
 💬 Tell Jeffrey on the next milestone (or with seeded data).

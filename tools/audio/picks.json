@@ -199,6 +199,13 @@
   "variant": "dot092",
   "want": "dei"
  },
+ "day 1": {
+  "dist": 0.011,
+  "heard": "deiwan",
+  "speak": "Day one.",
+  "variant": "dot092",
+  "want": "deiwan"
+ },
  "dig": {
   "dist": 0.002,
   "heard": "dig",
@@ -1027,6 +1034,13 @@
   "variant": "now092",
   "want": "tap"
  },
+ "tell jeffrey": {
+  "dist": 0.011,
+  "heard": "telJefri",
+  "speak": "Tell Jeffrey",
+  "variant": "dot092",
+  "want": "telJefri"
+ },
  "ten": {
   "dist": 0.0,
   "heard": "ten",
@@ -1438,6 +1452,13 @@
   "speak": "without",
   "variant": "dot092",
   "want": "wiDaut"
+ },
+ "word bank": {
+  "dist": 0.011,
+  "heard": "w@dbaNk",
+  "speak": "Word bank.",
+  "variant": "dot092",
+  "want": "w@dbaNk"
  },
  "x": {
   "dist": 0.006,

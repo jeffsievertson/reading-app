@@ -211,7 +211,7 @@ const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id
     await p.waitForURL(/#\/lesson\//, { timeout: 8000 }).catch(() => {});
     const said = await p.evaluate(() => window.Speech.debugLog().map((e) => e.text));
     const hash = await p.evaluate(() => location.hash);
-    check('streak row [' + name + ']: tap reads it aloud, then opens ' + want, said.some((t) => sayRe.test(t)) && hash === '#/lesson/' + want, { said: said.slice(-3), hash });
+    check('streak row [' + name + ']: tap reads it aloud, then opens ' + want, sayRe.test(said.join(' ')) && hash === '#/lesson/' + want, { said: said.slice(-3), hash });
     check('streak row [' + name + ']: no page errors', errors.length === 0, errors);
     await ctx.close();
   }
@@ -222,6 +222,51 @@ const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id
   await p.locator('.stat.streak').tap(); await p.locator('.stat.words').tap();
   await p.waitForTimeout(2500);
   check('streak row: leaving home right after the tap cancels the jump', await p.evaluate(() => location.hash) === '#/words');
+  await ctx.close();
+}
+{ // natural voice: every reward / streak line, in every state, plays as Kokoro clips (no phone voice)
+  const { ctx, p, errors } = await page({}, null, false, true);
+  await p.goto(BASE + '#/home'); await p.waitForSelector('.stat.streak');
+  await p.waitForFunction(() => window.Speech.clipCount() > 700);
+  const lines = await p.evaluate(() => {
+    const R = window.Rewards, L = [];
+    L.push(R.streakText({ state: 'none', count: 0, skipsLeft: 2 }).say);
+    for (const k of [0, 1, 2]) {
+      L.push(R.streakText({ state: 'fresh', count: 0, skipsLeft: k }).say);
+      for (const d of [1, 2, 5, 7, 12, 30, 45, 60, 99, 100]) L.push(R.streakText({ state: 'on', count: d, skipsLeft: k }).say);
+    }
+    for (const n of [0, 1, 2, 25, 54, 63, 99, 100, 101, 150]) {
+      L.push('Word bank. You know ' + n + (n === 1 ? ' word.' : ' words.'));
+      if (n) L.push('You know ' + n + (n === 1 ? ' word.' : ' words.') + ' Tap any word to hear it.');
+    }
+    L.push('No words yet.', 'This is your word bank. Every word you learn goes here. Finish a word lesson to add your first word.',
+      'Tap the books to see your word bank.', 'Welcome back. This is day 1 of a new streak.',
+      'Tap Tell Jeffrey to send him a text. Or tap play for the next one.',
+      'Tell Jeffrey. This opens a text message to Jeffrey. You tap send.', 'Hear how many words');
+    R.WORD_MILESTONES.forEach((n) => L.push(R.describe('words-' + n).text));
+    R.STREAK_MILESTONES.forEach((n) => L.push(R.describe('streak-' + n).text));
+    return L.map((t) => ({ t, ok: window.Speech.naturalFor(t) }));
+  });
+  const bad = lines.filter((x) => !x.ok).map((x) => x.t);
+  check(`natural voice: all ${lines.length} sample reward/streak lines resolve to Kokoro clips`, bad.length === 0, bad);
+  // and every data-say / help line actually on the reward screens
+  const screenLines = async () => p.evaluate(() => [...document.querySelectorAll('[data-say]')].map((e) => e.dataset.say)
+    .concat([].concat(window.__readAloud.helpText() || [])).filter((t) => typeof t === 'string'));
+  const onScreens = [];
+  onScreens.push(...await screenLines());
+  await p.locator('.stat.words').tap(); await p.waitForSelector('.bank-count'); onScreens.push(...await screenLines());
+  const badScreen = [...new Set(onScreens)].filter((t) => !/^[a-z']+$/i.test(t));
+  const notNatural = await p.evaluate((ts) => ts.filter((t) => !window.Speech.naturalFor(t)), badScreen);
+  check('natural voice: every read-aloud text on home + word bank has clips', notNatural.length === 0, notNatural);
+  // end to end: a real tap on the streak row plays clips, sentence by sentence, no phone voice
+  await p.goto(BASE + '#/home'); await p.reload(); await p.waitForSelector('.stat.streak');
+  await p.waitForFunction(() => window.Speech.clipCount() > 700);
+  const t0 = await p.evaluate(() => Date.now());
+  await p.locator('.stat.streak').tap();
+  await p.waitForURL(/#\/lesson\//, { timeout: 8000 }).catch(() => {});
+  const ent = (await p.evaluate(() => window.Speech.debugLog())).filter((e) => e.at >= t0 && /streak/i.test(e.text || ''));
+  check('natural voice: streak row tap plays the Kokoro clip (not the phone voice)', ent.length > 0 && ent.every((e) => e.how === 'clip'), ent);
+  check('natural voice: no page errors', errors.length === 0, errors);
   await ctx.close();
 }
 await b.close();

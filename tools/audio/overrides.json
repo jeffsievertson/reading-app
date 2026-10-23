@@ -22,5 +22,9 @@
  "hear this sound": {
   "orig": "Hear this sound",
   "speak": "Hear this sound..."
+ },
+ "you know 88 words": {
+  "orig": "You know eighty-eight words.",
+  "speak": "You know eighty eight words."
  }
 }

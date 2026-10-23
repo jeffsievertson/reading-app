@@ -1,16 +1,16 @@
 {
- "texts": 456,
- "text_clips": 455,
+ "texts": 733,
+ "text_clips": 732,
  "slow_clips": 36,
  "letter_sounds": 26,
- "files": 518,
- "total_bytes": 5831704,
+ "files": 795,
+ "total_bytes": 9020292,
  "made": 1,
- "reused": 517,
+ "reused": 794,
  "pruned": 1,
  "uncovered_expressions": [],
- "version": "5ca7f795",
- "seconds": 23,
+ "version": "cf5343de",
+ "seconds": 2,
  "letters": [
   {
    "letter": "a",

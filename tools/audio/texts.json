@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 456,
+ "count": 733,
  "letters": [
   {
    "l": "a",
@@ -202,7 +202,10 @@
   "'Which letter is at the end of ' + it.kw",
   "'This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it)",
   "prompt + ' ' + name",
-  "name + ' speech'"
+  "name + ' speech'",
+  "Rewards.streakText (all states, 1-100 days, 0-2 skips)",
+  "'You know ' + n + ' words.' (0-150)",
+  "Rewards.describe (milestone messages)"
  ],
  "uncovered": [],
  "entries": [
@@ -3688,6 +3691,2429 @@
    ]
   },
   {
+   "key": "practice today to start a streak",
+   "text": "Practice today to start a streak.",
+   "speak": "Practice today to start a streak.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "practice today to start a new streak",
+   "text": "Practice today to start a new streak.",
+   "speak": "Practice today to start a new streak.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "you have 0 skip days",
+   "text": "You have 0 skip days.",
+   "speak": "You have zero skip days.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "day 1",
+   "text": "Day 1.",
+   "speak": "Day one.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "no skip days left",
+   "text": "No skip days left.",
+   "speak": "No skip days left.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "2 days in a row",
+   "text": "2 days in a row.",
+   "speak": "Two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "3 days in a row",
+   "text": "3 days in a row.",
+   "speak": "Three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "4 days in a row",
+   "text": "4 days in a row.",
+   "speak": "Four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "5 days in a row",
+   "text": "5 days in a row.",
+   "speak": "Five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "6 days in a row",
+   "text": "6 days in a row.",
+   "speak": "Six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "7 days in a row",
+   "text": "7 days in a row.",
+   "speak": "Seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "8 days in a row",
+   "text": "8 days in a row.",
+   "speak": "Eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "9 days in a row",
+   "text": "9 days in a row.",
+   "speak": "Nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "10 days in a row",
+   "text": "10 days in a row.",
+   "speak": "Ten days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "11 days in a row",
+   "text": "11 days in a row.",
+   "speak": "Eleven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "12 days in a row",
+   "text": "12 days in a row.",
+   "speak": "Twelve days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "13 days in a row",
+   "text": "13 days in a row.",
+   "speak": "Thirteen days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "14 days in a row",
+   "text": "14 days in a row.",
+   "speak": "Fourteen days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "15 days in a row",
+   "text": "15 days in a row.",
+   "speak": "Fifteen days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "16 days in a row",
+   "text": "16 days in a row.",
+   "speak": "Sixteen days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "17 days in a row",
+   "text": "17 days in a row.",
+   "speak": "Seventeen days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "18 days in a row",
+   "text": "18 days in a row.",
+   "speak": "Eighteen days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "19 days in a row",
+   "text": "19 days in a row.",
+   "speak": "Nineteen days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "20 days in a row",
+   "text": "20 days in a row.",
+   "speak": "Twenty days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "21 days in a row",
+   "text": "21 days in a row.",
+   "speak": "Twenty-one days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "22 days in a row",
+   "text": "22 days in a row.",
+   "speak": "Twenty-two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "23 days in a row",
+   "text": "23 days in a row.",
+   "speak": "Twenty-three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "24 days in a row",
+   "text": "24 days in a row.",
+   "speak": "Twenty-four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "25 days in a row",
+   "text": "25 days in a row.",
+   "speak": "Twenty-five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "26 days in a row",
+   "text": "26 days in a row.",
+   "speak": "Twenty-six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "27 days in a row",
+   "text": "27 days in a row.",
+   "speak": "Twenty-seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "28 days in a row",
+   "text": "28 days in a row.",
+   "speak": "Twenty-eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "29 days in a row",
+   "text": "29 days in a row.",
+   "speak": "Twenty-nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "30 days in a row",
+   "text": "30 days in a row.",
+   "speak": "Thirty days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "31 days in a row",
+   "text": "31 days in a row.",
+   "speak": "Thirty-one days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "32 days in a row",
+   "text": "32 days in a row.",
+   "speak": "Thirty-two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "33 days in a row",
+   "text": "33 days in a row.",
+   "speak": "Thirty-three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "34 days in a row",
+   "text": "34 days in a row.",
+   "speak": "Thirty-four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "35 days in a row",
+   "text": "35 days in a row.",
+   "speak": "Thirty-five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "36 days in a row",
+   "text": "36 days in a row.",
+   "speak": "Thirty-six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "37 days in a row",
+   "text": "37 days in a row.",
+   "speak": "Thirty-seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "38 days in a row",
+   "text": "38 days in a row.",
+   "speak": "Thirty-eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "39 days in a row",
+   "text": "39 days in a row.",
+   "speak": "Thirty-nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "40 days in a row",
+   "text": "40 days in a row.",
+   "speak": "Forty days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "41 days in a row",
+   "text": "41 days in a row.",
+   "speak": "Forty-one days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "42 days in a row",
+   "text": "42 days in a row.",
+   "speak": "Forty-two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "43 days in a row",
+   "text": "43 days in a row.",
+   "speak": "Forty-three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "44 days in a row",
+   "text": "44 days in a row.",
+   "speak": "Forty-four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "45 days in a row",
+   "text": "45 days in a row.",
+   "speak": "Forty-five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "46 days in a row",
+   "text": "46 days in a row.",
+   "speak": "Forty-six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "47 days in a row",
+   "text": "47 days in a row.",
+   "speak": "Forty-seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "48 days in a row",
+   "text": "48 days in a row.",
+   "speak": "Forty-eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "49 days in a row",
+   "text": "49 days in a row.",
+   "speak": "Forty-nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "50 days in a row",
+   "text": "50 days in a row.",
+   "speak": "Fifty days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "51 days in a row",
+   "text": "51 days in a row.",
+   "speak": "Fifty-one days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "52 days in a row",
+   "text": "52 days in a row.",
+   "speak": "Fifty-two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "53 days in a row",
+   "text": "53 days in a row.",
+   "speak": "Fifty-three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "54 days in a row",
+   "text": "54 days in a row.",
+   "speak": "Fifty-four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "55 days in a row",
+   "text": "55 days in a row.",
+   "speak": "Fifty-five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "56 days in a row",
+   "text": "56 days in a row.",
+   "speak": "Fifty-six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "57 days in a row",
+   "text": "57 days in a row.",
+   "speak": "Fifty-seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "58 days in a row",
+   "text": "58 days in a row.",
+   "speak": "Fifty-eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "59 days in a row",
+   "text": "59 days in a row.",
+   "speak": "Fifty-nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "60 days in a row",
+   "text": "60 days in a row.",
+   "speak": "Sixty days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "61 days in a row",
+   "text": "61 days in a row.",
+   "speak": "Sixty-one days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "62 days in a row",
+   "text": "62 days in a row.",
+   "speak": "Sixty-two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "63 days in a row",
+   "text": "63 days in a row.",
+   "speak": "Sixty-three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "64 days in a row",
+   "text": "64 days in a row.",
+   "speak": "Sixty-four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "65 days in a row",
+   "text": "65 days in a row.",
+   "speak": "Sixty-five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "66 days in a row",
+   "text": "66 days in a row.",
+   "speak": "Sixty-six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "67 days in a row",
+   "text": "67 days in a row.",
+   "speak": "Sixty-seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "68 days in a row",
+   "text": "68 days in a row.",
+   "speak": "Sixty-eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "69 days in a row",
+   "text": "69 days in a row.",
+   "speak": "Sixty-nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "70 days in a row",
+   "text": "70 days in a row.",
+   "speak": "Seventy days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "71 days in a row",
+   "text": "71 days in a row.",
+   "speak": "Seventy-one days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "72 days in a row",
+   "text": "72 days in a row.",
+   "speak": "Seventy-two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "73 days in a row",
+   "text": "73 days in a row.",
+   "speak": "Seventy-three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "74 days in a row",
+   "text": "74 days in a row.",
+   "speak": "Seventy-four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "75 days in a row",
+   "text": "75 days in a row.",
+   "speak": "Seventy-five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "76 days in a row",
+   "text": "76 days in a row.",
+   "speak": "Seventy-six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "77 days in a row",
+   "text": "77 days in a row.",
+   "speak": "Seventy-seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "78 days in a row",
+   "text": "78 days in a row.",
+   "speak": "Seventy-eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "79 days in a row",
+   "text": "79 days in a row.",
+   "speak": "Seventy-nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "80 days in a row",
+   "text": "80 days in a row.",
+   "speak": "Eighty days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "81 days in a row",
+   "text": "81 days in a row.",
+   "speak": "Eighty-one days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "82 days in a row",
+   "text": "82 days in a row.",
+   "speak": "Eighty-two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "83 days in a row",
+   "text": "83 days in a row.",
+   "speak": "Eighty-three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "84 days in a row",
+   "text": "84 days in a row.",
+   "speak": "Eighty-four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "85 days in a row",
+   "text": "85 days in a row.",
+   "speak": "Eighty-five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "86 days in a row",
+   "text": "86 days in a row.",
+   "speak": "Eighty-six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "87 days in a row",
+   "text": "87 days in a row.",
+   "speak": "Eighty-seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "88 days in a row",
+   "text": "88 days in a row.",
+   "speak": "Eighty-eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "89 days in a row",
+   "text": "89 days in a row.",
+   "speak": "Eighty-nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "90 days in a row",
+   "text": "90 days in a row.",
+   "speak": "Ninety days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "91 days in a row",
+   "text": "91 days in a row.",
+   "speak": "Ninety-one days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "92 days in a row",
+   "text": "92 days in a row.",
+   "speak": "Ninety-two days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "93 days in a row",
+   "text": "93 days in a row.",
+   "speak": "Ninety-three days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "94 days in a row",
+   "text": "94 days in a row.",
+   "speak": "Ninety-four days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "95 days in a row",
+   "text": "95 days in a row.",
+   "speak": "Ninety-five days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "96 days in a row",
+   "text": "96 days in a row.",
+   "speak": "Ninety-six days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "97 days in a row",
+   "text": "97 days in a row.",
+   "speak": "Ninety-seven days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "98 days in a row",
+   "text": "98 days in a row.",
+   "speak": "Ninety-eight days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "99 days in a row",
+   "text": "99 days in a row.",
+   "speak": "Ninety-nine days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "100 days in a row",
+   "text": "100 days in a row.",
+   "speak": "One hundred days in a row.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "you have 1 skip days",
+   "text": "You have 1 skip days.",
+   "speak": "You have one skip days.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "1 skip day left",
+   "text": "1 skip day left.",
+   "speak": "One skip day left.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "you have 2 skip days",
+   "text": "You have 2 skip days.",
+   "speak": "You have two skip days.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "2 skip days left",
+   "text": "2 skip days left.",
+   "speak": "Two skip days left.",
+   "kind": "reward",
+   "sources": [
+    "streak"
+   ]
+  },
+  {
+   "key": "word bank",
+   "text": "Word bank.",
+   "speak": "Word bank.",
+   "kind": "reward",
+   "sources": [
+    "words",
+    "app.js"
+   ]
+  },
+  {
+   "key": "you know 0 words",
+   "text": "You know 0 words.",
+   "speak": "You know zero words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 1 word",
+   "text": "You know 1 word.",
+   "speak": "You know one word.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "tap any word to hear it",
+   "text": "Tap any word to hear it.",
+   "speak": "Tap any word to hear it.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 2 words",
+   "text": "You know 2 words.",
+   "speak": "You know two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 3 words",
+   "text": "You know 3 words.",
+   "speak": "You know three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 4 words",
+   "text": "You know 4 words.",
+   "speak": "You know four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 5 words",
+   "text": "You know 5 words.",
+   "speak": "You know five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 6 words",
+   "text": "You know 6 words.",
+   "speak": "You know six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 7 words",
+   "text": "You know 7 words.",
+   "speak": "You know seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 8 words",
+   "text": "You know 8 words.",
+   "speak": "You know eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 9 words",
+   "text": "You know 9 words.",
+   "speak": "You know nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 10 words",
+   "text": "You know 10 words.",
+   "speak": "You know ten words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 11 words",
+   "text": "You know 11 words.",
+   "speak": "You know eleven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 12 words",
+   "text": "You know 12 words.",
+   "speak": "You know twelve words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 13 words",
+   "text": "You know 13 words.",
+   "speak": "You know thirteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 14 words",
+   "text": "You know 14 words.",
+   "speak": "You know fourteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 15 words",
+   "text": "You know 15 words.",
+   "speak": "You know fifteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 16 words",
+   "text": "You know 16 words.",
+   "speak": "You know sixteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 17 words",
+   "text": "You know 17 words.",
+   "speak": "You know seventeen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 18 words",
+   "text": "You know 18 words.",
+   "speak": "You know eighteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 19 words",
+   "text": "You know 19 words.",
+   "speak": "You know nineteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 20 words",
+   "text": "You know 20 words.",
+   "speak": "You know twenty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 21 words",
+   "text": "You know 21 words.",
+   "speak": "You know twenty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 22 words",
+   "text": "You know 22 words.",
+   "speak": "You know twenty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 23 words",
+   "text": "You know 23 words.",
+   "speak": "You know twenty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 24 words",
+   "text": "You know 24 words.",
+   "speak": "You know twenty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 25 words",
+   "text": "You know 25 words.",
+   "speak": "You know twenty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 26 words",
+   "text": "You know 26 words.",
+   "speak": "You know twenty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 27 words",
+   "text": "You know 27 words.",
+   "speak": "You know twenty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 28 words",
+   "text": "You know 28 words.",
+   "speak": "You know twenty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 29 words",
+   "text": "You know 29 words.",
+   "speak": "You know twenty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 30 words",
+   "text": "You know 30 words.",
+   "speak": "You know thirty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 31 words",
+   "text": "You know 31 words.",
+   "speak": "You know thirty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 32 words",
+   "text": "You know 32 words.",
+   "speak": "You know thirty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 33 words",
+   "text": "You know 33 words.",
+   "speak": "You know thirty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 34 words",
+   "text": "You know 34 words.",
+   "speak": "You know thirty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 35 words",
+   "text": "You know 35 words.",
+   "speak": "You know thirty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 36 words",
+   "text": "You know 36 words.",
+   "speak": "You know thirty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 37 words",
+   "text": "You know 37 words.",
+   "speak": "You know thirty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 38 words",
+   "text": "You know 38 words.",
+   "speak": "You know thirty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 39 words",
+   "text": "You know 39 words.",
+   "speak": "You know thirty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 40 words",
+   "text": "You know 40 words.",
+   "speak": "You know forty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 41 words",
+   "text": "You know 41 words.",
+   "speak": "You know forty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 42 words",
+   "text": "You know 42 words.",
+   "speak": "You know forty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 43 words",
+   "text": "You know 43 words.",
+   "speak": "You know forty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 44 words",
+   "text": "You know 44 words.",
+   "speak": "You know forty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 45 words",
+   "text": "You know 45 words.",
+   "speak": "You know forty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 46 words",
+   "text": "You know 46 words.",
+   "speak": "You know forty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 47 words",
+   "text": "You know 47 words.",
+   "speak": "You know forty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 48 words",
+   "text": "You know 48 words.",
+   "speak": "You know forty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 49 words",
+   "text": "You know 49 words.",
+   "speak": "You know forty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 50 words",
+   "text": "You know 50 words.",
+   "speak": "You know fifty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 51 words",
+   "text": "You know 51 words.",
+   "speak": "You know fifty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 52 words",
+   "text": "You know 52 words.",
+   "speak": "You know fifty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 53 words",
+   "text": "You know 53 words.",
+   "speak": "You know fifty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 54 words",
+   "text": "You know 54 words.",
+   "speak": "You know fifty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 55 words",
+   "text": "You know 55 words.",
+   "speak": "You know fifty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 56 words",
+   "text": "You know 56 words.",
+   "speak": "You know fifty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 57 words",
+   "text": "You know 57 words.",
+   "speak": "You know fifty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 58 words",
+   "text": "You know 58 words.",
+   "speak": "You know fifty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 59 words",
+   "text": "You know 59 words.",
+   "speak": "You know fifty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 60 words",
+   "text": "You know 60 words.",
+   "speak": "You know sixty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 61 words",
+   "text": "You know 61 words.",
+   "speak": "You know sixty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 62 words",
+   "text": "You know 62 words.",
+   "speak": "You know sixty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 63 words",
+   "text": "You know 63 words.",
+   "speak": "You know sixty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 64 words",
+   "text": "You know 64 words.",
+   "speak": "You know sixty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 65 words",
+   "text": "You know 65 words.",
+   "speak": "You know sixty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 66 words",
+   "text": "You know 66 words.",
+   "speak": "You know sixty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 67 words",
+   "text": "You know 67 words.",
+   "speak": "You know sixty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 68 words",
+   "text": "You know 68 words.",
+   "speak": "You know sixty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 69 words",
+   "text": "You know 69 words.",
+   "speak": "You know sixty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 70 words",
+   "text": "You know 70 words.",
+   "speak": "You know seventy words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 71 words",
+   "text": "You know 71 words.",
+   "speak": "You know seventy-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 72 words",
+   "text": "You know 72 words.",
+   "speak": "You know seventy-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 73 words",
+   "text": "You know 73 words.",
+   "speak": "You know seventy-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 74 words",
+   "text": "You know 74 words.",
+   "speak": "You know seventy-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 75 words",
+   "text": "You know 75 words.",
+   "speak": "You know seventy-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 76 words",
+   "text": "You know 76 words.",
+   "speak": "You know seventy-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 77 words",
+   "text": "You know 77 words.",
+   "speak": "You know seventy-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 78 words",
+   "text": "You know 78 words.",
+   "speak": "You know seventy-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 79 words",
+   "text": "You know 79 words.",
+   "speak": "You know seventy-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 80 words",
+   "text": "You know 80 words.",
+   "speak": "You know eighty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 81 words",
+   "text": "You know 81 words.",
+   "speak": "You know eighty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 82 words",
+   "text": "You know 82 words.",
+   "speak": "You know eighty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 83 words",
+   "text": "You know 83 words.",
+   "speak": "You know eighty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 84 words",
+   "text": "You know 84 words.",
+   "speak": "You know eighty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 85 words",
+   "text": "You know 85 words.",
+   "speak": "You know eighty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 86 words",
+   "text": "You know 86 words.",
+   "speak": "You know eighty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 87 words",
+   "text": "You know 87 words.",
+   "speak": "You know eighty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 88 words",
+   "text": "You know 88 words.",
+   "speak": "You know eighty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 89 words",
+   "text": "You know 89 words.",
+   "speak": "You know eighty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 90 words",
+   "text": "You know 90 words.",
+   "speak": "You know ninety words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 91 words",
+   "text": "You know 91 words.",
+   "speak": "You know ninety-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 92 words",
+   "text": "You know 92 words.",
+   "speak": "You know ninety-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 93 words",
+   "text": "You know 93 words.",
+   "speak": "You know ninety-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 94 words",
+   "text": "You know 94 words.",
+   "speak": "You know ninety-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 95 words",
+   "text": "You know 95 words.",
+   "speak": "You know ninety-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 96 words",
+   "text": "You know 96 words.",
+   "speak": "You know ninety-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 97 words",
+   "text": "You know 97 words.",
+   "speak": "You know ninety-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 98 words",
+   "text": "You know 98 words.",
+   "speak": "You know ninety-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 99 words",
+   "text": "You know 99 words.",
+   "speak": "You know ninety-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 100 words",
+   "text": "You know 100 words.",
+   "speak": "You know one hundred words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 101 words",
+   "text": "You know 101 words.",
+   "speak": "You know one hundred one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 102 words",
+   "text": "You know 102 words.",
+   "speak": "You know one hundred two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 103 words",
+   "text": "You know 103 words.",
+   "speak": "You know one hundred three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 104 words",
+   "text": "You know 104 words.",
+   "speak": "You know one hundred four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 105 words",
+   "text": "You know 105 words.",
+   "speak": "You know one hundred five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 106 words",
+   "text": "You know 106 words.",
+   "speak": "You know one hundred six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 107 words",
+   "text": "You know 107 words.",
+   "speak": "You know one hundred seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 108 words",
+   "text": "You know 108 words.",
+   "speak": "You know one hundred eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 109 words",
+   "text": "You know 109 words.",
+   "speak": "You know one hundred nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 110 words",
+   "text": "You know 110 words.",
+   "speak": "You know one hundred ten words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 111 words",
+   "text": "You know 111 words.",
+   "speak": "You know one hundred eleven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 112 words",
+   "text": "You know 112 words.",
+   "speak": "You know one hundred twelve words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 113 words",
+   "text": "You know 113 words.",
+   "speak": "You know one hundred thirteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 114 words",
+   "text": "You know 114 words.",
+   "speak": "You know one hundred fourteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 115 words",
+   "text": "You know 115 words.",
+   "speak": "You know one hundred fifteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 116 words",
+   "text": "You know 116 words.",
+   "speak": "You know one hundred sixteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 117 words",
+   "text": "You know 117 words.",
+   "speak": "You know one hundred seventeen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 118 words",
+   "text": "You know 118 words.",
+   "speak": "You know one hundred eighteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 119 words",
+   "text": "You know 119 words.",
+   "speak": "You know one hundred nineteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 120 words",
+   "text": "You know 120 words.",
+   "speak": "You know one hundred twenty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 121 words",
+   "text": "You know 121 words.",
+   "speak": "You know one hundred twenty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 122 words",
+   "text": "You know 122 words.",
+   "speak": "You know one hundred twenty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 123 words",
+   "text": "You know 123 words.",
+   "speak": "You know one hundred twenty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 124 words",
+   "text": "You know 124 words.",
+   "speak": "You know one hundred twenty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 125 words",
+   "text": "You know 125 words.",
+   "speak": "You know one hundred twenty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 126 words",
+   "text": "You know 126 words.",
+   "speak": "You know one hundred twenty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 127 words",
+   "text": "You know 127 words.",
+   "speak": "You know one hundred twenty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 128 words",
+   "text": "You know 128 words.",
+   "speak": "You know one hundred twenty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 129 words",
+   "text": "You know 129 words.",
+   "speak": "You know one hundred twenty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 130 words",
+   "text": "You know 130 words.",
+   "speak": "You know one hundred thirty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 131 words",
+   "text": "You know 131 words.",
+   "speak": "You know one hundred thirty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 132 words",
+   "text": "You know 132 words.",
+   "speak": "You know one hundred thirty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 133 words",
+   "text": "You know 133 words.",
+   "speak": "You know one hundred thirty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 134 words",
+   "text": "You know 134 words.",
+   "speak": "You know one hundred thirty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 135 words",
+   "text": "You know 135 words.",
+   "speak": "You know one hundred thirty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 136 words",
+   "text": "You know 136 words.",
+   "speak": "You know one hundred thirty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 137 words",
+   "text": "You know 137 words.",
+   "speak": "You know one hundred thirty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 138 words",
+   "text": "You know 138 words.",
+   "speak": "You know one hundred thirty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 139 words",
+   "text": "You know 139 words.",
+   "speak": "You know one hundred thirty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 140 words",
+   "text": "You know 140 words.",
+   "speak": "You know one hundred forty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 141 words",
+   "text": "You know 141 words.",
+   "speak": "You know one hundred forty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 142 words",
+   "text": "You know 142 words.",
+   "speak": "You know one hundred forty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 143 words",
+   "text": "You know 143 words.",
+   "speak": "You know one hundred forty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 144 words",
+   "text": "You know 144 words.",
+   "speak": "You know one hundred forty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 145 words",
+   "text": "You know 145 words.",
+   "speak": "You know one hundred forty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 146 words",
+   "text": "You know 146 words.",
+   "speak": "You know one hundred forty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 147 words",
+   "text": "You know 147 words.",
+   "speak": "You know one hundred forty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 148 words",
+   "text": "You know 148 words.",
+   "speak": "You know one hundred forty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 149 words",
+   "text": "You know 149 words.",
+   "speak": "You know one hundred forty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 150 words",
+   "text": "You know 150 words.",
+   "speak": "You know one hundred fifty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "no words yet",
+   "text": "No words yet.",
+   "speak": "No words yet.",
+   "kind": "reward",
+   "sources": [
+    "words",
+    "app.js"
+   ]
+  },
+  {
+   "key": "that's 25 words real progress",
+   "text": "That’s 25 words. Real progress.",
+   "speak": "That’s twenty-five words. Real progress.",
+   "kind": "reward",
+   "sources": [
+    "milestone"
+   ]
+  },
+  {
+   "key": "that's 50 words solid work",
+   "text": "That’s 50 words. Solid work.",
+   "speak": "That’s fifty words. Solid work.",
+   "kind": "reward",
+   "sources": [
+    "milestone"
+   ]
+  },
+  {
+   "key": "100 words that's a real reading vocabulary",
+   "text": "100 words. That’s a real reading vocabulary.",
+   "speak": "One hundred words. That’s a real reading vocabulary.",
+   "kind": "reward",
+   "sources": [
+    "milestone"
+   ]
+  },
+  {
+   "key": "250 words you've come a long way",
+   "text": "250 words. You’ve come a long way.",
+   "speak": "Two hundred fifty words. You’ve come a long way.",
+   "kind": "reward",
+   "sources": [
+    "milestone"
+   ]
+  },
+  {
+   "key": "500 words that's a big achievement",
+   "text": "500 words. That’s a big achievement.",
+   "speak": "Five hundred words. That’s a big achievement.",
+   "kind": "reward",
+   "sources": [
+    "milestone"
+   ]
+  },
+  {
+   "key": "7 days in a row that's a real habit",
+   "text": "7 days in a row. That’s a real habit.",
+   "speak": "Seven days in a row. That’s a real habit.",
+   "kind": "reward",
+   "sources": [
+    "milestone"
+   ]
+  },
+  {
+   "key": "30 days in a row that's steady serious work",
+   "text": "30 days in a row. That’s steady, serious work.",
+   "speak": "Thirty days in a row. That’s steady, serious work.",
+   "kind": "reward",
+   "sources": [
+    "milestone"
+   ]
+  },
+  {
    "key": "home",
    "text": "Home",
    "speak": "Home",
@@ -3808,6 +6234,15 @@
    "key": "you finished everything great work pick any level to practice again",
    "text": "You finished everything. Great work. Pick any level to practice again.",
    "speak": "You finished everything. Great work. Pick any level to practice again.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap the books to see your word bank",
+   "text": "Tap the books to see your word bank.",
+   "speak": "Tap the books to see your word bank.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -4291,9 +6726,36 @@
    ]
   },
   {
+   "key": "added to your word bank",
+   "text": "Added to your word bank",
+   "speak": "Added to your word bank",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
    "key": "do it again",
    "text": "Do it again",
    "speak": "Do it again",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "welcome back this is day 1 of a new streak",
+   "text": "Welcome back. This is day 1 of a new streak.",
+   "speak": "Welcome back. This is day 1 of a new streak.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap tell jeffrey to send him a text or tap play for the next one",
+   "text": "Tap Tell Jeffrey to send him a text. Or tap play for the next one.",
+   "speak": "Tap Tell Jeffrey to send him a text. Or tap play for the next one.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -4312,6 +6774,42 @@
    "key": "great job tap play for the next one",
    "text": "Great job. Tap play for the next one.",
    "speak": "Great job. Tap play for the next one.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this is your word bank every word you learn goes here finish a word lesson to add your first word",
+   "text": "This is your word bank. Every word you learn goes here. Finish a word lesson to add your first word.",
+   "speak": "This is your word bank. Every word you learn goes here. Finish a word lesson to add your first word.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "hear how many words",
+   "text": "Hear how many words",
+   "speak": "Hear how many words",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tell jeffrey this opens a text message to jeffrey you tap send",
+   "text": "Tell Jeffrey. This opens a text message to Jeffrey. You tap send.",
+   "speak": "Tell Jeffrey. This opens a text message to Jeffrey. You tap send.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tell jeffrey",
+   "text": "Tell Jeffrey",
+   "speak": "Tell Jeffrey",
    "kind": "text",
    "sources": [
     "app.js"
