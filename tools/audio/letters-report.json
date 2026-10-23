@@ -1,14 +1,14 @@
 {
  "a": {
   "sound_acoustics": {
-   "dur_ms": 360,
-   "peak_db": -4.900000095367432,
-   "rms_db": -16.399999618530273,
+   "dur_ms": 400,
+   "peak_db": -3.799999952316284,
+   "rms_db": -16.5,
    "voiced": 1.0,
-   "hiss": 0.01,
-   "F1": 995,
-   "F2": 2160,
-   "formant_err": 0.028,
+   "hiss": 0.06,
+   "F1": 675,
+   "F2": 1804,
+   "formant_err": 0.061,
    "problems": []
   },
   "intro_whisper": "This is the letter A.",
@@ -17,18 +17,18 @@
   "intro_name_dist": 0.0,
   "name_whisper": "A.",
   "name_phonemes": "eː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d m m æ",
-  "sound_heard_after_intro": "ndmma",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d æ",
+  "sound_heard_after_intro": "nda",
   "sound_found": true,
   "flags": []
  },
  "b": {
   "sound_acoustics": {
-   "dur_ms": 80,
-   "peak_db": -2.700000047683716,
-   "rms_db": -16.799999237060547,
+   "dur_ms": 70,
+   "peak_db": -1.2999999523162842,
+   "rms_db": -16.100000381469727,
    "voiced": 1.0,
-   "hiss": 0.01,
+   "hiss": 0.0,
    "problems": []
   },
   "intro_whisper": "This is the letter B.",
@@ -37,18 +37,18 @@
   "intro_name_dist": 0.0,
   "name_whisper": "B.",
   "name_phonemes": "b iː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d b b",
-  "sound_heard_after_intro": "ndbb",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d b ɔ b ɔ",
+  "sound_heard_after_intro": "ndbobo",
   "sound_found": true,
   "flags": []
  },
  "c": {
   "sound_acoustics": {
-   "dur_ms": 160,
-   "peak_db": -5.199999809265137,
-   "rms_db": -16.700000762939453,
+   "dur_ms": 170,
+   "peak_db": -2.5999999046325684,
+   "rms_db": -16.200000762939453,
    "voiced": 0.0,
-   "hiss": 0.37,
+   "hiss": 0.04,
    "problems": []
   },
   "intro_whisper": "This is the letter C.",
@@ -66,11 +66,11 @@
  },
  "d": {
   "sound_acoustics": {
-   "dur_ms": 90,
-   "peak_db": -2.0999999046325684,
-   "rms_db": -16.700000762939453,
-   "voiced": 0.6,
-   "hiss": 0.26,
+   "dur_ms": 70,
+   "peak_db": -1.600000023841858,
+   "rms_db": -16.200000762939453,
+   "voiced": 0.0,
+   "hiss": 0.03,
    "problems": []
   },
   "intro_whisper": "This is the letter D.",
@@ -79,21 +79,21 @@
   "intro_name_dist": 0.0,
   "name_whisper": "D.",
   "name_phonemes": "d iː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d d ə d a",
-  "sound_heard_after_intro": "ndd@da",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d d ɔ d ɔ",
+  "sound_heard_after_intro": "nddodo",
   "sound_found": true,
   "flags": []
  },
  "e": {
   "sound_acoustics": {
-   "dur_ms": 360,
-   "peak_db": -5.900000095367432,
-   "rms_db": -16.5,
-   "voiced": 1.0,
-   "hiss": 0.01,
-   "F1": 749,
-   "F2": 2277,
-   "formant_err": 0.014,
+   "dur_ms": 400,
+   "peak_db": -3.299999952316284,
+   "rms_db": -16.399999618530273,
+   "voiced": 0.92,
+   "hiss": 0.1,
+   "F1": 576,
+   "F2": 1921,
+   "formant_err": 0.035,
    "problems": []
   },
   "intro_whisper": "This is the letter E.",
@@ -102,18 +102,18 @@
   "intro_name_dist": 0.0,
   "name_whisper": "E",
   "name_phonemes": "ʔ iː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ɛ ɡ ɡ",
-  "sound_heard_after_intro": "ndegg",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ɛ",
+  "sound_heard_after_intro": "nde",
   "sound_found": true,
   "flags": []
  },
  "f": {
   "sound_acoustics": {
-   "dur_ms": 590,
-   "peak_db": -4.400000095367432,
-   "rms_db": -16.799999237060547,
+   "dur_ms": 310,
+   "peak_db": -2.0,
+   "rms_db": -16.100000381469727,
    "voiced": 0.0,
-   "hiss": 0.45,
+   "hiss": 0.47,
    "problems": []
   },
   "intro_whisper": "This is the letter F.",
@@ -131,11 +131,11 @@
  },
  "g": {
   "sound_acoustics": {
-   "dur_ms": 90,
-   "peak_db": -1.0,
-   "rms_db": -16.700000762939453,
-   "voiced": 0.6,
-   "hiss": 0.05,
+   "dur_ms": 80,
+   "peak_db": -4.0,
+   "rms_db": -16.799999237060547,
+   "voiced": 0.62,
+   "hiss": 0.02,
    "problems": []
   },
   "intro_whisper": "This is the letter G.",
@@ -144,19 +144,21 @@
   "intro_name_dist": 0.0,
   "name_whisper": "G",
   "name_phonemes": "dʒ iː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ɡ a ɡ a",
-  "sound_heard_after_intro": "ndgaga",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ɡ ə ɡ ə",
+  "sound_heard_after_intro": "ndg@g@",
   "sound_found": true,
   "flags": []
  },
  "h": {
   "sound_acoustics": {
-   "dur_ms": 260,
-   "peak_db": -4.199999809265137,
-   "rms_db": -16.399999618530273,
-   "voiced": 0.0,
-   "hiss": 0.15,
-   "problems": []
+   "dur_ms": 330,
+   "peak_db": -3.799999952316284,
+   "rms_db": -16.200000762939453,
+   "voiced": 0.17,
+   "hiss": 0.17,
+   "problems": [
+    "hiss is voiced"
+   ]
   },
   "intro_whisper": "This is the letter H.",
   "intro_name_ok": true,
@@ -164,23 +166,23 @@
   "intro_name_dist": 0.0,
   "name_whisper": "H.",
   "name_phonemes": "eɪ t",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d",
-  "sound_heard_after_intro": "nd",
-  "sound_found": false,
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d h h ɔ",
+  "sound_heard_after_intro": "ndhho",
+  "sound_found": true,
   "flags": [
-   "recognizer did not find the sound"
+   "hiss is voiced"
   ]
  },
  "i": {
   "sound_acoustics": {
-   "dur_ms": 360,
-   "peak_db": -3.0999999046325684,
+   "dur_ms": 400,
+   "peak_db": -3.799999952316284,
    "rms_db": -16.399999618530273,
    "voiced": 1.0,
-   "hiss": 0.0,
-   "F1": 581,
-   "F2": 1999,
-   "formant_err": 0.069,
+   "hiss": 0.1,
+   "F1": 383,
+   "F2": 2131,
+   "formant_err": 0.051,
    "problems": []
   },
   "intro_whisper": "This is the letter I.",
@@ -189,18 +191,18 @@
   "intro_name_dist": 0.0,
   "name_whisper": "I.",
   "name_phonemes": "aɪ",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d n ɪ n",
-  "sound_heard_after_intro": "ndnin",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d j iː",
+  "sound_heard_after_intro": "ndji",
   "sound_found": true,
   "flags": []
  },
  "j": {
   "sound_acoustics": {
-   "dur_ms": 140,
-   "peak_db": -3.4000000953674316,
-   "rms_db": -16.600000381469727,
-   "voiced": 0.65,
-   "hiss": 0.45,
+   "dur_ms": 210,
+   "peak_db": -1.0,
+   "rms_db": -16.399999618530273,
+   "voiced": 0.38,
+   "hiss": 0.04,
    "problems": []
   },
   "intro_whisper": "This is the letter J.",
@@ -209,18 +211,18 @@
   "intro_name_dist": 0.0,
   "name_whisper": "J.",
   "name_phonemes": "dʒ eɪ",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d dʒ ə dʒ ə",
-  "sound_heard_after_intro": "ndJ@J@",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d dʒ uː dʒ uː",
+  "sound_heard_after_intro": "ndJuJu",
   "sound_found": true,
   "flags": []
  },
  "k": {
   "sound_acoustics": {
-   "dur_ms": 160,
-   "peak_db": -5.199999809265137,
-   "rms_db": -16.700000762939453,
+   "dur_ms": 170,
+   "peak_db": -2.5999999046325684,
+   "rms_db": -16.200000762939453,
    "voiced": 0.0,
-   "hiss": 0.37,
+   "hiss": 0.04,
    "problems": []
   },
   "intro_whisper": "This is the letter K.",
@@ -238,8 +240,8 @@
  },
  "l": {
   "sound_acoustics": {
-   "dur_ms": 480,
-   "peak_db": -7.400000095367432,
+   "dur_ms": 430,
+   "peak_db": -7.5,
    "rms_db": -16.200000762939453,
    "voiced": 1.0,
    "hiss": 0.0,
@@ -251,8 +253,8 @@
   "intro_name_dist": 0.0,
   "name_whisper": "L",
   "name_phonemes": "aː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d m uː uː",
-  "sound_heard_after_intro": "ndmuu",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ʉ",
+  "sound_heard_after_intro": "ndʉ",
   "sound_found": false,
   "flags": [
    "recognizer did not find the sound"
@@ -260,10 +262,10 @@
  },
  "m": {
   "sound_acoustics": {
-   "dur_ms": 570,
-   "peak_db": -9.199999809265137,
-   "rms_db": -16.200000762939453,
-   "voiced": 0.88,
+   "dur_ms": 430,
+   "peak_db": -7.199999809265137,
+   "rms_db": -16.299999237060547,
+   "voiced": 1.0,
    "hiss": 0.0,
    "problems": []
   },
@@ -282,10 +284,10 @@
  },
  "n": {
   "sound_acoustics": {
-   "dur_ms": 560,
-   "peak_db": -9.300000190734863,
-   "rms_db": -16.200000762939453,
-   "voiced": 0.97,
+   "dur_ms": 430,
+   "peak_db": -5.5,
+   "rms_db": -16.299999237060547,
+   "voiced": 1.0,
    "hiss": 0.0,
    "problems": []
   },
@@ -302,14 +304,14 @@
  },
  "o": {
   "sound_acoustics": {
-   "dur_ms": 360,
-   "peak_db": -6.699999809265137,
+   "dur_ms": 400,
+   "peak_db": -4.099999904632568,
    "rms_db": -16.399999618530273,
-   "voiced": 1.0,
-   "hiss": 0.0,
-   "F1": 911,
-   "F2": 1462,
-   "formant_err": 0.007,
+   "voiced": 0.99,
+   "hiss": 0.01,
+   "F1": 737,
+   "F2": 958,
+   "formant_err": 0.117,
    "problems": []
   },
   "intro_whisper": "This is the letter O.",
@@ -318,18 +320,20 @@
   "intro_name_dist": 0.0,
   "name_whisper": "Oh.",
   "name_phonemes": "aʊ",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ɑː h ɑː",
-  "sound_heard_after_intro": "ndaha",
-  "sound_found": true,
-  "flags": []
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d oʊ",
+  "sound_heard_after_intro": "ndou",
+  "sound_found": false,
+  "flags": [
+   "recognizer did not find the sound"
+  ]
  },
  "p": {
   "sound_acoustics": {
-   "dur_ms": 160,
-   "peak_db": -4.5,
-   "rms_db": -16.700000762939453,
+   "dur_ms": 200,
+   "peak_db": -2.4000000953674316,
+   "rms_db": -16.299999237060547,
    "voiced": 0.0,
-   "hiss": 0.24,
+   "hiss": 0.03,
    "problems": []
   },
   "intro_whisper": "This is the letter P.",
@@ -347,10 +351,10 @@
  },
  "q": {
   "sound_acoustics": {
-   "dur_ms": 130,
-   "peak_db": -1.600000023841858,
+   "dur_ms": 290,
+   "peak_db": -0.8999999761581421,
    "rms_db": -16.5,
-   "voiced": 0.5,
+   "voiced": 0.84,
    "hiss": 0.0,
    "problems": []
   },
@@ -360,17 +364,17 @@
   "intro_name_dist": 0.0,
   "name_whisper": "Q.",
   "name_phonemes": "k uː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d k w ɪ k w ɪ",
-  "sound_heard_after_intro": "ndkwikwi",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d k w ɔ k w ɔ",
+  "sound_heard_after_intro": "ndkwokwo",
   "sound_found": true,
   "flags": []
  },
  "r": {
   "sound_acoustics": {
-   "dur_ms": 490,
-   "peak_db": -5.099999904632568,
+   "dur_ms": 430,
+   "peak_db": -4.199999809265137,
    "rms_db": -16.200000762939453,
-   "voiced": 0.97,
+   "voiced": 0.87,
    "hiss": 0.0,
    "problems": []
   },
@@ -380,20 +384,18 @@
   "intro_name_dist": 0.0,
   "name_whisper": "R.",
   "name_phonemes": "ɑː r",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d uː n uː n uː",
-  "sound_heard_after_intro": "ndununu",
-  "sound_found": false,
-  "flags": [
-   "recognizer did not find the sound"
-  ]
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ɚ ɚ",
+  "sound_heard_after_intro": "nd@r@r",
+  "sound_found": true,
+  "flags": []
  },
  "s": {
   "sound_acoustics": {
-   "dur_ms": 640,
-   "peak_db": -3.799999952316284,
-   "rms_db": -16.299999237060547,
+   "dur_ms": 280,
+   "peak_db": -3.0,
+   "rms_db": -16.0,
    "voiced": 0.0,
-   "hiss": 0.7,
+   "hiss": 0.97,
    "problems": []
   },
   "intro_whisper": "This is the letter S.",
@@ -411,11 +413,11 @@
  },
  "t": {
   "sound_acoustics": {
-   "dur_ms": 160,
-   "peak_db": -3.4000000953674316,
-   "rms_db": -16.5,
+   "dur_ms": 170,
+   "peak_db": -3.0999999046325684,
+   "rms_db": -16.600000381469727,
    "voiced": 0.0,
-   "hiss": 0.93,
+   "hiss": 0.07,
    "problems": []
   },
   "intro_whisper": "This is the letter T.",
@@ -433,14 +435,14 @@
  },
  "u": {
   "sound_acoustics": {
-   "dur_ms": 360,
-   "peak_db": -4.0,
-   "rms_db": -16.5,
-   "voiced": 0.78,
-   "hiss": 0.0,
-   "F1": 823,
-   "F2": 1507,
-   "formant_err": 0.011,
+   "dur_ms": 400,
+   "peak_db": -5.099999904632568,
+   "rms_db": -16.399999618530273,
+   "voiced": 0.99,
+   "hiss": 0.02,
+   "F1": 654,
+   "F2": 1324,
+   "formant_err": 0.024,
    "problems": []
   },
   "intro_whisper": "This is the letter U.",
@@ -449,18 +451,20 @@
   "intro_name_dist": 0.0,
   "name_whisper": "You.",
   "name_phonemes": "j uː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d b a",
-  "sound_heard_after_intro": "ndba",
-  "sound_found": true,
-  "flags": []
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ɚ",
+  "sound_heard_after_intro": "nd@r",
+  "sound_found": false,
+  "flags": [
+   "recognizer did not find the sound"
+  ]
  },
  "v": {
   "sound_acoustics": {
-   "dur_ms": 480,
-   "peak_db": -5.099999904632568,
+   "dur_ms": 410,
+   "peak_db": -2.299999952316284,
    "rms_db": -16.299999237060547,
-   "voiced": 0.99,
-   "hiss": 0.0,
+   "voiced": 1.0,
+   "hiss": 0.01,
    "problems": []
   },
   "intro_whisper": "This is the letter V.",
@@ -469,8 +473,8 @@
   "intro_name_dist": 0.0,
   "name_whisper": "V.",
   "name_phonemes": "v iː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d ə n",
-  "sound_heard_after_intro": "nd@n",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d uː",
+  "sound_heard_after_intro": "ndu",
   "sound_found": false,
   "flags": [
    "recognizer did not find the sound"
@@ -478,9 +482,9 @@
  },
  "w": {
   "sound_acoustics": {
-   "dur_ms": 160,
-   "peak_db": -4.5,
-   "rms_db": -16.200000762939453,
+   "dur_ms": 260,
+   "peak_db": -1.0,
+   "rms_db": -16.5,
    "voiced": 1.0,
    "hiss": 0.0,
    "problems": []
@@ -491,18 +495,18 @@
   "intro_name_dist": 0.0,
   "name_whisper": "W.",
   "name_phonemes": "d ʌ b ə l j uː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d w ɛ w ɛ",
-  "sound_heard_after_intro": "ndwewe",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d w ɔ w",
+  "sound_heard_after_intro": "ndwow",
   "sound_found": true,
   "flags": []
  },
  "x": {
   "sound_acoustics": {
-   "dur_ms": 220,
-   "peak_db": -1.600000023841858,
-   "rms_db": -16.299999237060547,
+   "dur_ms": 310,
+   "peak_db": -3.200000047683716,
+   "rms_db": -16.0,
    "voiced": 0.0,
-   "hiss": 0.77,
+   "hiss": 0.95,
    "problems": []
   },
   "intro_whisper": "This is the letter X.",
@@ -511,18 +515,20 @@
   "intro_name_dist": 0.0,
   "name_whisper": "X",
   "name_phonemes": "ɛ k s",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d k s k s",
-  "sound_heard_after_intro": "ndksks",
-  "sound_found": true,
-  "flags": []
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d s s",
+  "sound_heard_after_intro": "ndss",
+  "sound_found": false,
+  "flags": [
+   "recognizer did not find the sound"
+  ]
  },
  "y": {
   "sound_acoustics": {
-   "dur_ms": 150,
+   "dur_ms": 260,
    "peak_db": -4.400000095367432,
-   "rms_db": -16.200000762939453,
-   "voiced": 1.0,
-   "hiss": 0.0,
+   "rms_db": -16.5,
+   "voiced": 0.91,
+   "hiss": 0.09,
    "problems": []
   },
   "intro_whisper": "This is the letter Y.",
@@ -531,19 +537,23 @@
   "intro_name_dist": 0.0,
   "name_whisper": "Why?",
   "name_phonemes": "w aɪ",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d j a j",
-  "sound_heard_after_intro": "ndjaj",
-  "sound_found": true,
-  "flags": []
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d iː iː ɐ",
+  "sound_heard_after_intro": "ndiia",
+  "sound_found": false,
+  "flags": [
+   "recognizer did not find the sound"
+  ]
  },
  "z": {
   "sound_acoustics": {
-   "dur_ms": 540,
-   "peak_db": -5.800000190734863,
-   "rms_db": -16.399999618530273,
-   "voiced": 1.0,
-   "hiss": 0.24,
-   "problems": []
+   "dur_ms": 440,
+   "peak_db": -1.399999976158142,
+   "rms_db": -16.100000381469727,
+   "voiced": 0.19,
+   "hiss": 0.89,
+   "problems": [
+    "not voiced enough"
+   ]
   },
   "intro_whisper": "This is the letter Z.",
   "intro_name_ok": true,
@@ -551,10 +561,11 @@
   "intro_name_dist": 0.0,
   "name_whisper": "Z.",
   "name_phonemes": "z iː",
-  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d",
-  "sound_heard_after_intro": "nd",
+  "stitched_phonemes": "ɪ t m eɪ k s ð ə s aʊ n d d d",
+  "sound_heard_after_intro": "nddd",
   "sound_found": false,
   "flags": [
+   "not voiced enough",
    "recognizer did not find the sound"
   ]
  }

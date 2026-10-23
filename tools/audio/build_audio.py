@@ -6,7 +6,8 @@
 1. node tools/audio/collect-texts.mjs   -> tools/audio/texts.json (every spoken text)
 2. Kokoro TTS for each text             -> audio/af_heart/t/<slug>-<hash>.mp3
    slow versions of the Level 2 words   -> audio/af_heart/slow/...
-   26 letter sounds cut from real words -> audio/af_heart/letters/... (see phonics.py)
+   26 letter sounds from real human recordings -> audio/human/letters/... (see human.py,
+      human-sounds-sources.md); phonics.py (cut from Kokoro words) is the fallback
 3. audio/clips.json (text key -> file), prunes stale files, stamps AUDIO_VERSION in sw.js
 4. --qa: transcribe every text clip with Whisper (dev tool) and re-generate mismatches
 Already-built clips are reused (file name = hash of text + voice + settings).
@@ -24,6 +25,7 @@ ROOT = os.path.abspath(os.path.join(HERE, '..', '..'))
 sys.path.insert(0, HERE)
 from engines import synth, trim, fade, silence, write_wav, SR   # noqa: E402
 import phonics                                                   # noqa: E402
+import human                                                     # noqa: E402
 
 VOICE = 'af_heart'
 ENGINE_VOICE = 'kokoro:' + VOICE
@@ -292,14 +294,19 @@ def main():
 
     # ---- letter sounds
     phon_hash = sha(open(os.path.join(HERE, 'phonics.py')).read(), open(os.path.join(HERE, 'engines.py')).read(), VOICE)
+    human_hash = sha(human.source_hash(), open(os.path.join(HERE, 'phonics.py')).read(), 'h1')
     letter_info = []
     for L in T['letters']:
         l = L['l']
-        rel = f'{VOICE}/letters/{slug(l)}-{sha(phon_hash, l)}.mp3'
+        is_human = l in human.RECIPES        # real human recording (see human-sounds-sources.md)
+        if is_human:
+            rel = f'human/letters/{slug(l)}-{sha(human_hash, l)}.mp3'
+        else:                                # fallback: cut from a Kokoro word (phonics.py)
+            rel = f'{VOICE}/letters/{slug(l)}-{sha(phon_hash, l)}.mp3'
         dest = os.path.join(ROOT, 'audio', rel)
-        how = None
+        how = human.RECIPES[l][1] if is_human else None
         if a.force or not os.path.exists(dest):
-            x, how = phonics.make_letter(ENGINE_VOICE, l)
+            x, how = human.make_letter(l) if is_human else phonics.make_letter(ENGINE_VOICE, l)
             to_mp3(phonics.finish_letter(x), dest); made += 1
         else:
             reused += 1
@@ -309,7 +316,8 @@ def main():
         if L['soundKey'] not in fixed:
             clips[L['soundKey']] = rel
             fixed.append(L['soundKey'])
-        letter_info.append({'letter': l, 'keyword': L['kw'], 'file': rel, 'recipe': how})
+        letter_info.append({'letter': l, 'keyword': L['kw'], 'file': rel, 'recipe': how,
+                            'source': 'human recording' if is_human else 'kokoro word cut'})
 
     # ---- optional QA with Whisper (dev only)
     qa = None
@@ -322,7 +330,7 @@ def main():
 
     # ---- prune stale files
     pruned = 0
-    for d, _, fs in os.walk(OUT):
+    for d, _, fs in [w for top in (OUT, os.path.join(ROOT, 'audio', 'human')) for w in os.walk(top)]:
         for f in fs:
             pth = os.path.normpath(os.path.join(d, f))
             if f.endswith('.mp3') and pth not in used:

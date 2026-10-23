@@ -4,7 +4,9 @@
 // Also writes screenshots/20-level1-az.png, 21-letter-q.png, 22-letter-q-find.png,
 // 23-letter-intro-a.png, 24-letter-intro-e.png.
 import { chromium } from 'playwright-core';
+import { readFileSync } from 'node:fs';
 const BASE = process.env.BASE || 'http://127.0.0.1:8765/';
+const CLIPS = await (await fetch(BASE + 'audio/clips.json?nc=' + Date.now())).json();
 const SHOTS = new URL('../screenshots/', import.meta.url).pathname;
 const b = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', args: ['--no-sandbox'] });
 let failed = 0; const results = [];
@@ -102,7 +104,7 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
   const { ctx, p } = await page({}, true);
   await p.goto(BASE + '#/level/1'); await p.waitForSelector('.item.letter');
   await p.waitForFunction(() => window.Speech.clipCount() > 400);
-  const bad = [];
+  const bad = [], badHuman = [];
   for (const l of 'abcdefghijklmnopqrstuvwxyz') {
     const it = await p.evaluate((l) => window.CONTENT.letters.find((x) => x.l === l), l);
     await p.evaluate(() => window.Speech.stop());
@@ -116,9 +118,55 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
     const intro = it.pos === 'end' ? 'this letter makes the sound at the end of' : 'this letter makes the first sound in';
     const want = ['this is the letter ' + l, 'it makes the sound', 'letters/' + l, 'letters/' + l, intro, it.kw, 'letters/' + l, it.kw];
     if (JSON.stringify(keys.slice(0, 8)) !== JSON.stringify(want) || L.slice(0, 8).some((e) => e.how !== 'clip')) bad.push({ l, keys: keys.slice(0, 8), how: L.slice(0, 8).map((e) => e.how) });
+    const humanUrl = CLIPS.letters['letters/' + l];
+    const soundUrls = L.slice(0, 8).filter((e) => e.key === 'letters/' + l).map((e) => e.url);
+    if (soundUrls.length !== 3 || soundUrls.some((u) => !u || !u.endsWith(humanUrl))) badHuman.push({ l, want: humanUrl, got: soundUrls });
     await p.goto(BASE + '#/level/1'); await p.waitForSelector('.item.letter');
   }
   check('all 26 letters: "This is the letter X." → "It makes the sound" → sound, sound → usual intro, all clips', !bad.length, bad);
+  check('all 26 letters: intro sound (x3) plays the human recording human/letters/<l>-*.mp3', !badHuman.length, badHuman);
+  await ctx.close();
+}
+// 5b. Human letter sounds: every letter (and every letter-sound key used by blending, e.g. 'sss')
+//     resolves to its human clip; the clip is precached and served; the lesson 🔊, the big letter
+//     and the Level 2 tiles play the same file. (Find-the-letter only says the prompt + keyword.)
+{
+  const bad = [];
+  const HUMAN = /^human\/letters\/[a-z]-[0-9a-f]{8}\.mp3$/;
+  const report = JSON.parse(readFileSync(new URL('./audio/build-report.json', import.meta.url)));
+  const info = Object.fromEntries((report.letters || []).map((x) => [x.letter, x]));
+  for (const l of 'abcdefghijklmnopqrstuvwxyz') {
+    const rel = CLIPS.letters['letters/' + l];
+    if (!HUMAN.test(rel || '') || !rel.startsWith('human/letters/' + l + '-')) bad.push({ l, rel, why: 'not a human clip' });
+    if (!CLIPS.files.includes(rel)) bad.push({ l, rel, why: 'not precached' });
+    if (!info[l] || info[l].source !== 'human recording' || info[l].file !== rel) bad.push({ l, why: 'build-report', info: info[l] });
+    const r = await fetch(BASE + 'audio/' + rel); if (!r.ok) bad.push({ l, rel, why: 'HTTP ' + r.status });
+  }
+  const sk = Object.entries(CLIPS.clips).filter(([, v]) => v.includes('/letters/'));
+  if (sk.length < 25 ||  // c and k share 'kuh'
+      sk.some(([, v]) => !HUMAN.test(v) || !Object.values(CLIPS.letters).includes(v))) bad.push({ why: 'sound keys', sk });
+  check('every letter A–Z resolves to its human recording (clips.json, precache list, build report, served)', !bad.length, bad);
+  const { ctx, p } = await page();
+  const clipsAfter = async (n0) => (await p.evaluate(() => window.Speech.debugLog())).slice(n0).filter((e) => e.how === 'clip' && /^letters\//.test(e.key));
+  const human = (L, l) => L.length > 0 && L.every((e) => e.key === 'letters/' + l && e.url && e.url.endsWith(CLIPS.letters[e.key]) && HUMAN.test(CLIPS.letters[e.key]));
+  await p.goto(BASE + '#/lesson/L1-m'); await p.waitForSelector('.big-letter');
+  await p.waitForFunction(() => window.Speech.clipCount() > 400); await p.waitForTimeout(500);
+  await p.evaluate(() => window.Speech.stop());
+  let n0 = (await p.evaluate(() => window.Speech.debugLog().length));
+  await p.locator('.foot .icon-btn').first().tap(); await p.waitForTimeout(2500);
+  let L = await clipsAfter(n0);
+  check('letter lesson 🔊 button plays the human M clip', human(L, 'm'), L);
+  await p.evaluate(() => window.Speech.stop());
+  n0 = (await p.evaluate(() => window.Speech.debugLog().length));
+  await p.locator('.big-letter').tap(); await p.waitForTimeout(2500);
+  L = await clipsAfter(n0);
+  check('tapping the big letter plays the human M clip', human(L, 'm'), L);
+  await p.goto(BASE + '#/lesson/L2-sat'); await p.waitForSelector('.tile-letter'); await p.waitForTimeout(500);
+  await p.evaluate(() => window.Speech.stop());
+  n0 = (await p.evaluate(() => window.Speech.debugLog().length));
+  await p.locator('.tile-letter').nth(2).tap(); await p.waitForTimeout(1200);
+  L = await clipsAfter(n0);
+  check('Level 2 letter tile 🔊 plays the human T clip', human(L, 't'), L);
   await ctx.close();
 }
 // 6. Built-in voice fallback (phone voice chosen): letter names are respelled so they are said right

@@ -65,9 +65,9 @@ Notes
   (voice `af_heart`, Apache-2.0) as small MP3 clips in `audio/af_heart/` (~800 files,
   ~9 MB, cached for offline use). Lines built at runtime (streak days, word counts) play
   sentence by sentence, with one clip per value: 1–100 days, 0–150 words, 0–2 skip days. The same voice plays on every phone, iPhone included.
-- The 26 letter sounds are **cut from real words** (e.g. the /t/ from "tip", the /m/
-  from "map") instead of asking the voice to say "tuh", so stops are crisp and
-  continuous sounds (sss, mmm, fff, lll, rrr) are stretched without a vowel.
+- The 26 letter sounds are **real human recordings** (Wikimedia Commons, CC BY-SA 3.0 /
+  public domain; see `LICENSES.md`), trimmed to just the sound and loudness-matched. The
+  frame around them ("This is the letter E. It makes the sound … eh … eh.") is Kokoro.
 - Playback goes through the Web Audio API: clips start after the first tap (iOS rule),
   word blending plays the letter sounds back-to-back on the audio clock (gapless), and
   the 🐢/🚶/🏃 speed setting speeds clips up/down without changing pitch.
@@ -136,10 +136,10 @@ js/app.js             screens, lessons, progress, settings, word bank screen
 js/rewards.js         word bank, streak, milestones (pure logic, no DOM)
 icons/                icon.svg + PNGs (192, 512, maskable 512, apple-touch 180)
 audio/clips.json      text -> clip map (generated)
-audio/af_heart/       generated Kokoro af_heart MP3 clips (t/ texts, slow/ slow words,
-                      letters/ the 26 letter sounds) – see audio/README.md
+audio/af_heart/       generated Kokoro af_heart MP3 clips (t/ texts, slow/ slow words)
+audio/human/letters/  the 26 letter sounds (human recordings, CC BY-SA 3.0 / PD) – see audio/README.md
 tools/                dev-only tests (smoke, mic, mic-robust, clip, match, content, level1, rewards) + render-icons
-tools/audio/          dev-only audio build (build_audio.py, phonics.py, collect-texts.mjs)
+tools/audio/          dev-only audio build (build_audio.py, human.py + human/, phonics.py, collect-texts.mjs)
 screenshots/          390×844 phone screenshots from the headless test
 LICENSES.md           third-party content (none shipped)
 ```
@@ -173,9 +173,9 @@ LICENSES.md           third-party content (none shipped)
 - Not yet tested on a real iPhone or Android phone (needs HTTPS hosting – see below).
 
 ## Known limitations
-- **Letter sounds are cut from computer-voice words.** They are much better than asking
-  a voice to say "tuh", but a few are still approximations: the glides (w, y), q (/kw/), j, the
-  voiced stops (b, d, g) and z/v/r/l. Every sound is still wrapped in a keyword
+- **Letter sounds come from IPA demo recordings**, not from an English phonics teacher:
+  most are one Swedish-born speaker (Peter Isotalo), the short vowels another (Denelson83),
+  J a third. Ones to listen to: r, j, q and x (spliced k+w / k+s), b/d/g (with a tiny vowel), h. Every sound is still wrapped in a keyword
   ("sun … sss … sun") and the quizzes ask about the keyword. A person can replace any
   sound with a real recording (see `audio/README.md`).
 - With **Phone voice** selected in ⚙️ (or if clips can't play) the phone's own voice is

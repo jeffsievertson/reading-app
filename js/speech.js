@@ -282,7 +282,7 @@ window.Speech = (function () {
         const id = setTimeout(() => { waiters.delete(rec); if (my === token) it.part.onstart(); }, ms);
         waiters.add(rec);
       }
-      note({ how: 'clip', key: it.key, text: it.part.text || it.key, speed: it.speed, start: +(at - t0).toFixed(3), dur: +it.buf.duration.toFixed(3) });
+      note({ how: 'clip', key: it.key, url: it.url, text: it.part.text || it.key, speed: it.speed, start: +(at - t0).toFixed(3), dur: +it.buf.duration.toFixed(3) });
       t += it.buf.duration + (it.part.pause || 0) / 1000;
     }
     // Watchdog: if the audio clock is not moving (iOS "interrupted" context), give up.
@@ -352,7 +352,7 @@ window.Speech = (function () {
       for (const r of run) {
         const buf = await r.load;
         if (my !== token) return false;
-        if (buf) ready.push({ buf, part: r.part, key: r.clip.key, speed: r.clip.speed });
+        if (buf) ready.push({ buf, part: r.part, key: r.clip.key, speed: r.clip.speed, url: r.clip.url });
         else {
           if (!(await flush())) return false;
           if (!(await ttsPart(r.part, my, r.reason))) return false;

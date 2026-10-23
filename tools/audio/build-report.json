@@ -4,169 +4,195 @@
  "slow_clips": 36,
  "letter_sounds": 26,
  "files": 795,
- "total_bytes": 9020292,
- "made": 1,
- "reused": 794,
- "pruned": 1,
+ "total_bytes": 9018420,
+ "made": 0,
+ "reused": 795,
+ "pruned": 0,
  "uncovered_expressions": [],
- "version": "cf5343de",
- "seconds": 2,
+ "version": "8df211a2",
+ "seconds": 0,
  "letters": [
   {
    "letter": "a",
    "keyword": "apple",
-   "file": "af_heart/letters/a-fbc58c06.mp3",
-   "recipe": null
+   "file": "human/letters/a-469ce8ad.mp3",
+   "recipe": "vowel [æ] (Denelson83), centre 400 ms",
+   "source": "human recording"
   },
   {
    "letter": "b",
    "keyword": "bus",
-   "file": "af_heart/letters/b-86e046ed.mp3",
-   "recipe": null
+   "file": "human/letters/b-a7102f8b.mp3",
+   "recipe": "release of [ba] + sliver of vowel (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "c",
    "keyword": "cup",
-   "file": "af_heart/letters/c-8c62e78c.mp3",
-   "recipe": null
+   "file": "human/letters/c-238a6c91.mp3",
+   "recipe": "= k: burst + aspiration from the start of Swedish 'kon' [kʰ] (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "d",
    "keyword": "dog",
-   "file": "af_heart/letters/d-0ea1f154.mp3",
-   "recipe": null
+   "file": "human/letters/d-6b8f4be6.mp3",
+   "recipe": "release of [da] + sliver of vowel (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "e",
    "keyword": "egg",
-   "file": "af_heart/letters/e-d14bd3cc.mp3",
-   "recipe": null
+   "file": "human/letters/e-42853a4f.mp3",
+   "recipe": "vowel [ɛ] (Denelson83), centre 400 ms",
+   "source": "human recording"
   },
   {
    "letter": "f",
    "keyword": "fish",
-   "file": "af_heart/letters/f-e32b08f1.mp3",
-   "recipe": null
+   "file": "human/letters/f-7378798f.mp3",
+   "recipe": "hiss of [afa] (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "g",
    "keyword": "gas",
-   "file": "af_heart/letters/g-bc3e3bd1.mp3",
-   "recipe": null
+   "file": "human/letters/g-ab9bb052.mp3",
+   "recipe": "release in [aɡa] + sliver of vowel (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "h",
    "keyword": "hat",
-   "file": "af_heart/letters/h-81e1582c.mp3",
-   "recipe": null
+   "file": "human/letters/h-7ddf7023.mp3",
+   "recipe": "breath of [ha] into the vowel onset (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "i",
    "keyword": "insect",
-   "file": "af_heart/letters/i-6e5bc704.mp3",
-   "recipe": null
+   "file": "human/letters/i-b494813c.mp3",
+   "recipe": "vowel [ɪ] (Denelson83), centre 400 ms",
+   "source": "human recording"
   },
   {
    "letter": "j",
    "keyword": "jet",
-   "file": "af_heart/letters/j-d41b894e.mp3",
-   "recipe": null
+   "file": "human/letters/j-a5be7ecd.mp3",
+   "recipe": "[dʒ] + sliver of vowel (Octane, public domain)",
+   "source": "human recording"
   },
   {
    "letter": "k",
    "keyword": "key",
-   "file": "af_heart/letters/k-b997a802.mp3",
-   "recipe": null
+   "file": "human/letters/k-e16dbc95.mp3",
+   "recipe": "burst + aspiration from the start of Swedish 'kon' [kʰ] (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "l",
    "keyword": "lamp",
-   "file": "af_heart/letters/l-d82c9ec9.mp3",
-   "recipe": null
+   "file": "human/letters/l-a8826714.mp3",
+   "recipe": "[l] of [la], lengthened (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "m",
    "keyword": "map",
-   "file": "af_heart/letters/m-15b422fe.mp3",
-   "recipe": null
+   "file": "human/letters/m-b64d34ee.mp3",
+   "recipe": "hum of [ma], lengthened (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "n",
    "keyword": "nut",
-   "file": "af_heart/letters/n-d182b238.mp3",
-   "recipe": null
+   "file": "human/letters/n-572dd361.mp3",
+   "recipe": "hum of [na], lengthened (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "o",
    "keyword": "octopus",
-   "file": "af_heart/letters/o-dd15ed37.mp3",
-   "recipe": null
+   "file": "human/letters/o-a6c5164a.mp3",
+   "recipe": "vowel [ɑ] (Denelson83), centre 400 ms",
+   "source": "human recording"
   },
   {
    "letter": "p",
    "keyword": "pan",
-   "file": "af_heart/letters/p-72854255.mp3",
-   "recipe": null
+   "file": "human/letters/p-3a4999af.mp3",
+   "recipe": "burst + aspiration from the start of Swedish 'pol' [pʰ] (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "q",
    "keyword": "queen",
-   "file": "af_heart/letters/q-bc8cf71f.mp3",
-   "recipe": null
+   "file": "human/letters/q-af431569.mp3",
+   "recipe": "/kw/: [k] release + [w] glide spliced (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "r",
    "keyword": "run",
-   "file": "af_heart/letters/r-2305bfb8.mp3",
-   "recipe": null
+   "file": "human/letters/r-7b5d8b8b.mp3",
+   "recipe": "[ɹ] of [ɹa], lengthened (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "s",
    "keyword": "sun",
-   "file": "af_heart/letters/s-3e87ee47.mp3",
-   "recipe": null
+   "file": "human/letters/s-f73dc5b7.mp3",
+   "recipe": "hiss of [asa] (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "t",
    "keyword": "tent",
-   "file": "af_heart/letters/t-29c93488.mp3",
-   "recipe": null
+   "file": "human/letters/t-f2e7d9dd.mp3",
+   "recipe": "burst + aspiration from the start of Swedish 'tand' [tʰ] (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "u",
    "keyword": "up",
-   "file": "af_heart/letters/u-50dba4ee.mp3",
-   "recipe": null
+   "file": "human/letters/u-b88309c2.mp3",
+   "recipe": "vowel [ʌ] (Denelson83), centre 400 ms",
+   "source": "human recording"
   },
   {
    "letter": "v",
    "keyword": "van",
-   "file": "af_heart/letters/v-636cc57f.mp3",
-   "recipe": null
+   "file": "human/letters/v-e1a52efd.mp3",
+   "recipe": "buzz of [ava], lengthened (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "w",
    "keyword": "water",
-   "file": "af_heart/letters/w-115dfa62.mp3",
-   "recipe": null
+   "file": "human/letters/w-2073182d.mp3",
+   "recipe": "glide of [wa] (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "x",
    "keyword": "box",
-   "file": "af_heart/letters/x-06264afa.mp3",
-   "recipe": null
+   "file": "human/letters/x-783095af.mp3",
+   "recipe": "/ks/: [k] release + [s] hiss spliced (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "y",
    "keyword": "yes",
-   "file": "af_heart/letters/y-1e649d72.mp3",
-   "recipe": null
+   "file": "human/letters/y-27a1a09e.mp3",
+   "recipe": "glide of [ja] (Isotalo)",
+   "source": "human recording"
   },
   {
    "letter": "z",
    "keyword": "zero",
-   "file": "af_heart/letters/z-35103278.mp3",
-   "recipe": null
+   "file": "human/letters/z-a7e2c798.mp3",
+   "recipe": "buzz of [za], lengthened (Isotalo)",
+   "source": "human recording"
   }
  ],
  "qa": null
