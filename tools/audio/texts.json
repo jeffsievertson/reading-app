@@ -6159,9 +6159,9 @@
    ]
   },
   {
-   "key": "welcome this app will help you learn to read one sound at a time",
-   "text": "Welcome. This app will help you learn to read, one sound at a time.",
-   "speak": "Welcome. This app will help you learn to read, one sound at a time.",
+   "key": "welcome this app teaches reading one sound at a time",
+   "text": "Welcome. This app teaches reading, one sound at a time.",
+   "speak": "Welcome. This app teaches reading, one sound at a time.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6231,9 +6231,9 @@
    ]
   },
   {
-   "key": "you finished everything great work pick any level to practice again",
-   "text": "You finished everything. Great work. Pick any level to practice again.",
-   "speak": "You finished everything. Great work. Pick any level to practice again.",
+   "key": "you finished everything pick any level to go over again",
+   "text": "You finished everything. Pick any level to go over again.",
+   "speak": "You finished everything. Pick any level to go over again.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6258,9 +6258,9 @@
    ]
   },
   {
-   "key": "you finished everything great work",
-   "text": "You finished everything. Great work.",
-   "speak": "You finished everything. Great work.",
+   "key": "you finished everything",
+   "text": "You finished everything.",
+   "speak": "You finished everything.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6429,9 +6429,9 @@
    ]
   },
   {
-   "key": "tap each letter to hear its sound then tap the puzzle button to put the sounds together then tap play",
-   "text": "Tap each letter to hear its sound. Then tap the puzzle button to put the sounds together. Then tap play.",
-   "speak": "Tap each letter to hear its sound. Then tap the puzzle button to put the sounds together. Then tap play.",
+   "key": "tap each letter to hear its sound then tap sound it out to put the sounds together then tap play",
+   "text": "Tap each letter to hear its sound. Then tap Sound it out to put the sounds together. Then tap play.",
+   "speak": "Tap each letter to hear its sound. Then tap Sound it out to put the sounds together. Then tap play.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6447,9 +6447,9 @@
    ]
   },
   {
-   "key": "tap each letter to hear its sound then tap the puzzle to put them together",
-   "text": "Tap each letter to hear its sound. Then tap the puzzle to put them together.",
-   "speak": "Tap each letter to hear its sound. Then tap the puzzle to put them together.",
+   "key": "tap each letter to hear its sound then tap sound it out to put them together",
+   "text": "Tap each letter to hear its sound. Then tap Sound it out to put them together.",
+   "speak": "Tap each letter to hear its sound. Then tap Sound it out to put them together.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6673,17 +6673,17 @@
   },
   {
    "key": "yes you read it",
-   "text": "Yes! You read it.",
-   "speak": "Yes! You read it.",
+   "text": "Yes. You read it.",
+   "speak": "Yes. You read it.",
    "kind": "text",
    "sources": [
     "app.js"
    ]
   },
   {
-   "key": "great",
-   "text": "Great.",
-   "speak": "Great.",
+   "key": "got it",
+   "text": "Got it.",
+   "speak": "Got it.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6717,9 +6717,9 @@
    ]
   },
   {
-   "key": "great job tap play for the next one tap the circle arrow to do this one again",
-   "text": "Great job. Tap play for the next one. Tap the circle arrow to do this one again.",
-   "speak": "Great job. Tap play for the next one. Tap the circle arrow to do this one again.",
+   "key": "done tap play for the next one tap the circle arrow to do this one again",
+   "text": "Done. Tap play for the next one. Tap the circle arrow to do this one again.",
+   "speak": "Done. Tap play for the next one. Tap the circle arrow to do this one again.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6762,18 +6762,18 @@
    ]
   },
   {
-   "key": "amazing you finished this whole part tap play for the next one",
-   "text": "Amazing. You finished this whole part. Tap play for the next one.",
-   "speak": "Amazing. You finished this whole part. Tap play for the next one.",
+   "key": "you finished this section tap play for the next one",
+   "text": "You finished this section. Tap play for the next one.",
+   "speak": "You finished this section. Tap play for the next one.",
    "kind": "text",
    "sources": [
     "app.js"
    ]
   },
   {
-   "key": "great job tap play for the next one",
-   "text": "Great job. Tap play for the next one.",
-   "speak": "Great job. Tap play for the next one.",
+   "key": "done tap play for the next one",
+   "text": "Done. Tap play for the next one.",
+   "speak": "Done. Tap play for the next one.",
    "kind": "text",
    "sources": [
     "app.js"

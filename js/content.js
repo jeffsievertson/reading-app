@@ -12,31 +12,31 @@ window.CONTENT = (function () {
   // the lessons are shown and taught in alphabetical order (sorted below).
   // Progress is saved by letter id ('L1-a'), so the order can change freely.
   const letters = [
-    { l: 's', sound: 'sss',  kw: 'sun',     emoji: '☀️' },
-    { l: 'a', sound: 'aah',  kw: 'apple',   emoji: '🍎' },
-    { l: 't', sound: 'tuh',  kw: 'tent',    emoji: '⛺' },
-    { l: 'p', sound: 'puh',  kw: 'pan',     emoji: '🍳' },
+    { l: 's', sound: 'sss',  kw: 'sun',     emoji: '☀️' , img: 'sun' },
+    { l: 'a', sound: 'aah',  kw: 'apple',   emoji: '🍎' , img: 'apple' },
+    { l: 't', sound: 'tuh',  kw: 'tent',    emoji: '⛺' , img: 'tent' },
+    { l: 'p', sound: 'puh',  kw: 'pan',     emoji: '🍳' , img: 'pan' },
     { l: 'i', sound: 'ih',   kw: 'insect',  emoji: '🦗' },
     { l: 'n', sound: 'nnn',  kw: 'nut',     emoji: '🥜' },
-    { l: 'm', sound: 'mmm',  kw: 'map',     emoji: '🗺️' },
-    { l: 'd', sound: 'duh',  kw: 'dog',     emoji: '🐕' },
+    { l: 'm', sound: 'mmm',  kw: 'map',     emoji: '🗺️' , img: 'map' },
+    { l: 'd', sound: 'duh',  kw: 'dog',     emoji: '🐕' , img: 'dog' },
     { l: 'g', sound: 'guh',  kw: 'gas',     emoji: '⛽' },
     { l: 'o', sound: 'ah',   kw: 'octopus', emoji: '🐙' },
-    { l: 'c', sound: 'kuh',  kw: 'cup',     emoji: '☕' },
-    { l: 'k', sound: 'kuh',  kw: 'key',     emoji: '🔑' },
-    { l: 'e', sound: 'eh',   kw: 'egg',     emoji: '🥚' },
+    { l: 'c', sound: 'kuh',  kw: 'cup',     emoji: '☕' , img: 'cup' },
+    { l: 'k', sound: 'kuh',  kw: 'key',     emoji: '🔑' , img: 'key' },
+    { l: 'e', sound: 'eh',   kw: 'egg',     emoji: '🥚' , img: 'eggs' },
     { l: 'u', sound: 'uh',   kw: 'up',      emoji: '⬆️' },
     { l: 'r', sound: 'rrr',  kw: 'run',     emoji: '🏃' },
-    { l: 'h', sound: 'hhh',  kw: 'hat',     emoji: '🧢' },
-    { l: 'b', sound: 'buh',  kw: 'bus',     emoji: '🚌' },
-    { l: 'f', sound: 'fff',  kw: 'fish',    emoji: '🐟' },
-    { l: 'l', sound: 'lll',  kw: 'lamp',    emoji: '💡' },
-    { l: 'j', sound: 'juh',  kw: 'jet',     emoji: '✈️' },
-    { l: 'w', sound: 'wuh',  kw: 'water',   emoji: '💧' },
-    { l: 'v', sound: 'vvv',  kw: 'van',     emoji: '🚐' },
+    { l: 'h', sound: 'hhh',  kw: 'hat',     emoji: '🧢' , img: 'hat' },
+    { l: 'b', sound: 'buh',  kw: 'bus',     emoji: '🚌' , img: 'bus' },
+    { l: 'f', sound: 'fff',  kw: 'fish',    emoji: '🐟' , img: 'fish' },
+    { l: 'l', sound: 'lll',  kw: 'lamp',    emoji: '💡' , img: 'lamp' },
+    { l: 'j', sound: 'juh',  kw: 'jet',     emoji: '✈️' , img: 'jet' },
+    { l: 'w', sound: 'wuh',  kw: 'water',   emoji: '💧' , img: 'water' },
+    { l: 'v', sound: 'vvv',  kw: 'van',     emoji: '🚐' , img: 'van' },
     { l: 'y', sound: 'yuh',  kw: 'yes',     emoji: '✅' },
     { l: 'z', sound: 'zzz',  kw: 'zero',    emoji: '0️⃣' },
-    { l: 'x', sound: 'ks',   kw: 'box',     emoji: '📦', pos: 'end' },
+    { l: 'x', sound: 'ks',   kw: 'box',     emoji: '📦', pos: 'end' , img: 'box' },
     { l: 'q', sound: 'kwuh', kw: 'queen',  emoji: '👑' }   // the letter Q; its usual sound /kw/ as in queen
   ];
   letters.sort((a, b) => a.l.localeCompare(b.l));
@@ -61,7 +61,10 @@ window.CONTENT = (function () {
     ['hat', '🧢'], ['hot', '🔥'], ['bug', '🐛'], ['leg', '🦵'], ['jet', '✈️'],
     ['wet', '💧'], ['van', '🚐'], ['yes', '✅'], ['zip', '🤐'], ['box', '📦'],
     ['fox', '🦊']
-  ].map(([w, emoji]) => ({ w, emoji }));
+  ].map(([w, emoji]) => {
+    const imgs = {"map": "map", "pan": "pan", "dog": "dog", "cat": "cat", "cup": "cup", "bed": "bed", "bus": "bus", "sun": "sun", "hat": "hat", "jet": "jet", "van": "van", "box": "box", "wet": "water"};
+    return imgs[w] ? { w, emoji, img: imgs[w] } : { w, emoji };
+  });
 
   // ---------- Level 3: tricky (sight) words, then short sentences ----------
   const sight = [
@@ -95,25 +98,25 @@ window.CONTENT = (function () {
 
   // ---------- Level 4: real-life reading ----------
   const signs = [
-    { t: 'STOP',     style: 'stop',    say: 'Stop',     mean: 'Stop. Do not go.' },
-    { t: 'EXIT',     style: 'exit',    say: 'Exit',     mean: 'Exit. This is the way out.' },
-    { t: 'OPEN',     style: 'open',    say: 'Open',     mean: 'Open. You can go in. The place is open.' },
-    { t: 'CLOSED',   style: 'closed',  say: 'Closed',   mean: 'Closed. The place is not open right now.' },
-    { t: 'PUSH',     style: 'door',    say: 'Push',     mean: 'Push. Push the door away from you.' },
-    { t: 'PULL',     style: 'door',    say: 'Pull',     mean: 'Pull. Pull the door toward you.' },
-    { t: 'RESTROOM', style: 'rest',    say: 'Restroom', mean: 'Restroom. This is the bathroom.' },
-    { t: 'DANGER',   style: 'danger',  say: 'Danger',   mean: 'Danger. Stay away. It is not safe.' }
+    { t: 'STOP',     style: 'stop',    say: 'Stop',     mean: 'Stop. Do not go.' , img: 'stop' },
+    { t: 'EXIT',     style: 'exit',    say: 'Exit',     mean: 'Exit. This is the way out.' , img: 'exit' },
+    { t: 'OPEN',     style: 'open',    say: 'Open',     mean: 'Open. You can go in. The place is open.' , img: 'open' },
+    { t: 'CLOSED',   style: 'closed',  say: 'Closed',   mean: 'Closed. The place is not open right now.' , img: 'closed' },
+    { t: 'PUSH',     style: 'door',    say: 'Push',     mean: 'Push. Push the door away from you.' , img: 'push' },
+    { t: 'PULL',     style: 'door',    say: 'Pull',     mean: 'Pull. Pull the door toward you.' , img: 'pull' },
+    { t: 'RESTROOM', style: 'rest',    say: 'Restroom', mean: 'Restroom. This is the bathroom.' , img: 'restroom' },
+    { t: 'DANGER',   style: 'danger',  say: 'Danger',   mean: 'Danger. Stay away. It is not safe.', img: 'danger' }
   ];
   const menu = [
-    { t: 'Coffee',   price: '$2.00', emoji: '☕' },
-    { t: 'Eggs',     price: '$4.50', emoji: '🍳' },
-    { t: 'Burger',   price: '$7.99', emoji: '🍔' },
-    { t: 'Fries',    price: '$3.00', emoji: '🍟' },
-    { t: 'Chicken',  price: '$8.50', emoji: '🍗' },
-    { t: 'Soup',     price: '$4.00', emoji: '🍲' },
-    { t: 'Salad',    price: '$6.00', emoji: '🥗' },
-    { t: 'Water',    price: '$1.00', emoji: '💧' },
-    { t: 'Pizza',    price: '$9.00', emoji: '🍕' }
+    { t: 'Coffee',   price: '$2.00', emoji: '☕' , img: 'coffee' },
+    { t: 'Eggs',     price: '$4.50', emoji: '🍳' , img: 'eggs' },
+    { t: 'Burger',   price: '$7.99', emoji: '🍔' , img: 'burger' },
+    { t: 'Fries',    price: '$3.00', emoji: '🍟' , img: 'fries' },
+    { t: 'Chicken',  price: '$8.50', emoji: '🍗' , img: 'chicken' },
+    { t: 'Soup',     price: '$4.00', emoji: '🍲' , img: 'soup' },
+    { t: 'Salad',    price: '$6.00', emoji: '🥗' , img: 'salad' },
+    { t: 'Water',    price: '$1.00', emoji: '💧' , img: 'water' },
+    { t: 'Pizza',    price: '$9.00', emoji: '🍕', img: 'pizza' }
   ];
   const forms = [
     { t: 'Name',          mean: 'Name. Write your name here. First name, then last name.' },
@@ -148,16 +151,16 @@ window.CONTENT = (function () {
   verses.forEach((x) => items.push({ id: 'L4-kjv-' + slug(x.ref), level: 4, cat: 'bible', kind: 'verse', label: x.ref, text: x.t, ...x }));
 
   const levels = [
-    { n: 1, icon: '🔤', name: 'Sounds',    say: 'Level 1. Letter sounds.' },
-    { n: 2, icon: '🧩', name: 'Words',     say: 'Level 2. Words.' },
-    { n: 3, icon: '💬', name: 'Sentences', say: 'Level 3. Sentences.' },
-    { n: 4, icon: '🏙️', name: 'Real Life', say: 'Level 4. Real life reading.' }
+    { n: 1, icon: '🔤', name: 'Sounds',    say: 'Level 1. Letter sounds.', img: 'level-1' },
+    { n: 2, icon: '🧩', name: 'Words',     say: 'Level 2. Words.', img: 'level-2' },
+    { n: 3, icon: '💬', name: 'Sentences', say: 'Level 3. Sentences.', img: 'level-3' },
+    { n: 4, icon: '🏙️', name: 'Real Life', say: 'Level 4. Real life reading.', img: 'level-4' }
   ];
   const cats = [
-    { id: 'signs', icon: '🛑', name: 'Signs', say: 'Signs.' },
-    { id: 'menu',  icon: '🍔', name: 'Menu',  say: 'Menu.' },
-    { id: 'forms', icon: '📝', name: 'Forms', say: 'Forms.' },
-    { id: 'bible', icon: '📖', name: 'Bible', say: 'Bible verses. King James Version.' }
+    { id: 'signs', icon: '🛑', name: 'Signs', say: 'Signs.', img: 'signs' },
+    { id: 'menu',  icon: '🍔', name: 'Menu',  say: 'Menu.', img: 'menu' },
+    { id: 'forms', icon: '📝', name: 'Forms', say: 'Forms.', img: 'forms' },
+    { id: 'bible', icon: '📖', name: 'Bible', say: 'Bible verses. King James Version.', img: 'bible' }
   ];
 
   // letter -> sound lookup used when tapping letters inside words

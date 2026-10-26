@@ -1,13 +1,56 @@
 /* Offline support: precache the whole app (including the natural-voice audio clips),
    serve cache-first, update app files in the background. */
-const AUDIO_VERSION = '8df211a2'; // stamped by tools/audio/build_audio.py
-const CACHE = 'read-aloud-v11-' + AUDIO_VERSION;
+const AUDIO_VERSION = 'fd171bc8'; // stamped by tools/audio/build_audio.py
+const CACHE = 'read-aloud-v12-' + AUDIO_VERSION;
 const ASSETS = [
   './', './index.html', './manifest.json',
   './css/styles.css', './js/content.js', './js/speech.js', './js/rewards.js', './js/app.js',
   './audio/clips.json',
   './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png',
-  './icons/icon-maskable-512.png', './icons/apple-touch-icon.png'
+  './icons/icon-maskable-512.png', './icons/apple-touch-icon.png',
+  // lesson photos (adult imagery)
+  './images/apple.webp',
+  './images/bed.webp',
+  './images/bible.webp',
+  './images/box.webp',
+  './images/burger.webp',
+  './images/bus.webp',
+  './images/cat.webp',
+  './images/chicken.webp',
+  './images/closed.webp',
+  './images/coffee.webp',
+  './images/cup.webp',
+  './images/danger.webp',
+  './images/dog.webp',
+  './images/eggs.webp',
+  './images/exit.webp',
+  './images/fish.webp',
+  './images/forms.webp',
+  './images/fries.webp',
+  './images/hat.webp',
+  './images/jet.webp',
+  './images/key.webp',
+  './images/lamp.webp',
+  './images/level-1.webp',
+  './images/level-2.webp',
+  './images/level-3.webp',
+  './images/level-4.webp',
+  './images/map.webp',
+  './images/menu.webp',
+  './images/open.webp',
+  './images/pan.webp',
+  './images/pizza.webp',
+  './images/pull.webp',
+  './images/push.webp',
+  './images/restroom.webp',
+  './images/salad.webp',
+  './images/signs.webp',
+  './images/soup.webp',
+  './images/stop.webp',
+  './images/sun.webp',
+  './images/tent.webp',
+  './images/van.webp',
+  './images/water.webp'
 ];
 
 // Audio clip files have content-hash names, so a cached copy never goes stale.

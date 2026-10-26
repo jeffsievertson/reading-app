@@ -377,12 +377,12 @@
   "variant": "dot092",
   "want": "gad"
  },
- "great": {
-  "dist": 0.0,
-  "heard": "greit",
-  "speak": "Great.",
+ "got it": {
+  "dist": 0.211,
+  "heard": "gadit",
+  "speak": "Got it.",
   "variant": "dot092",
-  "want": "greit"
+  "want": "gatit"
  },
  "h": {
   "dist": 0.01,

@@ -109,7 +109,7 @@ tpl('Rewards.describe (milestone messages)', () => {
 });
 
 // ---- (2) literals in app.js
-const SINGLE_WORD_LABELS = ['Home', 'Next', 'Start', 'Settings', 'Stop', 'Great.'];
+const SINGLE_WORD_LABELS = ['Home', 'Next', 'Start', 'Settings', 'Stop', 'Got it.'];
 const DISPLAY_ONLY = [/^Word bank\. You know $/, /^You know $/, /^Step $/, /^Bible verses: King James/, /^iPhone: Safari/, /^Speech recognition is not available/, /^Tap again to erase$/, /^Automatic$/, /^Read Aloud$/];
 const lit = /'((?:[^'\\\n]|\\.)*)'/g;
 let m;

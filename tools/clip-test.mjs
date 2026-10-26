@@ -202,6 +202,37 @@ for (const [id, word] of [['L3-s1', 'sentence'], ['L4-kjv-psalm-23-1', 'verse']]
   check('coverage: ' + ids.length + ' lessons crawled, every spoken text has a clip', missing.size === 0, [...missing]);
   await ctx.close();
 }
+
+// 13. Whitney tone rewrites: changed spoken lines must have Kokoro clips (not phone fallback)
+{
+  const { ctx, p } = await page();
+  await p.goto(BASE + '#/home'); await p.waitForSelector('.tile');
+  await p.waitForFunction(() => window.Speech.clipCount() > 400);
+  const lines = [
+    'Welcome. This app teaches reading, one sound at a time.',
+    'Got it.',
+    'Done. Tap play for the next one.',
+    'You finished this section. Tap play for the next one.',
+    'Yes. You read it.',
+    'You finished everything. Pick any level to go over again.',
+    'Tap each letter to hear its sound. Then tap Sound it out to put them together.'
+  ];
+  const miss = [];
+  for (const t of lines) {
+    if (!(await p.evaluate((x) => window.Speech.hasClipFor(x), t))) miss.push(t);
+  }
+  check('tone rewrites have Kokoro clips', miss.length === 0, miss);
+  // Imagery: home tiles and a word/sign lesson show photos
+  const homePhotos = await p.locator('.tile-photo').count();
+  check('home level tiles show photos', homePhotos >= 4, homePhotos);
+  await p.goto(BASE + '#/lesson/L2-cat'); await p.waitForSelector('.tile-letter');
+  check('word lesson shows photo', await p.locator('.lesson-photo').count() >= 1, await p.locator('img.photo').count());
+  await p.goto(BASE + '#/lesson/L4-sign-stop'); await p.waitForSelector('.thing');
+  check('STOP sign lesson shows photo', await p.locator('.sign-photo').count() >= 1, await p.locator('img.photo').count());
+  await p.goto(BASE + '#/level/4'); await p.waitForSelector('.tile');
+  check('level 4 category tiles show photos', await p.locator('.tile-photo').count() >= 4, await p.locator('.tile-photo').count());
+  await ctx.close();
+}
 console.log(results.join('\n'));
 console.log(failed ? failed + ' FAILED' : 'all passed');
 await b.close();

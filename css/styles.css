@@ -255,3 +255,17 @@ a.btn { text-decoration: none; color: inherit; }
 .tell { background: var(--ok); color: #08140d !important; min-height: 84px; font-size: 1.5rem; }
 .center.has-milestone { gap: 14px; }
 .has-milestone .done-mark { font-size: 4rem; }
+
+/* Adult lesson photos (Whitney imagery feedback) */
+.photo { display: block; object-fit: cover; border-radius: 12px; background: #1a1a1a; }
+.tile.has-photo { position: relative; overflow: hidden; padding-top: 8px; }
+.tile-photo {
+  width: 100%; height: 88px; margin: 0 0 8px; border-radius: 10px;
+}
+.tile.has-photo .tile-ico { font-size: 1.6rem; opacity: .85; }
+.kw-photo { width: 96px; height: 96px; border-radius: 12px; flex-shrink: 0; }
+.lesson-photo { width: min(220px, 70vw); height: 140px; margin: 0 auto 16px; border-radius: 14px; }
+.reveal-photo { width: min(200px, 60vw); height: 140px; margin: 12px auto 0; border-radius: 14px; }
+.sign-photo { width: min(200px, 55vw); height: 120px; margin: 0 auto 10px; border-radius: 10px; }
+.menu-photo { width: min(180px, 50vw); height: 110px; margin: 8px auto; border-radius: 10px; }
+.sign { display: flex; flex-direction: column; align-items: center; }

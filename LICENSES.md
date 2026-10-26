@@ -1,13 +1,14 @@
 # Licenses and third-party content
 
 ## Summary
-**No third-party code, libraries, fonts, images, or CDNs are shipped in this app.** The only third-party-derived content is audio: the generated voice clips (Apache-2.0 model) and the 26 Level 1 letter sounds, which are cut from human recordings on Wikimedia Commons (CC BY-SA 3.0 / public domain). See below.
+**No third-party code, libraries, fonts, or CDNs are shipped.** Third-party-derived content is audio and adult lesson photos: the generated voice clips (Apache-2.0 model) and the 26 Level 1 letter sounds, which are cut from human recordings on Wikimedia Commons (CC BY-SA 3.0 / public domain). See below.
 
 | Item | Source | License |
 |---|---|---|
 | All HTML, CSS, JavaScript (`index.html`, `css/`, `js/`, `sw.js`, `manifest.json`) | Written for this project | Owner's choice (suggest MIT – see below) |
 | App icons (`icons/icon.svg` and the PNGs rendered from it) | Drawn for this project (simple shapes) | Same as code |
-| Signs, menu, and form graphics | Drawn with CSS in `css/styles.css`, no images | Same as code |
+| Signs, menu, and form graphics | Drawn with CSS in `css/styles.css`; optional photos under `images/` | Same as code + photo licenses below |
+| Lesson photos (`images/*.webp`) | Wikimedia Commons and Unsplash (see `tools/imagery-sources.md`) | Per-file: CC BY / CC BY-SA / Unsplash License / public domain (checked 2026-10-26) |
 | Lesson word lists, sentences, sign/menu/form text | Written for this project (common English words) | Same as code |
 | Bible verses (Level 4) | **King James Version** (Authorized Version, standard 1769 text) | **Public domain in the United States.** (In the UK the KJV is under perpetual Crown patent; this app is intended for US use.) No other translations are used. |
 | Emoji (e.g. ☀️ 🍎 🔊) | Unicode characters drawn by the phone's own system emoji font; no emoji images are bundled | Not distributed by this app |
@@ -88,3 +89,6 @@ The above copyright notice and this permission notice shall be included in all c
 substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
 ```
+
+## Lesson photos (adult imagery)
+Modest WebP photos support home tiles, Level 2 concrete words, Level 4 signs/menu, and some letter keywords. Full source URLs, licenses, authors, and check dates: **`tools/imagery-sources.md`**. Do not replace with kid clipart. Prefer Unsplash License / CC0 / PD / CC BY(-SA) with attribution; reject NC/ND.

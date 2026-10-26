@@ -1,2 +1,5 @@
 node_modules/
 __pycache__/
+
+# uncompressed photo downloads (keep webp only)
+images/raw/

@@ -77,6 +77,13 @@
     return n;
   }
   /** Big icon button. `say` is spoken on long-press so a non-reader can learn what it does. */
+
+  /** Modest lesson photo (adult stock). Returns null when the item has no image. */
+  function photo(slug, cls) {
+    if (!slug) return null;
+    return el('img', { class: 'photo' + (cls ? ' ' + cls : ''), src: 'images/' + slug + '.webp', alt: '', loading: 'lazy', decoding: 'async' });
+  }
+
   function btn(icon, say, onclick, cls, text) {
     return el('button', { class: 'btn ' + (cls || ''), type: 'button', 'aria-label': say, 'data-say': say, onclick },
       el('span', { class: 'ico', 'aria-hidden': 'true' }, icon),
@@ -200,7 +207,7 @@
   let introPending = false;
   function sayIntro() {
     S.say([
-            { text: 'Welcome. This app will help you learn to read, one sound at a time.', pause: 250 },
+            { text: 'Welcome. This app teaches reading, one sound at a time.', pause: 250 },
             { text: 'Any time you need help, tap the speaker at the top.', pause: 250 },
             { text: 'Hold your finger on any button to hear what it does.', pause: 250 },
             'Tap the big play button to begin.'
@@ -213,9 +220,10 @@
       const list = levelItems(lv.n);
       const done = pct(list) === 100;
       return el('button', {
-        class: 'tile' + (done ? ' done' : ''), type: 'button', 'data-say': lv.say, 'aria-label': lv.say,
+        class: 'tile' + (done ? ' done' : '') + (lv.img ? ' has-photo' : ''), type: 'button', 'data-say': lv.say, 'aria-label': lv.say,
         onclick: () => go('#/level/' + lv.n)
       },
+        photo(lv.img, 'tile-photo'),
         el('span', { class: 'tile-ico', 'aria-hidden': 'true' }, lv.icon),
         el('span', { class: 'tile-num' }, String(lv.n)),
         el('span', { class: 'tile-name' }, lv.name),
@@ -244,13 +252,13 @@
       title: 'Read Aloud',
       help: [next
         ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is sentences. Level 4 is real life reading.'
-        : 'You finished everything. Great work. Pick any level to practice again.',
+        : 'You finished everything. Pick any level to go over again.',
       st.say, 'Tap the books to see your word bank.'],
       body: el('div', { class: 'home' }, stats, el('div', { class: 'grid2' }, tiles)),
       footer
     });
     if (introPending) { introPending = false; sayIntro(); return; }
-    S.say(next ? 'Tap play to keep going. Or pick a level.' : 'You finished everything. Great work.');
+    S.say(next ? 'Tap play to keep going. Or pick a level.' : 'You finished everything.');
   }
 
   function itemTile(it) {
@@ -266,7 +274,8 @@
     if (n === 4) {
       const tiles = C.cats.map((c) => {
         const list = levelItems(4, c.id);
-        return el('button', { class: 'tile' + (pct(list) === 100 ? ' done' : ''), type: 'button', 'data-say': c.say, 'aria-label': c.say, onclick: () => go('#/level/4/' + c.id) },
+        return el('button', { class: 'tile' + (pct(list) === 100 ? ' done' : '') + (c.img ? ' has-photo' : ''), type: 'button', 'data-say': c.say, 'aria-label': c.say, onclick: () => go('#/level/4/' + c.id) },
+          photo(c.img, 'tile-photo'),
           el('span', { class: 'tile-ico', 'aria-hidden': 'true' }, c.icon),
           el('span', { class: 'tile-name' }, c.name),
           bar(list));
@@ -310,14 +319,18 @@
   // ---------------------------------------------------------------- rendering of real-life things
   function renderSign(it, small) {
     const kids = [];
-    if (!small && it.style === 'rest') kids.push(el('span', { class: 'sign-ico', 'aria-hidden': 'true' }, '🚻'));
-    if (!small && it.style === 'danger') kids.push(el('span', { class: 'sign-ico', 'aria-hidden': 'true' }, '⚠️'));
+    if (!small && it.img) kids.push(photo(it.img, 'sign-photo'));
+    else {
+      if (!small && it.style === 'rest') kids.push(el('span', { class: 'sign-ico', 'aria-hidden': 'true' }, '🚻'));
+      if (!small && it.style === 'danger') kids.push(el('span', { class: 'sign-ico', 'aria-hidden': 'true' }, '⚠️'));
+    }
     kids.push(el('span', { class: 'sign-text' }, it.t));
     return el('div', { class: 'sign sign-' + it.style + (small ? ' small' : '') }, kids);
   }
   function renderMenu(it, small) {
     return el('div', { class: 'menu-card' + (small ? ' small' : '') },
       small ? null : el('div', { class: 'menu-head' }, '— MENU —'),
+      (!small && it.img) ? photo(it.img, 'menu-photo') : null,
       el('div', { class: 'menu-line' },
         el('span', { class: 'menu-item' }, it.t),
         el('span', { class: 'menu-dots', 'aria-hidden': 'true' }),
@@ -422,7 +435,9 @@
     lessonScreen({
       help,
       body: el('div', { class: 'center' }, big,
-        el('div', { class: 'keyword' }, el('span', { class: 'emoji', 'aria-hidden': 'true' }, it.emoji), el('span', null, kw))),
+        el('div', { class: 'keyword' },
+          it.img ? photo(it.img, 'kw-photo') : el('span', { class: 'emoji', 'aria-hidden': 'true' }, it.emoji),
+          el('span', null, kw))),
       footer: [btn('🔊', 'Hear the sound', () => playLetter(it), 'icon-btn'), nextBtn()]
     });
     // Name first, then the sound (the real letter-sound clip, twice), then the usual intro:
@@ -465,7 +480,7 @@
     if (right) {
       picking = true;
       node.classList.add('right'); good(); vibrate(30);
-      await S.say('Yes!');
+      await S.say('Yes.');
       await sleep(350);
       picking = false;
       nextStep();
@@ -492,12 +507,14 @@
           { text: '', onstart: () => highlight(tiles, -1) }
         ]));
     lessonScreen({
-      help: 'Tap each letter to hear its sound. Then tap the puzzle button to put the sounds together. Then tap play.',
-      body: el('div', { class: 'center' }, el('div', { class: 'tiles' }, tiles),
+      help: 'Tap each letter to hear its sound. Then tap Sound it out to put the sounds together. Then tap play.',
+      body: el('div', { class: 'center' },
+        it.img ? photo(it.img, 'lesson-photo') : null,
+        el('div', { class: 'tiles' }, tiles),
         btn('🧩', 'Sound it out', blend, 'secondary', '')),
       footer: [btn('🧩', 'Sound it out', blend, 'icon-btn'), nextBtn()]
     });
-    S.say('Tap each letter to hear its sound. Then tap the puzzle to put them together.');
+    S.say('Tap each letter to hear its sound. Then tap Sound it out to put them together.');
   }
 
   function stepLearnSight(it) {
@@ -505,7 +522,7 @@
     lessonScreen({
       help: 'This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it) + '. Then tap play.',
       body: el('div', { class: 'center' },
-        el('div', { class: 'badge' }, '⭐'),
+        el('div', { class: 'badge' }, '•'),
         el('button', { class: 'big-word', type: 'button', 'data-say': 'Hear the word', onclick: hear }, it.text)),
       footer: [btn('🔊', 'Hear the word', hear, 'icon-btn'), nextBtn()]
     });
@@ -540,7 +557,7 @@
     const thing = el('button', { class: 'thing', type: 'button', 'data-say': 'Hear it', onclick: hear }, renderThing(it));
     lessonScreen({
       help: 'Tap it to hear what it says. Then tap play.',
-      body: el('div', { class: 'center' }, thing, it.kind === 'menu' ? el('div', { class: 'emoji big' }, it.emoji) : null),
+      body: el('div', { class: 'center' }, thing, (it.kind === 'menu' && !it.img) ? el('div', { class: 'emoji big' }, it.emoji) : null),
       footer: [btn('🔊', 'Hear it', hear, 'icon-btn'), nextBtn()]
     });
     hear();
@@ -691,9 +708,10 @@
       good(); vibrate(30);
       status.textContent = heard ? '✓ “' + heard + '”' : '✓';
       status.className = 'status yes';
-      if (it.emoji && it.kind !== 'letter') reveal.textContent = it.emoji;
+      if (it.img && it.kind !== 'letter') { reveal.replaceChildren(photo(it.img, 'reveal-photo')); }
+      else if (it.emoji && it.kind !== 'letter') reveal.textContent = it.emoji;
       ui.foot.replaceChildren(hearBtn, nextBtn('pulse'));
-      await S.say({ text: heard ? 'Yes! You read it.' : 'Great.', pause: 250 });
+      await S.say({ text: heard ? 'Yes. You read it.' : 'Got it.', pause: 250 });
       if (alive() && (it.kind === 'word' || it.kind === 'sight')) S.say(target, { queue: true });
     }
   }
@@ -741,9 +759,9 @@
     const nxt = nextItemAfter(it);
     screen({
       back: backFor(it),
-      help: 'Great job. Tap play for the next one. Tap the circle arrow to do this one again.',
+      help: 'Done. Tap play for the next one. Tap the circle arrow to do this one again.',
       body: el('div', { class: 'center' + (milestones.length ? ' has-milestone' : '') },
-        el('div', { class: 'done-mark' }, groupDone ? '🏆' : '✓'),
+        el('div', { class: 'done-mark' }, '✓'),
         el('div', { class: 'done-label' }, it.kind === 'verse' ? it.ref : it.label),
         newWord ? el('div', { class: 'added', 'aria-label': 'Added to your word bank' }, '📚 +1') : null,
         milestones.map(milestoneCard)),
@@ -757,7 +775,7 @@
     if (streak.restarted) lines.push({ text: 'Welcome back. This is day 1 of a new streak.', pause: 300 });
     milestones.forEach((m) => lines.push({ text: m.text, pause: 400 }));
     if (milestones.length) lines.push({ text: 'Tap Tell Jeffrey to send him a text. Or tap play for the next one.' });
-    else lines.push(groupDone ? 'Amazing. You finished this whole part. Tap play for the next one.' : 'Great job. Tap play for the next one.');
+    else lines.push(groupDone ? 'You finished this section. Tap play for the next one.' : 'Done. Tap play for the next one.');
     S.say(lines);
   }
 
