@@ -157,11 +157,11 @@ for (const standalone of [false, true]) {
   await p.waitForFunction(() => window.Speech.clipCount() > 400);
   await p.locator('.foot .primary').tap(); await p.waitForSelector('.say-target'); await p.waitForTimeout(1500);
   const L = await log(p);
-  const instr = L.filter((e) => /tap the mic then read it out loud when you're done tap the thumbs up/.test(e.key));
+  const instr = L.filter((e) => /tap the mic then say it out loud the app will check/.test(e.key));
   check(tag + ': say-it instruction played as a clip', instr.length && instr.every((e) => e.how === 'clip'), L.slice(-3));
   const foot = await p.evaluate(() => [...document.querySelectorAll('.foot .btn')].map((x) => ({ ico: x.querySelector('.ico')?.textContent, w: Math.round(x.getBoundingClientRect().width), h: Math.round(x.getBoundingClientRect().height) })));
   const mic = foot.find((f) => f.ico === '🎤'), ok = foot.find((f) => f.ico === '👍');
-  check(tag + ': footer order 🔊 🎤 👍, mic and 👍 both big', foot.map((f) => f.ico).join('') === '🔊🎤👍' && mic.h >= 56 && ok.h >= 56 && Math.abs(mic.w - ok.w) < 4, foot);
+  check(tag + ': footer 🔊 🎤 (no 👍 yet), mic big', foot.map((f) => f.ico).join('') === '🔊🎤' && mic && mic.h >= 56 && !ok, foot);
   await p.locator('.foot .mic').tap(); await p.waitForTimeout(standalone ? 1500 : 1200);
   const s = await p.evaluate(() => document.querySelector('.status')?.textContent || '');
   check(tag + ': mic still works after clip playback', /sat/.test(s), s);
@@ -177,8 +177,8 @@ for (const [id, word] of [['L3-s1', 'sentence'], ['L4-kjv-psalm-23-1', 'verse']]
   await p.goto(BASE + '#/lesson/' + id); await p.waitForSelector('.main .center');
   for (let i = 0; i < 4 && !(await p.locator('.say-target').count()); i++) { await p.locator('.foot .primary').tap(); await p.waitForTimeout(300); }
   await p.waitForTimeout(1200);
-  const k = (await log(p)).map((e) => e.key).filter((x) => /thumbs up/.test(x)).pop();
-  check(word + ' say-it: "tap the mic, then read the ' + word + ' out loud. when you’re done, tap the thumbs up"', k === 'tap the mic then read the ' + word + " out loud when you're done tap the thumbs up", k);
+  const k = (await log(p)).map((e) => e.key).filter((x) => /app will check/.test(x)).pop();
+  check(word + ' say-it: "tap the mic, then say the ' + word + ' out loud. the app will check"', k === 'tap the mic then say the ' + word + ' out loud the app will check', k);
   await ctx.close();
 }
 // 12. Coverage crawl: every lesson's first screens speak only texts that have clips

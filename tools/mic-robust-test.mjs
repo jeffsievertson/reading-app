@@ -1,6 +1,6 @@
 // Run: node tools/mic-robust-test.mjs  (needs a local server: python3 -m http.server 8765)
 // Fake recognizers that misbehave the way real phones do (iOS standalone especially),
-// checking that the "say it" step never stays blocked and always offers 👍 / stop.
+// checking that the "say it" step never stays blocked; 👍 Continue anyway after 2 soft fails.
 import { chromium } from 'playwright-core';
 const BASE = process.env.BASE || 'http://127.0.0.1:8765/';
 const b = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', args: ['--no-sandbox'] });
@@ -62,7 +62,7 @@ const st = async (p) => p.evaluate(() => ({
   next: !!document.querySelector('.foot .primary'),
   rec: window.__rec
 }));
-const interactive = (s) => !s.listening && (s.ok || s.next);
+const interactive = (s) => !s.listening && (s.ok || s.next || s.mic);
 
 // 1. Recognizer never fires anything (also covers the permission prompt eating the first start)
 {
@@ -71,10 +71,13 @@ const interactive = (s) => !s.listening && (s.ok || s.next);
   const during = await st(p);
   check('silent: stop control visible while listening', during.listening && during.micIco === '⏹', during);
   await p.waitForTimeout(8000); // 4s first watchdog + auto-retry 3s
-  const s = await st(p);
-  check('silent: back to interactive with 👍 after watchdog + one retry', interactive(s) && s.ok && s.rec.starts === 2 && s.rec.active === 0, s);
+  let s = await st(p);
+  check('silent: back to interactive after watchdog; 👍 still hidden (1 fail)', interactive(s) && !s.ok && s.mic && s.rec.starts === 2 && s.rec.active === 0, s);
+  await p.locator('.mic').click(); await p.waitForTimeout(4000); // 2nd fail (no auto-retry)
+  s = await st(p);
+  check('silent: Continue anyway after 2 soft fails', interactive(s) && s.ok && s.mic, s);
   await p.locator('.ok-btn').click(); await p.waitForTimeout(200);
-  check('silent: 👍 completes the step', (await st(p)).next, await st(p));
+  check('silent: Continue anyway completes the step', (await st(p)).next, await st(p));
   check('silent: no page errors', !errors.length, errors);
   await ctx.close();
 }
@@ -92,8 +95,11 @@ const interactive = (s) => !s.listening && (s.ok || s.next);
 {
   const { ctx, p, errors } = await setup(['startNoEnd']);
   await p.locator('.mic').click(); await p.waitForTimeout(7600);
-  const s = await st(p);
-  check('startNoEnd: max-listen cap ends it, 👍 shown', interactive(s) && s.ok && s.status === '🔇' && s.rec.active === 0, s);
+  let s = await st(p);
+  check('startNoEnd: max-listen cap ends it, still no 👍 (1 fail)', interactive(s) && !s.ok && s.status === '🔇' && s.rec.active === 0, s);
+  await p.locator('.mic').click(); await p.waitForTimeout(7600);
+  s = await st(p);
+  check('startNoEnd: Continue anyway after 2 fails', interactive(s) && s.ok && s.status === '🔇', s);
   check('startNoEnd: no page errors', !errors.length, errors);
   await ctx.close();
 }
@@ -101,8 +107,11 @@ const interactive = (s) => !s.listening && (s.ok || s.next);
 {
   const { ctx, p, errors } = await setup(['throw']);
   await p.locator('.mic').click(); await p.waitForTimeout(1000);
-  const s = await st(p);
-  check('throw: interactive with 👍', interactive(s) && s.ok, s);
+  let s = await st(p);
+  check('throw: interactive after 1 fail, no 👍 yet', interactive(s) && !s.ok && s.mic, s);
+  await p.locator('.mic').click(); await p.waitForTimeout(1000);
+  s = await st(p);
+  check('throw: Continue anyway after 2 fails', interactive(s) && s.ok, s);
   check('throw: no page errors', !errors.length, errors);
   await ctx.close();
 }
@@ -131,7 +140,7 @@ for (const code of ['not-allowed', 'service-not-allowed', 'audio-capture', 'no-s
   await p.locator('.mic').click(); await p.waitForTimeout(800);
   const s = await st(p);
   const hard = ['not-allowed', 'service-not-allowed', 'audio-capture'].includes(code);
-  check('error ' + code + ': interactive, 👍 shown' + (hard ? ', mic removed' : ', mic kept'), interactive(s) && s.ok && (hard ? !s.mic : s.mic), s);
+  check('error ' + code + ': interactive, Continue anyway' + (hard ? ', mic removed' : ', mic kept'), interactive(s) && s.ok && (hard ? !s.mic : s.mic), s);
   check('error ' + code + ': no page errors', !errors.length, errors);
   await ctx.close();
 }
@@ -154,16 +163,16 @@ for (const code of ['not-allowed', 'service-not-allowed', 'audio-capture', 'no-s
   check('navigate away: recognizer aborted, no errors, no stray status', s.rec.active === 0 && !errors.length && s.status === undefined, { s, errors });
   await ctx.close();
 }
-// 10. iOS standalone (home-screen app): 👍 is the main path, optional mic fails fast
+// 10. iOS standalone (home-screen app): mic first; dead recognizer drops mic → thumbs up
 {
   const { ctx, p, errors } = await setup(['silent'], { ios: true, standalone: true });
   const s0 = await st(p);
-  check('iOS standalone: 👍 shown from the start', s0.ok && s0.mic && !s0.listening, s0);
+  check('iOS standalone: mic shown, 👍 hidden at start', !s0.ok && s0.mic && !s0.listening, s0);
   await p.locator('.mic').click(); await p.waitForTimeout(400);
   check('iOS standalone: stop visible while trying mic', (await st(p)).micIco === '⏹', await st(p));
   await p.waitForTimeout(7500); // 250ms delay + 4s + 250ms + 2.5s
   const s = await st(p);
-  check('iOS standalone: dead recognizer -> mic dropped, 👍 remains', interactive(s) && s.ok && !s.mic && s.rec.active === 0, s);
+  check('iOS standalone: dead recognizer -> mic dropped, thumbs up shown', interactive(s) && s.ok && !s.mic && s.rec.active === 0, s);
   check('iOS standalone: no page errors', !errors.length, errors);
   await ctx.close();
 }
@@ -175,11 +184,27 @@ for (const code of ['not-allowed', 'service-not-allowed', 'audio-capture', 'no-s
   check('iOS standalone: working mic still succeeds', s.next && /sat/.test(s.status), s);
   await ctx.close();
 }
-// 12. iOS Safari (not standalone): mic -> read aloud -> thumbs up, both visible
+// 12. iOS Safari (not standalone): mic primary, no 👍 until soft fails
 {
   const { ctx, p } = await setup(['result:sat'], { ios: true });
   const s = await st(p);
-  check('iOS Safari tab: 🎤 and 👍 both shown, mic first', s.mic && s.ok && s.order === '🔊🎤👍', s);
+  check('iOS Safari tab: 🎤 shown, 👍 hidden at start', s.mic && !s.ok && s.order === '🔊🎤', s);
+  await ctx.close();
+}
+// 13. Wrong match twice then Continue anyway; recent matching result scored on 👍
+{
+  const { ctx, p } = await setup(['result:sit', 'result:sit', 'result:sat']);
+  await p.locator('.mic').click(); await p.waitForTimeout(800);
+  check('score: no 👍 after first wrong', !(await st(p)).ok, await st(p));
+  await p.locator('.mic').click(); await p.waitForTimeout(800);
+  check('score: Continue anyway after second wrong', (await st(p)).ok, await st(p));
+  await p.locator('.mic').click(); await p.waitForTimeout(800); // stores sat (match → may already succeed)
+  let s = await st(p);
+  if (!s.next && s.ok) {
+    await p.locator('.ok-btn').click(); await p.waitForTimeout(400);
+    s = await st(p);
+  }
+  check('score: third listen matching sat succeeds (direct or via 👍)', s.next && /sat/.test(s.status || ''), s);
   await ctx.close();
 }
 console.log(results.join('\n'));

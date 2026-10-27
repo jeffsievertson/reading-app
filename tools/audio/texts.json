@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 733,
+ "count": 736,
  "letters": [
   {
    "l": "a",
@@ -6555,45 +6555,45 @@
    ]
   },
   {
-   "key": "tap the mic then read it out loud",
-   "text": "Tap the mic, then read it out loud",
-   "speak": "Tap the mic, then read it out loud",
+   "key": "tap the mic then say it out loud",
+   "text": "Tap the mic, then say it out loud",
+   "speak": "Tap the mic, then say it out loud",
    "kind": "text",
    "sources": [
     "app.js"
    ]
   },
   {
-   "key": "thumbs up i read it",
-   "text": "Thumbs up: I read it",
-   "speak": "Thumbs up: I read it",
+   "key": "continue anyway",
+   "text": "Continue anyway",
+   "speak": "Continue anyway",
    "kind": "text",
    "sources": [
     "app.js"
    ]
   },
   {
-   "key": "tap the mic then read it out loud when you're done tap the thumbs up",
-   "text": "Tap the mic, then read it out loud. When you’re done, tap the thumbs up.",
-   "speak": "Tap the mic, then read it out loud. When you’re done, tap the thumbs up.",
+   "key": "tap the mic then say it out loud the app will check",
+   "text": "Tap the mic, then say it out loud. The app will check.",
+   "speak": "Tap the mic, then say it out loud. The app will check.",
    "kind": "text",
    "sources": [
     "app.js"
    ]
   },
   {
-   "key": "tap the mic then read the sentence out loud when you're done tap the thumbs up",
-   "text": "Tap the mic, then read the sentence out loud. When you’re done, tap the thumbs up.",
-   "speak": "Tap the mic, then read the sentence out loud. When you’re done, tap the thumbs up.",
+   "key": "tap the mic then say the sentence out loud the app will check",
+   "text": "Tap the mic, then say the sentence out loud. The app will check.",
+   "speak": "Tap the mic, then say the sentence out loud. The app will check.",
    "kind": "text",
    "sources": [
     "app.js"
    ]
   },
   {
-   "key": "tap the mic then read the verse out loud when you're done tap the thumbs up",
-   "text": "Tap the mic, then read the verse out loud. When you’re done, tap the thumbs up.",
-   "speak": "Tap the mic, then read the verse out loud. When you’re done, tap the thumbs up.",
+   "key": "tap the mic then say the verse out loud the app will check",
+   "text": "Tap the mic, then say the verse out loud. The app will check.",
+   "speak": "Tap the mic, then say the verse out loud. The app will check.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6627,9 +6627,27 @@
    ]
   },
   {
+   "key": "try again or tap continue anyway",
+   "text": "Try again, or tap Continue anyway.",
+   "speak": "Try again, or tap Continue anyway.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
    "key": "if you need help tap the speaker",
    "text": "If you need help, tap the speaker.",
    "speak": "If you need help, tap the speaker.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "thumbs up i read it",
+   "text": "Thumbs up: I read it",
+   "speak": "Thumbs up: I read it",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6654,18 +6672,27 @@
    ]
   },
   {
-   "key": "try again or tap the thumbs up if you said it",
-   "text": "Try again. Or tap the thumbs up if you said it.",
-   "speak": "Try again. Or tap the thumbs up if you said it.",
+   "key": "try again",
+   "text": "Try again.",
+   "speak": "Try again.",
    "kind": "text",
    "sources": [
     "app.js"
    ]
   },
   {
-   "key": "i did not hear you try again or tap the thumbs up if you said it",
-   "text": "I did not hear you. Try again, or tap the thumbs up if you said it.",
-   "speak": "I did not hear you. Try again, or tap the thumbs up if you said it.",
+   "key": "i did not hear you try again or tap continue anyway",
+   "text": "I did not hear you. Try again, or tap Continue anyway.",
+   "speak": "I did not hear you. Try again, or tap Continue anyway.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "i did not hear you try again",
+   "text": "I did not hear you. Try again.",
+   "speak": "I did not hear you. Try again.",
    "kind": "text",
    "sources": [
     "app.js"

@@ -564,25 +564,24 @@
   }
 
   // ---- Say it (speech recognition or self-check)
-  // The UI must never get stuck waiting on the recognizer: Speech.listen() always resolves
-  // (start watchdog + max-listen cap) and the 🎤 turns into a ⏹ stop button while listening.
-  // 🎤 and 👍 are always both on screen (mic -> read aloud -> thumbs up). On an iPhone
-  // home-screen app (iOS standalone), where recognition is unreliable, the mic uses a
-  // shorter watchdog and is dropped if the recognizer never starts; 👍 always works.
+  // Mic is the primary check. Speech.listen() always resolves (start watchdog + max-listen
+  // cap); 🎤 becomes ⏹ while listening. 👍 is "Continue anyway" after N soft fails (or when
+  // there is no mic) — not the primary finish. On iPhone home-screen, a dead recognizer
+  // drops the mic and falls back to thumbs up.
   let micBlocked = false;       // mic permanently unusable this session (denied / broken)
   let micAttempts = 0;          // listen attempts this session (first one may hit the permission prompt)
   let sayToken = 0;             // changes whenever a say-step is left, so stale results are ignored
   const HARD_FAIL = ['not-allowed', 'service-not-allowed', 'unsupported', 'audio-capture', 'language-not-supported'];
+  const FAILS_BEFORE_CONTINUE = 2; // soft fails (wrong match or no-speech) before 👍 Continue anyway
   function stepSayIt(it) {
     const my = ++sayToken;
     const alive = () => my === sayToken && lesson && lesson.it === it;
     const target = spoken(it);
     const iosPwa = !!S.isIOSStandalone;
     const micOn = state.settings.mic && S.canListen() && !micBlocked;
-    // Owner's flow on every say-it step: 🎤 mic, read it out loud, then 👍 thumbs up.
-    // Both buttons are always visible and the same size, in that order (also on iPhone).
     let fails = 0;
     let busy = false;
+    let lastAlts = null; // most recent recognizer alternatives (for scoring a late 👍)
 
     let display;
     if (it.kind === 'sentence' || it.kind === 'verse') display = chipsFor(it.text, it.say).node;
@@ -592,16 +591,17 @@
     const status = el('div', { class: 'status', 'aria-live': 'polite' });
     const reveal = el('div', { class: 'emoji big reveal' });
     const hear = () => { if (busy) cancel(); S.say(it.kind === 'menu' ? it.t : target); };
-    const micBtn = btn('🎤', 'Tap the mic, then read it out loud', () => (busy ? cancel() : listen()), 'mic grow');
-    const okBtn = btn('👍', 'Thumbs up: I read it', () => { if (busy) cancel(); success(null); }, 'ok-btn grow');
+    const micBtn = btn('🎤', 'Tap the mic, then say it out loud', () => (busy ? cancel() : listen()), 'mic grow');
+    const okBtn = btn('👍', 'Continue anyway', () => onContinue(), 'ok-btn grow');
     const what = it.kind === 'sentence' ? 'sentence' : it.kind === 'verse' ? 'verse' : 'it';
     const SAY = {
-      mic: { it: 'Tap the mic, then read it out loud. When you’re done, tap the thumbs up.',
-        sentence: 'Tap the mic, then read the sentence out loud. When you’re done, tap the thumbs up.',
-        verse: 'Tap the mic, then read the verse out loud. When you’re done, tap the thumbs up.' },
+      mic: { it: 'Tap the mic, then say it out loud. The app will check.',
+        sentence: 'Tap the mic, then say the sentence out loud. The app will check.',
+        verse: 'Tap the mic, then say the verse out loud. The app will check.' },
       noMic: { it: 'Read it out loud. When you’re done, tap the thumbs up.',
         sentence: 'Read the sentence out loud. When you’re done, tap the thumbs up.',
-        verse: 'Read the verse out loud. When you’re done, tap the thumbs up.' }
+        verse: 'Read the verse out loud. When you’re done, tap the thumbs up.' },
+      continueHint: 'Try again, or tap Continue anyway.'
     };
     const HELP_EXTRA = 'If you need help, tap the speaker.';
     const hearBtn = btn('🔊', 'Hear it', hear, 'icon-btn');
@@ -610,18 +610,30 @@
     const ui = lessonScreen({
       help: [instr, HELP_EXTRA],
       body: el('div', { class: 'center' }, el('div', { class: 'say-target' }, display), reveal, status),
-      footer: micOn ? [hearBtn, micBtn, okBtn] : [hearBtn, okBtn]
+      // Mic path: no 👍 until soft fails (or mic dropped). No-mic: 👍 is the finish.
+      footer: micOn ? [hearBtn, micBtn] : [hearBtn, okBtn]
     });
     S.say(instr);
 
-    function showOk() {
+    function showContinue() {
+      okBtn.setAttribute('aria-label', 'Continue anyway');
+      okBtn.dataset.say = 'Continue anyway';
       if (!ui.foot.contains(okBtn)) ui.foot.append(okBtn);
+    }
+    function onContinue() {
+      if (busy) cancel();
+      // Prefer scoring a recent listen result over a free pass.
+      if (lastAlts && S.matches(target, lastAlts, C.homophones)) {
+        success(lastAlts[0]);
+        return;
+      }
+      success(null);
     }
     function setListening(on) {
       busy = on;
       micBtn.classList.toggle('listening', on);
-      micBtn.setAttribute('aria-label', on ? 'Stop' : 'Tap the mic, then read it out loud');
-      micBtn.dataset.say = on ? 'Stop' : 'Tap the mic, then read it out loud';
+      micBtn.setAttribute('aria-label', on ? 'Stop' : 'Tap the mic, then say it out loud');
+      micBtn.dataset.say = on ? 'Stop' : 'Tap the mic, then say it out loud';
       const ico = micBtn.querySelector('.ico');
       if (ico) ico.textContent = on ? '⏹' : '🎤';
     }
@@ -632,7 +644,10 @@
     function dropMic(msg) {
       micBlocked = true;
       setHelp([SAY.noMic[what], HELP_EXTRA]);
-      micBtn.remove(); okBtn.classList.add('grow'); showOk();
+      micBtn.remove();
+      okBtn.setAttribute('aria-label', 'Thumbs up: I read it');
+      okBtn.dataset.say = 'Thumbs up: I read it';
+      showContinue();
       status.textContent = '🎤 ✗';
       status.className = 'status no';
       if (msg) S.say(msg);
@@ -672,6 +687,7 @@
       if (!alive()) return;              // user left the screen meanwhile
       if (res.error === 'cancelled') return; // user tapped stop / 👍 / speaker
       try {
+        if (res.ok) lastAlts = res.alts;
         if (res.ok && S.matches(target, res.alts, C.homophones)) { success(res.alts[0]); return; }
         if (!res.ok && HARD_FAIL.includes(res.error)) {
           dropMic('The mic is not working here. Read it out loud. When you’re done, tap the thumbs up.');
@@ -684,21 +700,25 @@
         }
         fails++;
         bad();
-        showOk(); // 👍 after any failure
-        if (fails >= 3 && !res.started) { dropMic(); }
+        const offerContinue = fails >= FAILS_BEFORE_CONTINUE;
+        if (offerContinue) showContinue();
+        if (fails >= 3 && !res.started) { dropMic(); return; }
         if (res.ok) {
           status.textContent = '“' + res.alts[0] + '”';
           status.className = 'status no';
           if (!(await S.say({ text: 'Not quite. Listen.', pause: 200 })) || !alive()) return;
           if (!(await S.say({ text: target, rateMul: 0.8, pause: 300 }, { queue: true })) || !alive()) return;
-          S.say('Try again. Or tap the thumbs up if you said it.', { queue: true });
+          S.say(offerContinue ? SAY.continueHint : 'Try again.', { queue: true });
         } else {
           status.textContent = '🔇';
           status.className = 'status no';
-          S.say('I did not hear you. Try again, or tap the thumbs up if you said it.');
+          S.say(offerContinue
+            ? 'I did not hear you. Try again, or tap Continue anyway.'
+            : 'I did not hear you. Try again.');
         }
       } catch (e) {
-        setListening(false); showOk();
+        setListening(false);
+        if (fails >= FAILS_BEFORE_CONTINUE) showContinue();
       }
     }
     async function success(heard) {

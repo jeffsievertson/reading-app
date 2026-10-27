@@ -82,23 +82,22 @@ Notes
   audio* below.
 
 ### "Say it" step (speech recognition)
-- Every say-it step says: **"Tap the mic, then read it out loud. When you're done, tap
-  the thumbs up."** (sentences/verses: "…read the sentence/verse out loud…"). The screen
-  shows 🔊, 🎤 and 👍 in that order, 🎤 and 👍 the same big size, on every phone and in
-  the iPhone home-screen app.
-- If the browser supports `SpeechRecognition`/`webkitSpeechRecognition`, the 🎤 button
-  listens once and checks the answer (accepts several recognizer alternatives, common
-  homophones like sun/son, and ~75% of the words for sentences).
+- With the mic on, every say-it step says: **"Tap the mic, then say it out loud. The app
+  will check."** (sentences/verses: "…say the sentence/verse out loud…"). The screen shows
+  🔊 and 🎤; 👍 is **not** the primary finish.
+- 🎤 listens once and checks the answer (several recognizer alternatives, common
+  homophones like sun/son, ~75% of the words for sentences). Wrong match: "Not quite.
+  Listen." then the target, then "Try again." After **2** soft fails (wrong match or
+  no-speech), 👍 appears as **"Continue anyway"** (accessibility / bad recognizer / accent).
+  If you tap 👍 and a recent listen result still matches, that result is scored instead of
+  a free pass.
 - Listening can never lock the screen: a watchdog gives up if the recognizer hasn't
-  started within ~3–4 s (e.g. stuck behind the first mic-permission prompt; the first try
-  is retried once automatically) and caps listening at 7–12 s. While listening the 🎤
-  becomes ⏹ (tap to stop). 👍 always works, with or without the mic.
-- On an iPhone home-screen app (standalone mode), where Apple's recognizer is unreliable,
-  the mic uses a shorter watchdog; if it doesn't start it is hidden for the rest of the
-  session and the instruction changes to "Read it out loud. When you're done, tap the
-  thumbs up."
-- If the mic is blocked/unsupported/turned off in ⚙️ the step is simply "Read it out
-  loud. When you're done, tap the thumbs up." 
+  started within ~3–4 s (first try retried once) and caps listening at 7–12 s. While
+  listening the 🎤 becomes ⏹ (tap to stop).
+- On an iPhone home-screen app, a dead recognizer drops the mic for the session and the
+  instruction becomes "Read it out loud. When you're done, tap the thumbs up."
+- If the mic is blocked/unsupported/turned off in ⚙️ the step is the same no-mic path
+  (thumbs up to finish).
 
 ### Settings ⚙️
 Voice speed (🐢 🚶 🏃), voice (Natural voice – recommended – or a phone voice), microphone on/off, erase progress (two taps),

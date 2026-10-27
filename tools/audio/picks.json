@@ -156,6 +156,13 @@
   "variant": "dot092",
   "want": "kofi"
  },
+ "continue anyway": {
+  "dist": 0.011,
+  "heard": "k@ntinjueniwei",
+  "speak": "Continue anyway",
+  "variant": "dot092",
+  "want": "k@ntinjueniwei"
+ },
  "created": {
   "dist": 0.001,
   "heard": "krieitid",
@@ -1351,6 +1358,13 @@
   "speak": "top",
   "variant": "now092",
   "want": "tap"
+ },
+ "try again": {
+  "dist": 0.011,
+  "heard": "traiagen",
+  "speak": "Try again.",
+  "variant": "dot092",
+  "want": "traiagen"
  },
  "u": {
   "dist": 0.006,
