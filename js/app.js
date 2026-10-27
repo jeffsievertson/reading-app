@@ -759,7 +759,7 @@
       if (it.img && it.kind !== 'letter') { reveal.replaceChildren(photo(it.img, 'reveal-photo')); }
       else if (it.emoji && it.kind !== 'letter') reveal.textContent = it.emoji;
       ui.foot.replaceChildren(hearBtn, nextBtn('pulse'));
-      await S.say({ text: heard ? 'Yes. You read it.' : 'Got it.', pause: 250 });
+      await S.say({ text: heard ? 'Yes. You read it.' : 'Got it.', tts: heard ? ['Yes.', 'You', 'red', 'it.'].join(' ') : undefined, pause: 250 });
       if (alive() && (it.kind === 'word' || it.kind === 'sight')) S.say(target, { queue: true });
     }
   }

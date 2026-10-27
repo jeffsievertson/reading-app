@@ -23,6 +23,14 @@
   "orig": "Hear this sound",
   "speak": "Hear this sound..."
  },
+ "thumbs up i read it": {
+  "orig": "Thumbs up: I read it",
+  "speak": "Thumbs up: I red it"
+ },
+ "yes you read it": {
+  "orig": "Yes. You read it.",
+  "speak": "Yes. You red it."
+ },
  "you know 88 words": {
   "orig": "You know eighty-eight words.",
   "speak": "You know eighty eight words."
