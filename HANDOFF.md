@@ -1,13 +1,16 @@
 # Handoff – Read Aloud (Oct 27, 2026)
 
-## Latest (v13): mic-check UX
-- Say-it with mic: **"Tap the mic, then say it out loud. The app will check."** (sentence/verse variants). 👍 is **not** the primary finish.
-- Soft fails (wrong match / no-speech): keep “Not quite. Listen.” / “Try again.” After **2** soft fails, 👍 appears as **Continue anyway**. Hard mic failure / iOS-standalone dead recognizer still drops mic → no-mic thumbs-up path.
-- Optional scoring: if Continue anyway is tapped and a recent listen result matches, that transcript is credited (`Yes. You read it.`) instead of a free `Got it.`
-- Kokoro clips rebuilt for new lines (`AUDIO_VERSION` e5efd8e0). Cache **`read-aloud-v13-`**. Tests: `tools/mic-test.mjs`, `tools/mic-robust-test.mjs` (+ clip-test say-it expectations).
+## Latest (v14): item-tile text fit
+- Long labels on Signs (and other `.items` grids) no longer clip: `fitItemTiles()` scales
+  the label font down until `scrollWidth` fits the tile; CSS centers text and clips overflow.
+  Covered: Signs, Menu, Forms, Level 2 words, Word Bank. Screenshot: `screenshots/29-signs-tiles-fit.png`.
+- Test: `tools/tile-fit-test.mjs`. Cache **`read-aloud-v14-`** (same audio as v13).
 
-## Still true (v12)
-Adult tone + 42 lesson WebPs. Human Wikimedia letter sounds — leave alone (Jeffrey may replace later). Live: https://jeffsievertson.github.io/reading-app/
+## Still true (v13 / v12)
+- Mic-check: say-it checks speech; 👍 Continue anyway after 2 soft fails; recent result scored.
+- Adult tone + lesson WebPs. Human letter sounds — leave alone.
+
+Live: https://jeffsievertson.github.io/reading-app/
 
 ## Next
-Whitney’s longer write-up when it arrives. On phone: open twice for v13; confirm mic must match before Continue anyway appears.
+Whitney’s longer write-up. On phone: open twice for v14; confirm RESTROOM/CLOSED/DANGER fully visible on Signs.

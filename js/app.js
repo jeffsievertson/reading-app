@@ -144,6 +144,8 @@
     const foot = el('footer', { class: 'foot' }, footer || null);
     app.replaceChildren(top, main, foot);
     main.scrollTop = 0;
+    // Scale long tile labels (RESTROOM, CLOSED, …) after layout.
+    requestAnimationFrame(() => fitItemTiles(main));
     return { top, main, foot };
   }
   // Navigate synchronously (pushState + route) so speech starts inside the tap's user gesture.
@@ -259,6 +261,32 @@
     });
     if (introPending) { introPending = false; sayIntro(); return; }
     S.say(next ? 'Tap play to keep going. Or pick a level.' : 'You finished everything.');
+  }
+
+
+  /** Shrink a grid tile label until the full word fits (RESTROOM, CLOSED, …). */
+  function fitItemTiles(root) {
+    const box = root || document;
+    box.querySelectorAll('.items .item:not(.wide)').forEach((btn) => {
+      const span = [...btn.children].find((c) => c.tagName === 'SPAN' && !c.classList.contains('check'));
+      if (!span) return;
+      span.style.fontSize = '';
+      span.style.whiteSpace = 'nowrap';
+      const pad = 8; // leftover after .item padding
+      const maxW = Math.max(0, btn.clientWidth - pad);
+      if (!maxW) return;
+      let size = parseFloat(getComputedStyle(btn).fontSize) || 24;
+      const min = 11;
+      // Step down until text fits; binary-ish coarse then fine.
+      while (span.scrollWidth > maxW && size > min) {
+        size = Math.max(min, size - (span.scrollWidth > maxW * 1.5 ? 3 : 1));
+        span.style.fontSize = size + 'px';
+      }
+      if (span.scrollWidth > maxW) {
+        span.style.whiteSpace = 'normal';
+        span.style.overflowWrap = 'anywhere';
+      }
+    });
   }
 
   function itemTile(it) {
@@ -924,6 +952,7 @@
   window.addEventListener('popstate', route);   // phone back button / swipe
   window.addEventListener('hashchange', route); // manual URL edits
   // Leaving the app mid-listen (home button, call, app switch): stop the recognizer.
+  window.addEventListener('resize', () => fitItemTiles(app));
   document.addEventListener('visibilitychange', () => { if (document.hidden) { try { S.cancelListen(); } catch (e) {} } });
   route();
 
