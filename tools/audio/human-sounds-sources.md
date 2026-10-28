@@ -1,3 +1,7 @@
+> **Superseded 2026-10-27 (v16):** Level 1 letter sounds now come from Whitney’s
+> recording (`whitney-sounds-sources.md` / `human.py`). This file is kept as a historical
+> record of the Wikimedia Commons set that shipped through v15.
+
 # Human letter sounds: sources and licenses
 
 All sources were checked on **2026-10-23** on Wikimedia Commons (file pages, file history, and wikitext license tags). The original files are kept unmodified in `tools/audio/human/`. Their exact download URL, version timestamp and SHA-1 are in `tools/audio/human/sources.json`. Cut points are in `tools/audio/human.py`.
