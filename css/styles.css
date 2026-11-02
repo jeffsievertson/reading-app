@@ -171,6 +171,12 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 .status { font-size: 1.6rem; min-height: 2.2rem; color: var(--muted); text-align: center; }
 .status.yes { color: var(--ok); font-weight: 800; }
 .status.no { color: var(--bad); }
+.listen-note { width: 100%; box-sizing: border-box; padding: 14px 16px; border-radius: var(--radius);
+  background: var(--surface2); border: 2px solid var(--accent); color: var(--text);
+  font-size: 1.6rem; font-weight: 800; line-height: 1.3; text-align: center; overflow-wrap: break-word; }
+.listen-note[hidden] { display: none; }
+.foot.foot-listening { flex-wrap: wrap; }
+.foot > .listen-note { flex: 1 0 100%; padding: 10px 14px; }
 .done-mark { font-size: 7rem; color: var(--ok); font-weight: 900; line-height: 1; }
 .done-label { font-size: 2.2rem; font-weight: 700; text-align: center; }
 

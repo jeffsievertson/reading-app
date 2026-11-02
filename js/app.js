@@ -617,6 +617,13 @@
     else display = el('div', { class: 'big-word' }, it.text);
 
     const status = el('div', { class: 'status', 'aria-live': 'polite' });
+    // Shown above the footer buttons only while the mic is open: speak, then let the app finish checking (on screen
+    // only — nothing is spoken while the mic is listening).
+    const oneWord = (it.kind === 'word' || it.kind === 'sight' ||
+      ((it.kind === 'sign' || it.kind === 'menu' || it.kind === 'form') && !/\s/.test(String(it.text).trim())));
+    const WAIT_NOTE = oneWord ? 'Say the word, then wait. I’ll check it for you.'
+      : 'Say it, then wait. I’ll check it for you.';
+    const waitNote = el('div', { class: 'listen-note', role: 'status', hidden: '' }, WAIT_NOTE);
     const reveal = el('div', { class: 'emoji big reveal' });
     const hear = () => { if (busy) cancel(); S.say(it.kind === 'menu' ? it.t : target); };
     const micBtn = btn('🎤', 'Tap the mic, then say it out loud', () => (busy ? cancel() : listen()), 'mic grow');
@@ -639,7 +646,7 @@
       help: [instr, HELP_EXTRA],
       body: el('div', { class: 'center' }, el('div', { class: 'say-target' }, display), reveal, status),
       // Mic path: no 👍 until soft fails (or mic dropped). No-mic: 👍 is the finish.
-      footer: micOn ? [hearBtn, micBtn] : [hearBtn, okBtn]
+      footer: micOn ? [waitNote, hearBtn, micBtn] : [hearBtn, okBtn]
     });
     S.say(instr);
 
@@ -659,6 +666,8 @@
     }
     function setListening(on) {
       busy = on;
+      waitNote.hidden = !on;
+      waitNote.parentNode && waitNote.parentNode.classList.toggle('foot-listening', on);
       micBtn.classList.toggle('listening', on);
       micBtn.setAttribute('aria-label', on ? 'Stop' : 'Tap the mic, then say it out loud');
       micBtn.dataset.say = on ? 'Stop' : 'Tap the mic, then say it out loud';
