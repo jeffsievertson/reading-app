@@ -1,6 +1,23 @@
-# Handoff – Read Aloud (Nov 3, 2026, v18)
+# Handoff – Read Aloud (Nov 3, 2026, v19)
 
-## Latest (v18): mic speak window + spoken retry + countdown ring; cleanup
+## Latest (v19): long sign / form / menu words fit their frame on narrow phones
+- Bug (Sentinel audit of v18, 320 px): on the RESTROOM sign lesson screen the word ran into the white frame.
+- Root cause: only grid tiles had a fit pass (fitGrid). The single big sign / menu line / form field used fixed
+  CSS sizes (sign 3rem, menu 2.4rem, form 1.9rem) and min-widths of 240 / 300 / 310 px, wider than the 288 px
+  a 320 px screen leaves; the learn-screen button also grew to the word's full width (371 px for RESTROOM).
+- Fix: css caps .thing and big .sign / .menu-card / .form-field at min(100%, 100vw − 32px) (min-widths too);
+  signs use 20 px side padding at <= 370 px; app.js fitThing() (run with fitItemTiles after every render and on
+  resize) shrinks the text 1 px at a time (floor 20 px) until it sits inside the frame's content box. The CSS size
+  is the maximum, so short words are unchanged.
+- Result: RESTROOM 38 px at 320 (45 px at 390), Date of Birth 27.4 px at 320, Chicken $8.50 34.4 px at 320; all others
+  unchanged. Text-to-frame margin is now >= 18 px everywhere (the frame's padding).
+- Test: tools/sign-fit-test.mjs (BASE=, SHOTS=0) measures text glyph boxes against the inner frame for every
+  sign / form / menu item on the learn and say screens at 320 and 390 (>= 8 px each side, frame on screen, no
+  sideways scroll). Screenshots: screenshots/35-fit-<item>-<320|390>.png.
+- Cache: read-aloud-v19-1e5c0586 (audio unchanged).
+
+
+## v18: mic speak window + spoken retry + countdown ring; cleanup
 - **v17 on-screen listen note removed** (“Say the word, then wait. I’ll check it for you.” /
   “Say it, then wait…”): Adam can’t read it. `.listen-note`, `.nowrap` span, `.foot-listening` gone.
   Prompts for the learner must be audio or picture, not text.

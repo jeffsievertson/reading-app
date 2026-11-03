@@ -210,6 +210,16 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 .sign-danger .sign-text { background: #c8102e; display: block; width: 100%; text-align: center; padding: 14px 24px; border-bottom: 6px solid #111; }
 .sign-danger .sign-ico { color: #111; }
 .sign-danger.small { padding: 0; }
+/* Big single sign / menu / form: never wider than the screen (fitThing in app.js shrinks the text to fit).
+   Side padding narrows on small phones (<= 370 px) so the word can stay big. */
+.thing { max-width: min(100%, calc(100vw - 32px)); }
+.sign:not(.small), .menu-card:not(.small), .form-field:not(.small) { max-width: min(100%, calc(100vw - 32px)); }
+.sign:not(.small) { min-width: min(240px, calc(100vw - 32px)); }
+.menu-card:not(.small) { min-width: min(300px, calc(100vw - 32px)); }
+.form-field:not(.small) { min-width: min(310px, calc(100vw - 32px)); }
+@media (max-width: 370px) {
+  .sign:not(.small):not(.sign-stop):not(.sign-danger) { padding-left: 20px; padding-right: 20px; }
+}
 
 .menu-card {
   background: #f5ecd7; color: #2a1d0e; border-radius: 12px; padding: 18px 22px; min-width: 300px;

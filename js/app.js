@@ -271,6 +271,38 @@
   function fitItemTiles(root) {
     const box = root || document;
     box.querySelectorAll('.items').forEach(fitGrid);
+    box.querySelectorAll('.sign:not(.small), .menu-card:not(.small), .form-field:not(.small)').forEach(fitThing);
+  }
+  /** Single big sign / menu line / form field (lesson screens): the CSS font size is a maximum. Shrink the
+   *  text until it sits inside the frame's content box (inside border AND padding), so a long word
+   *  (RESTROOM, Date of Birth) never runs into the frame on a narrow phone. The frame itself is capped
+   *  to the screen width in CSS (max-width: 100%). */
+  function fitThing(frame) {
+    const kind = frame.classList.contains('sign') ? 'sign' : frame.classList.contains('menu-card') ? 'menu' : 'form';
+    const target = frame.querySelector(kind === 'sign' ? '.sign-text' : kind === 'menu' ? '.menu-line' : '.form-label');
+    if (!target || !frame.clientWidth) return;
+    // Danger sign: the text sits in its own padded red band, so that band is the box to fit inside.
+    const box = kind === 'sign' && frame.classList.contains('sign-danger') ? target : frame;
+    const parts = kind === 'sign' ? [target] : kind === 'menu'
+      ? [frame.querySelector('.menu-item'), frame.querySelector('.menu-price')] : [target, frame.querySelector('.form-line')];
+    const fits = () => {
+      const cs = getComputedStyle(box); const r = box.getBoundingClientRect();
+      const L = r.left + parseFloat(cs.borderLeftWidth) + parseFloat(cs.paddingLeft);
+      const R = r.right - parseFloat(cs.borderRightWidth) - parseFloat(cs.paddingRight);
+      let l = Infinity, rr = -Infinity;
+      for (const el of parts) {
+        if (!el) continue;
+        let q;
+        if (el.classList.contains('form-line')) q = el.getBoundingClientRect();
+        else { const rg = document.createRange(); rg.selectNodeContents(el); q = rg.getBoundingClientRect(); }
+        l = Math.min(l, q.left); rr = Math.max(rr, q.right);
+      }
+      const line = kind === 'form' && parts[1];
+      return l >= L - 0.5 && rr <= R + 0.5 && (!line || line.getBoundingClientRect().width >= 59);
+    };
+    target.style.fontSize = '';
+    let size = parseFloat(getComputedStyle(target).fontSize) || 32;
+    while (!fits() && size > 20) { size -= 1; target.style.fontSize = size + 'px'; }
   }
   function tileLabel(btn) {
     return [...btn.children].find((c) => c.tagName === 'SPAN' && !c.classList.contains('check'));
