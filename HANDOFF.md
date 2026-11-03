@@ -1,6 +1,36 @@
-# Handoff – Read Aloud (Nov 2, 2026)
+# Handoff – Read Aloud (Nov 3, 2026, v18)
 
-## Latest (v17): speak-then-wait note while the mic listens
+## Latest (v18): mic speak window + spoken retry + countdown ring; cleanup
+- **v17 on-screen listen note removed** (“Say the word, then wait. I’ll check it for you.” /
+  “Say it, then wait…”): Adam can’t read it. `.listen-note`, `.nowrap` span, `.foot-listening` gone.
+  Prompts for the learner must be audio or picture, not text.
+- **Speak window** after the mic opens (counted from the recognizer’s real start, `listenMs` in `stepSayIt`):
+  - word / letter / sight word / sign / menu / form line: **7 s**
+  - sentence / verse: **6 s + 0.5 s per word**, rounded up to whole seconds, **min 8 s, max 20 s**
+    (2–6-word sentences 8–9 s; Genesis 1:1, 10 words = 11 s; the 17-word verse = 15 s).
+  - Nothing heard in the window → listening stops and the app **says** (Kokoro af_heart clip)
+    **“I didn’t hear that, please try again.”**; the mic is ready again (🎤). After the 2nd miss it
+    also says **“Or tap Continue anyway.”** and 👍 shows (same 2-miss rule as before; these two clips replace
+    “I did not hear you. Try again[, or tap Continue anyway].”). Also used for recognizer no-speech / no-match.
+  - Speech (or sound) that starts inside the window clears it (`onspeechstart`/`onsoundstart` in
+    `Speech.listen`), so nobody is cut off mid-word; the recognizer ends normally. Safety cap after
+    speech starts: max(20 s, 3 × window). If a browser never fires speech/sound events, the window
+    acts as the old hard cap (old caps were 7 / 9 / 12 s).
+- **Countdown ring** (`countdownRing` in `js/app.js`, `.mic-ring` CSS): thick SVG ring just outside the
+  mic/Stop button, drains over the window, green → amber (≤50%) → red (≤25%), plus a big seconds number
+  next to ⏹. When speech is heard it stops and stays full green (no number). Removed when listening
+  ends (result, timeout, Stop). The pulse animation is off while the ring shows. Reduced motion: drains in
+  1-second steps, number still counts down. Stop behavior unchanged.
+- Earlier v18 cleanup: Stop / any listen ending without a result clears 👂 / …; tile grids share one label size
+  (`fitGrid`, `.items-2col` fallback); cold-load speech fix (`waitForGesture`: a line said before the
+  first tap waits for it and plays the Kokoro clip — this was the flaky level1-test).
+- Tests: new `tools/mic-timeout-test.mjs` (+ `W=320`, `BASE=` for live) → `screenshots/34-ring-*.png`;
+  `listen-note-test.mjs` now asserts the note is gone; `grid-shots.mjs`, level1-test §7, clip-test §2.
+- Cache **`read-aloud-v18-` + AUDIO_VERSION** (2 new clips; old “I did not hear you…” clips pruned).
+- Needs a real-phone listen: the two new clips, and that iPhone Safari fires speech start (so long answers
+  aren’t cut at the window).
+
+## v17: speak-then-wait note while the mic listens
 - Problem: Adam said the word, then tapped Stop before the check finished.
 - Fix (screen only, nothing spoken while mic is open; Stop behavior unchanged):
   every say-it step shows a big note above the footer buttons only while listening

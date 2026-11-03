@@ -4,194 +4,194 @@
  "slow_clips": 36,
  "letter_sounds": 26,
  "files": 798,
- "total_bytes": 9021000,
- "made": 26,
- "reused": 772,
- "pruned": 26,
+ "total_bytes": 9010056,
+ "made": 2,
+ "reused": 796,
+ "pruned": 2,
  "uncovered_expressions": [],
- "version": "4ce52583",
- "seconds": 4,
+ "version": "1e5c0586",
+ "seconds": 2,
  "letters": [
   {
    "letter": "a",
    "keyword": "apple",
    "file": "human/letters/a-17d0b57f.mp3",
-   "recipe": "Whitney vowel [a] 5.97-6.64s, centred",
+   "recipe": "Whitney a",
    "source": "human recording"
   },
   {
    "letter": "b",
    "keyword": "bus",
    "file": "human/letters/b-7c954137.mp3",
-   "recipe": "Whitney [b] 14.40-14.70s",
+   "recipe": "Whitney b",
    "source": "human recording"
   },
   {
    "letter": "c",
    "keyword": "cup",
    "file": "human/letters/c-95e77281.mp3",
-   "recipe": "Whitney [c] 21.55-21.78s",
+   "recipe": "Whitney c",
    "source": "human recording"
   },
   {
    "letter": "d",
    "keyword": "dog",
    "file": "human/letters/d-e38d1841.mp3",
-   "recipe": "Whitney [d] 28.70-28.95s",
+   "recipe": "Whitney d",
    "source": "human recording"
   },
   {
    "letter": "e",
    "keyword": "egg",
    "file": "human/letters/e-d53d2e0b.mp3",
-   "recipe": "Whitney vowel [e] 35.20-35.48s, centred",
+   "recipe": "Whitney e",
    "source": "human recording"
   },
   {
    "letter": "f",
    "keyword": "fish",
    "file": "human/letters/f-56c94082.mp3",
-   "recipe": "Whitney [f] hiss 41.90-42.42s, noise-extended",
+   "recipe": "Whitney f",
    "source": "human recording"
   },
   {
    "letter": "g",
    "keyword": "gas",
    "file": "human/letters/g-e45ce684.mp3",
-   "recipe": "Whitney [g] 48.72-49.10s",
+   "recipe": "Whitney g",
    "source": "human recording"
   },
   {
    "letter": "h",
    "keyword": "hat",
    "file": "human/letters/h-6da02b3b.mp3",
-   "recipe": "Whitney [h] 53.68-54.08s",
+   "recipe": "Whitney h",
    "source": "human recording"
   },
   {
    "letter": "i",
    "keyword": "insect",
    "file": "human/letters/i-4ef60e5d.mp3",
-   "recipe": "Whitney vowel [i] 61.94-62.22s, centred",
+   "recipe": "Whitney i",
    "source": "human recording"
   },
   {
    "letter": "j",
    "keyword": "jet",
    "file": "human/letters/j-1a009f14.mp3",
-   "recipe": "Whitney [j] 71.88-72.20s",
+   "recipe": "Whitney j",
    "source": "human recording"
   },
   {
    "letter": "k",
    "keyword": "key",
    "file": "human/letters/k-03917776.mp3",
-   "recipe": "Whitney [k] 77.96-78.35s",
+   "recipe": "Whitney k",
    "source": "human recording"
   },
   {
    "letter": "l",
    "keyword": "lamp",
    "file": "human/letters/l-fe85a1f6.mp3",
-   "recipe": "Whitney [l] 83.70-84.08s, lengthened",
+   "recipe": "Whitney l",
    "source": "human recording"
   },
   {
    "letter": "m",
    "keyword": "map",
    "file": "human/letters/m-f06f0e84.mp3",
-   "recipe": "Whitney [m] 89.36-89.70s, lengthened",
+   "recipe": "Whitney m",
    "source": "human recording"
   },
   {
    "letter": "n",
    "keyword": "nut",
    "file": "human/letters/n-0dc10dc8.mp3",
-   "recipe": "Whitney [n] 94.90-95.68s, lengthened",
+   "recipe": "Whitney n",
    "source": "human recording"
   },
   {
    "letter": "o",
    "keyword": "octopus",
    "file": "human/letters/o-5e573f86.mp3",
-   "recipe": "Whitney vowel [o] 106.23-107.12s, centred",
+   "recipe": "Whitney o",
    "source": "human recording"
   },
   {
    "letter": "p",
    "keyword": "pan",
    "file": "human/letters/p-49208108.mp3",
-   "recipe": "Whitney [p] 117.80-118.18s",
+   "recipe": "Whitney p",
    "source": "human recording"
   },
   {
    "letter": "q",
    "keyword": "queen",
    "file": "human/letters/q-6a949db1.mp3",
-   "recipe": "Whitney /kw/ (“qua”) 123.22-123.70s",
+   "recipe": "Whitney q",
    "source": "human recording"
   },
   {
    "letter": "r",
    "keyword": "run",
    "file": "human/letters/r-eeee74f5.mp3",
-   "recipe": "Whitney [r] 128.60-129.00s, lengthened",
+   "recipe": "Whitney r",
    "source": "human recording"
   },
   {
    "letter": "s",
    "keyword": "sun",
    "file": "human/letters/s-df7d8c0b.mp3",
-   "recipe": "Whitney [s] hiss 134.32-134.85s, noise-extended",
+   "recipe": "Whitney s",
    "source": "human recording"
   },
   {
    "letter": "t",
    "keyword": "tent",
    "file": "human/letters/t-63fab205.mp3",
-   "recipe": "Whitney [t] 140.52-140.92s",
+   "recipe": "Whitney t",
    "source": "human recording"
   },
   {
    "letter": "u",
    "keyword": "up",
    "file": "human/letters/u-94d84387.mp3",
-   "recipe": "Whitney vowel [u] 149.42-150.11s, centred",
+   "recipe": "Whitney u",
    "source": "human recording"
   },
   {
    "letter": "v",
    "keyword": "van",
    "file": "human/letters/v-e6c7d3aa.mp3",
-   "recipe": "Whitney [v] 155.35-155.95s, lengthened",
+   "recipe": "Whitney v",
    "source": "human recording"
   },
   {
    "letter": "w",
    "keyword": "water",
    "file": "human/letters/w-61bcd272.mp3",
-   "recipe": "Whitney [w] 161.22-161.65s",
+   "recipe": "Whitney w",
    "source": "human recording"
   },
   {
    "letter": "x",
    "keyword": "box",
    "file": "human/letters/x-89b71756.mp3",
-   "recipe": "Whitney [x] 167.08-167.78s",
+   "recipe": "Whitney x",
    "source": "human recording"
   },
   {
    "letter": "y",
    "keyword": "yes",
    "file": "human/letters/y-9d6ffe23.mp3",
-   "recipe": "Whitney [y] 173.32-173.98s",
+   "recipe": "Whitney y",
    "source": "human recording"
   },
   {
    "letter": "z",
    "keyword": "zero",
    "file": "human/letters/z-4e633a27.mp3",
-   "recipe": "Whitney [z] 179.55-180.10s, lengthened",
+   "recipe": "Whitney z",
    "source": "human recording"
   }
  ],

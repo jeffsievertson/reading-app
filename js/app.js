@@ -265,28 +265,47 @@
 
 
   /** Shrink a grid tile label until the full word fits (RESTROOM, CLOSED, …). */
+  // Long tile labels (RESTROOM, Date of Birth, …) must fit without spilling, and every tile
+  // in one grid uses the SAME font size so the grid looks even. If that shared size would be
+  // small, the grid switches to 2 wider columns first. Multi-word labels may wrap at spaces.
   function fitItemTiles(root) {
     const box = root || document;
-    box.querySelectorAll('.items .item:not(.wide)').forEach((btn) => {
-      const span = [...btn.children].find((c) => c.tagName === 'SPAN' && !c.classList.contains('check'));
-      if (!span) return;
-      span.style.fontSize = '';
-      span.style.whiteSpace = 'nowrap';
-      const pad = 8; // leftover after .item padding
-      const maxW = Math.max(0, btn.clientWidth - pad);
-      if (!maxW) return;
-      let size = parseFloat(getComputedStyle(btn).fontSize) || 24;
-      const min = 11;
-      // Step down until text fits; binary-ish coarse then fine.
-      while (span.scrollWidth > maxW && size > min) {
-        size = Math.max(min, size - (span.scrollWidth > maxW * 1.5 ? 3 : 1));
-        span.style.fontSize = size + 'px';
+    box.querySelectorAll('.items').forEach(fitGrid);
+  }
+  function tileLabel(btn) {
+    return [...btn.children].find((c) => c.tagName === 'SPAN' && !c.classList.contains('check'));
+  }
+  function fitGrid(grid) {
+    const tiles = [...grid.querySelectorAll('.item:not(.wide)')]
+      .map((btn) => ({ btn, span: tileLabel(btn) })).filter((x) => x.span);
+    if (!tiles.length) return;
+    const fits = (x) => x.span.scrollWidth <= Math.max(0, x.btn.clientWidth - 8);
+    const shared = () => {
+      let min = Infinity;
+      for (const x of tiles) {
+        const sp = x.span;
+        sp.style.fontSize = ''; sp.style.overflowWrap = '';
+        sp.style.whiteSpace = /\s/.test(sp.textContent.trim()) ? 'normal' : 'nowrap';
+        if (!x.btn.clientWidth) continue;
+        let size = parseFloat(getComputedStyle(x.btn).fontSize) || 24;
+        x.base = size;
+        while (!fits(x) && size > 11) {
+          size = Math.max(11, size - (x.span.scrollWidth > (x.btn.clientWidth - 8) * 1.5 ? 3 : 1));
+          sp.style.fontSize = size + 'px';
+        }
+        min = Math.min(min, size);
       }
-      if (span.scrollWidth > maxW) {
-        span.style.whiteSpace = 'normal';
-        span.style.overflowWrap = 'anywhere';
-      }
-    });
+      return min;
+    };
+    grid.classList.remove('items-2col');
+    let size = shared();
+    if (size === Infinity) return;
+    const base = Math.max(...tiles.map((x) => x.base || 0));
+    if (size < base * 0.75 && tiles.length > 1) { grid.classList.add('items-2col'); size = shared(); }
+    for (const x of tiles) {
+      x.span.style.fontSize = size < (x.base || 0) ? size + 'px' : '';
+      if (!fits(x)) { x.span.style.whiteSpace = 'normal'; x.span.style.overflowWrap = 'anywhere'; }
+    }
   }
 
   function itemTile(it) {
@@ -591,6 +610,68 @@
     hear();
   }
 
+  // Countdown ring for the mic button (see stepSayIt). Drawn as an SVG rounded rectangle just outside
+  // the button; reduced motion: drains in 1-second steps instead of smoothly.
+  function countdownRing(button) {
+    const NS = 'http://www.w3.org/2000/svg';
+    let svg = null, bar = null, secs = null, raf = 0, tick = 0, t0 = 0, total = 0, P = 0;
+    const reduced = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    function stop() {
+      cancelAnimationFrame(raf); clearInterval(tick); raf = 0; tick = 0;
+      if (svg) svg.remove(); if (secs) secs.remove();
+      svg = bar = secs = null;
+      button.classList.remove('timed', 'hearing');
+      delete button.dataset.left;
+    }
+    function draw() {
+      if (!bar) return;
+      const left = Math.max(0, total - (Date.now() - t0));
+      const step = reduced() ? Math.ceil(left / 1000) * 1000 : left;
+      const frac = total ? step / total : 0;
+      bar.style.strokeDashoffset = String(P * (1 - frac));
+      const col = frac > 0.5 ? 'green' : frac > 0.25 ? 'amber' : 'red';
+      if (svg.dataset.col !== col) svg.dataset.col = col;
+      const n = String(Math.ceil(left / 1000));
+      if (secs.textContent !== n) secs.textContent = n;
+      button.dataset.left = String(Math.round(frac * 100));
+      if (!left) { cancelAnimationFrame(raf); clearInterval(tick); }
+    }
+    function start(ms) {
+      stop();
+      const w = button.offsetWidth, h = button.offsetHeight;
+      if (!w || !h) return;
+      const G = 7, SW = 8;                                // gap outside the button, stroke width
+      const W = w + 2 * G, H = h + 2 * G, r = Math.min(26, H / 2 - SW / 2), x = SW / 2, y = SW / 2;
+      const iw = W - SW, ih = H - SW;
+      // path from top-centre, clockwise
+      const d = `M${W / 2} ${y}H${x + iw - r}A${r} ${r} 0 0 1 ${x + iw} ${y + r}V${y + ih - r}A${r} ${r} 0 0 1 ${x + iw - r} ${y + ih}` +
+        `H${x + r}A${r} ${r} 0 0 1 ${x} ${y + ih - r}V${y + r}A${r} ${r} 0 0 1 ${x + r} ${y}Z`;
+      P = 2 * (iw - 2 * r) + 2 * (ih - 2 * r) + 2 * Math.PI * r;
+      svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('class', 'mic-ring'); svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('width', W); svg.setAttribute('height', H);
+      svg.style.left = svg.style.top = -G + 'px';
+      const track = document.createElementNS(NS, 'path'); track.setAttribute('d', d); track.setAttribute('class', 'track');
+      bar = document.createElementNS(NS, 'path'); bar.setAttribute('d', d); bar.setAttribute('class', 'bar');
+      bar.style.strokeDasharray = `${P} ${P}`;
+      svg.append(track, bar);
+      secs = el('span', { class: 'mic-secs', 'aria-hidden': 'true' });
+      button.classList.add('timed');
+      button.append(svg, secs);
+      t0 = Date.now(); total = ms;
+      draw();
+      if (reduced()) tick = setInterval(draw, 250);
+      else { const loop = () => { draw(); if (bar && Date.now() - t0 < total) raf = requestAnimationFrame(loop); }; raf = requestAnimationFrame(loop); }
+    }
+    function hearing() {   // speech started: stop the countdown, show a full steady ring
+      if (!svg) return;
+      cancelAnimationFrame(raf); clearInterval(tick);
+      bar.style.strokeDashoffset = '0'; svg.dataset.col = 'hearing';
+      secs.remove(); button.classList.add('hearing'); button.dataset.left = 'hearing';
+    }
+    return { start, stop, hearing };
+  }
+
   // ---- Say it (speech recognition or self-check)
   // Mic is the primary check. Speech.listen() always resolves (start watchdog + max-listen
   // cap); 🎤 becomes ⏹ while listening. 👍 is "Continue anyway" after N soft fails (or when
@@ -617,13 +698,13 @@
     else display = el('div', { class: 'big-word' }, it.text);
 
     const status = el('div', { class: 'status', 'aria-live': 'polite' });
-    // Shown above the footer buttons only while the mic is open: speak, then let the app finish checking (on screen
-    // only — nothing is spoken while the mic is listening).
-    const oneWord = (it.kind === 'word' || it.kind === 'sight' ||
-      ((it.kind === 'sign' || it.kind === 'menu' || it.kind === 'form') && !/\s/.test(String(it.text).trim())));
-    const WAIT_NOTE = oneWord ? 'Say the word, then wait. I’ll check it for you.'
-      : 'Say it, then wait. I’ll check it for you.';
-    const waitNote = el('div', { class: 'listen-note', role: 'status', hidden: '' }, WAIT_NOTE);
+    // Speak window (ms) after the mic opens: a learner who says nothing in it hears "I didn’t hear that,
+    // please try again." Once speech starts the window no longer applies (speech.js), so nobody is cut off.
+    // Words / letters / signs / menu / form lines: 7 s. Sentences and verses: 6 s + 0.5 s per word,
+    // rounded up to whole seconds, between 8 s and 20 s (e.g. 4-word sentence 8 s, 17-word verse 15 s).
+    const listenMs = (it.kind === 'sentence' || it.kind === 'verse')
+      ? Math.min(20000, Math.max(8000, Math.ceil((6000 + 500 * String(target).split(/\s+/).filter(Boolean).length) / 1000) * 1000))
+      : 7000;
     const reveal = el('div', { class: 'emoji big reveal' });
     const hear = () => { if (busy) cancel(); S.say(it.kind === 'menu' ? it.t : target); };
     const micBtn = btn('🎤', 'Tap the mic, then say it out loud', () => (busy ? cancel() : listen()), 'mic grow');
@@ -646,7 +727,7 @@
       help: [instr, HELP_EXTRA],
       body: el('div', { class: 'center' }, el('div', { class: 'say-target' }, display), reveal, status),
       // Mic path: no 👍 until soft fails (or mic dropped). No-mic: 👍 is the finish.
-      footer: micOn ? [waitNote, hearBtn, micBtn] : [hearBtn, okBtn]
+      footer: micOn ? [hearBtn, micBtn] : [hearBtn, okBtn]
     });
     S.say(instr);
 
@@ -664,10 +745,12 @@
       }
       success(null);
     }
+    // Countdown ring around the mic while it listens (no reading needed): a thick ring that drains over
+    // the speak window and turns green -> amber -> red, plus a big seconds number. Removed when listening ends.
+    const ring = countdownRing(micBtn);
     function setListening(on) {
       busy = on;
-      waitNote.hidden = !on;
-      waitNote.parentNode && waitNote.parentNode.classList.toggle('foot-listening', on);
+      if (!on) ring.stop();
       micBtn.classList.toggle('listening', on);
       micBtn.setAttribute('aria-label', on ? 'Stop' : 'Tap the mic, then say it out loud');
       micBtn.dataset.say = on ? 'Stop' : 'Tap the mic, then say it out loud';
@@ -692,9 +775,10 @@
     async function attempt(first) {
       const startTimeout = first ? 4000 : iosPwa ? 2500 : 3000; // first try may sit behind the permission prompt
       return S.listen({
-        timeout: it.kind === 'verse' ? 12000 : it.kind === 'sentence' ? 9000 : 7000,
+        timeout: listenMs,
         startTimeout,
-        onstart: () => { if (alive()) status.textContent = '👂'; }
+        onstart: () => { if (alive() && busy) { status.textContent = '👂'; ring.start(listenMs); } },
+        onspeech: () => { if (alive() && busy) ring.hearing(); }
       });
     }
     async function listen() {
@@ -719,7 +803,12 @@
       } catch (e) {
         res = { ok: false, error: 'error', started: false };
       } finally {
-        if (alive()) setListening(false);
+        ring.stop();
+        if (alive()) {
+          setListening(false);
+          // Ended without a result (Stop, no speech, error): don't leave 👂 / … behind.
+          if (status.textContent === '👂' || status.textContent === '…') status.textContent = '';
+        }
       }
       if (!alive()) return;              // user left the screen meanwhile
       if (res.error === 'cancelled') return; // user tapped stop / 👍 / speaker
@@ -749,9 +838,9 @@
         } else {
           status.textContent = '🔇';
           status.className = 'status no';
-          S.say(offerContinue
-            ? 'I did not hear you. Try again, or tap Continue anyway.'
-            : 'I did not hear you. Try again.');
+          // Nothing heard in the speak window (or the recognizer gave up): say so out loud; mic is ready again.
+          if (!(await S.say('I didn’t hear that, please try again.')) || !alive()) return;
+          if (offerContinue) S.say('Or tap Continue anyway.', { queue: true });
         }
       } catch (e) {
         setListening(false);

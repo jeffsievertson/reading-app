@@ -6681,18 +6681,18 @@
    ]
   },
   {
-   "key": "i did not hear you try again or tap continue anyway",
-   "text": "I did not hear you. Try again, or tap Continue anyway.",
-   "speak": "I did not hear you. Try again, or tap Continue anyway.",
+   "key": "i didn't hear that please try again",
+   "text": "I didn’t hear that, please try again.",
+   "speak": "I didn’t hear that, please try again.",
    "kind": "text",
    "sources": [
     "app.js"
    ]
   },
   {
-   "key": "i did not hear you try again",
-   "text": "I did not hear you. Try again.",
-   "speak": "I did not hear you. Try again.",
+   "key": "or tap continue anyway",
+   "text": "Or tap Continue anyway.",
+   "speak": "Or tap Continue anyway.",
    "kind": "text",
    "sources": [
     "app.js"

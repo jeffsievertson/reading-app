@@ -67,14 +67,19 @@ async function sayAfterTap(p, text, extra = '') {
   check('clip test: no page errors', !errors.length, errors);
   await ctx.close();
 }
-// 2. Audio locked (iPhone before the first tap) -> built-in voice right away (no silence)
+// 2. Audio locked. Before the first tap (cold page load) the built-in voice is no use either
+// (iPhone: silent before a gesture), so the line WAITS for the tap and then plays its clip (v18).
+// After a tap, if audio is still locked (iOS "interrupted"), built-in voice right away.
 {
   const { ctx, p } = await page({ locked: true });
   await p.goto(BASE + '#/home'); await p.waitForSelector('.tile');
   await p.waitForFunction(() => window.Speech.clipCount() > 400);
-  const ms = await p.evaluate(async () => { const t0 = Date.now(); await window.Speech.say('Settings'); return Date.now() - t0; });
+  await p.evaluate(() => { window.Speech.say('Settings'); });
+  await p.waitForTimeout(1500);
+  check('locked audio, no tap yet -> no built-in voice (waits for the first tap)', (await tts(p)).length === 0, await tts(p));
+  const ms = await sayAfterTap(p, 'Settings');
   const L = await log(p);
-  check('locked audio -> built-in voice (reason audio-locked), < 1.5 s', L.some((e) => e.how === 'tts' && e.reason === 'audio-locked') && ms < 1500, { L, ms });
+  check('locked audio after a tap -> built-in voice (reason audio-locked), < 1.5 s', L.some((e) => e.how === 'tts' && e.reason === 'audio-locked') && ms < 1500, { L, ms });
   await ctx.close();
 }
 // 3. Text without a clip -> built-in voice

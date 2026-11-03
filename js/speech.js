@@ -102,7 +102,27 @@ window.Speech = (function () {
   }
   /** Call from a user gesture: creates/resumes the AudioContext and plays a silent sample
    *  (iOS Safari only lets audio start after a tap). Safe to call on every tap. */
+  // Before the first tap the browser keeps audio locked (and on an iPhone home-screen app the
+  // built-in voice is silent too), so a line said on a cold page load waits for the first tap
+  // and then plays as its Kokoro clip instead of falling back to the phone voice.
+  let gestured = false;
+  const gestureWaiters = new Set();
+  function waitForGesture() {
+    return new Promise((res) => {
+      const rec = {
+        cancel: () => { gestureWaiters.delete(rec); res(false); },
+        fire: () => { waiters.delete(rec); gestureWaiters.delete(rec); res(true); }
+      };
+      gestureWaiters.add(rec);
+      waiters.add(rec);   // stop() (a new line / navigation) cancels the wait
+    });
+  }
   function unlockAudio() {
+    if (!gestured) {
+      gestured = true;
+      // Let the tap's own handler run first: if it starts new speech, the waiting line is cancelled.
+      setTimeout(() => gestureWaiters.forEach((w) => w.fire()), 300);
+    }
     if (!useClips) return;
     const c = getCtx();
     if (!c) return;
@@ -319,7 +339,12 @@ window.Speech = (function () {
     list = splitForClips(list);
     const plan = list.map((p) => ({ part: p, clip: resolveClip(p) }));
     if (plan.some((x) => x.clip)) {
-      if (!(await ensureRunning(600))) {
+      let running = await ensureRunning(600);
+      if (!running && !gestured && my === token) {
+        if (!(await waitForGesture()) || my !== token) return false;
+        running = await ensureRunning(600);
+      }
+      if (!running) {
         plan.forEach((x) => { if (x.clip) { x.clip = null; x.reason = 'audio-locked'; } });
       }
       if (my !== token) return false;
@@ -414,15 +439,20 @@ window.Speech = (function () {
 
   function detach(r) {
     if (!r) return;
-    try { r.onresult = r.onerror = r.onend = r.onstart = r.onaudiostart = r.onnomatch = null; } catch (e) {}
+    try { r.onresult = r.onerror = r.onend = r.onstart = r.onaudiostart = r.onsoundstart = r.onspeechstart = r.onnomatch = null; } catch (e) {}
     try { r.abort(); } catch (e) {}
   }
 
   /**
    * Listen once. Always resolves with { ok:true, alts:[strings], started:true }
    * or { ok:false, error, started }. error 'cancelled' = stopped by the app (cancelListen / a newer listen). `started` = onstart/onaudiostart was seen.
-   * opts.timeout       max listening time once started (ms, default 7000)
+   * opts.timeout       speak window (ms, default 7000), counted from the real start: if no
+   *                    speech/sound is detected in it, resolves { ok:false, error:'no-speech', timedOut:true }.
+   *                    Once speech/sound starts the window is cleared, so a learner is never cut off
+   *                    mid-word; the recognizer then ends normally (result / no-match / onend).
+   * opts.maxListen     safety cap after speech started (ms, default max(20000, 3 × timeout)) → error 'timeout'
    * opts.startTimeout  max wait for onstart/onaudiostart (ms, default 3000)
+   * opts.onspeech      called once when speech (or sound) is first detected
    * opts.delay         wait after cancelling speech before starting (ms; iOS needs the
    *                    audio session to switch from playback to recording)
    * opts.onstart       called when the recognizer has actually started
@@ -435,7 +465,7 @@ window.Speech = (function () {
       try { stop(); } catch (e) {} // don't let the app hear itself / iOS audio-session conflict
       try { releaseAudioForMic(); } catch (e) {}
 
-      let r = null, settled = false, started = false, tStart = null, tMax = null, tDelay = null;
+      let r = null, settled = false, started = false, heard = false, tStart = null, tMax = null, tDelay = null;
       const session = {};
       const end = (val) => {
         if (settled) return;
@@ -455,9 +485,18 @@ window.Speech = (function () {
         if (started || settled) return;
         started = true;
         clearTimeout(tStart);
-        // hard cap on listening time, counted from the real start
-        tMax = setTimeout(() => end({ ok: false, error: 'timeout' }), listenMs);
+        // speak window, counted from the real start: nothing heard in time -> stop and report no-speech
+        tMax = setTimeout(() => end({ ok: false, error: 'no-speech', timedOut: true }), listenMs);
         try { if (opts.onstart) opts.onstart(); } catch (e) {}
+      };
+      const markSpeech = () => {
+        if (heard || settled) return;
+        heard = true;
+        if (!started) markStarted();
+        // speech began inside the window: don't cut it off; only a generous safety cap remains
+        clearTimeout(tMax);
+        tMax = setTimeout(() => end({ ok: false, error: 'timeout' }), Math.max(1000, opts.maxListen || Math.max(20000, 3 * listenMs)));
+        try { if (opts.onspeech) opts.onspeech(); } catch (e) {}
       };
 
       const begin = () => {
@@ -470,6 +509,8 @@ window.Speech = (function () {
           r.maxAlternatives = 5;
           r.onstart = markStarted;
           r.onaudiostart = markStarted;
+          r.onsoundstart = markSpeech;
+          r.onspeechstart = markSpeech;
           r.onresult = (ev) => {
             try {
               const alts = [];

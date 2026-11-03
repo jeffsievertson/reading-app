@@ -50,7 +50,7 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
   const k2 = await spokenKeys(p);
   check('Q quiz asks "which letter starts the word queen"', k2.includes('which letter starts the word queen'), k2.slice(-4));
   await p.screenshot({ path: SHOTS + '22-letter-q-find.png' });
-  await p.locator('.letter-choice', { hasText: /^q$/ }).tap(); await p.waitForSelector('.done-mark', { timeout: 6000 });
+  await p.locator('.letter-choice', { hasText: /^q$/ }).tap(); await p.waitForSelector('.done-mark', { timeout: 20000 });
   check('Q lesson completes, saved as L1-q', !!(await p.evaluate(() => window.__readAloud.state().done['L1-q'])));
   const tts = await p.evaluate(() => window.__tts);
   check('no built-in voice used in the Q lesson', tts.length === 0, tts);
@@ -92,7 +92,7 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
   // finishing a letter: "next" goes to the next letter alphabetically
   await p.goto(BASE + '#/lesson/L1-b'); await p.waitForSelector('.big-letter');
   await p.locator('.foot .primary').click(); await p.waitForSelector('.letter-choice');
-  await p.locator('.letter-choice', { hasText: /^b$/ }).click(); await p.waitForSelector('.done-mark', { timeout: 6000 });
+  await p.locator('.letter-choice', { hasText: /^b$/ }).click(); await p.waitForSelector('.done-mark', { timeout: 20000 });
   await p.locator('.foot .primary').click(); await p.waitForSelector('.big-letter');
   check('after b, "next" opens c', p.url().endsWith('#/lesson/L1-c'), p.url());
   await ctx.close();
@@ -111,7 +111,7 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
     const n0 = (await p.evaluate(() => window.Speech.debugLog().length));
     await p.locator('.item.letter', { hasText: new RegExp('^' + l + '$') }).tap();
     await p.waitForSelector('.big-letter');
-    await p.waitForFunction((n0) => { const L = window.Speech.debugLog(); return L.length - n0 >= 8 || L.length >= 300; }, n0, { timeout: 15000 }).catch(() => {});
+    await p.waitForFunction((n0) => { const L = window.Speech.debugLog(); return L.length - n0 >= 8 || L.length >= 300; }, n0, { timeout: 40000 }).catch(() => {});
     const L = (await p.evaluate(() => window.Speech.debugLog())).slice(n0);
     if (l === 'a' || l === 'e') await p.screenshot({ path: SHOTS + (l === 'a' ? '23-letter-intro-a.png' : '24-letter-intro-e.png') });
     const keys = L.map((e) => e.key);
@@ -180,6 +180,22 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
     said[l] = (await p.evaluate(() => window.__tts)).filter((t) => /^This is the letter/.test(t)).pop();
   }
   check('phone voice says "letter ay / ee / eye / you / B"', said.a === 'This is the letter ay.' && said.e === 'This is the letter ee.' && said.i === 'This is the letter eye.' && said.u === 'This is the letter you.' && said.b === 'This is the letter B.', said);
+  await ctx.close();
+}
+// 7. Cold page load (no tap yet, audio locked): the Level 1 intro must NOT fall back to the
+// built-in voice (silent on an iPhone home-screen app); it waits and plays the Kokoro clip
+// after the first tap. (Root cause of the old flaky "no built-in voice in the Q lesson".)
+{
+  const { ctx, p } = await page({}, true);
+  await p.goto(BASE + '#/level/1'); await p.waitForSelector('.item.letter');
+  await p.waitForFunction(() => window.Speech.clipCount() > 400); await p.waitForTimeout(1800);
+  check('cold load: no built-in voice before the first tap', (await p.evaluate(() => window.__tts)).length === 0, await p.evaluate(() => window.__tts));
+  await p.tap('header .title');
+  await p.waitForFunction(() => window.Speech.debugLog().some((e) => /^letter sounds/.test(e.key || '')), null, { timeout: 8000 }).catch(() => {});
+  const log = await p.evaluate(() => window.Speech.debugLog().filter((e) => /^letter sounds/.test(e.key || '')).map((e) => e.how));
+  check('cold load: Level 1 intro plays as the Kokoro clip after the first tap', log.length && log.every((h) => h === 'clip'), log);
+  check('cold load: still no built-in voice', (await p.evaluate(() => window.__tts)).length === 0, await p.evaluate(() => window.__tts));
+  await p.screenshot({ path: SHOTS + '33-level1-intro.png' });
   await ctx.close();
 }
 console.log(results.join('\n')); console.log(failed ? failed + ' FAILED' : 'all passed');
