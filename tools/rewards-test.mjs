@@ -186,7 +186,7 @@ const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id
 }
 { // streak row tap (iOS standalone): reads the streak aloud, then opens the next lesson, in every state
   const allDone = Object.fromEntries(C.items.map((it, i) => [it.id, 1700000000000 + i]));
-  allDone['L3-s2'] = 1800000000000; // most recently finished: a Level 3 lesson
+  allDone['L3-s2'] = 1800000000000; // most recently finished: a sentence lesson (Level 4 since v20)
   const firstOf = (lv) => C.items.find((it) => it.level === lv).id;
   const firstUndone = (done) => C.items.find((it) => !done[it.id]).id;
   const partDone = Object.fromEntries(C.items.filter((it) => it.level === 1).map((it) => [it.id, 1700000000000]));
@@ -194,7 +194,7 @@ const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id
     ['none', {}, null, /Practice today to start a streak/, 'L1-a'],
     ['on', partDone, { count: 5, last: dayAgo(1), skips: 2, toRefill: 0, best: 5, days: 5 }, /5 days in a row\. 2 skip days left/, firstUndone(partDone)],
     ['fresh', partDone, { count: 9, last: dayAgo(6), skips: 1, toRefill: 0, best: 9, days: 9 }, /Practice today to start a new streak/, firstUndone(partDone)],
-    ['all done', allDone, { count: 1, last: today, skips: 2, toRefill: 0, best: 3, days: 3 }, /Day 1\. 2 skip days left/, firstOf(3)]
+    ['all done', allDone, { count: 1, last: today, skips: 2, toRefill: 0, best: 3, days: 3 }, /Day 1\. 2 skip days left/, firstOf(C.items.find((it) => it.id === 'L3-s2').level)]
   ];
   for (const [name, done, streak, sayRe, want] of cases) {
     const { ctx, p, errors } = await page(done, streak ? { words: {}, streak, milestones: {} } : null, false, true);

@@ -96,7 +96,40 @@ window.CONTENT = (function () {
     'Was it fun? Yes!'
   ];
 
-  // ---------- Level 4: real-life reading ----------
+  // ---------- Level 3: missing letter (v20) ----------
+  // A Level 2 word with one letter hidden (c_t). He hears the word, sees its picture and taps
+  // the missing letter. Wrong choices are hand-picked so none makes another real word
+  // (c_t: a/e/i, never o or u -> cot, cut). Choices are shown A-Z. Then he says the word (mic).
+  const missing = [
+    ['map', 0, 'kmv'], ['pin', 2, 'bdn'], ['dog', 2, 'fgv'], ['cat', 1, 'aei'],
+    ['cup', 2, 'flp'], ['red', 0, 'krv'], ['bus', 0, 'bfk'], ['sun', 1, 'aeu'],
+    ['hat', 0, 'hjz'], ['jet', 2, 'bft'], ['van', 2, 'bfn'], ['box', 1, 'aeo']
+  ].map(([w, at, opts]) => {
+    const src = words.find((x) => x.w === w);
+    return { w, at, miss: w[at], opts: opts.split(''), shown: w.slice(0, at) + '_' + w.slice(at + 1), emoji: src.emoji, img: src.img };
+  });
+
+  // ---------- Level 5: everyday words and sentences (v20) ----------
+  // Decodable (short vowels, simple blends) everyday words, then short everyday sentences
+  // built from these, the Level 2 words and the Level 4 tricky words.
+  const everydayWords = [
+    ['job', '💼'], ['gas', '⛽'], ['fix', '🔧'], ['pen', '🖊️'], ['bin', '🗑️'],
+    ['mop', '🪣'], ['cab', '🚕'], ['rent', '🏠'], ['milk', '🥛'], ['help', '🤝']
+  ].map(([w, emoji]) => ({ w, emoji }));
+  const everydaySentences = [
+    'I got the job.',
+    'I can help you.',
+    'The bus is at ten.',
+    'Get gas in the van.',
+    'Get a pen and a pad.',
+    'Get milk and eggs.',
+    'The pan is hot.',
+    'I can mop it up.',
+    'I sent the rent.',
+    'Did you get a bus pass?'
+  ];
+
+  // ---------- Level 6: real-life reading ----------
   const signs = [
     { t: 'STOP',     style: 'stop',    say: 'Stop',     mean: 'Stop. Do not go.' , img: 'stop' },
     { t: 'EXIT',     style: 'exit',    say: 'Exit',     mean: 'Exit. This is the way out.' , img: 'exit' },
@@ -139,28 +172,39 @@ window.CONTENT = (function () {
 
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
+  const REAL_LIFE = 6;   // the level that is split into categories (signs, menu, forms)
+
   // ---------- Flatten into a single ordered list of items ----------
   const items = [];
   letters.forEach((x) => items.push({ id: 'L1-' + x.l, level: 1, kind: 'letter', label: x.l, ...x }));
   words.forEach((x) => items.push({ id: 'L2-' + x.w, level: 2, kind: 'word', label: x.w, text: x.w, ...x }));
-  sight.forEach((x) => items.push({ id: 'L3-sw-' + slug(x.w), level: 3, kind: 'sight', label: x.w, text: x.w, ...x }));
-  sentences.forEach((s, i) => items.push({ id: 'L3-s' + (i + 1), level: 3, kind: 'sentence', label: s, text: s }));
-  signs.forEach((x) => items.push({ id: 'L4-sign-' + slug(x.t), level: 4, cat: 'signs', kind: 'sign', label: x.t, text: x.t, ...x }));
-  menu.forEach((x) => items.push({ id: 'L4-menu-' + slug(x.t), level: 4, cat: 'menu', kind: 'menu', label: x.t, text: x.t, ...x }));
-  forms.forEach((x) => items.push({ id: 'L4-form-' + slug(x.t), level: 4, cat: 'forms', kind: 'form', label: x.t, text: x.t, ...x }));
-  verses.forEach((x) => items.push({ id: 'L4-kjv-' + slug(x.ref), level: 4, cat: 'bible', kind: 'verse', label: x.ref, text: x.t, ...x }));
+  missing.forEach((x) => items.push({ id: 'L3m-' + x.w, level: 3, kind: 'missing', label: x.shown, text: x.w, ...x }));
+  sight.forEach((x) => items.push({ id: 'L3-sw-' + slug(x.w), level: 4, kind: 'sight', label: x.w, text: x.w, ...x }));
+  sentences.forEach((s, i) => items.push({ id: 'L3-s' + (i + 1), level: 4, kind: 'sentence', label: s, text: s }));
+  everydayWords.forEach((x) => items.push({ id: 'L5-' + x.w, level: 5, kind: 'word', label: x.w, text: x.w, ...x }));
+  everydaySentences.forEach((s, i) => items.push({ id: 'L5-s' + (i + 1), level: 5, kind: 'sentence', label: s, text: s }));
+  signs.forEach((x) => items.push({ id: 'L4-sign-' + slug(x.t), level: REAL_LIFE, cat: 'signs', kind: 'sign', label: x.t, text: x.t, ...x }));
+  menu.forEach((x) => items.push({ id: 'L4-menu-' + slug(x.t), level: REAL_LIFE, cat: 'menu', kind: 'menu', label: x.t, text: x.t, ...x }));
+  forms.forEach((x) => items.push({ id: 'L4-form-' + slug(x.t), level: REAL_LIFE, cat: 'forms', kind: 'form', label: x.t, text: x.t, ...x }));
+  // v20: Bible verses moved out of Real Life into their own last level (7), after the everyday
+  // levels; the text is unchanged KJV. Item ids keep their old prefixes so saved progress stays.
+  verses.forEach((x) => items.push({ id: 'L4-kjv-' + slug(x.ref), level: 7, kind: 'verse', label: x.ref, text: x.t, ...x }));
 
+  // v20 order: 1 Sounds, 2 Words, 3 Missing letter, 4 Sentences, 5 Everyday, 6 Real life, 7 Bible.
+  // Old ids (L3-…, L4-…) are kept for saved progress; `level` is the shown level number.
   const levels = [
     { n: 1, icon: '🔤', name: 'Sounds',    say: 'Level 1. Letter sounds.', img: 'level-1' },
     { n: 2, icon: '🧩', name: 'Words',     say: 'Level 2. Words.', img: 'level-2' },
-    { n: 3, icon: '💬', name: 'Sentences', say: 'Level 3. Sentences.', img: 'level-3' },
-    { n: 4, icon: '🏙️', name: 'Real Life', say: 'Level 4. Real life reading.', img: 'level-4' }
+    { n: 3, icon: '🔡', name: 'Missing Letter',  say: 'Level 3. Missing letter.', img: 'key' },
+    { n: 4, icon: '💬', name: 'Sentences', say: 'Level 4. Sentences.', img: 'level-3' },
+    { n: 5, icon: '🏠', name: 'Everyday',  say: 'Level 5. Everyday reading.', img: 'coffee' },
+    { n: 6, icon: '🏙️', name: 'Real Life', say: 'Level 6. Real life reading.', img: 'level-4' },
+    { n: 7, icon: '📖', name: 'Bible',     say: 'Level 7. Bible verses. King James Version.', img: 'bible' }
   ];
   const cats = [
     { id: 'signs', icon: '🛑', name: 'Signs', say: 'Signs.', img: 'signs' },
     { id: 'menu',  icon: '🍔', name: 'Menu',  say: 'Menu.', img: 'menu' },
-    { id: 'forms', icon: '📝', name: 'Forms', say: 'Forms.', img: 'forms' },
-    { id: 'bible', icon: '📖', name: 'Bible', say: 'Bible verses. King James Version.', img: 'bible' }
+    { id: 'forms', icon: '📝', name: 'Forms', say: 'Forms.', img: 'forms' }
   ];
 
   // letter -> sound lookup used when tapping letters inside words
@@ -171,11 +215,11 @@ window.CONTENT = (function () {
   const homophones = {
     sun: ['son'], no: ['know'], red: ['read'], i: ['eye', 'aye', 'hi'], to: ['two', 'too'],
     see: ['sea', 'c'], be: ['bee'], you: ['u', 'yu'], we: ['wee'], hen: ['hand'],
-    pin: ['pen'], ten: ['tin'], cot: ['caught'],  // pin/pen and ten/tin sound alike in many US accents
+    pin: ['pen'], pen: ['pin'], ten: ['tin', '10'], cot: ['caught'],  // pin/pen and ten/tin sound alike in many US accents
     pan: ['pam'], nap: ['knap'], zip: ['zipp'], he: ['hee'],
-    jet: ['jett'], dad: ['dat'], was: ['wuz'],
+    jet: ['jett'], sent: ['cent', 'scent'], dad: ['dat'], was: ['wuz'],
     the: ['da', 'duh'], my: ['mi', 'mai'], restroom: ['rest room'], 'date of birth': ['date a birth']
   };
 
-  return { letters, words, sight, sentences, signs, menu, forms, verses, items, levels, cats, soundOf, homophones };
+  return { letters, words, missing, everydayWords, everydaySentences, REAL_LIFE, sight, sentences, signs, menu, forms, verses, items, levels, cats, soundOf, homophones };
 })();

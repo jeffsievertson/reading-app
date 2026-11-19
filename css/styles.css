@@ -31,7 +31,7 @@ body { overscroll-behavior: none; -webkit-user-select: none; user-select: none; 
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
   padding: 10px 12px; min-height: 76px;
 }
-.top .title { font-size: 1.35rem; font-weight: 700; text-align: center; flex: 1; }
+.top .title { font-size: 1.35rem; font-weight: 700; text-align: center; flex: 1; min-width: 0; white-space: nowrap; }
 .spacer { width: var(--tap); }
 
 /* ---------- main / footer ---------- */
@@ -89,7 +89,7 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 .tile.done { border-color: var(--ok); }
 .tile-ico { font-size: 3rem; line-height: 1; }
 .tile-num { font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1; }
-.tile-name { font-size: 1.15rem; font-weight: 700; color: var(--muted); }
+.tile-name { font-size: 1.15rem; font-weight: 700; color: var(--muted); white-space: nowrap; max-width: 100%; }
 .bar { width: 80%; height: 10px; border-radius: 6px; background: #343a46; overflow: hidden; margin-top: 6px; }
 .fill { height: 100%; background: var(--ok); border-radius: 6px; }
 .check { position: absolute; top: 8px; right: 10px; color: var(--ok); font-size: 1.5rem; font-weight: 900; }
@@ -140,6 +140,13 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
   width: 96px; height: 120px; border: 3px solid #3a404c; border-radius: 18px; background: var(--surface);
   font-size: 4.4rem; font-weight: 800; transition: background .15s, border-color .15s;
 }
+.tiles { max-width: 100%; }
+.tiles .tile-letter { flex: 0 1 96px; min-width: 0; }
+/* v20 missing letter: the gap is a dashed box with a ?; it fills in green-accent when found */
+.tile-letter.gap { border-style: dashed; border-color: var(--accent); color: var(--muted); }
+.missing { gap: 18px; }
+.prompt-photo { border: 0; background: none; padding: 0; }
+.prompt-photo .lesson-photo { margin-bottom: 0; }
 .tile-letter.on, .chip.on, .hl { background: var(--accent) !important; color: var(--accent-ink) !important; border-color: var(--accent) !important; }
 
 .big-word {

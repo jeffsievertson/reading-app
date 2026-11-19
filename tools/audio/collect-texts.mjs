@@ -110,7 +110,7 @@ tpl('Rewards.describe (milestone messages)', () => {
 
 // ---- (2) literals in app.js
 const SINGLE_WORD_LABELS = ['Home', 'Next', 'Start', 'Settings', 'Stop', 'Got it.'];
-const DISPLAY_ONLY = [/^Word bank\. You know $/, /^You know $/, /^Step $/, /^Bible verses: King James/, /^iPhone: Safari/, /^Speech recognition is not available/, /^Tap again to erase$/, /^Automatic$/, /^Read Aloud$/];
+const DISPLAY_ONLY = [/^Word bank\. You know $/, /^You know $/, /^Step $/, /^Bible verses: King James/, /^iPhone: Safari/, /^Speech recognition is not available/, /^Tap again to erase$/, /^Missing letter$/, /^Automatic$/, /^Read Aloud$/];
 const lit = /'((?:[^'\\\n]|\\.)*)'/g;
 let m;
 while ((m = lit.exec(appSrc))) {
@@ -139,7 +139,7 @@ const result = {
   generatedBy: 'tools/audio/collect-texts.mjs',
   count: entries.length,
   letters: C.letters.map((x) => ({ l: x.l, sound: x.sound, kw: x.kw, soundKey: S.clipKey(x.sound) })),
-  slowWords: C.words.map((x) => S.clipKey(x.w)),   // Level 2 blending plays these slowly
+  slowWords: C.words.concat(C.everydayWords).map((x) => S.clipKey(x.w)),   // Level 2 blending plays these slowly
   templates: TEMPLATES,
   uncovered,
   entries

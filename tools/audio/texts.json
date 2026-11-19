@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 736,
+ "count": 776,
  "letters": [
   {
    "l": "a",
@@ -195,7 +195,17 @@
   "yes",
   "zip",
   "box",
-  "fox"
+  "fox",
+  "job",
+  "gas",
+  "fix",
+  "pen",
+  "bin",
+  "mop",
+  "cab",
+  "rent",
+  "milk",
+  "help"
  ],
  "templates": [
   "'This letter makes the sound at the end of ' + it.kw",
@@ -228,18 +238,45 @@
    ]
   },
   {
-   "key": "level 3 sentences",
-   "text": "Level 3. Sentences.",
-   "speak": "Level 3. Sentences.",
+   "key": "level 3 missing letter",
+   "text": "Level 3. Missing letter.",
+   "speak": "Level 3. Missing letter.",
    "kind": "text",
    "sources": [
     "level"
    ]
   },
   {
-   "key": "level 4 real life reading",
-   "text": "Level 4. Real life reading.",
-   "speak": "Level 4. Real life reading.",
+   "key": "level 4 sentences",
+   "text": "Level 4. Sentences.",
+   "speak": "Level 4. Sentences.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 5 everyday reading",
+   "text": "Level 5. Everyday reading.",
+   "speak": "Level 5. Everyday reading.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 6 real life reading",
+   "text": "Level 6. Real life reading.",
+   "speak": "Level 6. Real life reading.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 7 bible verses king james version",
+   "text": "Level 7. Bible verses. King James Version.",
+   "speak": "Level 7. Bible verses. King James Version.",
    "kind": "text",
    "sources": [
     "level"
@@ -273,15 +310,6 @@
    ]
   },
   {
-   "key": "bible verses king james version",
-   "text": "Bible verses. King James Version.",
-   "speak": "Bible verses. King James Version.",
-   "kind": "text",
-   "sources": [
-    "level"
-   ]
-  },
-  {
    "key": "a",
    "text": "a",
    "speak": "A.",
@@ -291,7 +319,9 @@
     "chip:L3-s2",
     "chip:L3-s3",
     "chip:L3-s5",
-    "chip:L3-s11"
+    "chip:L3-s11",
+    "chip:L5-s5",
+    "chip:L5-s10"
    ]
   },
   {
@@ -330,7 +360,10 @@
    "sources": [
     "keyword",
     "item:L2-bus",
-    "chip:L3-s10"
+    "item:L3m-bus",
+    "chip:L3-s10",
+    "chip:L5-s3",
+    "chip:L5-s10"
    ]
   },
   {
@@ -360,6 +393,7 @@
    "sources": [
     "keyword",
     "item:L2-cup",
+    "item:L3m-cup",
     "chip:L3-s7"
    ]
   },
@@ -390,6 +424,7 @@
    "sources": [
     "keyword",
     "item:L2-dog",
+    "item:L3m-dog",
     "chip:L3-s5"
    ]
   },
@@ -474,7 +509,9 @@
    "speak": "gas",
    "kind": "text",
    "sources": [
-    "keyword"
+    "keyword",
+    "item:L5-gas",
+    "chip:L5-s4"
    ]
   },
   {
@@ -503,7 +540,8 @@
    "kind": "text",
    "sources": [
     "keyword",
-    "item:L2-hat"
+    "item:L2-hat",
+    "item:L3m-hat"
    ]
   },
   {
@@ -527,6 +565,10 @@
     "chip:L3-s1",
     "chip:L3-s5",
     "chip:L3-s12",
+    "chip:L5-s1",
+    "chip:L5-s2",
+    "chip:L5-s8",
+    "chip:L5-s9",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-philippians-4-13"
    ]
@@ -566,7 +608,8 @@
    "kind": "text",
    "sources": [
     "keyword",
-    "item:L2-jet"
+    "item:L2-jet",
+    "item:L3m-jet"
    ]
   },
   {
@@ -651,7 +694,8 @@
    "kind": "text",
    "sources": [
     "keyword",
-    "item:L2-map"
+    "item:L2-map",
+    "item:L3m-map"
    ]
   },
   {
@@ -736,7 +780,8 @@
    "kind": "text",
    "sources": [
     "keyword",
-    "item:L2-pan"
+    "item:L2-pan",
+    "chip:L5-s7"
    ]
   },
   {
@@ -824,6 +869,7 @@
    "sources": [
     "keyword",
     "item:L2-sun",
+    "item:L3m-sun",
     "chip:L3-s6"
    ]
   },
@@ -880,7 +926,8 @@
    "speak": "up",
    "kind": "text",
    "sources": [
-    "keyword"
+    "keyword",
+    "chip:L5-s8"
    ]
   },
   {
@@ -910,7 +957,9 @@
    "sources": [
     "keyword",
     "item:L2-van",
-    "chip:L3-s8"
+    "item:L3m-van",
+    "chip:L3-s8",
+    "chip:L5-s4"
    ]
   },
   {
@@ -970,6 +1019,7 @@
    "sources": [
     "keyword",
     "item:L2-box",
+    "item:L3m-box",
     "chip:L3-s13"
    ]
   },
@@ -1069,7 +1119,8 @@
    "speak": "pin",
    "kind": "text",
    "sources": [
-    "item:L2-pin"
+    "item:L2-pin",
+    "item:L3m-pin"
    ]
   },
   {
@@ -1164,6 +1215,7 @@
    "kind": "text",
    "sources": [
     "item:L2-cat",
+    "item:L3m-cat",
     "chip:L3-s2",
     "chip:L3-s3"
    ]
@@ -1184,6 +1236,7 @@
    "kind": "text",
    "sources": [
     "item:L2-red",
+    "item:L3m-red",
     "chip:L3-s10"
    ]
   },
@@ -1193,7 +1246,8 @@
    "speak": "ten",
    "kind": "text",
    "sources": [
-    "item:L2-ten"
+    "item:L2-ten",
+    "chip:L5-s3"
    ]
   },
   {
@@ -1221,7 +1275,8 @@
    "kind": "text",
    "sources": [
     "item:L2-hot",
-    "chip:L3-s6"
+    "chip:L3-s6",
+    "chip:L5-s7"
    ]
   },
   {
@@ -1283,6 +1338,11 @@
     "chip:L3-s9",
     "chip:L3-s10",
     "chip:L3-s13",
+    "chip:L5-s1",
+    "chip:L5-s3",
+    "chip:L5-s4",
+    "chip:L5-s7",
+    "chip:L5-s9",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-genesis-1-1",
     "chip:L4-kjv-psalm-118-24"
@@ -1299,6 +1359,8 @@
     "chip:L3-s7",
     "chip:L3-s9",
     "chip:L3-s10",
+    "chip:L5-s3",
+    "chip:L5-s7",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-psalm-118-24"
    ]
@@ -1372,7 +1434,9 @@
    "speak": "you",
    "kind": "text",
    "sources": [
-    "item:L3-sw-you"
+    "item:L3-sw-you",
+    "chip:L5-s2",
+    "chip:L5-s10"
    ]
   },
   {
@@ -1437,6 +1501,8 @@
    "sources": [
     "chip:L3-s4",
     "chip:L3-s12",
+    "chip:L5-s2",
+    "chip:L5-s8",
     "chip:L4-kjv-philippians-4-13"
    ]
   },
@@ -1492,7 +1558,11 @@
    "kind": "text",
    "sources": [
     "chip:L3-s8",
-    "chip:L3-s13"
+    "chip:L3-s13",
+    "chip:L5-s4",
+    "chip:L5-s5",
+    "chip:L5-s6",
+    "chip:L5-s10"
    ]
   },
   {
@@ -1503,6 +1573,7 @@
    "sources": [
     "chip:L3-s8",
     "chip:L3-s9",
+    "chip:L5-s4",
     "chip:L4-kjv-genesis-1-1",
     "chip:L4-kjv-psalm-118-24"
    ]
@@ -1567,7 +1638,8 @@
    "speak": "fix",
    "kind": "text",
    "sources": [
-    "chip:L3-s12"
+    "chip:L3-s12",
+    "item:L5-fix"
    ]
   },
   {
@@ -1578,6 +1650,7 @@
    "sources": [
     "chip:L3-s12",
     "chip:L3-s14",
+    "chip:L5-s8",
     "chip:L4-kjv-psalm-118-24"
    ]
   },
@@ -1606,6 +1679,252 @@
    "kind": "text",
    "sources": [
     "chip:L3-s14"
+   ]
+  },
+  {
+   "key": "job",
+   "text": "job",
+   "speak": "job",
+   "kind": "text",
+   "sources": [
+    "item:L5-job",
+    "chip:L5-s1"
+   ]
+  },
+  {
+   "key": "pen",
+   "text": "pen",
+   "speak": "pen",
+   "kind": "text",
+   "sources": [
+    "item:L5-pen",
+    "chip:L5-s5"
+   ]
+  },
+  {
+   "key": "bin",
+   "text": "bin",
+   "speak": "bin",
+   "kind": "text",
+   "sources": [
+    "item:L5-bin"
+   ]
+  },
+  {
+   "key": "mop",
+   "text": "mop",
+   "speak": "mop",
+   "kind": "text",
+   "sources": [
+    "item:L5-mop",
+    "chip:L5-s8"
+   ]
+  },
+  {
+   "key": "cab",
+   "text": "cab",
+   "speak": "cab",
+   "kind": "text",
+   "sources": [
+    "item:L5-cab"
+   ]
+  },
+  {
+   "key": "rent",
+   "text": "rent",
+   "speak": "rent",
+   "kind": "text",
+   "sources": [
+    "item:L5-rent",
+    "chip:L5-s9"
+   ]
+  },
+  {
+   "key": "milk",
+   "text": "milk",
+   "speak": "milk",
+   "kind": "text",
+   "sources": [
+    "item:L5-milk",
+    "chip:L5-s6"
+   ]
+  },
+  {
+   "key": "help",
+   "text": "help",
+   "speak": "help",
+   "kind": "text",
+   "sources": [
+    "item:L5-help",
+    "chip:L5-s2"
+   ]
+  },
+  {
+   "key": "i got the job",
+   "text": "I got the job.",
+   "speak": "I got the job.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s1"
+   ]
+  },
+  {
+   "key": "got",
+   "text": "got",
+   "speak": "got",
+   "kind": "text",
+   "sources": [
+    "chip:L5-s1"
+   ]
+  },
+  {
+   "key": "i can help you",
+   "text": "I can help you.",
+   "speak": "I can help you.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s2"
+   ]
+  },
+  {
+   "key": "the bus is at ten",
+   "text": "The bus is at ten.",
+   "speak": "The bus is at ten.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s3"
+   ]
+  },
+  {
+   "key": "at",
+   "text": "at",
+   "speak": "at",
+   "kind": "text",
+   "sources": [
+    "chip:L5-s3"
+   ]
+  },
+  {
+   "key": "get gas in the van",
+   "text": "Get gas in the van.",
+   "speak": "Get gas in the van.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s4"
+   ]
+  },
+  {
+   "key": "get a pen and a pad",
+   "text": "Get a pen and a pad.",
+   "speak": "Get a pen and a pad.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s5"
+   ]
+  },
+  {
+   "key": "and",
+   "text": "and",
+   "speak": "and",
+   "kind": "text",
+   "sources": [
+    "chip:L5-s5",
+    "chip:L5-s6",
+    "chip:L4-kjv-genesis-1-3",
+    "chip:L4-kjv-genesis-1-1",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "pad",
+   "text": "pad",
+   "speak": "pad",
+   "kind": "text",
+   "sources": [
+    "chip:L5-s5"
+   ]
+  },
+  {
+   "key": "get milk and eggs",
+   "text": "Get milk and eggs.",
+   "speak": "Get milk and eggs.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s6"
+   ]
+  },
+  {
+   "key": "eggs",
+   "text": "eggs",
+   "speak": "eggs",
+   "kind": "text",
+   "sources": [
+    "chip:L5-s6",
+    "item:L4-menu-eggs",
+    "menu"
+   ]
+  },
+  {
+   "key": "the pan is hot",
+   "text": "The pan is hot.",
+   "speak": "The pan is hot.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s7"
+   ]
+  },
+  {
+   "key": "i can mop it up",
+   "text": "I can mop it up.",
+   "speak": "I can mop it up.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s8"
+   ]
+  },
+  {
+   "key": "i sent the rent",
+   "text": "I sent the rent.",
+   "speak": "I sent the rent.",
+   "kind": "text",
+   "sources": [
+    "item:L5-s9"
+   ]
+  },
+  {
+   "key": "sent",
+   "text": "sent",
+   "speak": "sent",
+   "kind": "text",
+   "sources": [
+    "chip:L5-s9"
+   ]
+  },
+  {
+   "key": "did you get a bus pass",
+   "text": "Did you get a bus pass?",
+   "speak": "Did you get a bus pass?",
+   "kind": "text",
+   "sources": [
+    "item:L5-s10"
+   ]
+  },
+  {
+   "key": "did",
+   "text": "Did",
+   "speak": "Did",
+   "kind": "text",
+   "sources": [
+    "chip:L5-s10"
+   ]
+  },
+  {
+   "key": "pass",
+   "text": "pass",
+   "speak": "pass",
+   "kind": "text",
+   "sources": [
+    "chip:L5-s10"
    ]
   },
   {
@@ -1770,16 +2089,6 @@
    "kind": "text",
    "sources": [
     "price"
-   ]
-  },
-  {
-   "key": "eggs",
-   "text": "Eggs",
-   "speak": "Eggs",
-   "kind": "text",
-   "sources": [
-    "item:L4-menu-eggs",
-    "menu"
    ]
   },
   {
@@ -2134,17 +2443,6 @@
    "kind": "text",
    "sources": [
     "item:L4-kjv-genesis-1-3"
-   ]
-  },
-  {
-   "key": "and",
-   "text": "And",
-   "speak": "And",
-   "kind": "text",
-   "sources": [
-    "chip:L4-kjv-genesis-1-3",
-    "chip:L4-kjv-genesis-1-1",
-    "chip:L4-kjv-psalm-118-24"
    ]
   },
   {
@@ -3460,6 +3758,96 @@
    "key": "find the word you",
    "text": "Find the word: you",
    "speak": "Find the word: you",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word job",
+   "text": "Find the word: job",
+   "speak": "Find the word: job",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word gas",
+   "text": "Find the word: gas",
+   "speak": "Find the word: gas",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word fix",
+   "text": "Find the word: fix",
+   "speak": "Find the word: fix",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word pen",
+   "text": "Find the word: pen",
+   "speak": "Find the word: pen",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word bin",
+   "text": "Find the word: bin",
+   "speak": "Find the word: bin",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word mop",
+   "text": "Find the word: mop",
+   "speak": "Find the word: mop",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word cab",
+   "text": "Find the word: cab",
+   "speak": "Find the word: cab",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word rent",
+   "text": "Find the word: rent",
+   "speak": "Find the word: rent",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word milk",
+   "text": "Find the word: milk",
+   "speak": "Find the word: milk",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word help",
+   "text": "Find the word: help",
+   "speak": "Find the word: help",
    "kind": "text",
    "sources": [
     "help:find"
@@ -6222,9 +6610,9 @@
    ]
   },
   {
-   "key": "tap the big play button at the bottom to keep going or pick a level level 1 is letter sounds level 2 is words level 3 is sentences level 4 is real life reading",
-   "text": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is sentences. Level 4 is real life reading.",
-   "speak": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is sentences. Level 4 is real life reading.",
+   "key": "tap the big play button at the bottom to keep going or pick a level level 1 is letter sounds level 2 is words level 3 is the missing letter level 4 is sentences level 5 is everyday reading level 6 is real life reading level 7 is bible verses",
+   "text": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is real life reading. Level 7 is Bible verses.",
+   "speak": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is real life reading. Level 7 is Bible verses.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6267,9 +6655,9 @@
    ]
   },
   {
-   "key": "real life reading pick one signs menu forms or bible verses",
-   "text": "Real life reading. Pick one: signs, menu, forms, or Bible verses.",
-   "speak": "Real life reading. Pick one: signs, menu, forms, or Bible verses.",
+   "key": "real life reading pick one signs menu or forms",
+   "text": "Real life reading. Pick one: signs, menu, or forms.",
+   "speak": "Real life reading. Pick one: signs, menu, or forms.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6294,9 +6682,36 @@
    ]
   },
   {
+   "key": "missing letter each word has a letter missing find the missing letter tap play to start",
+   "text": "Missing letter. Each word has a letter missing. Find the missing letter. Tap play to start.",
+   "speak": "Missing letter. Each word has a letter missing. Find the missing letter. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
    "key": "sentences first some tricky words then short sentences tap play to start",
    "text": "Sentences. First some tricky words, then short sentences. Tap play to start.",
    "speak": "Sentences. First some tricky words, then short sentences. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "everyday reading words and sentences you use every day tap play to start",
+   "text": "Everyday reading. Words and sentences you use every day. Tap play to start.",
+   "speak": "Everyday reading. Words and sentences you use every day. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "short bible verses from the king james version tap play to start",
+   "text": "Short Bible verses, from the King James Version. Tap play to start.",
+   "speak": "Short Bible verses, from the King James Version. Tap play to start.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6324,15 +6739,6 @@
    "key": "words on forms like at a doctor or a job tap play to start",
    "text": "Words on forms, like at a doctor or a job. Tap play to start.",
    "speak": "Words on forms, like at a doctor or a job. Tap play to start.",
-   "kind": "text",
-   "sources": [
-    "app.js"
-   ]
-  },
-  {
-   "key": "short bible verses from the king james version tap play to start",
-   "text": "Short Bible verses, from the King James Version. Tap play to start.",
-   "speak": "Short Bible verses, from the King James Version. Tap play to start.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -6420,9 +6826,27 @@
    ]
   },
   {
+   "key": "which letter is missing",
+   "text": "Which letter is missing?",
+   "speak": "Which letter is missing?",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
    "key": "hear this sound",
    "text": "Hear this sound",
    "speak": "Hear this sound",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "tap the letter that goes in the gap",
+   "text": "Tap the letter that goes in the gap.",
+   "speak": "Tap the letter that goes in the gap.",
    "kind": "text",
    "sources": [
     "app.js"

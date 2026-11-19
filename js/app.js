@@ -145,7 +145,7 @@
     app.replaceChildren(top, main, foot);
     main.scrollTop = 0;
     // Scale long tile labels (RESTROOM, CLOSED, …) after layout.
-    requestAnimationFrame(() => fitItemTiles(main));
+    requestAnimationFrame(() => { fitItemTiles(main); fitTitle(top); });
     return { top, main, foot };
   }
   // Navigate synchronously (pushState + route) so speech starts inside the tap's user gesture.
@@ -188,7 +188,7 @@
     fill.style.width = p + '%'; // CSSOM (allowed by the CSP), not an inline style attribute
     return el('div', { class: 'bar', role: 'progressbar', 'aria-valuenow': p, 'aria-valuemin': 0, 'aria-valuemax': 100 }, fill);
   }
-  function backFor(it) { return it.level === 4 ? '#/level/4/' + it.cat : '#/level/' + it.level; }
+  function backFor(it) { return it.level === C.REAL_LIFE ? '#/level/' + C.REAL_LIFE + '/' + it.cat : '#/level/' + it.level; }
 
   // ---------------------------------------------------------------- views
   function viewWelcome() {
@@ -234,7 +234,7 @@
     });
     const footer = [
       btn('⚙️', 'Settings', () => go('#/settings'), 'icon-btn'),
-      next ? btn('▶', 'Keep going', () => go('#/lesson/' + next.id), 'primary grow', next.level === 4 ? '' : next.label) : null,
+      next ? btn('▶', 'Keep going', () => go('#/lesson/' + next.id), 'primary grow', next.level === C.REAL_LIFE ? '' : next.label) : null,
       deferredInstall ? btn('📲', 'Add to home screen', installApp, 'icon-btn') : null
     ];
     const sv = R.streakView(rw);
@@ -253,7 +253,7 @@
     screen({
       title: 'Read Aloud',
       help: [next
-        ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is sentences. Level 4 is real life reading.'
+        ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is real life reading. Level 7 is Bible verses.'
         : 'You finished everything. Pick any level to go over again.',
       st.say, 'Tap the books to see your word bank.'],
       body: el('div', { class: 'home' }, stats, el('div', { class: 'grid2' }, tiles)),
@@ -271,7 +271,29 @@
   function fitItemTiles(root) {
     const box = root || document;
     box.querySelectorAll('.items').forEach(fitGrid);
+    box.querySelectorAll('.grid2').forEach(fitTileNames);
     box.querySelectorAll('.sign:not(.small), .menu-card:not(.small), .form-field:not(.small)').forEach(fitThing);
+  }
+  /** v20: a screen title ("🔡 Missing Letter") stays on one line; shrinks (floor 14 px) on narrow phones. */
+  function fitTitle(top) {
+    const t = top.querySelector('.title');
+    if (!t || t.querySelector('.dots')) return;
+    t.style.fontSize = '';
+    let size = parseFloat(getComputedStyle(t).fontSize);
+    while (size > 14 && t.scrollWidth > t.clientWidth + 0.5) { size -= 0.5; t.style.fontSize = size + 'px'; }
+  }
+  /** v20: level / category tile names stay on one line ("Missing Letter"); if one is too wide for its
+   *  tile on a narrow phone, every name in that grid shrinks to the same size (floor 13 px). */
+  function fitTileNames(grid) {
+    const names = [...grid.querySelectorAll('.tile-name')];
+    if (!names.length) return;
+    names.forEach((n) => { n.style.fontSize = ''; });
+    const room = (n) => { const t = n.parentElement; const cs = getComputedStyle(t); return t.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight); };
+    let size = parseFloat(getComputedStyle(names[0]).fontSize);
+    while (size > 13 && names.some((n) => n.scrollWidth > room(n) + 0.5)) {
+      size -= 0.5;
+      names.forEach((n) => { n.style.fontSize = size + 'px'; });
+    }
   }
   /** Single big sign / menu line / form field (lesson screens): the CSS font size is a maximum. Shrink the
    *  text until it sits inside the frame's content box (inside border AND padding), so a long word
@@ -350,19 +372,19 @@
   function viewLevel(n) {
     const lv = C.levels.find((l) => l.n === n);
     if (!lv) return go('#/home');
-    if (n === 4) {
+    if (n === C.REAL_LIFE) {
       const tiles = C.cats.map((c) => {
-        const list = levelItems(4, c.id);
-        return el('button', { class: 'tile' + (pct(list) === 100 ? ' done' : '') + (c.img ? ' has-photo' : ''), type: 'button', 'data-say': c.say, 'aria-label': c.say, onclick: () => go('#/level/4/' + c.id) },
+        const list = levelItems(C.REAL_LIFE, c.id);
+        return el('button', { class: 'tile' + (pct(list) === 100 ? ' done' : '') + (c.img ? ' has-photo' : ''), type: 'button', 'data-say': c.say, 'aria-label': c.say, onclick: () => go('#/level/' + C.REAL_LIFE + '/' + c.id) },
           photo(c.img, 'tile-photo'),
           el('span', { class: 'tile-ico', 'aria-hidden': 'true' }, c.icon),
           el('span', { class: 'tile-name' }, c.name),
           bar(list));
       });
       screen({ title: lv.icon + ' ' + lv.name, back: '#/home',
-        help: 'Real life reading. Pick one: signs, menu, forms, or Bible verses.',
+        help: 'Real life reading. Pick one: signs, menu, or forms.',
         body: el('div', { class: 'grid2' }, tiles) });
-      S.say('Real life reading. Pick one: signs, menu, forms, or Bible verses.');
+      S.say('Real life reading. Pick one: signs, menu, or forms.');
       return;
     }
     const list = levelItems(n);
@@ -370,7 +392,10 @@
     const help = {
       1: 'Letter sounds. Every letter makes a sound. Tap play to start, or tap a letter.',
       2: 'Words. Put the sounds together to read a word. Tap play to start.',
-      3: 'Sentences. First some tricky words, then short sentences. Tap play to start.'
+      3: 'Missing letter. Each word has a letter missing. Find the missing letter. Tap play to start.',
+      4: 'Sentences. First some tricky words, then short sentences. Tap play to start.',
+      5: 'Everyday reading. Words and sentences you use every day. Tap play to start.',
+      7: 'Short Bible verses, from the King James Version. Tap play to start.'
     }[n];
     screen({ title: lv.icon + ' ' + lv.name, back: '#/home', help,
       body: el('div', { class: 'items' }, list.map(itemTile)),
@@ -380,16 +405,15 @@
 
   function viewCat(catId) {
     const cat = C.cats.find((c) => c.id === catId);
-    if (!cat) return go('#/level/4');
-    const list = levelItems(4, catId);
+    if (!cat) return go('#/level/' + C.REAL_LIFE);
+    const list = levelItems(C.REAL_LIFE, catId);
     const next = firstUndone(list) || list[0];
     const help = {
       signs: 'Signs you see every day. Tap play to start.',
       menu: 'Reading a menu. Tap play to start.',
-      forms: 'Words on forms, like at a doctor or a job. Tap play to start.',
-      bible: 'Short Bible verses, from the King James Version. Tap play to start.'
+      forms: 'Words on forms, like at a doctor or a job. Tap play to start.'
     }[catId];
-    screen({ title: cat.icon + ' ' + cat.name, back: '#/level/4', help,
+    screen({ title: cat.icon + ' ' + cat.name, back: '#/level/' + C.REAL_LIFE, help,
       body: el('div', { class: 'items' }, list.map(itemTile)),
       footer: btn('▶', 'Start', () => go('#/lesson/' + next.id), 'primary grow') });
     S.say(help);
@@ -454,6 +478,7 @@
   function stepsFor(it) {
     switch (it.kind) {
       case 'letter': return [stepLearnLetter, stepFindLetter];
+      case 'missing': return [stepMissing, stepSayIt];
       case 'word': return [stepLearnWord, stepSayIt, stepFind];
       case 'sight': return [stepLearnSight, stepSayIt, stepFind];
       case 'sentence': return [stepReadSentence, stepSayIt];
@@ -569,6 +594,33 @@
       await S.say({ text: 'Not that one. Try again.', pause: 200 });
       ask();
     }
+  }
+
+  // ---- Level 3: missing letter (v20). The word is spoken and pictured; one letter is a gap.
+  // Shown letters can be tapped for their sound (Whitney's clips); he taps the missing letter
+  // from three choices in A-Z order. Then stepSayIt checks him saying the whole word.
+  function stepMissing(it) {
+    const ask = () => S.say([{ text: 'Which letter is missing?', pause: 250 }, { text: it.w, rateMul: 0.8 }]);
+    const slots = it.w.split('').map((ch, i) => i === it.at
+      ? el('button', { class: 'tile-letter gap', type: 'button', 'aria-label': 'Missing letter', 'data-say': 'Which letter is missing?', onclick: ask }, '?')
+      : el('button', { class: 'tile-letter', type: 'button', 'data-say': 'Hear this sound',
+        onclick: (e) => { flash(e.currentTarget); S.clipOrSay('letters/' + ch, { text: C.soundOf[ch] || ch, rateMul: 0.8 }); } }, ch));
+    const choose = (e, l) => {
+      if (picking) return;
+      if (l === it.miss) { const g = slots[it.at]; g.textContent = l; g.classList.remove('gap'); g.classList.add('on'); }
+      pick(e.currentTarget, l === it.miss, ask);
+    };
+    const choices = it.opts.slice().sort().map((l) => el('button', { class: 'choice letter-choice', type: 'button', 'aria-label': l, onclick: (e) => choose(e, l) }, l));
+    lessonScreen({
+      help: [{ text: 'Which letter is missing?', pause: 250 }, { text: it.w, pause: 250 }, 'Tap the letter that goes in the gap.'],
+      body: el('div', { class: 'center missing' },
+        it.img ? el('button', { class: 'prompt-photo', type: 'button', 'data-say': 'Hear it again', 'aria-label': 'Hear it again', onclick: ask }, photo(it.img, 'lesson-photo'))
+          : btn(it.emoji, 'Hear it again', ask, 'prompt-btn'),
+        el('div', { class: 'tiles' }, slots),
+        el('div', { class: 'choices' }, choices)),
+      footer: btn('🔊', 'Hear it again', ask, 'icon-btn')
+    });
+    ask();
   }
 
   // ---- Level 2
@@ -890,15 +942,15 @@
       else if (it.emoji && it.kind !== 'letter') reveal.textContent = it.emoji;
       ui.foot.replaceChildren(hearBtn, nextBtn('pulse'));
       await S.say({ text: heard ? 'Yes. You read it.' : 'Got it.', tts: heard ? ['Yes.', 'You', 'red', 'it.'].join(' ') : undefined, pause: 250 });
-      if (alive() && (it.kind === 'word' || it.kind === 'sight')) S.say(target, { queue: true });
+      if (alive() && (it.kind === 'word' || it.kind === 'sight' || it.kind === 'missing')) S.say(target, { queue: true });
     }
   }
 
   // ---- Find (multiple choice)
   function poolFor(it) {
-    if (it.kind === 'word') return levelItems(2);
+    if (it.kind === 'word') return levelItems(it.level).filter((x) => x.kind === 'word');
     if (it.kind === 'sight') return C.items.filter((x) => x.kind === 'sight');
-    return levelItems(4, it.cat);
+    return levelItems(C.REAL_LIFE, it.cat);
   }
   function stepFind(it) {
     const pool = poolFor(it).filter((x) => x.id !== it.id && x.text.toLowerCase() !== it.text.toLowerCase());
@@ -932,7 +984,7 @@
     const newWord = R.addWord(rw, it, state.done[it.id]);
     const milestones = R.checkMilestones(rw);   // each fires only once, ever
     R.save(rw);
-    const group = levelItems(it.level, it.level === 4 ? it.cat : null);
+    const group = levelItems(it.level, it.level === C.REAL_LIFE ? it.cat : null);
     const groupDone = !wasDone && pct(group) === 100;
     const nxt = nextItemAfter(it);
     screen({
@@ -1082,7 +1134,7 @@
   window.addEventListener('popstate', route);   // phone back button / swipe
   window.addEventListener('hashchange', route); // manual URL edits
   // Leaving the app mid-listen (home button, call, app switch): stop the recognizer.
-  window.addEventListener('resize', () => fitItemTiles(app));
+  window.addEventListener('resize', () => { fitItemTiles(app); const tp = app.querySelector('.top'); if (tp) fitTitle(tp); });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { try { S.cancelListen(); } catch (e) {} } });
   route();
 

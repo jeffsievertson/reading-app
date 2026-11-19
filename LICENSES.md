@@ -71,3 +71,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 ## Lesson photos (adult imagery)
 Modest WebP photos support home tiles, Level 2 concrete words, Level 4 signs/menu, and some letter keywords. Full source URLs, licenses, authors, and check dates: **`tools/imagery-sources.md`**. Do not replace with kid clipart. Prefer Unsplash License / CC0 / PD / CC BY(-SA) with attribution; reject NC/ND.
+
+## v20 (2026-11-18): no new third-party sources
+Missing-letter and everyday levels use only text written for this project, new Kokoro af_heart clips
+(same Apache-2.0 model as above), Whitney's existing letter sounds, and photos already listed in
+`tools/imagery-sources.md` (Level 3 tile reuses `key`, Level 5 tile reuses `coffee`, Level 7 reuses `bible`).
+Bible verse text is unchanged King James Version (public domain in the US).

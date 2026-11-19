@@ -22,9 +22,9 @@
   "want": "ol"
  },
  "and": {
-  "dist": 0.004,
+  "dist": 0.015,
   "heard": "and",
-  "speak": "And",
+  "speak": "and",
   "variant": "dot100",
   "want": "and"
  },
@@ -34,6 +34,13 @@
   "speak": "apple",
   "variant": "dot100",
   "want": "ap@l"
+ },
+ "at": {
+  "dist": 0.013,
+  "heard": "at",
+  "speak": "at",
+  "variant": "now092",
+  "want": "at"
  },
  "b": {
   "dist": 0.006,
@@ -71,6 +78,13 @@
   "variant": "now092",
   "want": "big"
  },
+ "bin": {
+  "dist": 0.013,
+  "heard": "bin",
+  "speak": "bin",
+  "variant": "now092",
+  "want": "bin"
+ },
  "box": {
   "dist": 0.0,
   "heard": "baks",
@@ -106,6 +120,13 @@
   "speak": "C.",
   "variant": "name100",
   "want": "si"
+ },
+ "cab": {
+  "dist": 0.011,
+  "heard": "kab",
+  "speak": "cab",
+  "variant": "dot092",
+  "want": "kab"
  },
  "can": {
   "dist": 0.333,
@@ -213,6 +234,13 @@
   "variant": "dot092",
   "want": "deiwan"
  },
+ "did": {
+  "dist": 0.012,
+  "heard": "did",
+  "speak": "Did",
+  "variant": "v092",
+  "want": "did"
+ },
  "dig": {
   "dist": 0.002,
   "heard": "dig",
@@ -257,9 +285,9 @@
   "want": "eg"
  },
  "eggs": {
-  "dist": 0.0,
+  "dist": 0.011,
   "heard": "egz",
-  "speak": "Eggs",
+  "speak": "eggs",
   "variant": "dot092",
   "want": "egz"
  },
@@ -384,6 +412,13 @@
   "variant": "dot092",
   "want": "gad"
  },
+ "got": {
+  "dist": 0.011,
+  "heard": "gat",
+  "speak": "got",
+  "variant": "dot092",
+  "want": "gat"
+ },
  "got it": {
   "dist": 0.211,
   "heard": "gadit",
@@ -447,6 +482,13 @@
   "speak": "heaven",
   "variant": "dot092",
   "want": "hev@n"
+ },
+ "help": {
+  "dist": 0.011,
+  "heard": "help",
+  "speak": "help",
+  "variant": "dot092",
+  "want": "help"
  },
  "hen": {
   "dist": 0.001,
@@ -540,6 +582,13 @@
   "speak": "jet",
   "variant": "now092",
   "want": "Jet"
+ },
+ "job": {
+  "dist": 0.011,
+  "heard": "Jab",
+  "speak": "job",
+  "variant": "dot092",
+  "want": "Jab"
  },
  "k": {
   "dist": 1.006,
@@ -677,6 +726,20 @@
   "variant": "dot092",
   "want": "maikr@founon"
  },
+ "milk": {
+  "dist": 0.011,
+  "heard": "milk",
+  "speak": "milk",
+  "variant": "dot092",
+  "want": "milk"
+ },
+ "mop": {
+  "dist": 0.012,
+  "heard": "map",
+  "speak": "mop",
+  "variant": "v092",
+  "want": "map"
+ },
  "mud": {
   "dist": 0.0,
   "heard": "mad",
@@ -778,12 +841,33 @@
   "variant": "name100",
   "want": "pi"
  },
+ "pad": {
+  "dist": 0.011,
+  "heard": "pad",
+  "speak": "pad",
+  "variant": "dot092",
+  "want": "pad"
+ },
  "pan": {
   "dist": 0.001,
   "heard": "pan",
   "speak": "pan",
   "variant": "v092",
   "want": "pan"
+ },
+ "pass": {
+  "dist": 0.011,
+  "heard": "pas",
+  "speak": "pass",
+  "variant": "dot092",
+  "want": "pas"
+ },
+ "pen": {
+  "dist": 0.012,
+  "heard": "pen",
+  "speak": "pen",
+  "variant": "v092",
+  "want": "pen"
  },
  "phone": {
   "dist": 0.25,
@@ -892,6 +976,13 @@
   "variant": "dot092",
   "want": "riJoisev@rmor"
  },
+ "rent": {
+  "dist": 0.011,
+  "heard": "rent",
+  "speak": "rent",
+  "variant": "dot092",
+  "want": "rent"
+ },
  "restroom": {
   "dist": 0.001,
   "heard": "restrum",
@@ -941,6 +1032,13 @@
   "speak": "see",
   "variant": "now092",
   "want": "si"
+ },
+ "sent": {
+  "dist": 0.013,
+  "heard": "sent",
+  "speak": "sent",
+  "variant": "now092",
+  "want": "sent"
  },
  "settings": {
   "dist": 0.002,

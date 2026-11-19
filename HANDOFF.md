@@ -1,6 +1,28 @@
-# Handoff – Read Aloud (Nov 3, 2026, v19)
+# Handoff – Read Aloud (Nov 18, 2026, v20)
 
-## Latest (v19): long sign / form / menu words fit their frame on narrow phones
+## Latest (v20): tester Chyann Devers' 3 suggestions (approved by Jeffrey Nov 18)
+- **New level order:** 1 Sounds · 2 Words · **3 Missing Letter (new)** · 4 Sentences · **5 Everyday (new)** ·
+  6 Real Life (signs, menu, forms) · **7 Bible (moved)**. Old item ids kept (`L3-…`, `L4-…`), so saved progress
+  and the word bank carry over; `level` is now just the shown number. Real Life = `C.REAL_LIFE` (6);
+  `#/level/4/<cat>` routes still work (viewCat ignores the number).
+- **Bible:** verses left word-for-word KJV, moved out of Real Life into their own last level, so “Keep going”
+  reaches them only after everyday reading. Not paraphrased.
+- **Missing letter** (`kind: 'missing'`, `stepMissing` → `stepSayIt`): picture + spoken “Which letter is
+  missing?” + the word; gap shown as a dashed `?`; 3 letter choices A–Z, hand-picked so no wrong choice makes
+  another real word (c_t: a/e/i, never o/u). Then the mic check on the whole word (7 s window).
+- **Everyday:** 10 words (job gas fix pen bin mop cab rent milk help; slow blending clips too) + 10 sentences.
+  Swapped out bag / pot (Kokoro said “beg” / “part”).
+- Fits: tile names and screen titles stay on one line (shared shrink `fitTileNames`, `fitTitle`); letter tiles
+  shrink for 4-letter words at 320 px.
+- Test: `node tools/v20-levels-test.mjs` → `screenshots/40-*-<390|320>.png`. rewards-test “all done” case
+  updated for the new numbering.
+- Cache **`read-aloud-v20-c0110894`** (55 new clip files incl. 10 slow blending; 5 old pruned).
+- Known: `level1-test` “no built-in voice used in the Q lesson” fails in headless here on v19 HEAD too
+  (first page’s audio stalls); not a v20 change.
+- Needs a real-phone listen of the new clips. Not pushed.
+
+## v19: long sign / form / menu words fit their frame on narrow phones
+
 - Bug (Sentinel audit of v18, 320 px): on the RESTROOM sign lesson screen the word ran into the white frame.
 - Root cause: only grid tiles had a fit pass (fitGrid). The single big sign / menu line / form field used fixed
   CSS sizes (sign 3rem, menu 2.4rem, form 1.9rem) and min-widths of 240 / 300 / 310 px, wider than the 288 px
