@@ -10,7 +10,7 @@
 - **Missing letter** (`kind: 'missing'`, `stepMissing` → `stepSayIt`): picture + spoken “Which letter is
   missing?” + the word; gap shown as a dashed `?`; 3 letter choices A–Z, hand-picked so no wrong choice makes
   another real word (c_t: a/e/i, never o/u). Then the mic check on the whole word (7 s window).
-- **Everyday:** 10 words (job gas fix pen bin mop cab rent milk help; slow blending clips too) + 10 sentences.
+- **Everyday:** 10 words (job gas fix pen bin mop cab rent milk help; slow blending clips too) + 10 sentences. These are new everyday decodable words, not reuse of earlier levels' words (Sentinel v20 audit note).
   Swapped out bag / pot (Kokoro said “beg” / “part”).
 - Fits: tile names and screen titles stay on one line (shared shrink `fitTileNames`, `fitTitle`); letter tiles
   shrink for 4-letter words at 320 px.

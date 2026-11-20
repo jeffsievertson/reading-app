@@ -110,8 +110,8 @@ window.CONTENT = (function () {
   });
 
   // ---------- Level 5: everyday words and sentences (v20) ----------
-  // Decodable (short vowels, simple blends) everyday words, then short everyday sentences
-  // built from these, the Level 2 words and the Level 4 tricky words.
+  // New everyday decodable words (short vowels, simple blends), then short everyday sentences
+  // that use them plus a few other simple words.
   const everydayWords = [
     ['job', '💼'], ['gas', '⛽'], ['fix', '🔧'], ['pen', '🖊️'], ['bin', '🗑️'],
     ['mop', '🪣'], ['cab', '🚕'], ['rent', '🏠'], ['milk', '🥛'], ['help', '🤝']
