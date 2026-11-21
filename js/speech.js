@@ -127,6 +127,37 @@ window.Speech = (function () {
       waiters.add(rec);   // stop() (a new line / navigation) cancels the wait
     });
   }
+  // After a tap, if audio is still locked, wait this long for another tap, then give up
+  // (stay silent). say() always resolves; nothing hangs. 3 s is long enough to tap again
+  // and short enough for tests.
+  const NEXT_TAP_MS = 3000;
+  function waitForGestureOrTimeout(ms) {
+    return new Promise((res) => {
+      const rec = {
+        cancel: () => { cleanup(); res(false); },
+        fire: () => { cleanup(); res(true); }
+      };
+      const id = setTimeout(() => { cleanup(); res('timeout'); }, ms);
+      function cleanup() {
+        clearTimeout(id);
+        gestureWaiters.delete(rec);
+        waiters.delete(rec);
+      }
+      gestureWaiters.add(rec);
+      waiters.add(rec);
+    });
+  }
+  function isSoundPart(part) {
+    const n = part && part.clipName;
+    return !!(n && (String(n).startsWith('letters/') || String(n).startsWith('patterns/')));
+  }
+  /** Letter/pattern sounds, and any clip held up by a locked/stalled context, never use the
+   *  built-in voice (that was "cue / kwuh" in the Q lesson). Missing or broken clips still can. */
+  function mayTts(part, reason) {
+    if (isSoundPart(part)) return false;
+    if (reason === 'audio-locked' || reason === 'audio-stalled') return false;
+    return true;
+  }
   function unlockAudio() {
     if (!gestured) {
       gestured = true;
@@ -376,14 +407,21 @@ window.Speech = (function () {
         resetCtx();
         running = await ensureRunning(800);
       }
-      // No first tap yet: wait for it, then try clips (built-in voice is silent on iPhone anyway).
-      // If a tap already happened and the context still won't start (iOS interruption, or a
-      // test that keeps AudioContext locked), fall through to the built-in voice — do not
-      // wait for another gesture, which would hang Speech.say() forever.
+      // No first tap yet: wait for it, then try clips (v18; built-in voice is silent on iPhone anyway).
       if (!running && my === token && !gestured) {
         if (!(await waitForGesture()) || my !== token) return false;
         resetCtx();
         running = await ensureRunning(800);
+      }
+      // After a tap, audio can still be locked (iOS interruption). Wait for the next tap,
+      // capped, then retry the clip. If the cap passes, stay silent — never the built-in voice.
+      if (!running && my === token && gestured) {
+        const g = await waitForGestureOrTimeout(NEXT_TAP_MS);
+        if (my !== token) return false;
+        if (g === true) {
+          resetCtx();
+          running = await ensureRunning(800);
+        }
       }
       if (!running) {
         plan.forEach((x) => { if (x.clip) { x.clip = null; x.reason = 'audio-locked'; } });
@@ -400,7 +438,14 @@ window.Speech = (function () {
     while (i < plan.length) {
       if (my !== token) return false;
       const x = plan[i];
-      if (!x.clip) { if (!(await ttsPart(x.part, my, x.reason))) return false; i++; continue; }
+      if (!x.clip) {
+        if (!mayTts(x.part, x.reason)) {
+          note({ how: 'skip', key: (x.part.clipName || clipKey(x.part.text || '')), text: x.part.text, reason: x.reason || 'audio-locked' });
+          i++; continue;
+        }
+        if (!(await ttsPart(x.part, my, x.reason))) return false;
+        i++; continue;
+      }
       // a run of consecutive clip parts -> one gapless schedule
       const run = [];
       while (i < plan.length && plan[i].clip) run.push(plan[i++]);
@@ -419,7 +464,10 @@ window.Speech = (function () {
                 if (!(await waitForGesture()) || my !== token) return false;
                 if (!(await ensureRunning(800))) continue;
               } else {
-                continue;
+                const g = await waitForGestureOrTimeout(NEXT_TAP_MS);
+                if (my !== token) return false;
+                if (g === true && (await ensureRunning(800))) { /* retry below */ }
+                else continue;
               }
             }
             const again = await reloadRun(run, my);
@@ -429,7 +477,13 @@ window.Speech = (function () {
             if (res === 'cancel') return false;
           }
           if (my !== token) return false;
-          for (const it of items) { if (!(await ttsPart(it.part, my, 'audio-stalled'))) return false; }
+          for (const it of items) {
+            if (!mayTts(it.part, 'audio-stalled')) {
+              note({ how: 'skip', key: it.key, text: it.part.text || it.key, reason: 'audio-stalled' });
+              continue;
+            }
+            if (!(await ttsPart(it.part, my, 'audio-stalled'))) return false;
+          }
         }
         return my === token;
       };
@@ -439,7 +493,9 @@ window.Speech = (function () {
         if (buf) ready.push({ buf, part: r.part, key: r.clip.key, speed: r.clip.speed, url: r.clip.url, clip: r.clip });
         else {
           if (!(await flush())) return false;
-          if (!(await ttsPart(r.part, my, r.reason))) return false;
+          if (!mayTts(r.part, r.reason)) {
+            note({ how: 'skip', key: (r.part.clipName || r.clip && r.clip.key), text: r.part.text, reason: r.reason });
+          } else if (!(await ttsPart(r.part, my, r.reason))) return false;
         }
       }
       if (!(await flush())) return false;

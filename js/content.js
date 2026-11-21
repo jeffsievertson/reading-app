@@ -212,8 +212,8 @@ window.CONTENT = (function () {
   const digraphPatterns = [
     { id: 'P-sh',        label: 'sh', letters: 'sh', sound: 'shh',  clipName: 'patterns/sh',        kw: 'shop', pos: 'start', emoji: '🏪', intro: 'These letters are S H.', opts: 'sh,s,ch' },
     { id: 'P-ch',        label: 'ch', letters: 'ch', sound: 'chuh', clipName: 'patterns/ch',        kw: 'chip', pos: 'start', emoji: '🪵', intro: 'These letters are C H.', opts: 'ch,sh,t' },
-    { id: 'P-th',        label: 'th', listLabel: 'th (path)', letters: 'th', sound: 'thh',  clipName: 'patterns/th',        kw: 'path', pos: 'end',   emoji: '🚶', intro: 'These letters are T H.', opts: 'th,t,sh' },
-    { id: 'P-th-voiced', label: 'th', listLabel: 'th (that)', letters: 'th', sound: 'dhh',  clipName: 'patterns/th-voiced', kw: 'that', pos: 'start', emoji: '👉', intro: 'These letters are T H. They also make this sound.', opts: 'th,t,sh' },
+    { id: 'P-th',        label: 'th', listLabel: 'th 🚶', letters: 'th', sound: 'thh',  clipName: 'patterns/th',        kw: 'path', pos: 'end',   emoji: '🚶', intro: 'These letters are T H.', opts: 'th,t,sh' },
+    { id: 'P-th-voiced', label: 'th', listLabel: 'th 👉', letters: 'th', sound: 'dhh',  clipName: 'patterns/th-voiced', kw: 'that', pos: 'start', emoji: '👉', intro: 'These letters are T H. They also make this sound.', opts: 'th,t,sh' },
     { id: 'P-wh',        label: 'wh', letters: 'wh', sound: 'wuh',  clipName: 'patterns/wh',        kw: 'when', pos: 'start', emoji: '⏰', intro: 'These letters are W H.', opts: 'wh,w,th' },
     { id: 'P-ng',        label: 'ng', letters: 'ng', sound: 'nng',  clipName: 'patterns/ng',        kw: 'ring', pos: 'end',   emoji: '📞', intro: 'These letters are N G.', opts: 'ng,n,g' }
   ];

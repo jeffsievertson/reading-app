@@ -80,6 +80,7 @@ tpl("pattern help + find prompts", () => C.items.filter((i) => i.kind === 'patte
   add((it.pos === 'end' ? 'These letters make the sound at the end of ' : 'These letters make the first sound in ') + it.kw + '. Tap the letters to hear the sound again. Then tap play.', 'help:pattern');
   add(it.pos === 'end' ? 'Which letters are at the end of ' + it.kw + '?' : 'Which letters start the word ' + it.kw + '?', 'prompt:pattern');
   add(it.pos === 'end' ? 'This is the sound at the end of' : 'This is the first sound in', 'pattern-frame');
+  if (it.frame) add('This is the sound at the end of ' + it.kw + '.', 'pattern-frame-done');
 }));
 tpl("'This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it)", () => C.items.filter((i) => i.kind === 'sight').forEach((it) => {
   if (it.heart) {

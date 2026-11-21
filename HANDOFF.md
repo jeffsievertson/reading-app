@@ -19,7 +19,7 @@
 - **Home grid:** 9 photo tiles are compacted so levels 1–9 all fit above the footer at 320 and 390 (844 tall).
 - Tests: `tools/v21-levels-test.mjs` (order, ids, segments, decodability, clips, migration, screenshots `screenshots/50-*-<390|320>.png`).
   `tools/v20-levels-test.mjs` now uses `C.REAL_LIFE` / `C.BIBLE`. rewards-test expected word-bank count is derived from items.
-- Cache **`read-aloud-v21-e26470af`**. Not pushed. Needs a real-phone listen of the new clips (especially digraph phonemes, “said”, the heart frame, “I wish I had cash.”, and “S at the end of a word can say sss, or zzz.”).
+- Cache **`read-aloud-v21-44c0808b`** (was e26470af; bumped after the plural -s intro clip). Not pushed. Needs a real-phone listen of the new clips (especially digraph phonemes, “said”, the heart frame, “I wish I had cash.”, and “S at the end of a word can say sss, or zzz.”).
 
 
 ## Latest (v20): tester Chyann Devers' 3 suggestions (approved by Jeffrey Nov 18)

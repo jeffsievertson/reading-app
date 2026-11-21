@@ -83,7 +83,7 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: auto 0; }
 .tile {
   position: relative; border: 0; border-radius: 22px; background: var(--surface);
-  min-height: 148px; padding: 12px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  min-height: 170px; padding: 16px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
   border: 3px solid transparent;
 }
 .tile.done { border-color: var(--ok); }
@@ -171,7 +171,7 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
   border: 3px solid #3a404c; background: var(--surface); border-radius: 20px; padding: 12px;
   min-height: 96px; display: flex; align-items: center; justify-content: center;
 }
-.letter-choice { flex: 1; font-size: 4.6rem; font-weight: 800; min-height: 130px; }
+.letter-choice { flex: 1 1 0; min-width: 0; font-size: 4.6rem; font-weight: 800; min-height: 130px; }
 .choice.right { border-color: var(--ok); background: #123b25; }
 .choice.wrong { border-color: var(--bad); animation: shake .4s; }
 .word-opt { font-size: 2.8rem; font-weight: 800; }
@@ -267,14 +267,8 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 
 /* ---------- rewards: home stats, word bank, milestone ---------- */
-.home { margin: 0; display: flex; flex-direction: column; gap: 8px; }
-.home .grid2 { margin: 0; gap: 4px; }
-.home .tile { min-height: 0; padding: 6px 8px 8px; }
-.home .tile-photo { height: 44px; margin-bottom: 2px; }
-.home .tile-ico { font-size: 1.35rem; }
-.home .tile-num { font-size: 1.55rem; }
-.home .tile-name { font-size: 1.0rem; }
-.home .bar { margin-top: 2px; height: 8px; }
+.home { margin: 0; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
+.home .grid2 { margin: 0; }
 .stats { display: grid; grid-template-columns: 1fr; gap: 10px; }
 .stat {
   border: 0; border-radius: 22px; background: var(--surface); min-height: var(--tap);
@@ -320,20 +314,3 @@ a.btn { text-decoration: none; color: inherit; }
 .sign { display: flex; flex-direction: column; align-items: center; }
 
 
-/* v21: 9 home tiles must all be reachable. Home itself must not flex-shrink, so main can scroll. */
-.home { flex-shrink: 0; gap: 4px; }
-.home .tile { min-height: 0 !important; padding: 2px 6px 3px; gap: 1px; }
-.home .tile-photo { height: 26px !important; margin-bottom: 0; }
-.home .tile.has-photo { padding-top: 4px; }
-.home .tile.has-photo .tile-ico { display: none; }
-.home .tile-ico { font-size: 1.25rem; }
-.home .tile-num { font-size: 1.25rem; }
-.home .tile-name { font-size: 0.88rem; line-height: 1.15; }
-.home .bar { margin-top: 2px; height: 7px; width: 70%; }
-.home .stats { grid-template-columns: 1fr; gap: 4px; }
-.home .stat { padding: 8px 12px; min-height: 72px; }
-.home .stat-ico { font-size: 1.6rem; }
-.home .stat-main { font-size: 1.1rem; }
-.home .stat-sub { font-size: 0.85rem; }
-.home .stat-txt { overflow: visible; }
-.home .stat-main { white-space: nowrap; }

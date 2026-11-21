@@ -273,6 +273,25 @@
     box.querySelectorAll('.items').forEach(fitGrid);
     box.querySelectorAll('.grid2').forEach(fitTileNames);
     box.querySelectorAll('.sign:not(.small), .menu-card:not(.small), .form-field:not(.small)').forEach(fitThing);
+    box.querySelectorAll('.choices').forEach(fitChoices);
+  }
+  /** Pattern/letter find buttons share one width (flex 1 1 0) and one font size so "ck"/"ng" fit. */
+  function fitChoices(row) {
+    const btns = [...row.querySelectorAll('.letter-choice')];
+    if (btns.length < 2) return;
+    btns.forEach((b) => { b.style.fontSize = ''; });
+    let size = parseFloat(getComputedStyle(btns[0]).fontSize);
+    const fits = () => btns.every((b) => {
+      const r = b.getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(b);
+      const tr = range.getBoundingClientRect();
+      return tr.width > 0 && (tr.left - r.left) >= 8 && (r.right - tr.right) >= 8;
+    });
+    while (size > 28 && !fits()) {
+      size -= 1;
+      btns.forEach((b) => { b.style.fontSize = size + 'px'; });
+    }
   }
   /** v20: a screen title ("🔡 Missing Letter") stays on one line; shrinks (floor 14 px) on narrow phones. */
   function fitTitle(top) {
@@ -615,14 +634,19 @@
           el('span', null, patternKw(it)))),
       footer: [btn('🔊', 'Hear the sound', play, 'icon-btn'), nextBtn()]
     });
-    const together = it.frame || 'Together they make the sound';
-    S.say([
-      { text: it.intro, pause: 250 },
-      { text: together, pause: 150 },
-      { clipName: it.clipName, text: it.sound, rateMul: 0.8, pause: 350 },
-      { clipName: it.clipName, text: it.sound, rateMul: 0.8, pause: 700 },
-      { text: posEnd ? 'This is the sound at the end of' : 'This is the first sound in', pause: 150 }
-    ]).then((ok) => { if (ok) play(); });
+    const parts = [{ text: it.intro, pause: 400 }];
+    if (!it.frame) {
+      parts.push(
+        { text: 'Together they make the sound', pause: 150 },
+        { clipName: it.clipName, text: it.sound, rateMul: 0.8, pause: 350 },
+        { clipName: it.clipName, text: it.sound, rateMul: 0.8, pause: 700 },
+        { text: posEnd ? 'This is the sound at the end of' : 'This is the first sound in', pause: 150 }
+      );
+    } else {
+      // Finish the intro as a complete sentence, then pause before the examples in play().
+      parts.push({ text: 'This is the sound at the end of ' + it.kw + '.', pause: 400 });
+    }
+    S.say(parts).then((ok) => { if (ok) play(); });
   }
   function stepFindPattern(it) {
     const opts = shuffle(it.opts.slice());

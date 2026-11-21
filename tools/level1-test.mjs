@@ -11,9 +11,18 @@ const SHOTS = new URL('../screenshots/', import.meta.url).pathname;
 const b = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', args: ['--no-sandbox'] });
 let failed = 0; const results = [];
 const check = (n, c, i) => { results.push((c ? 'PASS ' : 'FAIL ') + n + (c ? '' : '  ' + JSON.stringify(i).slice(0, 500))); if (!c) failed++; };
-async function page(done = {}, shots = false) {
+async function page(done = {}, shots = false, { locked = false } = {}) {
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: shots ? 2 : 1, isMobile: true, hasTouch: true,
     userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1' });
+  if (locked) {
+    await ctx.addInitScript(() => {
+      const AC = window.AudioContext;
+      window.AudioContext = window.webkitAudioContext = class extends AC {
+        constructor(...a) { super(...a); super.suspend(); }
+        resume() { return Promise.resolve(); }
+      };
+    });
+  }
   await ctx.addInitScript((done) => {
     if (!sessionStorage.getItem('seeded')) { sessionStorage.setItem('seeded', '1'); localStorage.setItem('readAloud.v1', JSON.stringify({ started: true, done, settings: {} })); }
     window.__tts = []; speechSynthesis.speak = (u) => { window.__tts.push(u.text); setTimeout(() => u.onend && u.onend(), 20); };
@@ -55,6 +64,33 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
   const tts = await p.evaluate(() => window.__tts);
   check('no built-in voice used in the Q lesson', tts.length === 0, tts);
   check('no page errors', !errors.length, errors);
+  await ctx.close();
+}
+// 2b. Audio interruption after a tap in the Q lesson: no built-in voice, say() does not hang,
+// and the letter/keyword stay on screen (visual prompt).
+{
+  const { ctx, p, errors } = await page({}, false, { locked: true });
+  await p.goto(BASE + '#/home'); await p.waitForSelector('.tile');
+  await p.waitForFunction(() => window.Speech.clipCount() > 400);
+  await p.locator('.tile').first().tap(); // first gesture; AudioContext stays locked
+  await p.waitForTimeout(200);
+  await p.goto(BASE + '#/lesson/L1-q'); await p.waitForSelector('.big-letter');
+  const ms = await p.evaluate(async () => {
+    const t0 = Date.now();
+    await window.Speech.say([
+      { text: 'This is the letter Q.', pause: 250 },
+      { text: 'It makes the sound', pause: 150 },
+      { clipName: 'letters/q', text: 'kwuh', rateMul: 0.8, pause: 350 }
+    ]);
+    return Date.now() - t0;
+  });
+  const tts = await p.evaluate(() => window.__tts);
+  const log = await p.evaluate(() => window.Speech.debugLog());
+  const visible = await p.locator('.big-letter').count();
+  check('Q interrupted after a tap: no built-in voice', tts.length === 0, { tts, log: log.slice(-8), ms });
+  check('Q interrupted after a tap: say() resolved, no hang', ms < 8000, ms);
+  check('Q interrupted after a tap: visual prompt still shown', visible >= 1, visible);
+  check('Q interrupted after a tap: no page errors', !errors.length, errors);
   await ctx.close();
 }
 // 3. Answer choices for every letter: right letter present, 3 distinct, no sound-alikes

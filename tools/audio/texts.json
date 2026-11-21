@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 940,
+ "count": 941,
  "letters": [
   {
    "l": "a",
@@ -4202,6 +4202,15 @@
    "kind": "text",
    "sources": [
     "prompt:pattern"
+   ]
+  },
+  {
+   "key": "this is the sound at the end of bills",
+   "text": "This is the sound at the end of bills.",
+   "speak": "This is the sound at the end of bills.",
+   "kind": "text",
+   "sources": [
+    "pattern-frame-done"
    ]
   },
   {
