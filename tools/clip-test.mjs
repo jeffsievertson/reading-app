@@ -51,6 +51,22 @@ async function sayAfterTap(p, text, extra = '') {
   await p.waitForTimeout(300);
   return p.evaluate(async ([t]) => { window.Speech.stop(); const t0 = Date.now(); await window.Speech.say(t); return Date.now() - t0; }, [text]);
 }
+async function tapWhileLocked(p) {
+  await p.goto(BASE + '#/home'); await p.waitForSelector('.tile');
+  await p.waitForFunction(() => window.Speech.clipCount() > 400);
+  await p.locator('.tile').first().tap(); // first gesture; AudioContext stays locked
+  await p.waitForTimeout(200);
+}
+async function sayOnLesson(p, hash, sel, parts) {
+  await p.goto(BASE + hash);
+  await p.waitForSelector(sel);
+  return p.evaluate(async (parts) => {
+    window.Speech.stop();
+    const t0 = Date.now();
+    await window.Speech.say(parts);
+    return Date.now() - t0;
+  }, parts);
+}
 
 // 1. A clip plays for a known text after the first tap (iPhone Safari model)
 {
@@ -70,7 +86,8 @@ async function sayAfterTap(p, text, extra = '') {
 // 2. Audio locked. Before the first tap (cold page load) the built-in voice is no use either
 // (iPhone: silent before a gesture), so the line WAITS for the tap and then plays its clip (v18).
 // After a tap, if audio is still locked (iOS "interrupted"), wait for the next tap (capped)
-// and retry the clip; if the cap passes, stay silent. Never the built-in voice. say() must resolve.
+// and retry the clip; if the cap passes, other lines use the built-in voice. Letter/pattern
+// sounds, and the whole letter/pattern lesson (noTts), stay silent. say() must resolve.
 {
   const { ctx, p } = await page({ locked: true });
   await p.goto(BASE + '#/home'); await p.waitForSelector('.tile');
@@ -80,8 +97,63 @@ async function sayAfterTap(p, text, extra = '') {
   check('locked audio, no tap yet -> no built-in voice (waits for the first tap)', (await tts(p)).length === 0, await tts(p));
   const ms = await sayAfterTap(p, 'Settings');
   const L = await log(p);
-  check('locked audio after a tap -> no built-in voice, say() resolves (no hang)', (await tts(p)).length === 0 && !L.some((e) => e.how === 'tts') && ms < 8000, { L, ms, tts: await tts(p) });
+  check('locked audio after a tap -> built-in voice (reason audio-locked), no hang',
+    L.some((e) => e.how === 'tts' && e.reason === 'audio-locked' && e.key === 'settings') && ms < 8000,
+    { L, ms, tts: await tts(p) });
   await ctx.close();
+}
+// 2b. After a failed 3 s retry: Settings / sentence / heart / word lesson use the built-in
+// voice; Q, L1-a, P-ck and P-sh stay silent (lesson-wide noTts + sound parts). No hang.
+async function lockedSay(hash, sel, parts) {
+  const { ctx, p, errors } = await page({ locked: true });
+  await tapWhileLocked(p);
+  const ms = await sayOnLesson(p, hash, sel, parts);
+  const L = await log(p);
+  const T = await tts(p);
+  return { ctx, p, errors, ms, L, T };
+}
+{
+  const cases = [
+    ['home/Settings', '#/home', '.tile', 'Settings', /settings/],
+    ['sentence S-dg-1', '#/lesson/S-dg-1', '.sentence', 'The shop is shut.', /the shop is shut/],
+    ['heart word SW-said', '#/lesson/SW-said', '.big-word',
+      [{ text: 'This is a heart word. You remember it. It says:', pause: 250 }, { text: 'said' }],
+      /said|this is a heart word/],
+    ['word lesson W-shop', '#/lesson/W-shop', '.tiles',
+      [{ clipName: 'letters/s', text: 'sss' }, { text: 'shop' }],
+      /shop/]
+  ];
+  for (const [name, hash, sel, parts, keyRe] of cases) {
+    const { ctx, ms, L, T, errors } = await lockedSay(hash, sel, parts);
+    check(name + ': built-in voice after failed retry, no hang',
+      L.some((e) => e.how === 'tts' && e.reason === 'audio-locked' && keyRe.test(e.key)) && ms < 8000,
+      { L, ms, tts: T });
+    if (name.startsWith('word lesson')) {
+      check('word lesson: letter sound stays silent (no TTS)',
+        L.some((e) => e.how === 'skip' && /letters\/s/.test(e.key)) && !L.some((e) => e.how === 'tts' && e.key === 'sss'),
+        L);
+    }
+    check(name + ': no page errors', !errors.length, errors);
+    await ctx.close();
+  }
+  const silent = [
+    ['Q lesson', '#/lesson/L1-q', '.big-letter',
+      [{ text: 'This is the letter Q.', pause: 250 }, { text: 'It makes the sound', pause: 150 }, { clipName: 'letters/q', text: 'kwuh', rateMul: 0.8 }]],
+    ['L1-a', '#/lesson/L1-a', '.big-letter',
+      [{ text: 'This is the letter A.', pause: 250 }, { clipName: 'letters/a', text: 'aah', rateMul: 0.8 }]],
+    ['P-ck', '#/lesson/P-ck', '.big-letter',
+      [{ text: 'These letters are C K.', pause: 250 }, { clipName: 'letters/k', text: 'kuh', rateMul: 0.8 }]],
+    ['P-sh', '#/lesson/P-sh', '.big-letter',
+      [{ text: 'These letters are S H.', pause: 250 }, { clipName: 'patterns/sh', text: 'shh', rateMul: 0.8 }]]
+  ];
+  for (const [name, hash, sel, parts] of silent) {
+    const { ctx, ms, L, T, errors } = await lockedSay(hash, sel, parts);
+    check(name + ': stays silent after failed retry, no hang',
+      T.length === 0 && !L.some((e) => e.how === 'tts') && ms < 8000,
+      { L, ms, tts: T });
+    check(name + ': no page errors', !errors.length, errors);
+    await ctx.close();
+  }
 }
 // 3. Text without a clip -> built-in voice
 {

@@ -134,7 +134,8 @@
   // ---------------------------------------------------------------- layout
   let helpText = '';
   function setHelp(h) { helpText = h || ''; }
-  function screen({ title, back, help, body, footer, dots }) {
+  function screen({ title, back, help, body, footer, dots, noTts }) {
+    if (S.setNoTts) S.setNoTts(!!noTts);
     helpText = help || '';
     const top = el('header', { class: 'top' },
       back ? btn(back === '#/home' ? '🏠' : '◀', back === '#/home' ? 'Home' : 'Go back', () => go(back), 'icon-btn') : el('span', { class: 'spacer' }),
@@ -527,7 +528,9 @@
       steps.map((_, k) => el('span', { class: 'dot' + (k < i ? ' past' : k === i ? ' now' : '') })));
   }
   function lessonScreen(opts) {
-    return screen(Object.assign({ back: backFor(lesson.it), dots: dots() }, opts));
+    const kind = lesson && lesson.it && lesson.it.kind;
+    const noTts = kind === 'letter' || kind === 'pattern';
+    return screen(Object.assign({ back: backFor(lesson.it), dots: dots(), noTts }, opts));
   }
   const nextBtn = (cls) => btn('▶', 'Next', nextStep, 'primary grow ' + (cls || ''));
 

@@ -147,15 +147,20 @@ window.Speech = (function () {
       waiters.add(rec);
     });
   }
+  // Letter and pattern lessons stay silent when audio is locked (plain text like
+  // "This is the letter Q" is not a sound part). Set by the lesson screen.
+  let noTtsLesson = false;
   function isSoundPart(part) {
     const n = part && part.clipName;
     return !!(n && (String(n).startsWith('letters/') || String(n).startsWith('patterns/')));
   }
-  /** Letter/pattern sounds, and any clip held up by a locked/stalled context, never use the
-   *  built-in voice (that was "cue / kwuh" in the Q lesson). Missing or broken clips still can. */
+  /** Letter/pattern sounds never use the built-in voice (that was "kwuh" in the Q lesson).
+   *  A lesson-wide noTts flag also silences the rest of a letter or pattern lesson when
+   *  audio is locked or stalled. Other lines may fall back after the 3 s retry.
+   *  Missing or broken clips still can. */
   function mayTts(part, reason) {
     if (isSoundPart(part)) return false;
-    if (reason === 'audio-locked' || reason === 'audio-stalled') return false;
+    if (noTtsLesson && (reason === 'audio-locked' || reason === 'audio-stalled')) return false;
     return true;
   }
   function unlockAudio() {
@@ -414,7 +419,8 @@ window.Speech = (function () {
         running = await ensureRunning(800);
       }
       // After a tap, audio can still be locked (iOS interruption). Wait for the next tap,
-      // capped, then retry the clip. If the cap passes, stay silent — never the built-in voice.
+      // capped, then retry the clip. If the cap passes, letter/pattern sounds and noTts
+      // lessons stay silent; other lines fall back to the built-in voice.
       if (!running && my === token && gestured) {
         const g = await waitForGestureOrTimeout(NEXT_TAP_MS);
         if (my !== token) return false;
@@ -738,6 +744,7 @@ window.Speech = (function () {
     setUseClips(on) { useClips = !!on; if (!on) stopSources(); },
     usingClips: () => useClips && !!AC && clipCount() > 0,
     debugLog: () => log.slice(),
+    setNoTts(on) { noTtsLesson = !!on; },
     matches,
     englishVoices,
     setRate(r) { rate = r; },
