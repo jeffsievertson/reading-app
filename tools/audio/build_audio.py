@@ -26,6 +26,7 @@ sys.path.insert(0, HERE)
 from engines import synth, trim, fade, silence, write_wav, SR   # noqa: E402
 import phonics                                                   # noqa: E402
 import human                                                     # noqa: E402
+import patterns                                                   # noqa: E402
 
 VOICE = 'af_heart'
 ENGINE_VOICE = 'kokoro:' + VOICE
@@ -319,6 +320,29 @@ def main():
         letter_info.append({'letter': l, 'keyword': L['kw'], 'file': rel, 'recipe': how,
                             'source': 'human recording' if is_human else 'kokoro word cut'})
 
+    # ---- digraph / pattern sounds (one file per sound; swap later for Whitney)
+    pat_hash = sha(open(os.path.join(HERE, 'patterns.py')).read(), open(os.path.join(HERE, 'phonics.py')).read(), VOICE)
+    pattern_files = {}
+    pattern_info = []
+    for P in T.get('patternSounds') or []:
+        pid = P['id']
+        rel = f"patterns/{pid}-{sha(pat_hash, pid)}.mp3"
+        dest = os.path.join(ROOT, 'audio', rel)
+        if a.force or not os.path.exists(dest):
+            x, how = patterns.make_pattern('kokoro:' + VOICE, pid)
+            to_mp3(phonics.finish_letter(x), dest); made += 1
+        else:
+            reused += 1
+            how = 'reused'
+        used.add(os.path.normpath(dest))
+        pattern_files['patterns/' + pid] = rel
+        # Register the sound-hint text ("shh") at natural length, but never overwrite
+        # an existing letter sound (wh uses "wuh", already Whitney's /w/).
+        if P['soundKey'] not in fixed and P['soundKey'] not in clips:
+            clips[P['soundKey']] = rel
+            fixed.append(P['soundKey'])
+        pattern_info.append({'id': pid, 'sound': P['sound'], 'file': rel, 'recipe': how, 'note': P.get('note')})
+
     # ---- optional QA with Whisper (dev only)
     qa = None
     if a.qa:
@@ -330,20 +354,21 @@ def main():
 
     # ---- prune stale files
     pruned = 0
-    for d, _, fs in [w for top in (OUT, os.path.join(ROOT, 'audio', 'human')) for w in os.walk(top)]:
+    for d, _, fs in [w for top in (OUT, os.path.join(ROOT, 'audio', 'human'), os.path.join(ROOT, 'audio', 'patterns')) for w in os.walk(top)]:
         for f in fs:
             pth = os.path.normpath(os.path.join(d, f))
             if f.endswith('.mp3') and pth not in used:
                 os.remove(pth); pruned += 1
 
-    version = sha(*sorted(set(clips.values()) | set(slow.values()) | set(letters.values())))
+    all_files = set(clips.values()) | set(slow.values()) | set(letters.values()) | set(pattern_files.values())
+    version = sha(*sorted(all_files))
     manifest = {
         'format': 2,
         'voice': 'Kokoro-82M v1.0, voice af_heart (Apache-2.0)',
         'version': version,
         'baseRate': BASE_RATE,
-        'clips': clips, 'slow': slow, 'letters': letters, 'fixed': fixed,
-        'files': sorted(set(clips.values()) | set(slow.values()) | set(letters.values()))
+        'clips': clips, 'slow': slow, 'letters': letters, 'patterns': pattern_files, 'fixed': fixed,
+        'files': sorted(all_files)
     }
     with open(os.path.join(ROOT, 'audio', 'clips.json'), 'w') as f:
         json.dump(manifest, f, ensure_ascii=False, separators=(',', ':'))
@@ -360,7 +385,7 @@ def main():
         'slow_clips': len(slow), 'letter_sounds': len(letters), 'files': len(manifest['files']),
         'total_bytes': total, 'made': made, 'reused': reused, 'pruned': pruned,
         'uncovered_expressions': T['uncovered'], 'version': version, 'seconds': round(time.time() - t0),
-        'letters': letter_info, 'qa': qa
+        'letters': letter_info, 'patterns': pattern_info, 'qa': qa
     }
     json.dump(report, open(os.path.join(HERE, 'build-report.json'), 'w'), indent=1, ensure_ascii=False)
     print(f"texts {report['texts']} | files {report['files']} ({total/1e6:.2f} MB) | made {made}, reused {reused}, pruned {pruned} | "

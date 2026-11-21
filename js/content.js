@@ -129,7 +129,112 @@ window.CONTENT = (function () {
     'Did you get a bus pass?'
   ];
 
-  // ---------- Level 6: real-life reading ----------
+  // ---------- Grapheme tiles (v21) ----------
+  // Longest taught multi-letter unit first, so "shop" is sh-o-p, not s-h-o-p, and
+  // "check" is ch-e-ck. Level 2 CVC words still split into single letters.
+  // Pattern sound clips live in clips.json `patterns` (one key per sound) so a later
+  // Whitney recording is a file swap, not a new code path. ck / FLOSS reuse Whitney.
+  const GRAPHMES = [
+    { g: 'ck', sound: 'kuh',  clip: 'letters/k' },
+    { g: 'ff', sound: 'fff',  clip: 'letters/f' },
+    { g: 'll', sound: 'lll',  clip: 'letters/l' },
+    { g: 'ss', sound: 'sss',  clip: 'letters/s' },
+    { g: 'zz', sound: 'zzz',  clip: 'letters/z' },
+    { g: 'sh', sound: 'shh',  clip: 'patterns/sh' },
+    { g: 'ch', sound: 'chuh', clip: 'patterns/ch' },
+    { g: 'th', sound: 'thh',  clip: 'patterns/th' },
+    { g: 'wh', sound: 'wuh',  clip: 'patterns/wh' },
+    { g: 'ng', sound: 'nng',  clip: 'patterns/ng' }
+  ].sort((a, b) => b.g.length - a.g.length);
+  const VOICED_TH = new Set(['that', 'with', 'them', 'then', 'this']);
+  const S_AS_Z = new Set(['bills']); // plural -s says /z/ in these words
+  function segments(word) {
+    const w = String(word || '').toLowerCase();
+    const out = [];
+    let i = 0;
+    while (i < w.length) {
+      let hit = null;
+      for (const p of GRAPHMES) { if (w.startsWith(p.g, i)) { hit = p; break; } }
+      if (hit) {
+        let sound = hit.sound, clip = hit.clip;
+        if (hit.g === 'th' && VOICED_TH.has(w)) { sound = 'dhh'; clip = 'patterns/th-voiced'; }
+        out.push({ g: hit.g, sound, clip });
+        i += hit.g.length;
+      } else {
+        const ch = w[i];
+        if (ch === 's' && S_AS_Z.has(w) && i === w.length - 1) {
+          out.push({ g: 's', sound: 'zzz', clip: 'letters/z' });
+        } else {
+          out.push({ g: ch, sound: soundOf[ch] || ch, clip: 'letters/' + ch });
+        }
+        i += 1;
+      }
+    }
+    return out;
+  }
+
+  // ---------- Level 6: Spellings (ck, FLOSS, plural -s) + Book 3 heart words ----------
+  const spellHearts = [
+    { w: 'of' }, { w: 'said' }, { w: 'are' }, { w: 'they' }
+  ];
+  const spellPatterns = [
+    { id: 'P-ck', label: 'ck', letters: 'ck', sound: 'kuh',  clipName: 'letters/k', kw: 'sock', pos: 'end',   emoji: '🧦', intro: 'These letters are C K.', opts: 'ck,k,s' },
+    { id: 'P-ff', label: 'ff', letters: 'ff', sound: 'fff',  clipName: 'letters/f', kw: 'off',  pos: 'end',   emoji: '⛔', intro: 'These letters are F F.', opts: 'ff,f,ss' },
+    { id: 'P-ll', label: 'll', letters: 'll', sound: 'lll',  clipName: 'letters/l', kw: 'fill', pos: 'end',   emoji: '🫗', intro: 'These letters are L L.', opts: 'll,l,ss' },
+    { id: 'P-ss', label: 'ss', letters: 'ss', sound: 'sss',  clipName: 'letters/s', kw: 'mess', pos: 'end',   emoji: '🧹', intro: 'These letters are S S.', opts: 'ss,s,ff' },
+    { id: 'P-zz', label: 'zz', letters: 'zz', sound: 'zzz',  clipName: 'letters/z', kw: 'buzz', pos: 'end',   emoji: '🐝', intro: 'These letters are Z Z.', opts: 'zz,z,ss' },
+    { id: 'P-s',  label: '-s', letters: 's',  sound: 'zzz',  clipName: 'letters/z', kw: 'bills', pos: 'end',  emoji: '🧾',
+      intro: 'S at the end of a word can say sss, or zzz.',
+      frame: 'In bills, it says',
+      opts: 's,z,f' }
+  ];
+  const spellWords = [
+    ['sock', '🧦'], ['back', '🔙'], ['kick', '🦵'], ['duck', '🦆'],
+    ['fill', '🫗'], ['hill', '⛰️'], ['well', '💧'], ['mess', '🧹'],
+    ['pass', '🎫'], ['off', '⛔'], ['buzz', '🐝'], ['bills', '🧾']
+  ].map(([w, emoji]) => ({ w, emoji }));
+  const spellSentences = [
+    'I can kick it.',
+    'The duck is in the mud.',
+    'Fill the cup.',
+    'They said it is a mess.',
+    'Pass the pan to Dad.',
+    'The top of the hill is hot.',
+    'The bills are in the box.',
+    'The gas is off.'
+  ];
+
+  // ---------- Level 7: Sounds together (sh, ch, th, wh, ng) + Book 4 heart words ----------
+  // Digraph sound clips are Kokoro for now (patterns/sh, …), easy to swap for Whitney later.
+  const digraphHearts = [
+    { w: 'do' }, { w: 'have' }, { w: 'what' }, { w: 'there' }, { w: 'where' }
+  ];
+  const digraphPatterns = [
+    { id: 'P-sh',        label: 'sh', letters: 'sh', sound: 'shh',  clipName: 'patterns/sh',        kw: 'shop', pos: 'start', emoji: '🏪', intro: 'These letters are S H.', opts: 'sh,s,ch' },
+    { id: 'P-ch',        label: 'ch', letters: 'ch', sound: 'chuh', clipName: 'patterns/ch',        kw: 'chip', pos: 'start', emoji: '🪵', intro: 'These letters are C H.', opts: 'ch,sh,t' },
+    { id: 'P-th',        label: 'th', listLabel: 'th (path)', letters: 'th', sound: 'thh',  clipName: 'patterns/th',        kw: 'path', pos: 'end',   emoji: '🚶', intro: 'These letters are T H.', opts: 'th,t,sh' },
+    { id: 'P-th-voiced', label: 'th', listLabel: 'th (that)', letters: 'th', sound: 'dhh',  clipName: 'patterns/th-voiced', kw: 'that', pos: 'start', emoji: '👉', intro: 'These letters are T H. They also make this sound.', opts: 'th,t,sh' },
+    { id: 'P-wh',        label: 'wh', letters: 'wh', sound: 'wuh',  clipName: 'patterns/wh',        kw: 'when', pos: 'start', emoji: '⏰', intro: 'These letters are W H.', opts: 'wh,w,th' },
+    { id: 'P-ng',        label: 'ng', letters: 'ng', sound: 'nng',  clipName: 'patterns/ng',        kw: 'ring', pos: 'end',   emoji: '📞', intro: 'These letters are N G.', opts: 'ng,n,g' }
+  ];
+  const digraphWords = [
+    ['shop', '🏪'], ['cash', '💵'], ['shut', '🚪'], ['wish', '✨'],
+    ['dish', '🍽️'], ['rush', '🏃'], ['chip', '🪵'], ['chop', '🪓'],
+    ['much', '📏'], ['check', '✅'], ['path', '🚶'], ['with', '🤝'],
+    ['that', '👉'], ['when', '⏰'], ['ring', '📞'], ['long', '📏']
+  ].map(([w, emoji]) => ({ w, emoji }));
+  const digraphSentences = [
+    'The shop is shut.',
+    'I wish I had cash.',
+    'Do you have cash?',
+    'What do you wish?',
+    'Chop it up.',
+    'That path is long.',
+    'Where is the shop?',
+    'There is a long path.'
+  ];
+
+  // ---------- Level 8: real-life reading (was 6; old item ids kept) ----------
   const signs = [
     { t: 'STOP',     style: 'stop',    say: 'Stop',     mean: 'Stop. Do not go.' , img: 'stop' },
     { t: 'EXIT',     style: 'exit',    say: 'Exit',     mean: 'Exit. This is the way out.' , img: 'exit' },
@@ -172,7 +277,8 @@ window.CONTENT = (function () {
 
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-  const REAL_LIFE = 6;   // the level that is split into categories (signs, menu, forms)
+  const REAL_LIFE = 8;   // signs, menu, forms (was 6; shown number moved, item ids unchanged)
+  const BIBLE = 9;       // was 7
 
   // ---------- Flatten into a single ordered list of items ----------
   const items = [];
@@ -183,14 +289,22 @@ window.CONTENT = (function () {
   sentences.forEach((s, i) => items.push({ id: 'L3-s' + (i + 1), level: 4, kind: 'sentence', label: s, text: s }));
   everydayWords.forEach((x) => items.push({ id: 'L5-' + x.w, level: 5, kind: 'word', label: x.w, text: x.w, ...x }));
   everydaySentences.forEach((s, i) => items.push({ id: 'L5-s' + (i + 1), level: 5, kind: 'sentence', label: s, text: s }));
+  // v21: Spellings then Sounds together, then Real Life / Bible. New ids are stable (no display number).
+  spellHearts.forEach((x) => items.push({ id: 'SW-' + slug(x.w), level: 6, kind: 'sight', heart: true, label: x.w, text: x.w, ...x }));
+  spellPatterns.forEach((x) => items.push({ level: 6, kind: 'pattern', ...x, opts: x.opts.split(',') }));
+  spellWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 6, kind: 'word', label: x.w, text: x.w, ...x }));
+  spellSentences.forEach((s, i) => items.push({ id: 'S-sp-' + (i + 1), level: 6, kind: 'sentence', label: s, text: s }));
+  digraphHearts.forEach((x) => items.push({ id: 'SW-' + slug(x.w), level: 7, kind: 'sight', heart: true, label: x.w, text: x.w, ...x }));
+  digraphPatterns.forEach((x) => items.push({ level: 7, kind: 'pattern', ...x, opts: x.opts.split(',') }));
+  digraphWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 7, kind: 'word', label: x.w, text: x.w, ...x }));
+  digraphSentences.forEach((s, i) => items.push({ id: 'S-dg-' + (i + 1), level: 7, kind: 'sentence', label: s, text: s }));
   signs.forEach((x) => items.push({ id: 'L4-sign-' + slug(x.t), level: REAL_LIFE, cat: 'signs', kind: 'sign', label: x.t, text: x.t, ...x }));
   menu.forEach((x) => items.push({ id: 'L4-menu-' + slug(x.t), level: REAL_LIFE, cat: 'menu', kind: 'menu', label: x.t, text: x.t, ...x }));
   forms.forEach((x) => items.push({ id: 'L4-form-' + slug(x.t), level: REAL_LIFE, cat: 'forms', kind: 'form', label: x.t, text: x.t, ...x }));
-  // v20: Bible verses moved out of Real Life into their own last level (7), after the everyday
-  // levels; the text is unchanged KJV. Item ids keep their old prefixes so saved progress stays.
-  verses.forEach((x) => items.push({ id: 'L4-kjv-' + slug(x.ref), level: 7, kind: 'verse', label: x.ref, text: x.t, ...x }));
+  // Bible verses: still last; old L4-kjv- ids kept so saved progress stays. Shown level is 9.
+  verses.forEach((x) => items.push({ id: 'L4-kjv-' + slug(x.ref), level: BIBLE, kind: 'verse', label: x.ref, text: x.t, ...x }));
 
-  // v20 order: 1 Sounds, 2 Words, 3 Missing letter, 4 Sentences, 5 Everyday, 6 Real life, 7 Bible.
+  // v21 order: 1-5 unchanged, 6 Spellings, 7 Sounds together, 8 Real life, 9 Bible.
   // Old ids (L3-…, L4-…) are kept for saved progress; `level` is the shown level number.
   const levels = [
     { n: 1, icon: '🔤', name: 'Sounds',    say: 'Level 1. Letter sounds.', img: 'level-1' },
@@ -198,8 +312,10 @@ window.CONTENT = (function () {
     { n: 3, icon: '🔡', name: 'Missing Letter',  say: 'Level 3. Missing letter.', img: 'key' },
     { n: 4, icon: '💬', name: 'Sentences', say: 'Level 4. Sentences.', img: 'level-3' },
     { n: 5, icon: '🏠', name: 'Everyday',  say: 'Level 5. Everyday reading.', img: 'coffee' },
-    { n: 6, icon: '🏙️', name: 'Real Life', say: 'Level 6. Real life reading.', img: 'level-4' },
-    { n: 7, icon: '📖', name: 'Bible',     say: 'Level 7. Bible verses. King James Version.', img: 'bible' }
+    { n: 6, icon: '✍️', name: 'Spellings', say: 'Level 6. Spellings.', img: 'box' },
+    { n: 7, icon: '🔗', name: 'Sounds together', say: 'Level 7. Sounds together.', img: 'fish' },
+    { n: 8, icon: '🏙️', name: 'Real Life', say: 'Level 8. Real life reading.', img: 'level-4' },
+    { n: 9, icon: '📖', name: 'Bible',     say: 'Level 9. Bible verses. King James Version.', img: 'bible' }
   ];
   const cats = [
     { id: 'signs', icon: '🛑', name: 'Signs', say: 'Signs.', img: 'signs' },
@@ -210,6 +326,8 @@ window.CONTENT = (function () {
   // letter -> sound lookup used when tapping letters inside words
   const soundOf = {};
   letters.forEach((x) => { soundOf[x.l] = x.sound; });
+  GRAPHMES.forEach((p) => { soundOf[p.g] = p.sound; });
+  soundOf['th-voiced'] = 'dhh';
 
   // Homophones / common mis-hearings accepted by speech recognition
   const homophones = {
@@ -218,8 +336,17 @@ window.CONTENT = (function () {
     pin: ['pen'], pen: ['pin'], ten: ['tin', '10'], cot: ['caught'],  // pin/pen and ten/tin sound alike in many US accents
     pan: ['pam'], nap: ['knap'], zip: ['zipp'], he: ['hee'],
     jet: ['jett'], sent: ['cent', 'scent'], dad: ['dat'], was: ['wuz'],
-    the: ['da', 'duh'], my: ['mi', 'mai'], restroom: ['rest room'], 'date of birth': ['date a birth']
+    the: ['da', 'duh'], my: ['mi', 'mai'], restroom: ['rest room'], 'date of birth': ['date a birth'],
+    which: ['witch'], ring: ['wring'], there: ['their', "they're"], where: ['wear'],
+    of: ['ov'], said: ['sed'], are: ['r'], they: ['thay'], do: ['dew', 'due'],
+    have: ['hav'], what: ['wot']
   };
 
-  return { letters, words, missing, everydayWords, everydaySentences, REAL_LIFE, sight, sentences, signs, menu, forms, verses, items, levels, cats, soundOf, homophones };
+  return {
+    letters, words, missing, everydayWords, everydaySentences,
+    spellHearts, spellPatterns, spellWords, spellSentences,
+    digraphHearts, digraphPatterns, digraphWords, digraphSentences,
+    REAL_LIFE, BIBLE, sight, sentences, signs, menu, forms, verses,
+    items, levels, cats, soundOf, homophones, segments, GRAPHMES
+  };
 })();

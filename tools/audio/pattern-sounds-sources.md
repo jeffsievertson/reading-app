@@ -1,0 +1,19 @@
+# Pattern / digraph sounds (v21)
+
+Temporary Kokoro-82M `af_heart` cuts, one file per sound under `audio/patterns/`.
+Mapped in `audio/clips.json` as `patterns.sh`, `patterns.ch`, `patterns.th`,
+`patterns.th-voiced`, `patterns.wh`, `patterns.ng` (clip names `patterns/<id>`).
+
+To swap in Whitney's recordings later: replace each file and point the same
+`patterns` key at the new path. Do not change `letters/` (her A–Z clips).
+
+| id | Sound | Keyword | How it was made | Swap note |
+|---|---|---|---|---|
+| sh | /ʃ/ | shop | Kokoro cut, Nov 21, 2026 | replace `audio/patterns/sh-*.mp3` |
+| ch | /tʃ/ | chip | Kokoro cut, Nov 21, 2026 | replace `audio/patterns/ch-*.mp3` |
+| th | /θ/ | path | Kokoro cut, Nov 21, 2026 | voiceless th |
+| th-voiced | /ð/ | that | Kokoro cut, Nov 21, 2026 | voiced th |
+| wh | /w/ | when | Kokoro cut, Nov 21, 2026 | taught as /w/ (US) |
+| ng | /ŋ/ | ring | Kokoro cut, Nov 21, 2026 | not /n/ + /g/ |
+
+Recipe details are written into `tools/audio/build-report.json` under `patterns`.

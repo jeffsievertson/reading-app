@@ -83,7 +83,7 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: auto 0; }
 .tile {
   position: relative; border: 0; border-radius: 22px; background: var(--surface);
-  min-height: 170px; padding: 16px 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  min-height: 148px; padding: 12px 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
   border: 3px solid transparent;
 }
 .tile.done { border-color: var(--ok); }
@@ -128,6 +128,8 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
   min-width: 240px; padding: 10px 30px; font-size: 8.5rem; font-weight: 800; line-height: 1.1;
   display: flex; gap: 26px; align-items: baseline; justify-content: center;
 }
+.big-letter.pattern { font-size: 6rem; gap: 0; letter-spacing: 0.06em; }
+.tile-letter.graph { font-size: 3.2rem; }
 .big-letter .lower { color: var(--accent); }
 .keyword { display: flex; align-items: center; gap: 16px; font-size: 2.6rem; font-weight: 600; }
 .keyword b { color: var(--accent); }
@@ -257,14 +259,22 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 
 @media (max-width: 370px) {
   .big-letter { font-size: 6.5rem; }
+  .big-letter.pattern { font-size: 4.6rem; }
+  .tile-letter.graph { font-size: 2.6rem; }
   .big-word { font-size: 4rem; }
   .tile-letter { width: 82px; height: 104px; font-size: 3.6rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 
 /* ---------- rewards: home stats, word bank, milestone ---------- */
-.home { margin: auto 0; display: flex; flex-direction: column; gap: 14px; }
-.home .grid2 { margin: 0; }
+.home { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.home .grid2 { margin: 0; gap: 4px; }
+.home .tile { min-height: 0; padding: 6px 8px 8px; }
+.home .tile-photo { height: 44px; margin-bottom: 2px; }
+.home .tile-ico { font-size: 1.35rem; }
+.home .tile-num { font-size: 1.55rem; }
+.home .tile-name { font-size: 1.0rem; }
+.home .bar { margin-top: 2px; height: 8px; }
 .stats { display: grid; grid-template-columns: 1fr; gap: 10px; }
 .stat {
   border: 0; border-radius: 22px; background: var(--surface); min-height: var(--tap);
@@ -308,3 +318,22 @@ a.btn { text-decoration: none; color: inherit; }
 .sign-photo { width: min(200px, 55vw); height: 120px; margin: 0 auto 10px; border-radius: 10px; }
 .menu-photo { width: min(180px, 50vw); height: 110px; margin: 8px auto; border-radius: 10px; }
 .sign { display: flex; flex-direction: column; align-items: center; }
+
+
+/* v21: 9 home tiles must all be reachable. Home itself must not flex-shrink, so main can scroll. */
+.home { flex-shrink: 0; gap: 4px; }
+.home .tile { min-height: 0 !important; padding: 2px 6px 3px; gap: 1px; }
+.home .tile-photo { height: 26px !important; margin-bottom: 0; }
+.home .tile.has-photo { padding-top: 4px; }
+.home .tile.has-photo .tile-ico { display: none; }
+.home .tile-ico { font-size: 1.25rem; }
+.home .tile-num { font-size: 1.25rem; }
+.home .tile-name { font-size: 0.88rem; line-height: 1.15; }
+.home .bar { margin-top: 2px; height: 7px; width: 70%; }
+.home .stats { grid-template-columns: 1fr; gap: 4px; }
+.home .stat { padding: 8px 12px; min-height: 72px; }
+.home .stat-ico { font-size: 1.6rem; }
+.home .stat-main { font-size: 1.1rem; }
+.home .stat-sub { font-size: 0.85rem; }
+.home .stat-txt { overflow: visible; }
+.home .stat-main { white-space: nowrap; }

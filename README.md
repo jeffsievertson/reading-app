@@ -49,15 +49,19 @@ Notes
    letter to hear its sound, 🧩 blends them (sound-by-sound highlight → slow word →
    word), then **say it** (microphone), then find the word among three. The picture is
    only revealed *after* he reads it, so he decodes instead of guessing from pictures.
-3. **Sentences 💬** – 10 "tricky" sight words (the, I, is, to, my, we, he, see, was, you),
+3. **Missing Letter 🔑** – a picture and a spoken word with one letter left out; pick the missing letter, then say the word.
+4. **Sentences 💬** – 10 "tricky" sight words (the, I, is, to, my, we, he, see, was, you),
    then 14 short decodable sentences ("The cat sat on a mat."). Tap any word to hear it,
    🐢 reads word-by-word with highlighting, then say the sentence.
-4. **Real Life 🏙️**
+5. **Everyday** – 10 everyday decodable words and 10 sentences.
+6. **Spellings** – Book 3 heart words (of, said, are, they), then ck, FLOSS (ff, ll, ss, zz), and plural -s, with words and sentences that use them.
+7. **Sounds together** – Book 4 heart words (do, have, what, there, where), then sh, ch, th (path / that), wh, and ng, with words and sentences.
+8. **Real Life 🏙️**
    - Signs (drawn in CSS): STOP, EXIT, OPEN, CLOSED, PUSH, PULL, RESTROOM, DANGER – with a
      spoken meaning ("Pull. Pull the door toward you.").
    - Menu: Coffee, Eggs, Burger, Fries, Chicken, Soup, Salad, Water, Pizza with prices.
    - Forms: Name, Address, Phone, Date of Birth, Signature – with what to write there.
-   - Bible: 8 short **King James Version** verses (John 11:35, 1 Thess 5:16, 5:17,
+9. **Bible** – 8 short **King James Version** verses (John 11:35, 1 Thess 5:16, 5:17,
      Genesis 1:3, Psalm 23:1, Genesis 1:1, Philippians 4:13, Psalm 118:24).
 
 ### Natural voice (pre-recorded clips)

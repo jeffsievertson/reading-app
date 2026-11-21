@@ -100,11 +100,12 @@ const today = R.dayStr(), dayAgo = (n) => R.dayStr(new Date(Date.now() - n * 864
 const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id, 1700000000000]));
 { // backfill from existing progress, home + word bank screens
   const done = Object.assign(ids((it) => it.level === 1), ids((it) => it.level === 2), ids((it) => it.kind === 'sight'), ids((it) => it.cat === 'signs'));
+  const bankN = C.items.filter((it) => done[it.id] && R.isBankItem(it)).length;
   const streak = { count: 5, last: dayAgo(1), skips: 2, toRefill: 0, best: 5, days: 5 };
   const { ctx, p, errors } = await page(done, { words: {}, streak, milestones: {} }, true);
   await p.goto(BASE + '#/home'); await p.waitForSelector('.stat.words');
   const wordsTxt = await p.locator('.stat.words').textContent();
-  check('home: backfilled word count shown (36 + 10 + 8 = 54)', /54/.test(wordsTxt), wordsTxt);
+  check('home: backfilled word count shown (' + bankN + ')', new RegExp(String(bankN)).test(wordsTxt), wordsTxt);
   const stTxt = await p.locator('.stat.streak').textContent();
   check('home: "5 days in a row" + "2 skip days left"', /5 days in a row/.test(stTxt) && /2 skip days left/.test(stTxt), stTxt);
   await p.waitForTimeout(400); await p.screenshot({ path: ROOT + 'screenshots/25-home-rewards.png' });
@@ -117,9 +118,9 @@ const ids = (pred) => Object.fromEntries(C.items.filter(pred).map((it) => [it.id
   await p.goto(BASE + '#/home'); await p.reload(); await p.waitForSelector('.stat.words');
   await p.locator('.stat.words').tap(); await p.waitForSelector('.bank-count');
   const count = await p.locator('.bank-count').textContent();
-  check('word bank: "You know 54 words."', /You know 54 words\./.test(count), count);
+  check('word bank: "You know ' + bankN + ' words."', new RegExp('You know ' + bankN + ' words\\.').test(count), count);
   const n = await p.locator('.bank-word').count();
-  check('word bank lists 54 words, no single letters except "I"', n === 54 && !(await p.locator('.bank-word').allTextContents()).some((w) => w.length === 1 && w !== 'I'), n);
+  check('word bank lists ' + bankN + ' words, no single letters except "I"', n === bankN && !(await p.locator('.bank-word').allTextContents()).some((w) => w.length === 1 && w !== 'I'), n);
   await p.locator('.bank-word', { hasText: /^dog$/ }).tap(); await p.waitForTimeout(300);
   const said2 = await p.evaluate(() => window.Speech.debugLog().map((e) => e.text));
   check('word bank: tap a word to hear it', said2[said2.length - 1] === 'dog', said2.slice(-2));

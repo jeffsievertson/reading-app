@@ -16,9 +16,9 @@ const check = (n, c, i) => { console.log((c ? 'PASS ' : 'FAIL ') + n + (c ? '' :
 const ctx0 = { window: {} }; vm.createContext(ctx0);
 vm.runInContext(fs.readFileSync(ROOT + 'js/content.js', 'utf8'), ctx0);
 const C = ctx0.window.CONTENT;
-check('levels in order 1-7 with the new names', C.levels.map((l) => l.n + l.name).join(',') === '1Sounds,2Words,3Missing Letter,4Sentences,5Everyday,6Real Life,7Bible', C.levels.map((l) => l.name));
+check('levels 1-5 names unchanged; Real Life and Bible still last', C.levels.slice(0,5).map((l) => l.n + l.name).join(',') === '1Sounds,2Words,3Missing Letter,4Sentences,5Everyday' && C.levels.find((l) => l.name === 'Real Life').n === C.REAL_LIFE && C.levels.at(-1).name === 'Bible' && C.levels.at(-1).n === C.BIBLE, C.levels.map((l) => l.n + l.name));
 check('C.items is in level order (keep going follows the levels)', C.items.every((it, i) => !i || C.items[i - 1].level <= it.level));
-check('Bible verses are all in level 7, none in Real Life', C.items.filter((x) => x.kind === 'verse').every((x) => x.level === 7) && !C.cats.some((c) => c.id === 'bible'));
+check('Bible verses are all in C.BIBLE, none in Real Life', C.items.filter((x) => x.kind === 'verse').every((x) => x.level === C.BIBLE) && !C.cats.some((c) => c.id === 'bible') && C.items.filter((x) => x.cat).every((x) => x.level === C.REAL_LIFE));
 check('saved ids unchanged (L3-s1, L4-sign-stop, L4-kjv-john-11-35 still exist)', ['L3-s1', 'L3-sw-the', 'L4-sign-stop', 'L4-kjv-john-11-35'].every((id) => C.items.some((x) => x.id === id)));
 // Missing letter: answer present, choices A-Z, no distractor makes another real word
 const REAL = new Set((C.words.map((x) => x.w).concat(C.everydayWords.map((x) => x.w), 'cot cut pan pen pun pit dot dub dun fan van ban can cab cap cop cup cub mop map mat bat bet bit but hut hit hot jot jut rod rid rad bad bed bid bud box fox pox sun son sin bun fun gun nun run tan ten tin ton web wet wit vat fat sat rat pat hat lap tap zap nap sap gap jet get let met net pet set vet yet bet zed keg veg lid kid bid mid red led fed wed bus pus jab tab dab lab pod nod cod god sod hog log fog bog jog pig big dig fig wig rig jig gig'.split(' '))));
@@ -85,15 +85,16 @@ const said = (p) => p.evaluate(() => window.Speech.debugLog().filter((e) => e.ho
 { const { ctx, p } = await open(390, '#/home'); await p.waitForTimeout(2500); await ctx.close(); }
 for (const W of [390, 320]) {
   // home + level grids
+  const RL = C.REAL_LIFE, B = C.BIBLE;
   for (const [hash, name, sel] of [['#/home', 'home', '.tile'], ['#/level/3', 'level3-missing', '.items .item'], ['#/level/5', 'level5-everyday', '.items .item'],
-    ['#/level/6', 'level6-reallife', '.tile'], ['#/level/7', 'level7-bible', '.items .item'], ['#/level/4', 'level4-sentences', '.items .item']]) {
+    ['#/level/' + RL, 'reallife', '.tile'], ['#/level/' + B, 'bible', '.items .item'], ['#/level/4', 'level4-sentences', '.items .item']]) {
     const { ctx, p, errors } = await open(W, hash);
     await p.waitForSelector(sel); await p.waitForTimeout(1500);
     okLayout(`${W} ${name}`, await layout(p)); await shot(p, name, W);
     const s = await said(p);
     check(`${W} ${name}: spoken from clips (${s.length})`, s.length > 0 && s.every((x) => x.startsWith('clip:')), s);
-    if (name === 'home') check(`${W} home: 7 level tiles`, (await p.locator('.grid2 .tile').count()) === 7);
-    if (name === 'level6-reallife') check(`${W} real life: signs, menu, forms only`, (await p.locator('.grid2 .tile').count()) === 3);
+    if (name === 'home') check(`${W} home: ${C.levels.length} level tiles`, (await p.locator('.grid2 .tile').count()) === C.levels.length);
+    if (name === 'reallife') check(`${W} real life: signs, menu, forms only`, (await p.locator('.grid2 .tile').count()) === 3);
     check(`${W} ${name}: no page errors`, !errors.length, errors);
     await ctx.close();
   }
@@ -109,7 +110,7 @@ for (const W of [390, 320]) {
   {
     const { ctx, p } = await open(W, '#/lesson/L4-sign-stop');
     await p.waitForSelector('.thing'); await p.locator('header .icon-btn').first().tap(); await p.waitForTimeout(300);
-    check(`${W} sign lesson back -> #/level/6/signs`, p.url().endsWith('#/level/6/signs'), p.url());
+    check(`${W} sign lesson back -> #/level/${C.REAL_LIFE}/signs`, p.url().endsWith('#/level/' + C.REAL_LIFE + '/signs'), p.url());
     await ctx.close();
   }
   // missing-letter lesson
@@ -151,7 +152,7 @@ for (const W of [390, 320]) {
     const back = await p.locator('header .icon-btn').first().getAttribute('aria-label');
     if (id === 'L4-kjv-john-11-35') {
       await p.locator('header .icon-btn').first().tap(); await p.waitForTimeout(300);
-      check(`${W} Bible verse back -> Level 7`, p.url().endsWith('#/level/7'), p.url());
+      check(`${W} Bible verse back -> Level ${C.BIBLE}`, p.url().endsWith('#/level/' + C.BIBLE), p.url());
     }
     if (id === 'L5-rent') {
       await p.evaluate(() => { window.__say = 'rant'; }); await p.locator('.foot .mic').tap(); await p.waitForTimeout(1500);

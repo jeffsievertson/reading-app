@@ -253,7 +253,7 @@
     screen({
       title: 'Read Aloud',
       help: [next
-        ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is real life reading. Level 7 is Bible verses.'
+        ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is real life reading. Level 9 is Bible verses.'
         : 'You finished everything. Pick any level to go over again.',
       st.say, 'Tap the books to see your word bank.'],
       body: el('div', { class: 'home' }, stats, el('div', { class: 'grid2' }, tiles)),
@@ -363,7 +363,7 @@
   }
 
   function itemTile(it) {
-    const label = it.kind === 'verse' ? it.ref : it.label;
+    const label = it.kind === 'verse' ? it.ref : (it.listLabel || it.label);
     const cls = 'item' + (isDone(it) ? ' done' : '') + (it.kind === 'sentence' || it.kind === 'verse' ? ' wide' : '') + (it.kind === 'letter' ? ' letter' : '');
     return el('button', { class: cls, type: 'button', 'data-say': spoken(it), 'aria-label': spoken(it), onclick: () => go('#/lesson/' + it.id) },
       el('span', null, label), isDone(it) ? el('span', { class: 'check' }, '✓') : null);
@@ -395,7 +395,9 @@
       3: 'Missing letter. Each word has a letter missing. Find the missing letter. Tap play to start.',
       4: 'Sentences. First some tricky words, then short sentences. Tap play to start.',
       5: 'Everyday reading. Words and sentences you use every day. Tap play to start.',
-      7: 'Short Bible verses, from the King James Version. Tap play to start.'
+      6: 'Spellings. Some sounds are written with two letters. Tap play to start.',
+      7: 'Sounds together. Letters like S H make one sound. Tap play to start.',
+      9: 'Short Bible verses, from the King James Version. Tap play to start.'
     }[n];
     screen({ title: lv.icon + ' ' + lv.name, back: '#/home', help,
       body: el('div', { class: 'items' }, list.map(itemTile)),
@@ -478,6 +480,7 @@
   function stepsFor(it) {
     switch (it.kind) {
       case 'letter': return [stepLearnLetter, stepFindLetter];
+      case 'pattern': return [stepLearnPattern, stepFindPattern];
       case 'missing': return [stepMissing, stepSayIt];
       case 'word': return [stepLearnWord, stepSayIt, stepFind];
       case 'sight': return [stepLearnSight, stepSayIt, stepFind];
@@ -577,7 +580,69 @@
     ask();
   }
 
-  /** Shared multiple-choice handler */
+
+  // ---- v21 pattern lessons (ck, sh, …): same shape as a letter lesson, multi-letter label
+  function patternKw(it) {
+    const w = it.kw, u = it.letters;
+    if (it.pos === 'end') return [w.slice(0, w.length - u.length), el('b', null, w.slice(w.length - u.length))];
+    return [el('b', null, w.slice(0, u.length)), w.slice(u.length)];
+  }
+  function playPattern(it) {
+    const clip = it.clipName;
+    const after = it.frame
+      ? [{ text: it.frame, pause: 200 }, { clipName: clip, text: it.sound, rateMul: 0.8, pause: 350 }, it.kw]
+      : [
+          { text: it.kw, pause: 300 },
+          { clipName: clip, text: it.sound, rateMul: 0.8, pause: 350 },
+          { clipName: clip, text: it.sound, rateMul: 0.8, pause: 350 },
+          it.kw
+        ];
+    return S.say(after);
+  }
+  function stepLearnPattern(it) {
+    const posEnd = it.pos === 'end';
+    const help = posEnd
+      ? 'These letters make the sound at the end of ' + it.kw + '. Tap the letters to hear the sound again. Then tap play.'
+      : 'These letters make the first sound in ' + it.kw + '. Tap the letters to hear the sound again. Then tap play.';
+    const play = () => playPattern(it);
+    lessonScreen({
+      help,
+      body: el('div', { class: 'center' },
+        el('button', { class: 'big-letter pattern', type: 'button', 'data-say': 'Hear the sound', onclick: play },
+          el('span', null, it.label)),
+        el('div', { class: 'keyword' },
+          el('span', { class: 'emoji', 'aria-hidden': 'true' }, it.emoji),
+          el('span', null, patternKw(it)))),
+      footer: [btn('🔊', 'Hear the sound', play, 'icon-btn'), nextBtn()]
+    });
+    const together = it.frame || 'Together they make the sound';
+    S.say([
+      { text: it.intro, pause: 250 },
+      { text: together, pause: 150 },
+      { clipName: it.clipName, text: it.sound, rateMul: 0.8, pause: 350 },
+      { clipName: it.clipName, text: it.sound, rateMul: 0.8, pause: 700 },
+      { text: posEnd ? 'This is the sound at the end of' : 'This is the first sound in', pause: 150 }
+    ]).then((ok) => { if (ok) play(); });
+  }
+  function stepFindPattern(it) {
+    const opts = shuffle(it.opts.slice());
+    const prompt = it.pos === 'end'
+      ? 'Which letters are at the end of ' + it.kw + '?'
+      : 'Which letters start the word ' + it.kw + '?';
+    // Plural -s is one letter; keep the same wording shape.
+    const ask = () => S.say([{ text: prompt, pause: 200 }, { text: it.kw, rateMul: 0.8 }]);
+    const choices = opts.map((g) => el('button', { class: 'choice letter-choice', type: 'button', 'aria-label': g, onclick: (e) => pick(e.currentTarget, g === it.letters, ask) }, g));
+    lessonScreen({
+      help: prompt,
+      body: el('div', { class: 'center' },
+        btn(it.emoji, 'Hear it again', ask, 'prompt-btn'),
+        el('div', { class: 'choices' }, choices)),
+      footer: btn('🔊', 'Hear it again', ask, 'icon-btn')
+    });
+    ask();
+  }
+
+    /** Shared multiple-choice handler */
   let picking = false;
   async function pick(node, right, ask) {
     if (picking) return;
@@ -625,13 +690,13 @@
 
   // ---- Level 2
   function stepLearnWord(it) {
-    const letters = it.w.split('');
-    const tiles = letters.map((ch) => el('button', {
-      class: 'tile-letter', type: 'button', 'data-say': 'Hear this sound',
-      onclick: (e) => { flash(e.currentTarget); S.clipOrSay('letters/' + ch, { text: C.soundOf[ch] || ch, rateMul: 0.8 }); }
-    }, ch));
+    const parts = C.segments(it.w);
+    const tiles = parts.map((part) => el('button', {
+      class: 'tile-letter' + (part.g.length > 1 ? ' graph' : ''), type: 'button', 'data-say': 'Hear this sound',
+      onclick: (e) => { flash(e.currentTarget); S.clipOrSay(part.clip, { text: part.sound, rateMul: 0.8 }); }
+    }, part.g));
     const blend = () => S.say(
-      letters.map((ch, i) => ({ text: C.soundOf[ch] || ch, rateMul: 0.8, pause: 250, onstart: () => highlight(tiles, i) }))
+      parts.map((part, i) => ({ clipName: part.clip, text: part.sound, rateMul: 0.8, pause: 250, onstart: () => highlight(tiles, i) }))
         .concat([
           { text: it.w, rateMul: 0.55, pause: 300, onstart: () => tiles.forEach((t) => t.classList.add('on')) },
           { text: it.w, onstart: () => {} },
@@ -650,14 +715,20 @@
 
   function stepLearnSight(it) {
     const hear = () => S.say(spoken(it));
+    const frame = it.heart
+      ? 'This is a heart word. You remember it. It says:'
+      : 'This is a tricky word. Just remember it. It says:';
+    const help = it.heart
+      ? 'This is a heart word. You remember it. It says: ' + spoken(it) + '. Then tap play.'
+      : 'This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it) + '. Then tap play.';
     lessonScreen({
-      help: 'This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it) + '. Then tap play.',
+      help,
       body: el('div', { class: 'center' },
-        el('div', { class: 'badge' }, '•'),
+        el('div', { class: 'badge' }, it.heart ? '💛' : '•'),
         el('button', { class: 'big-word', type: 'button', 'data-say': 'Hear the word', onclick: hear }, it.text)),
       footer: [btn('🔊', 'Hear the word', hear, 'icon-btn'), nextBtn()]
     });
-    S.say([{ text: 'This is a tricky word. Just remember it. It says:', pause: 250 }, { text: spoken(it), pause: 300 }, spoken(it)]);
+    S.say([{ text: frame, pause: 250 }, { text: spoken(it), pause: 300 }, spoken(it)]);
   }
 
   // ---- Level 3 / verses

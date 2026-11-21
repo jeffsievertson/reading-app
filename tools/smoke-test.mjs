@@ -63,8 +63,8 @@ for (const [id, name] of [['L4-sign-stop', '10-sign-stop'], ['L4-sign-pull', '11
 // find step for a sign
 await p.goto(BASE + '#/lesson/L4-sign-exit'); await p.waitForSelector('.thing');
 await tap(p, '.foot .primary'); await p.waitForSelector('.say-target');
-await p.goto(BASE + '#/level/4'); await p.waitForSelector('.tile');
-await p.screenshot({ path: SHOTS + '15-level4.png' });
+await p.goto(BASE + '#/level/8'); await p.waitForSelector('.tile');
+await p.screenshot({ path: SHOTS + '15-reallife.png' });
 await p.goto(BASE + '#/settings'); await p.waitForSelector('.settings');
 await p.screenshot({ path: SHOTS + '16-settings.png' });
 // service worker + offline

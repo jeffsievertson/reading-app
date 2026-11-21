@@ -56,6 +56,11 @@ for (const it of C.items) {
     add(it.intro, 'intro:' + it.id, 'intro');
     out.get(S.clipKey(it.intro)).letter = it.l;   // build forces the name via phonemes
   }
+  if (it.kind === 'pattern') {
+    add(it.kw, 'keyword');
+    add(it.intro, 'intro:' + it.id);
+    if (it.frame) add(it.frame, 'frame:' + it.id);
+  }
   if (it.kind === 'sentence' || it.kind === 'verse') for (const w of wordsOf(it.say || it.text)) add(w, 'chip:' + it.id);
   if (it.mean) add(it.mean, 'meaning');
   if (it.kind === 'menu') { add(it.t, 'menu'); add(it.price, 'price'); }
@@ -71,8 +76,18 @@ tpl("'This letter makes the sound at the end of ' + it.kw", () => C.items.filter
 tpl("'Which letter is at the end of ' + it.kw", () => C.items.filter((i) => i.kind === 'letter').forEach((it) => {
   add(it.pos === 'end' ? 'Which letter is at the end of ' + it.kw + '?' : 'Which letter starts the word ' + it.kw + '?', 'prompt:letter');
 }));
+tpl("pattern help + find prompts", () => C.items.filter((i) => i.kind === 'pattern').forEach((it) => {
+  add((it.pos === 'end' ? 'These letters make the sound at the end of ' : 'These letters make the first sound in ') + it.kw + '. Tap the letters to hear the sound again. Then tap play.', 'help:pattern');
+  add(it.pos === 'end' ? 'Which letters are at the end of ' + it.kw + '?' : 'Which letters start the word ' + it.kw + '?', 'prompt:pattern');
+  add(it.pos === 'end' ? 'This is the sound at the end of' : 'This is the first sound in', 'pattern-frame');
+}));
 tpl("'This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it)", () => C.items.filter((i) => i.kind === 'sight').forEach((it) => {
-  add('This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it) + '. Then tap play.', 'help:sight');
+  if (it.heart) {
+    add('This is a heart word. You remember it. It says: ' + spoken(it) + '. Then tap play.', 'help:sight');
+    add('This is a heart word. You remember it. It says:', 'help:sight');
+  } else {
+    add('This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it) + '. Then tap play.', 'help:sight');
+  }
 }));
 tpl("prompt + ' ' + name", () => C.items.filter((i) => ['word', 'sight', 'sign', 'menu', 'form'].includes(i.kind)).forEach((it) => {
   const prompt = it.kind === 'sign' ? 'Find the sign that says:' : it.kind === 'form' ? 'Find the line that says:' : 'Find the word:';
@@ -129,7 +144,7 @@ while ((m = lit.exec(appSrc))) {
 const uncovered = [];
 appSrc.split('\n').forEach((line, i) => {
   if (!/(S\.say|help:|prompt =|const help|meaning =)/.test(line) || !/'\s*\+|\+\s*'/.test(line)) return;
-  const known = ['it.kw', "' + spoken(it) + '", "prompt + ' ' + name", "name + ' speech'", "'#/", "'L1-'"];
+  const known = ['it.kw', "' + spoken(it) + '", "prompt + ' ' + name", "name + ' speech'", "'#/", "'L1-'", 'it.frame', 'it.intro', 'it.heart', 'it.label'];
   if (known.some((k) => line.includes(k))) return;
   uncovered.push({ line: i + 1, code: line.trim() });
 });
@@ -139,7 +154,15 @@ const result = {
   generatedBy: 'tools/audio/collect-texts.mjs',
   count: entries.length,
   letters: C.letters.map((x) => ({ l: x.l, sound: x.sound, kw: x.kw, soundKey: S.clipKey(x.sound) })),
-  slowWords: C.words.concat(C.everydayWords).map((x) => S.clipKey(x.w)),   // Level 2 blending plays these slowly
+  patternSounds: [
+    { id: 'sh',        sound: 'shh',  soundKey: S.clipKey('shh'),  ph: 'ʃ',   note: 'as in shop' },
+    { id: 'ch',        sound: 'chuh', soundKey: S.clipKey('chuh'), ph: 'tʃ',  note: 'as in chip' },
+    { id: 'th',        sound: 'thh',  soundKey: S.clipKey('thh'),  ph: 'θ',   note: 'as in path' },
+    { id: 'th-voiced', sound: 'dhh',  soundKey: S.clipKey('dhh'),  ph: 'ð',   note: 'as in that' },
+    { id: 'wh',        sound: 'wuh',  soundKey: S.clipKey('wuh'),  ph: 'w',   note: 'as in when; US /w/' },
+    { id: 'ng',        sound: 'nng',  soundKey: S.clipKey('nng'),  ph: 'ŋ',   note: 'as in ring' }
+  ],
+  slowWords: C.words.concat(C.everydayWords, C.spellWords, C.digraphWords).map((x) => S.clipKey(x.w)),   // blending plays these slowly
   templates: TEMPLATES,
   uncovered,
   entries

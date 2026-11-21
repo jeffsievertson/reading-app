@@ -77,7 +77,9 @@ window.Speech = (function () {
     if (!data || typeof data !== 'object') return;
     clipMap = data.clips || {};
     slowMap = data.slow || {};
-    letterMap = data.letters || {};
+    // patterns/ (sh, ch, th, …) merge into letterMap so clipName lookup is one place per sound
+    // and a later Whitney take is a file swap in clips.json, not a new code path.
+    letterMap = Object.assign({}, data.letters || {}, data.patterns || {});
     fixedKeys = new Set(data.fixed || []);
     if (data.baseRate) baseRate = data.baseRate;
     if (data.base) clipBase = data.base;
@@ -99,6 +101,14 @@ window.Speech = (function () {
       try { actx = new AC(); } catch (e) { actx = null; }
     }
     return actx;
+  }
+  /** Close a frozen/dead AudioContext so the next getCtx() builds a fresh one.
+   *  Decoded buffers belong to the old context, so the cache has to go too. */
+  function resetCtx() {
+    stopSources();
+    bufCache.clear();
+    try { if (actx && actx.state !== 'closed') actx.close(); } catch (e) {}
+    actx = null;
   }
   /** Call from a user gesture: creates/resumes the AudioContext and plays a silent sample
    *  (iOS Safari only lets audio start after a tap). Safe to call on every tap. */
@@ -122,6 +132,9 @@ window.Speech = (function () {
       gestured = true;
       // Let the tap's own handler run first: if it starts new speech, the waiting line is cancelled.
       setTimeout(() => gestureWaiters.forEach((w) => w.fire()), 300);
+    } else if (gestureWaiters.size) {
+      // A later line is waiting because audio was still locked or stalled after an earlier tap.
+      setTimeout(() => gestureWaiters.forEach((w) => w.fire()), 50);
     }
     if (!useClips) return;
     const c = getCtx();
@@ -334,15 +347,39 @@ window.Speech = (function () {
     return out;
   }
 
+  async function reloadRun(run, my) {
+    if (my !== token) return [];
+    const out = [];
+    for (const r of run) {
+      try {
+        const buf = await Promise.race([
+          getBuffer(r.clip.url, r.clip.speed),
+          timeout(START_TIMEOUT).then(() => { throw new Error('timeout'); })
+        ]);
+        if (my !== token) return [];
+        if (buf) out.push({ buf, part: r.part, key: r.clip.key, speed: r.clip.speed, url: r.clip.url, clip: r.clip });
+      } catch (e) { /* will fall through */ }
+    }
+    return out;
+  }
+
   async function sayNow(list, my) {
     if (clipsReady && useClips) { await Promise.race([clipsReady, timeout(1000)]); if (my !== token) return false; }
     list = splitForClips(list);
     const plan = list.map((p) => ({ part: p, clip: resolveClip(p) }));
     if (plan.some((x) => x.clip)) {
       let running = await ensureRunning(600);
-      if (!running && !gestured && my === token) {
+      // A prior tap can set gestured without actually starting the context (headless Chrome,
+      // or an iPhone audio interruption). Recreate the context and retry before falling
+      // back to the built-in voice, which is what made the Q lesson say "cue / kwuh".
+      if (!running && my === token) {
+        resetCtx();
+        running = await ensureRunning(800);
+      }
+      for (let attempt = 0; !running && my === token && attempt < 2; attempt++) {
         if (!(await waitForGesture()) || my !== token) return false;
-        running = await ensureRunning(600);
+        resetCtx();
+        running = await ensureRunning(800);
       }
       if (!running) {
         plan.forEach((x) => { if (x.clip) { x.clip = null; x.reason = 'audio-locked'; } });
@@ -367,9 +404,23 @@ window.Speech = (function () {
       const flush = async () => {
         if (!ready.length) return true;
         const items = ready; ready = [];
-        const res = await playRun(items, my);
+        let res = await playRun(items, my);
         if (res === 'cancel') return false;
         if (res === 'stall') {
+          // Frozen audio clock: new context, reload buffers, wait for a tap if needed, then retry.
+          for (let attempt = 0; attempt < 2 && my === token; attempt++) {
+            resetCtx();
+            if (!(await ensureRunning(800))) {
+              if (!(await waitForGesture()) || my !== token) return false;
+              if (!(await ensureRunning(800))) continue;
+            }
+            const again = await reloadRun(run, my);
+            if (!again.length || my !== token) continue;
+            res = await playRun(again, my);
+            if (res === 'ok') return my === token;
+            if (res === 'cancel') return false;
+          }
+          if (my !== token) return false;
           for (const it of items) { if (!(await ttsPart(it.part, my, 'audio-stalled'))) return false; }
         }
         return my === token;
@@ -377,7 +428,7 @@ window.Speech = (function () {
       for (const r of run) {
         const buf = await r.load;
         if (my !== token) return false;
-        if (buf) ready.push({ buf, part: r.part, key: r.clip.key, speed: r.clip.speed, url: r.clip.url });
+        if (buf) ready.push({ buf, part: r.part, key: r.clip.key, speed: r.clip.speed, url: r.clip.url, clip: r.clip });
         else {
           if (!(await flush())) return false;
           if (!(await ttsPart(r.part, my, r.reason))) return false;

@@ -1,4 +1,26 @@
-# Handoff – Read Aloud (Nov 18, 2026, v20)
+# Handoff – Read Aloud (Nov 21, 2026, v21)
+
+## Latest (v21): Hermes 12-book series levels, first two books of new phonics (Spellings + Sounds together)
+- **New level order:** 1 Sounds · 2 Words · 3 Missing Letter · 4 Sentences · 5 Everyday ·
+  **6 Spellings** (Book 3: ck, FLOSS ff/ll/ss/zz, plural -s) · **7 Sounds together** (Book 4: sh, ch, th, th-voiced, wh, ng) ·
+  8 Real Life · 9 Bible. Inserted after Everyday, before Real Life and Bible (Jeffrey, Nov 21).
+  Old item ids kept (`L3-…`, `L4-…`); `C.REAL_LIFE` is 8, `C.BIBLE` is 9. `#/level/6/signs` and `#/level/4/menu` still work.
+- **Heart words** at the start of each matching level (Jeffrey, Nov 21): Book 3 `of, said, are, they` start Spellings;
+  Book 4 `do, have, what, there, where` start Sounds together. Kind is existing `sight` with `heart: true`.
+  Spoken frame: “This is a heart word. You remember it. It says:”. Sentences in those levels may use those hearts.
+  Later books’ hearts wait for v22/v23.
+- **Grapheme tiles:** `C.segments()` keeps digraphs/FLOSS together (`shop` is sh-o-p, `bills` is b-i-ll-s). Final s uses /z/ on words like bills.
+- **Pattern sounds:** temporary Kokoro `af_heart` cuts in `audio/patterns/` (one clips.json key each: sh, ch, th, th-voiced, wh, ng).
+  Whitney’s letter-W `wuh` was not replaced. Swap path: `tools/audio/pattern-sounds-sources.md`.
+- **Q-lesson race:** after a tap, `gestured` could be true while AudioContext was still locked or the clock stalled;
+  `sayNow` fell back to `speechSynthesis` and the Q intro said the built-in “cue / kwuh”. Fix is in `js/speech.js`
+  (`resetCtx` + retry `ensureRunning`, wait for a later gesture if needed, TTS only after retries; stalled `playRun` recreates the context).
+  `tools/level1-test.mjs` passed 5/5 sequential runs, including “no built-in voice used in the Q lesson”.
+- **Home grid:** 9 photo tiles are compacted so levels 1–9 all fit above the footer at 320 and 390 (844 tall).
+- Tests: `tools/v21-levels-test.mjs` (order, ids, segments, decodability, clips, migration, screenshots `screenshots/50-*-<390|320>.png`).
+  `tools/v20-levels-test.mjs` now uses `C.REAL_LIFE` / `C.BIBLE`. rewards-test expected word-bank count is derived from items.
+- Cache **`read-aloud-v21-e26470af`**. Not pushed. Needs a real-phone listen of the new clips (especially digraph phonemes, “said”, the heart frame, “I wish I had cash.”, and “S at the end of a word can say sss, or zzz.”).
+
 
 ## Latest (v20): tester Chyann Devers' 3 suggestions (approved by Jeffrey Nov 18)
 - **New level order:** 1 Sounds · 2 Words · **3 Missing Letter (new)** · 4 Sentences · **5 Everyday (new)** ·

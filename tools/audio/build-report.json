@@ -1,16 +1,16 @@
 {
- "texts": 776,
- "text_clips": 775,
- "slow_clips": 46,
+ "texts": 940,
+ "text_clips": 944,
+ "slow_clips": 74,
  "letter_sounds": 26,
- "files": 848,
- "total_bytes": 9489568,
- "made": 0,
- "reused": 848,
- "pruned": 0,
+ "files": 1046,
+ "total_bytes": 11741224,
+ "made": 201,
+ "reused": 845,
+ "pruned": 3,
  "uncovered_expressions": [],
- "version": "c0110894",
- "seconds": 1,
+ "version": "e26470af",
+ "seconds": 76,
  "letters": [
   {
    "letter": "a",
@@ -193,6 +193,50 @@
    "file": "human/letters/z-4e633a27.mp3",
    "recipe": "Whitney z",
    "source": "human recording"
+  }
+ ],
+ "patterns": [
+  {
+   "id": "sh",
+   "sound": "shh",
+   "file": "patterns/sh-01933c06.mp3",
+   "recipe": "sh cut from end of fish, lengthened",
+   "note": "as in shop"
+  },
+  {
+   "id": "ch",
+   "sound": "chuh",
+   "file": "patterns/ch-4ca0c53f.mp3",
+   "recipe": "start of 'chip', clipped",
+   "note": "as in chip"
+  },
+  {
+   "id": "th",
+   "sound": "thh",
+   "file": "patterns/th-06a5dff9.mp3",
+   "recipe": "voiceless th cut from end of path",
+   "note": "as in path"
+  },
+  {
+   "id": "th-voiced",
+   "sound": "dhh",
+   "file": "patterns/th-voiced-6bebed1a.mp3",
+   "recipe": "start of 'that', lengthened",
+   "note": "as in that"
+  },
+  {
+   "id": "wh",
+   "sound": "wuh",
+   "file": "patterns/wh-e54f9462.mp3",
+   "recipe": "start of 'when' (glide /w/), clipped",
+   "note": "as in when; US /w/"
+  },
+  {
+   "id": "ng",
+   "sound": "nng",
+   "file": "patterns/ng-6d731b07.mp3",
+   "recipe": "ng cut from end of sing, lengthened",
+   "note": "as in ring"
   }
  ],
  "qa": null
