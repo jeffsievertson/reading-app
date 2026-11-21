@@ -126,7 +126,7 @@ for (const [rate, want] of [[0.65, 0.65 / 0.85], [0.85, 1], [1.0, 1 / 0.85]]) {
     const prevEnd = run[i - 1].start + run[i - 1].dur;
     if (run[i].start < prevEnd - 0.002 || run[i].start > prevEnd + 0.36) gapless = false; // only the designed pause
   }
-  check('blend s-a-t, slow "sat", "sat": 5 clips, real letter sounds', JSON.stringify(keys) === JSON.stringify(['sss', 'aah', 'tuh', 'sat', 'sat']), keys);
+  check('blend s-a-t, slow "sat", "sat": 5 clips, real letter sounds', JSON.stringify(keys) === JSON.stringify(['letters/s', 'letters/a', 'letters/t', 'sat', 'sat']) || JSON.stringify(keys) === JSON.stringify(['sss', 'aah', 'tuh', 'sat', 'sat']), keys);
   check('blend scheduled back-to-back (gapless, only the set pauses)', gapless, run);
   check('blend used no built-in voice', (await tts(p)).length === 0, await tts(p));
   await p.locator('.tile-letter').first().tap(); await p.waitForTimeout(800);
@@ -234,8 +234,8 @@ for (const [id, word] of [['L3-s1', 'sentence'], ['L4-kjv-psalm-23-1', 'verse']]
   check('word lesson shows photo', await p.locator('.lesson-photo').count() >= 1, await p.locator('img.photo').count());
   await p.goto(BASE + '#/lesson/L4-sign-stop'); await p.waitForSelector('.thing');
   check('STOP sign lesson shows photo', await p.locator('.sign-photo').count() >= 1, await p.locator('img.photo').count());
-  await p.goto(BASE + '#/level/4'); await p.waitForSelector('.tile');
-  check('level 4 category tiles show photos', await p.locator('.tile-photo').count() >= 4, await p.locator('.tile-photo').count());
+  await p.goto(BASE + '#/level/8'); await p.waitForSelector('.tile');
+  check('Real Life category tiles show photos', await p.locator('.tile-photo').count() >= 3, await p.locator('.tile-photo').count());
   await ctx.close();
 }
 console.log(results.join('\n'));

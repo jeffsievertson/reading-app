@@ -376,7 +376,11 @@ window.Speech = (function () {
         resetCtx();
         running = await ensureRunning(800);
       }
-      for (let attempt = 0; !running && my === token && attempt < 2; attempt++) {
+      // No first tap yet: wait for it, then try clips (built-in voice is silent on iPhone anyway).
+      // If a tap already happened and the context still won't start (iOS interruption, or a
+      // test that keeps AudioContext locked), fall through to the built-in voice — do not
+      // wait for another gesture, which would hang Speech.say() forever.
+      if (!running && my === token && !gestured) {
         if (!(await waitForGesture()) || my !== token) return false;
         resetCtx();
         running = await ensureRunning(800);
@@ -411,8 +415,12 @@ window.Speech = (function () {
           for (let attempt = 0; attempt < 2 && my === token; attempt++) {
             resetCtx();
             if (!(await ensureRunning(800))) {
-              if (!(await waitForGesture()) || my !== token) return false;
-              if (!(await ensureRunning(800))) continue;
+              if (!gestured) {
+                if (!(await waitForGesture()) || my !== token) return false;
+                if (!(await ensureRunning(800))) continue;
+              } else {
+                continue;
+              }
             }
             const again = await reloadRun(run, my);
             if (!again.length || my !== token) continue;
@@ -660,7 +668,14 @@ window.Speech = (function () {
     clipCount,
     unlockAudio,
     hasClip: (n) => !!(useClips && AC && letterMap[n]),
-    hasClipFor: (text) => !!resolveClip({ text }),
+    hasClipFor: (text) => {
+      const parts = Array.isArray(text) ? text : [text];
+      return parts.every((p) => {
+        if (p == null || p === '') return true;
+        const part = (typeof p === 'object') ? p : { text: String(p) };
+        return !!resolveClip(part);
+      });
+    },
     /** true if the text plays fully in the natural voice (whole clip, or every sentence has one) */
     naturalFor: (text) => splitForClips([{ text }]).every((p) => !!resolveClip(p)),
     sentences,
