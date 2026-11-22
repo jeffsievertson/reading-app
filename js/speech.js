@@ -54,7 +54,7 @@ window.Speech = (function () {
   const waiters = new Set();         // pending timers/resolvers, cleared by stop()
   const bufCache = new Map();        // url|speed -> Promise<AudioBuffer> (small LRU)
   const LOG_MAX = 300;
-  const log = [];                    // debug/test log: {how:'clip'|'tts', key, reason?, at, speed?}
+  const log = [];                    // debug/test log: {how:'clip'|'tts'|'stalled'|'skip', key, reason?, at, speed?}
   function note(e) { e.at = Date.now(); log.push(e); if (log.length > LOG_MAX) log.shift(); }
 
   /** Normalized lookup key for a spoken text (shared with tools/audio/collect-texts.mjs). */
@@ -462,6 +462,16 @@ window.Speech = (function () {
         let res = await playRun(items, my);
         if (res === 'cancel') return false;
         if (res === 'stall') {
+          // The start was already logged as a clip, but the clock never moved. Retag so tests
+          // can tell a stalled attempt from a clip the learner actually heard.
+          const keys = new Set(items.map((it) => it.key));
+          for (let i = log.length - 1, left = keys.size; i >= 0 && left; i--) {
+            if (log[i].how === 'clip' && keys.has(log[i].key)) {
+              log[i].how = 'stalled';
+              log[i].reason = 'audio-stalled';
+              left--;
+            }
+          }
           // Frozen audio clock: new context, reload buffers, wait for a tap if needed, then retry.
           for (let attempt = 0; attempt < 2 && my === token; attempt++) {
             resetCtx();

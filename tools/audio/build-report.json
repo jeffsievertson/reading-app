@@ -1,16 +1,16 @@
 {
- "texts": 942,
- "text_clips": 946,
- "slow_clips": 74,
+ "texts": 1108,
+ "text_clips": 1128,
+ "slow_clips": 104,
  "letter_sounds": 26,
- "files": 1048,
- "total_bytes": 11749760,
- "made": 0,
- "reused": 1048,
- "pruned": 2,
+ "files": 1261,
+ "total_bytes": 13983500,
+ "made": 1,
+ "reused": 1260,
+ "pruned": 1,
  "uncovered_expressions": [],
- "version": "447c7bda",
- "seconds": 87,
+ "version": "af890202",
+ "seconds": 158,
  "letters": [
   {
    "letter": "a",
@@ -199,44 +199,163 @@
   {
    "id": "sh",
    "sound": "shh",
-   "file": "patterns/sh-01933c06.mp3",
+   "file": "patterns/sh-f7313a9f.mp3",
    "recipe": "reused",
    "note": "as in shop"
   },
   {
    "id": "ch",
    "sound": "chuh",
-   "file": "patterns/ch-4ca0c53f.mp3",
+   "file": "patterns/ch-2619a1a0.mp3",
    "recipe": "reused",
    "note": "as in chip"
   },
   {
    "id": "th",
    "sound": "thh",
-   "file": "patterns/th-06a5dff9.mp3",
+   "file": "patterns/th-be499d60.mp3",
    "recipe": "reused",
    "note": "as in path"
   },
   {
    "id": "th-voiced",
    "sound": "dhh",
-   "file": "patterns/th-voiced-6bebed1a.mp3",
+   "file": "patterns/th-voiced-18e3ce3a.mp3",
    "recipe": "reused",
    "note": "as in that"
   },
   {
    "id": "wh",
    "sound": "wuh",
-   "file": "patterns/wh-e54f9462.mp3",
+   "file": "patterns/wh-bec7279d.mp3",
    "recipe": "reused",
    "note": "as in when; US /w/"
   },
   {
    "id": "ng",
    "sound": "nng",
-   "file": "patterns/ng-6d731b07.mp3",
+   "file": "patterns/ng-3494159c.mp3",
    "recipe": "reused",
    "note": "as in ring"
+  },
+  {
+   "id": "st",
+   "sound": "st",
+   "file": "patterns/st-f791520e.mp3",
+   "recipe": "reused",
+   "note": "as in last, stop"
+  },
+  {
+   "id": "nt",
+   "sound": "nt",
+   "file": "patterns/nt-b0485f4a.mp3",
+   "recipe": "reused",
+   "note": "as in went"
+  },
+  {
+   "id": "nd",
+   "sound": "nd",
+   "file": "patterns/nd-afa9d16c.mp3",
+   "recipe": "reused",
+   "note": "as in hand"
+  },
+  {
+   "id": "mp",
+   "sound": "mp",
+   "file": "patterns/mp-51d322ca.mp3",
+   "recipe": "reused",
+   "note": "as in jump"
+  },
+  {
+   "id": "nk",
+   "sound": "nk",
+   "file": "patterns/nk-52c20197.mp3",
+   "recipe": "reused",
+   "note": "as in bank, think"
+  },
+  {
+   "id": "lk",
+   "sound": "lk",
+   "file": "patterns/lk-6f1cfaab.mp3",
+   "recipe": "reused",
+   "note": "as in milk"
+  },
+  {
+   "id": "lp",
+   "sound": "lp",
+   "file": "patterns/lp-91b4410e.mp3",
+   "recipe": "reused",
+   "note": "as in help"
+  },
+  {
+   "id": "pl",
+   "sound": "pl",
+   "file": "patterns/pl-92128380.mp3",
+   "recipe": "reused",
+   "note": "as in plan"
+  },
+  {
+   "id": "tr",
+   "sound": "tr",
+   "file": "patterns/tr-22672ec5.mp3",
+   "recipe": "reused",
+   "note": "as in truck"
+  },
+  {
+   "id": "dr",
+   "sound": "dr",
+   "file": "patterns/dr-5e866483.mp3",
+   "recipe": "reused",
+   "note": "as in drop"
+  },
+  {
+   "id": "fl",
+   "sound": "fl",
+   "file": "patterns/fl-fb5251ff.mp3",
+   "recipe": "reused",
+   "note": "as in flag"
+  },
+  {
+   "id": "sl",
+   "sound": "sl",
+   "file": "patterns/sl-f2c852ac.mp3",
+   "recipe": "reused",
+   "note": "as in slip"
+  },
+  {
+   "id": "gr",
+   "sound": "gr",
+   "file": "patterns/gr-88b2dcc4.mp3",
+   "recipe": "reused",
+   "note": "as in grab"
+  },
+  {
+   "id": "str",
+   "sound": "str",
+   "file": "patterns/str-6ab7478d.mp3",
+   "recipe": "reused",
+   "note": "as in strap"
+  },
+  {
+   "id": "es",
+   "sound": "iz",
+   "file": "patterns/es-3249a57f.mp3",
+   "recipe": "reused",
+   "note": "suffix -es as in boxes"
+  },
+  {
+   "id": "ed-id",
+   "sound": "id",
+   "file": "patterns/ed-id-8d07a706.mp3",
+   "recipe": "reused",
+   "note": "suffix -ed /ɪd/ as in handed"
+  },
+  {
+   "id": "ing",
+   "sound": "ing",
+   "file": "patterns/ing-f80fe3a5.mp3",
+   "recipe": "reused",
+   "note": "suffix -ing as in fixing"
   }
  ],
  "qa": null

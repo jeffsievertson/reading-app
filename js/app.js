@@ -254,7 +254,7 @@
     screen({
       title: 'Read Aloud',
       help: [next
-        ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is real life reading. Level 9 is Bible verses.'
+        ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is real life reading. Level 11 is Bible verses.'
         : 'You finished everything. Pick any level to go over again.',
       st.say, 'Tap the books to see your word bank.'],
       body: el('div', { class: 'home' }, stats, el('div', { class: 'grid2' }, tiles)),
@@ -275,8 +275,29 @@
     box.querySelectorAll('.grid2').forEach(fitTileNames);
     box.querySelectorAll('.sign:not(.small), .menu-card:not(.small), .form-field:not(.small)').forEach(fitThing);
     box.querySelectorAll('.choices').forEach(fitChoices);
+    box.querySelectorAll('.tiles').forEach(fitSoundTiles);
   }
   /** Pattern/letter find buttons share one width (flex 1 1 0) and one font size so "ck"/"ng" fit. */
+  /** Grapheme tiles (st, nd, ing, …) shrink so the letters stay inside the box, including a 4-tile row at 320. */
+  function fitSoundTiles(row) {
+    const btns = [...row.querySelectorAll('.tile-letter')];
+    if (!btns.length) return;
+    btns.forEach((b) => { b.style.fontSize = ''; });
+    const fits = (b) => {
+      const r = b.getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(b);
+      const tr = range.getBoundingClientRect();
+      return tr.width > 0 && (tr.left - r.left) >= 8 && (r.right - tr.right) >= 8 && b.scrollWidth <= b.clientWidth + 0.5;
+    };
+    let guard = 0;
+    while (guard++ < 50 && btns.some((b) => !fits(b))) {
+      btns.filter((b) => !fits(b)).forEach((b) => {
+        const size = parseFloat(getComputedStyle(b).fontSize);
+        if (size > 16) b.style.fontSize = (size - 1) + 'px';
+      });
+    }
+  }
   function fitChoices(row) {
     const btns = [...row.querySelectorAll('.letter-choice')];
     if (btns.length < 2) return;
@@ -417,7 +438,9 @@
       5: 'Everyday reading. Words and sentences you use every day. Tap play to start.',
       6: 'Spellings. Some sounds are written with two letters. Tap play to start.',
       7: 'Sounds together. Letters like S H make one sound. Tap play to start.',
-      9: 'Short Bible verses, from the King James Version. Tap play to start.'
+      8: 'Ending blends. Letters at the end of a word can work together. Tap play to start.',
+      9: 'Starting blends. Letters at the start of a word can work together, and some words add an ending. Tap play to start.',
+      11: 'Short Bible verses, from the King James Version. Tap play to start.'
     }[n];
     screen({ title: lv.icon + ' ' + lv.name, back: '#/home', help,
       body: el('div', { class: 'items' }, list.map(itemTile)),
@@ -1218,6 +1241,7 @@
   function route() {
     sayToken++;
     try { S.stop(); S.cancelListen(); } catch (e) {}
+    if (S.setNoTts) S.setNoTts(false); // do not leak a letter/pattern silent lesson onto the next screen
     picking = false;
     const parts = location.hash.replace(/^#\/?/, '').split('/');
     if (!state.started && parts[0] !== 'settings') return viewWelcome();

@@ -68,20 +68,31 @@ async function sayOnLesson(p, hash, sel, parts) {
   }, parts);
 }
 
-// 1. A clip plays for a known text after the first tap (iPhone Safari model)
+// 1. A clip plays for a known text after the first tap (iPhone Safari model).
+// Headless Chrome can freeze the AudioContext clock: a start is logged, then retagged
+// how:'stalled', and a TTS fallback may appear. Retry once in that case.
 {
-  const { ctx, p, errors } = await page();
-  await p.goto(BASE + '#/home'); await p.waitForSelector('.tile');
-  await p.waitForFunction(() => window.Speech.clipCount() > 400);
-  const n = await p.evaluate(() => window.Speech.clipCount());
+  let lastL = [], lastTts = [], lastErrors = [], n = 0;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const { ctx, p, errors } = await page();
+    await p.goto(BASE + '#/home'); await p.waitForSelector('.tile');
+    await p.waitForFunction(() => window.Speech.clipCount() > 400);
+    n = await p.evaluate(() => window.Speech.clipCount());
+    await p.locator('.tile').first().tap(); await p.waitForTimeout(2500);
+    lastL = await log(p);
+    lastTts = await tts(p);
+    lastErrors = errors;
+    const stalled = lastL.some((e) => e.how === 'stalled' || e.reason === 'audio-stalled');
+    const c = lastL.find((e) => e.how === 'clip');
+    const clean = !!c && !lastL.some((e) => e.how === 'tts') && lastTts.length === 0;
+    await ctx.close();
+    if (clean || !stalled) break;
+  }
+  const c = lastL.find((e) => e.how === 'clip');
   check('clips.json loaded (' + n + ' keys)', n > 400, n);
-  await p.locator('.tile').first().tap(); await p.waitForTimeout(2500);
-  const L = await log(p);
-  const c = L.find((e) => e.how === 'clip');
-  check('level intro played as a clip after a tap', !!c && !L.some((e) => e.how === 'tts'), L);
-  check('no built-in voice used', (await tts(p)).length === 0, await tts(p));
-  check('clip test: no page errors', !errors.length, errors);
-  await ctx.close();
+  check('level intro played as a clip after a tap', !!c && !lastL.some((e) => e.how === 'tts'), lastL);
+  check('no built-in voice used', lastTts.length === 0, lastTts);
+  check('clip test: no page errors', !lastErrors.length, lastErrors);
 }
 // 2. Audio locked. Before the first tap (cold page load) the built-in voice is no use either
 // (iPhone: silent before a gesture), so the line WAITS for the tap and then plays its clip (v18).
@@ -307,7 +318,7 @@ for (const [id, word] of [['L3-s1', 'sentence'], ['L4-kjv-psalm-23-1', 'verse']]
   check('word lesson shows photo', await p.locator('.lesson-photo').count() >= 1, await p.locator('img.photo').count());
   await p.goto(BASE + '#/lesson/L4-sign-stop'); await p.waitForSelector('.thing');
   check('STOP sign lesson shows photo', await p.locator('.sign-photo').count() >= 1, await p.locator('img.photo').count());
-  await p.goto(BASE + '#/level/8'); await p.waitForSelector('.tile');
+  await p.goto(BASE + '#/level/10'); await p.waitForSelector('.tile');
   check('Real Life category tiles show photos', await p.locator('.tile-photo').count() >= 3, await p.locator('.tile-photo').count());
   await ctx.close();
 }

@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 942,
+ "count": 1108,
  "letters": [
   {
    "l": "a",
@@ -201,6 +201,125 @@
    "soundKey": "nng",
    "ph": "ŋ",
    "note": "as in ring"
+  },
+  {
+   "id": "st",
+   "sound": "st",
+   "soundKey": "st",
+   "ph": "st",
+   "note": "as in last, stop"
+  },
+  {
+   "id": "nt",
+   "sound": "nt",
+   "soundKey": "nt",
+   "ph": "nt",
+   "note": "as in went"
+  },
+  {
+   "id": "nd",
+   "sound": "nd",
+   "soundKey": "nd",
+   "ph": "nd",
+   "note": "as in hand"
+  },
+  {
+   "id": "mp",
+   "sound": "mp",
+   "soundKey": "mp",
+   "ph": "mp",
+   "note": "as in jump"
+  },
+  {
+   "id": "nk",
+   "sound": "nk",
+   "soundKey": "nk",
+   "ph": "ŋk",
+   "note": "as in bank, think"
+  },
+  {
+   "id": "lk",
+   "sound": "lk",
+   "soundKey": "lk",
+   "ph": "lk",
+   "note": "as in milk"
+  },
+  {
+   "id": "lp",
+   "sound": "lp",
+   "soundKey": "lp",
+   "ph": "lp",
+   "note": "as in help"
+  },
+  {
+   "id": "pl",
+   "sound": "pl",
+   "soundKey": "pl",
+   "ph": "pl",
+   "note": "as in plan"
+  },
+  {
+   "id": "tr",
+   "sound": "tr",
+   "soundKey": "tr",
+   "ph": "tɹ",
+   "note": "as in truck"
+  },
+  {
+   "id": "dr",
+   "sound": "dr",
+   "soundKey": "dr",
+   "ph": "dɹ",
+   "note": "as in drop"
+  },
+  {
+   "id": "fl",
+   "sound": "fl",
+   "soundKey": "fl",
+   "ph": "fl",
+   "note": "as in flag"
+  },
+  {
+   "id": "sl",
+   "sound": "sl",
+   "soundKey": "sl",
+   "ph": "sl",
+   "note": "as in slip"
+  },
+  {
+   "id": "gr",
+   "sound": "gr",
+   "soundKey": "gr",
+   "ph": "ɡɹ",
+   "note": "as in grab"
+  },
+  {
+   "id": "str",
+   "sound": "str",
+   "soundKey": "str",
+   "ph": "stɹ",
+   "note": "as in strap"
+  },
+  {
+   "id": "es",
+   "sound": "iz",
+   "soundKey": "iz",
+   "ph": "ɪz",
+   "note": "suffix -es as in boxes"
+  },
+  {
+   "id": "ed-id",
+   "sound": "id",
+   "soundKey": "id",
+   "ph": "ɪd",
+   "note": "suffix -ed /ɪd/ as in handed"
+  },
+  {
+   "id": "ing",
+   "sound": "ing",
+   "soundKey": "ing",
+   "ph": "ɪŋ",
+   "note": "suffix -ing as in fixing"
   }
  ],
  "slowWords": [
@@ -277,7 +396,37 @@
   "that",
   "when",
   "ring",
-  "long"
+  "long",
+  "last",
+  "went",
+  "best",
+  "must",
+  "hand",
+  "send",
+  "jump",
+  "camp",
+  "bank",
+  "think",
+  "rest",
+  "list",
+  "stop",
+  "plan",
+  "trust",
+  "drop",
+  "flag",
+  "slip",
+  "trip",
+  "grab",
+  "truck",
+  "strap",
+  "shops",
+  "dishes",
+  "boxes",
+  "wished",
+  "grabbed",
+  "handed",
+  "missed",
+  "fixing"
  ],
  "templates": [
   "'This letter makes the sound at the end of ' + it.kw",
@@ -287,7 +436,7 @@
   "prompt + ' ' + name",
   "name + ' speech'",
   "Rewards.streakText (all states, 1-100 days, 0-2 skips)",
-  "'You know ' + n + ' words.' (0-160)",
+  "'You know ' + n + ' words.' (0-200)",
   "Rewards.describe (milestone messages)"
  ],
  "uncovered": [],
@@ -356,18 +505,36 @@
    ]
   },
   {
-   "key": "level 8 real life reading",
-   "text": "Level 8. Real life reading.",
-   "speak": "Level 8. Real life reading.",
+   "key": "level 8 ending blends",
+   "text": "Level 8. Ending blends.",
+   "speak": "Level 8. Ending blends.",
    "kind": "text",
    "sources": [
     "level"
    ]
   },
   {
-   "key": "level 9 bible verses king james version",
-   "text": "Level 9. Bible verses. King James Version.",
-   "speak": "Level 9. Bible verses. King James Version.",
+   "key": "level 9 starting blends",
+   "text": "Level 9. Starting blends.",
+   "speak": "Level 9. Starting blends.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 10 real life reading",
+   "text": "Level 10. Real life reading.",
+   "speak": "Level 10. Real life reading.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 11 bible verses king james version",
+   "text": "Level 11. Bible verses. King James Version.",
+   "speak": "Level 11. Bible verses. King James Version.",
    "kind": "text",
    "sources": [
     "level"
@@ -456,7 +623,8 @@
     "item:L3m-bus",
     "chip:L3-s10",
     "chip:L5-s3",
-    "chip:L5-s10"
+    "chip:L5-s10",
+    "chip:S-sb-7"
    ]
   },
   {
@@ -666,6 +834,13 @@
     "chip:L5-s9",
     "chip:S-sp-1",
     "chip:S-dg-2",
+    "chip:S-eb-1",
+    "chip:S-eb-3",
+    "chip:S-eb-7",
+    "chip:S-sb-1",
+    "chip:S-sb-2",
+    "chip:S-sb-3",
+    "chip:S-sb-5",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-philippians-4-13"
    ]
@@ -792,7 +967,8 @@
    "sources": [
     "keyword",
     "item:L2-map",
-    "item:L3m-map"
+    "item:L3m-map",
+    "chip:S-eb-4"
    ]
   },
   {
@@ -1059,7 +1235,8 @@
     "item:L2-van",
     "item:L3m-van",
     "chip:L3-s8",
-    "chip:L5-s4"
+    "chip:L5-s4",
+    "chip:S-sb-8"
    ]
   },
   {
@@ -1121,7 +1298,8 @@
     "item:L2-box",
     "item:L3m-box",
     "chip:L3-s13",
-    "chip:S-sp-7"
+    "chip:S-sp-7",
+    "chip:S-sb-3"
    ]
   },
   {
@@ -1455,6 +1633,18 @@
     "chip:S-sp-8",
     "chip:S-dg-1",
     "chip:S-dg-7",
+    "chip:S-eb-1",
+    "chip:S-eb-2",
+    "chip:S-eb-5",
+    "chip:S-eb-6",
+    "chip:S-eb-7",
+    "chip:S-eb-8",
+    "chip:S-sb-1",
+    "chip:S-sb-3",
+    "chip:S-sb-4",
+    "chip:S-sb-6",
+    "chip:S-sb-7",
+    "chip:S-sb-8",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-genesis-1-1",
     "chip:L4-kjv-psalm-118-24"
@@ -1481,6 +1671,10 @@
     "chip:S-dg-6",
     "chip:S-dg-7",
     "chip:S-dg-8",
+    "chip:S-eb-4",
+    "chip:S-eb-6",
+    "chip:S-eb-7",
+    "chip:S-sb-8",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-psalm-118-24"
    ]
@@ -1493,7 +1687,9 @@
    "sources": [
     "item:L3-sw-to",
     "chip:L3-s13",
-    "chip:S-sp-5"
+    "chip:S-sp-5",
+    "chip:S-eb-1",
+    "chip:S-eb-5"
    ]
   },
   {
@@ -1525,7 +1721,9 @@
    "kind": "text",
    "sources": [
     "item:L3-sw-he",
-    "chip:L3-s11"
+    "chip:L3-s11",
+    "chip:S-sb-6",
+    "chip:S-sb-8"
    ]
   },
   {
@@ -1595,7 +1793,9 @@
    "speak": "on",
    "kind": "text",
    "sources": [
-    "chip:L3-s3"
+    "chip:L3-s3",
+    "chip:S-eb-4",
+    "chip:S-eb-5"
    ]
   },
   {
@@ -1686,7 +1886,8 @@
     "chip:L5-s4",
     "chip:L5-s5",
     "chip:L5-s6",
-    "chip:L5-s10"
+    "chip:L5-s10",
+    "chip:S-eb-8"
    ]
   },
   {
@@ -1700,6 +1901,7 @@
     "chip:L5-s4",
     "chip:S-sp-2",
     "chip:S-sp-7",
+    "chip:S-sb-3",
     "chip:L4-kjv-genesis-1-1",
     "chip:L4-kjv-psalm-118-24"
    ]
@@ -1748,7 +1950,8 @@
    "kind": "text",
    "sources": [
     "chip:L3-s11",
-    "chip:S-dg-2"
+    "chip:S-dg-2",
+    "chip:S-sb-5"
    ]
   },
   {
@@ -1782,6 +1985,7 @@
     "chip:S-sp-1",
     "chip:S-sp-4",
     "chip:S-dg-5",
+    "chip:S-sb-3",
     "chip:L4-kjv-psalm-118-24"
    ]
   },
@@ -1867,7 +2071,8 @@
    "kind": "text",
    "sources": [
     "item:L5-rent",
-    "chip:L5-s9"
+    "chip:L5-s9",
+    "chip:S-eb-8"
    ]
   },
   {
@@ -1877,7 +2082,8 @@
    "kind": "text",
    "sources": [
     "item:L5-milk",
-    "chip:L5-s6"
+    "chip:L5-s6",
+    "chip:S-eb-8"
    ]
   },
   {
@@ -1887,7 +2093,8 @@
    "kind": "text",
    "sources": [
     "item:L5-help",
-    "chip:L5-s2"
+    "chip:L5-s2",
+    "chip:S-eb-8"
    ]
   },
   {
@@ -1961,6 +2168,7 @@
    "sources": [
     "chip:L5-s5",
     "chip:L5-s6",
+    "chip:S-eb-8",
     "chip:L4-kjv-genesis-1-3",
     "chip:L4-kjv-genesis-1-1",
     "chip:L4-kjv-psalm-118-24"
@@ -2088,7 +2296,8 @@
    "kind": "text",
    "sources": [
     "item:SW-are",
-    "chip:S-sp-7"
+    "chip:S-sp-7",
+    "chip:S-sb-4"
    ]
   },
   {
@@ -2271,7 +2480,8 @@
    "speak": "or",
    "kind": "text",
    "sources": [
-    "intro-part:P-s"
+    "intro-part:P-s",
+    "intro-part:P-ed"
    ]
   },
   {
@@ -2319,7 +2529,8 @@
    "kind": "text",
    "sources": [
     "item:W-hill",
-    "chip:S-sp-6"
+    "chip:S-sp-6",
+    "chip:S-eb-5"
    ]
   },
   {
@@ -2474,7 +2685,9 @@
     "keyword",
     "item:W-shop",
     "chip:S-dg-1",
-    "chip:S-dg-7"
+    "chip:S-dg-7",
+    "chip:S-eb-1",
+    "chip:S-eb-2"
    ]
   },
   {
@@ -2629,7 +2842,8 @@
    "sources": [
     "item:W-cash",
     "chip:S-dg-2",
-    "chip:S-dg-3"
+    "chip:S-dg-3",
+    "chip:S-sb-5"
    ]
   },
   {
@@ -2639,7 +2853,9 @@
    "kind": "text",
    "sources": [
     "item:W-shut",
-    "chip:S-dg-1"
+    "chip:S-dg-1",
+    "chip:S-eb-7",
+    "chip:S-sb-4"
    ]
   },
   {
@@ -2705,7 +2921,8 @@
    "speak": "with",
    "kind": "text",
    "sources": [
-    "item:W-with"
+    "item:W-with",
+    "chip:S-eb-8"
    ]
   },
   {
@@ -2792,13 +3009,643 @@
    ]
   },
   {
-   "key": "stop",
-   "text": "Stop",
-   "speak": "Stop",
+   "key": "from",
+   "text": "from",
+   "speak": "from",
    "kind": "text",
    "sources": [
+    "item:SW-from",
+    "chip:S-eb-2"
+   ]
+  },
+  {
+   "key": "your",
+   "text": "your",
+   "speak": "your",
+   "kind": "text",
+   "sources": [
+    "item:SW-your",
+    "chip:S-eb-4"
+   ]
+  },
+  {
+   "key": "one",
+   "text": "one",
+   "speak": "one",
+   "kind": "text",
+   "sources": [
+    "item:SW-one",
+    "chip:S-eb-6"
+   ]
+  },
+  {
+   "key": "come",
+   "text": "come",
+   "speak": "come",
+   "kind": "text",
+   "sources": [
+    "item:SW-come",
+    "chip:S-eb-5"
+   ]
+  },
+  {
+   "key": "some",
+   "text": "some",
+   "speak": "some",
+   "kind": "text",
+   "sources": [
+    "item:SW-some",
+    "chip:S-eb-8"
+   ]
+  },
+  {
+   "key": "last",
+   "text": "last",
+   "speak": "last",
+   "kind": "text",
+   "sources": [
+    "item:W-last"
+   ]
+  },
+  {
+   "key": "went",
+   "text": "went",
+   "speak": "went",
+   "kind": "text",
+   "sources": [
+    "item:W-went",
+    "chip:S-eb-1"
+   ]
+  },
+  {
+   "key": "best",
+   "text": "best",
+   "speak": "best",
+   "kind": "text",
+   "sources": [
+    "item:W-best",
+    "chip:S-eb-6"
+   ]
+  },
+  {
+   "key": "must",
+   "text": "must",
+   "speak": "must",
+   "kind": "text",
+   "sources": [
+    "item:W-must",
+    "chip:S-eb-3"
+   ]
+  },
+  {
+   "key": "hand",
+   "text": "hand",
+   "speak": "hand",
+   "kind": "text",
+   "sources": [
+    "item:W-hand",
+    "chip:S-eb-4"
+   ]
+  },
+  {
+   "key": "send",
+   "text": "send",
+   "speak": "send",
+   "kind": "text",
+   "sources": [
+    "item:W-send",
+    "chip:S-eb-2"
+   ]
+  },
+  {
+   "key": "jump",
+   "text": "jump",
+   "speak": "jump",
+   "kind": "text",
+   "sources": [
+    "item:W-jump"
+   ]
+  },
+  {
+   "key": "camp",
+   "text": "camp",
+   "speak": "camp",
+   "kind": "text",
+   "sources": [
+    "item:W-camp",
+    "chip:S-eb-5"
+   ]
+  },
+  {
+   "key": "bank",
+   "text": "bank",
+   "speak": "bank",
+   "kind": "text",
+   "sources": [
+    "item:W-bank",
+    "chip:S-eb-7"
+   ]
+  },
+  {
+   "key": "think",
+   "text": "think",
+   "speak": "think",
+   "kind": "text",
+   "sources": [
+    "item:W-think",
+    "chip:S-eb-7"
+   ]
+  },
+  {
+   "key": "rest",
+   "text": "rest",
+   "speak": "rest",
+   "kind": "text",
+   "sources": [
+    "item:W-rest",
+    "chip:S-eb-3"
+   ]
+  },
+  {
+   "key": "list",
+   "text": "list",
+   "speak": "list",
+   "kind": "text",
+   "sources": [
+    "item:W-list",
+    "chip:S-eb-2",
+    "chip:S-sb-6"
+   ]
+  },
+  {
+   "key": "i went to the shop",
+   "text": "I went to the shop.",
+   "speak": "I went to the shop.",
+   "kind": "text",
+   "sources": [
+    "item:S-eb-1"
+   ]
+  },
+  {
+   "key": "send the list from the shop",
+   "text": "Send the list from the shop.",
+   "speak": "Send the list from the shop.",
+   "kind": "text",
+   "sources": [
+    "item:S-eb-2"
+   ]
+  },
+  {
+   "key": "i must rest",
+   "text": "I must rest.",
+   "speak": "I must rest.",
+   "kind": "text",
+   "sources": [
+    "item:S-eb-3"
+   ]
+  },
+  {
+   "key": "his hand is on your map",
+   "text": "His hand is on your map.",
+   "speak": "His hand is on your map.",
+   "kind": "text",
+   "sources": [
+    "item:S-eb-4"
+   ]
+  },
+  {
+   "key": "his",
+   "text": "His",
+   "speak": "His",
+   "kind": "text",
+   "sources": [
+    "chip:S-eb-4"
+   ]
+  },
+  {
+   "key": "come to the camp on the hill",
+   "text": "Come to the camp on the hill.",
+   "speak": "Come to the camp on the hill.",
+   "kind": "text",
+   "sources": [
+    "item:S-eb-5"
+   ]
+  },
+  {
+   "key": "this one is the best",
+   "text": "This one is the best.",
+   "speak": "This one is the best.",
+   "kind": "text",
+   "sources": [
+    "item:S-eb-6"
+   ]
+  },
+  {
+   "key": "this",
+   "text": "This",
+   "speak": "This",
+   "kind": "text",
+   "sources": [
+    "chip:S-eb-6",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "i think the bank is shut",
+   "text": "I think the bank is shut.",
+   "speak": "I think the bank is shut.",
+   "kind": "text",
+   "sources": [
+    "item:S-eb-7"
+   ]
+  },
+  {
+   "key": "get some milk and help with the rent",
+   "text": "Get some milk and help with the rent.",
+   "speak": "Get some milk and help with the rent.",
+   "kind": "text",
+   "sources": [
+    "item:S-eb-8"
+   ]
+  },
+  {
+   "key": "again",
+   "text": "again",
+   "speak": "again",
+   "kind": "text",
+   "sources": [
+    "item:SW-again",
+    "chip:S-sb-8"
+   ]
+  },
+  {
+   "key": "could",
+   "text": "could",
+   "speak": "could",
+   "kind": "text",
+   "sources": [
+    "item:SW-could",
+    "chip:S-sb-2"
+   ]
+  },
+  {
+   "key": "would",
+   "text": "would",
+   "speak": "would",
+   "kind": "text",
+   "sources": [
+    "item:SW-would",
+    "chip:S-sb-3"
+   ]
+  },
+  {
+   "key": "should",
+   "text": "should",
+   "speak": "should",
+   "kind": "text",
+   "sources": [
+    "item:SW-should",
+    "chip:S-sb-1"
+   ]
+  },
+  {
+   "key": "who",
+   "text": "who",
+   "speak": "who",
+   "kind": "text",
+   "sources": [
+    "item:SW-who",
+    "chip:S-sb-7"
+   ]
+  },
+  {
+   "key": "es",
+   "text": "-es",
+   "speak": "-es",
+   "kind": "text",
+   "sources": [
+    "item:P-es"
+   ]
+  },
+  {
+   "key": "boxes",
+   "text": "boxes",
+   "speak": "boxes",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:W-boxes"
+   ]
+  },
+  {
+   "key": "these letters are e s",
+   "text": "These letters are E S.",
+   "speak": "These letters are E S.",
+   "kind": "text",
+   "sources": [
+    "intro:P-es"
+   ]
+  },
+  {
+   "key": "ed",
+   "text": "-ed",
+   "speak": "-ed",
+   "kind": "text",
+   "sources": [
+    "item:P-ed"
+   ]
+  },
+  {
+   "key": "handed",
+   "text": "handed",
+   "speak": "handed",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:W-handed",
+    "chip:S-sb-6"
+   ]
+  },
+  {
+   "key": "e d at the end of a word can make three sounds",
+   "text": "E D at the end of a word can make three sounds.",
+   "speak": "E D at the end of a word can make three sounds.",
+   "kind": "text",
+   "sources": [
+    "intro:P-ed",
+    "intro-part:P-ed"
+   ]
+  },
+  {
+   "key": "in handed it says",
+   "text": "In handed, it says",
+   "speak": "In handed, it says",
+   "kind": "text",
+   "sources": [
+    "frame:P-ed"
+   ]
+  },
+  {
+   "key": "ing",
+   "text": "-ing",
+   "speak": "-ing",
+   "kind": "text",
+   "sources": [
+    "item:P-ing"
+   ]
+  },
+  {
+   "key": "fixing",
+   "text": "fixing",
+   "speak": "fixing",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:W-fixing",
+    "chip:S-sb-8"
+   ]
+  },
+  {
+   "key": "these letters are i n g",
+   "text": "These letters are I N G.",
+   "speak": "These letters are I N G.",
+   "kind": "text",
+   "sources": [
+    "intro:P-ing"
+   ]
+  },
+  {
+   "key": "stop",
+   "text": "stop",
+   "speak": "stop",
+   "kind": "text",
+   "sources": [
+    "item:W-stop",
+    "chip:S-sb-1",
     "item:L4-sign-stop",
     "app.js"
+   ]
+  },
+  {
+   "key": "plan",
+   "text": "plan",
+   "speak": "plan",
+   "kind": "text",
+   "sources": [
+    "item:W-plan"
+   ]
+  },
+  {
+   "key": "trust",
+   "text": "trust",
+   "speak": "trust",
+   "kind": "text",
+   "sources": [
+    "item:W-trust",
+    "chip:S-sb-2"
+   ]
+  },
+  {
+   "key": "drop",
+   "text": "drop",
+   "speak": "drop",
+   "kind": "text",
+   "sources": [
+    "item:W-drop",
+    "chip:S-sb-3"
+   ]
+  },
+  {
+   "key": "flag",
+   "text": "flag",
+   "speak": "flag",
+   "kind": "text",
+   "sources": [
+    "item:W-flag"
+   ]
+  },
+  {
+   "key": "slip",
+   "text": "slip",
+   "speak": "slip",
+   "kind": "text",
+   "sources": [
+    "item:W-slip"
+   ]
+  },
+  {
+   "key": "trip",
+   "text": "trip",
+   "speak": "trip",
+   "kind": "text",
+   "sources": [
+    "item:W-trip"
+   ]
+  },
+  {
+   "key": "grab",
+   "text": "grab",
+   "speak": "grab",
+   "kind": "text",
+   "sources": [
+    "item:W-grab"
+   ]
+  },
+  {
+   "key": "truck",
+   "text": "truck",
+   "speak": "truck",
+   "kind": "text",
+   "sources": [
+    "item:W-truck",
+    "chip:S-sb-1"
+   ]
+  },
+  {
+   "key": "strap",
+   "text": "strap",
+   "speak": "strap",
+   "kind": "text",
+   "sources": [
+    "item:W-strap"
+   ]
+  },
+  {
+   "key": "shops",
+   "text": "shops",
+   "speak": "shops",
+   "kind": "text",
+   "sources": [
+    "item:W-shops",
+    "chip:S-sb-4"
+   ]
+  },
+  {
+   "key": "dishes",
+   "text": "dishes",
+   "speak": "dishes",
+   "kind": "text",
+   "sources": [
+    "item:W-dishes"
+   ]
+  },
+  {
+   "key": "wished",
+   "text": "wished",
+   "speak": "wished",
+   "kind": "text",
+   "sources": [
+    "item:W-wished",
+    "chip:S-sb-5"
+   ]
+  },
+  {
+   "key": "grabbed",
+   "text": "grabbed",
+   "speak": "grabbed",
+   "kind": "text",
+   "sources": [
+    "item:W-grabbed"
+   ]
+  },
+  {
+   "key": "missed",
+   "text": "missed",
+   "speak": "missed",
+   "kind": "text",
+   "sources": [
+    "item:W-missed",
+    "chip:S-sb-7"
+   ]
+  },
+  {
+   "key": "i should stop the truck",
+   "text": "I should stop the truck.",
+   "speak": "I should stop the truck.",
+   "kind": "text",
+   "sources": [
+    "item:S-sb-1"
+   ]
+  },
+  {
+   "key": "i could trust him",
+   "text": "I could trust him.",
+   "speak": "I could trust him.",
+   "kind": "text",
+   "sources": [
+    "item:S-sb-2"
+   ]
+  },
+  {
+   "key": "him",
+   "text": "him",
+   "speak": "him",
+   "kind": "text",
+   "sources": [
+    "chip:S-sb-2"
+   ]
+  },
+  {
+   "key": "i would drop it in the box",
+   "text": "I would drop it in the box.",
+   "speak": "I would drop it in the box.",
+   "kind": "text",
+   "sources": [
+    "item:S-sb-3"
+   ]
+  },
+  {
+   "key": "the shops are shut",
+   "text": "The shops are shut.",
+   "speak": "The shops are shut.",
+   "kind": "text",
+   "sources": [
+    "item:S-sb-4"
+   ]
+  },
+  {
+   "key": "i wished i had cash",
+   "text": "I wished I had cash.",
+   "speak": "I wished I had cash.",
+   "kind": "text",
+   "sources": [
+    "item:S-sb-5"
+   ]
+  },
+  {
+   "key": "he handed us the list",
+   "text": "He handed us the list.",
+   "speak": "He handed us the list.",
+   "kind": "text",
+   "sources": [
+    "item:S-sb-6"
+   ]
+  },
+  {
+   "key": "us",
+   "text": "us",
+   "speak": "us",
+   "kind": "text",
+   "sources": [
+    "chip:S-sb-6"
+   ]
+  },
+  {
+   "key": "who missed the bus",
+   "text": "Who missed the bus?",
+   "speak": "Who missed the bus?",
+   "kind": "text",
+   "sources": [
+    "item:S-sb-7"
+   ]
+  },
+  {
+   "key": "he is fixing the van again",
+   "text": "He is fixing the van again.",
+   "speak": "He is fixing the van again.",
+   "kind": "text",
+   "sources": [
+    "item:S-sb-8"
    ]
   },
   {
@@ -3563,15 +4410,6 @@
    "kind": "text",
    "sources": [
     "item:L4-kjv-psalm-118-24"
-   ]
-  },
-  {
-   "key": "this",
-   "text": "This",
-   "speak": "This",
-   "kind": "text",
-   "sources": [
-    "chip:L4-kjv-psalm-118-24"
    ]
   },
   {
@@ -4342,6 +5180,69 @@
    ]
   },
   {
+   "key": "these letters make the sound at the end of boxes tap the letters to hear the sound again then tap play",
+   "text": "These letters make the sound at the end of boxes. Tap the letters to hear the sound again. Then tap play.",
+   "speak": "These letters make the sound at the end of boxes. Tap the letters to hear the sound again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:pattern"
+   ]
+  },
+  {
+   "key": "which letters are at the end of boxes",
+   "text": "Which letters are at the end of boxes?",
+   "speak": "Which letters are at the end of boxes?",
+   "kind": "text",
+   "sources": [
+    "prompt:pattern"
+   ]
+  },
+  {
+   "key": "these letters make the sound at the end of handed tap the letters to hear the sound again then tap play",
+   "text": "These letters make the sound at the end of handed. Tap the letters to hear the sound again. Then tap play.",
+   "speak": "These letters make the sound at the end of handed. Tap the letters to hear the sound again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:pattern"
+   ]
+  },
+  {
+   "key": "which letters are at the end of handed",
+   "text": "Which letters are at the end of handed?",
+   "speak": "Which letters are at the end of handed?",
+   "kind": "text",
+   "sources": [
+    "prompt:pattern"
+   ]
+  },
+  {
+   "key": "this is the sound at the end of handed",
+   "text": "This is the sound at the end of handed.",
+   "speak": "This is the sound at the end of handed.",
+   "kind": "text",
+   "sources": [
+    "pattern-frame-done"
+   ]
+  },
+  {
+   "key": "these letters make the sound at the end of fixing tap the letters to hear the sound again then tap play",
+   "text": "These letters make the sound at the end of fixing. Tap the letters to hear the sound again. Then tap play.",
+   "speak": "These letters make the sound at the end of fixing. Tap the letters to hear the sound again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:pattern"
+   ]
+  },
+  {
+   "key": "which letters are at the end of fixing",
+   "text": "Which letters are at the end of fixing?",
+   "speak": "Which letters are at the end of fixing?",
+   "kind": "text",
+   "sources": [
+    "prompt:pattern"
+   ]
+  },
+  {
    "key": "this is a tricky word it does not sound out the normal way just remember it it says the then tap play",
    "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: the. Then tap play.",
    "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: the. Then tap play.",
@@ -4517,6 +5418,96 @@
    "key": "this is a heart word you remember it it says where then tap play",
    "text": "This is a heart word. You remember it. It says: where. Then tap play.",
    "speak": "This is a heart word. You remember it. It says: where. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says from then tap play",
+   "text": "This is a heart word. You remember it. It says: from. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: from. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says your then tap play",
+   "text": "This is a heart word. You remember it. It says: your. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: your. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says one then tap play",
+   "text": "This is a heart word. You remember it. It says: one. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: one. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says come then tap play",
+   "text": "This is a heart word. You remember it. It says: come. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: come. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says some then tap play",
+   "text": "This is a heart word. You remember it. It says: some. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: some. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says again then tap play",
+   "text": "This is a heart word. You remember it. It says: again. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says could then tap play",
+   "text": "This is a heart word. You remember it. It says: could. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: could. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says would then tap play",
+   "text": "This is a heart word. You remember it. It says: would. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: would. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says should then tap play",
+   "text": "This is a heart word. You remember it. It says: should. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: should. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says who then tap play",
+   "text": "This is a heart word. You remember it. It says: who. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: who. Then tap play.",
    "kind": "text",
    "sources": [
     "help:sight"
@@ -5354,6 +6345,366 @@
    "key": "find the word long",
    "text": "Find the word: long",
    "speak": "Find the word: long",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word from",
+   "text": "Find the word: from",
+   "speak": "Find the word: from",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word your",
+   "text": "Find the word: your",
+   "speak": "Find the word: your",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word one",
+   "text": "Find the word: one",
+   "speak": "Find the word: one",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word come",
+   "text": "Find the word: come",
+   "speak": "Find the word: come",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word some",
+   "text": "Find the word: some",
+   "speak": "Find the word: some",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word last",
+   "text": "Find the word: last",
+   "speak": "Find the word: last",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word went",
+   "text": "Find the word: went",
+   "speak": "Find the word: went",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word best",
+   "text": "Find the word: best",
+   "speak": "Find the word: best",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word must",
+   "text": "Find the word: must",
+   "speak": "Find the word: must",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word hand",
+   "text": "Find the word: hand",
+   "speak": "Find the word: hand",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word send",
+   "text": "Find the word: send",
+   "speak": "Find the word: send",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word jump",
+   "text": "Find the word: jump",
+   "speak": "Find the word: jump",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word camp",
+   "text": "Find the word: camp",
+   "speak": "Find the word: camp",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word bank",
+   "text": "Find the word: bank",
+   "speak": "Find the word: bank",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word think",
+   "text": "Find the word: think",
+   "speak": "Find the word: think",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word rest",
+   "text": "Find the word: rest",
+   "speak": "Find the word: rest",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word list",
+   "text": "Find the word: list",
+   "speak": "Find the word: list",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word again",
+   "text": "Find the word: again",
+   "speak": "Find the word: again",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word could",
+   "text": "Find the word: could",
+   "speak": "Find the word: could",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word would",
+   "text": "Find the word: would",
+   "speak": "Find the word: would",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word should",
+   "text": "Find the word: should",
+   "speak": "Find the word: should",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word who",
+   "text": "Find the word: who",
+   "speak": "Find the word: who",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word stop",
+   "text": "Find the word: stop",
+   "speak": "Find the word: stop",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word plan",
+   "text": "Find the word: plan",
+   "speak": "Find the word: plan",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word trust",
+   "text": "Find the word: trust",
+   "speak": "Find the word: trust",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word drop",
+   "text": "Find the word: drop",
+   "speak": "Find the word: drop",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word flag",
+   "text": "Find the word: flag",
+   "speak": "Find the word: flag",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word slip",
+   "text": "Find the word: slip",
+   "speak": "Find the word: slip",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word trip",
+   "text": "Find the word: trip",
+   "speak": "Find the word: trip",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word grab",
+   "text": "Find the word: grab",
+   "speak": "Find the word: grab",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word truck",
+   "text": "Find the word: truck",
+   "speak": "Find the word: truck",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word strap",
+   "text": "Find the word: strap",
+   "speak": "Find the word: strap",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word shops",
+   "text": "Find the word: shops",
+   "speak": "Find the word: shops",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word dishes",
+   "text": "Find the word: dishes",
+   "speak": "Find the word: dishes",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word boxes",
+   "text": "Find the word: boxes",
+   "speak": "Find the word: boxes",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word wished",
+   "text": "Find the word: wished",
+   "speak": "Find the word: wished",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word grabbed",
+   "text": "Find the word: grabbed",
+   "speak": "Find the word: grabbed",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word handed",
+   "text": "Find the word: handed",
+   "speak": "Find the word: handed",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word missed",
+   "text": "Find the word: missed",
+   "speak": "Find the word: missed",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word fixing",
+   "text": "Find the word: fixing",
+   "speak": "Find the word: fixing",
    "kind": "text",
    "sources": [
     "help:find"
@@ -8025,6 +9376,366 @@
    ]
   },
   {
+   "key": "you know 161 words",
+   "text": "You know 161 words.",
+   "speak": "You know one hundred sixty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 162 words",
+   "text": "You know 162 words.",
+   "speak": "You know one hundred sixty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 163 words",
+   "text": "You know 163 words.",
+   "speak": "You know one hundred sixty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 164 words",
+   "text": "You know 164 words.",
+   "speak": "You know one hundred sixty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 165 words",
+   "text": "You know 165 words.",
+   "speak": "You know one hundred sixty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 166 words",
+   "text": "You know 166 words.",
+   "speak": "You know one hundred sixty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 167 words",
+   "text": "You know 167 words.",
+   "speak": "You know one hundred sixty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 168 words",
+   "text": "You know 168 words.",
+   "speak": "You know one hundred sixty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 169 words",
+   "text": "You know 169 words.",
+   "speak": "You know one hundred sixty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 170 words",
+   "text": "You know 170 words.",
+   "speak": "You know one hundred seventy words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 171 words",
+   "text": "You know 171 words.",
+   "speak": "You know one hundred seventy-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 172 words",
+   "text": "You know 172 words.",
+   "speak": "You know one hundred seventy-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 173 words",
+   "text": "You know 173 words.",
+   "speak": "You know one hundred seventy-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 174 words",
+   "text": "You know 174 words.",
+   "speak": "You know one hundred seventy-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 175 words",
+   "text": "You know 175 words.",
+   "speak": "You know one hundred seventy-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 176 words",
+   "text": "You know 176 words.",
+   "speak": "You know one hundred seventy-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 177 words",
+   "text": "You know 177 words.",
+   "speak": "You know one hundred seventy-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 178 words",
+   "text": "You know 178 words.",
+   "speak": "You know one hundred seventy-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 179 words",
+   "text": "You know 179 words.",
+   "speak": "You know one hundred seventy-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 180 words",
+   "text": "You know 180 words.",
+   "speak": "You know one hundred eighty words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 181 words",
+   "text": "You know 181 words.",
+   "speak": "You know one hundred eighty-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 182 words",
+   "text": "You know 182 words.",
+   "speak": "You know one hundred eighty-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 183 words",
+   "text": "You know 183 words.",
+   "speak": "You know one hundred eighty-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 184 words",
+   "text": "You know 184 words.",
+   "speak": "You know one hundred eighty-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 185 words",
+   "text": "You know 185 words.",
+   "speak": "You know one hundred eighty-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 186 words",
+   "text": "You know 186 words.",
+   "speak": "You know one hundred eighty-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 187 words",
+   "text": "You know 187 words.",
+   "speak": "You know one hundred eighty-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 188 words",
+   "text": "You know 188 words.",
+   "speak": "You know one hundred eighty-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 189 words",
+   "text": "You know 189 words.",
+   "speak": "You know one hundred eighty-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 190 words",
+   "text": "You know 190 words.",
+   "speak": "You know one hundred ninety words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 191 words",
+   "text": "You know 191 words.",
+   "speak": "You know one hundred ninety-one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 192 words",
+   "text": "You know 192 words.",
+   "speak": "You know one hundred ninety-two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 193 words",
+   "text": "You know 193 words.",
+   "speak": "You know one hundred ninety-three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 194 words",
+   "text": "You know 194 words.",
+   "speak": "You know one hundred ninety-four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 195 words",
+   "text": "You know 195 words.",
+   "speak": "You know one hundred ninety-five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 196 words",
+   "text": "You know 196 words.",
+   "speak": "You know one hundred ninety-six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 197 words",
+   "text": "You know 197 words.",
+   "speak": "You know one hundred ninety-seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 198 words",
+   "text": "You know 198 words.",
+   "speak": "You know one hundred ninety-eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 199 words",
+   "text": "You know 199 words.",
+   "speak": "You know one hundred ninety-nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 200 words",
+   "text": "You know 200 words.",
+   "speak": "You know two hundred words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
    "key": "no words yet",
    "text": "No words yet.",
    "speak": "No words yet.",
@@ -8206,9 +9917,9 @@
    ]
   },
   {
-   "key": "tap the big play button at the bottom to keep going or pick a level level 1 is letter sounds level 2 is words level 3 is the missing letter level 4 is sentences level 5 is everyday reading level 6 is spellings level 7 is sounds together level 8 is real life reading level 9 is bible verses",
-   "text": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is real life reading. Level 9 is Bible verses.",
-   "speak": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is real life reading. Level 9 is Bible verses.",
+   "key": "tap the big play button at the bottom to keep going or pick a level level 1 is letter sounds level 2 is words level 3 is the missing letter level 4 is sentences level 5 is everyday reading level 6 is spellings level 7 is sounds together level 8 is ending blends level 9 is starting blends level 10 is real life reading level 11 is bible verses",
+   "text": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is real life reading. Level 11 is Bible verses.",
+   "speak": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is real life reading. Level 11 is Bible verses.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -8317,6 +10028,24 @@
    "key": "sounds together letters like s h make one sound tap play to start",
    "text": "Sounds together. Letters like S H make one sound. Tap play to start.",
    "speak": "Sounds together. Letters like S H make one sound. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "ending blends letters at the end of a word can work together tap play to start",
+   "text": "Ending blends. Letters at the end of a word can work together. Tap play to start.",
+   "speak": "Ending blends. Letters at the end of a word can work together. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "starting blends letters at the start of a word can work together and some words add an ending tap play to start",
+   "text": "Starting blends. Letters at the start of a word can work together, and some words add an ending. Tap play to start.",
+   "speak": "Starting blends. Letters at the start of a word can work together, and some words add an ending. Tap play to start.",
    "kind": "text",
    "sources": [
     "app.js"

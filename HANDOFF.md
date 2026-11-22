@@ -1,11 +1,20 @@
-# Handoff – Read Aloud (Nov 21, 2026, v21.1 hotfix)
+# Handoff – Read Aloud (Nov 21, 2026, v22)
 
-## Latest (v21.1 hotfix, branch `hotfix-v21-1`, from live 30a36f9): unsafe/mismatched photos + plural -s intro
+## Latest (v22, rebased on v21.1 hotfix): Ending blends + Starting blends (Books 5–6)
+- **New level order:** 1–7 unchanged · **8 Ending blends** (Book 5 hearts `from, your, one, come, some`, then 12 words and 8 sentences) · **9 Starting blends** (Book 6 hearts `again, could, would, should, who`, then -es/-ed/-ing, 10 blend words, 8 suffix words, 8 sentences) · **10 Real Life** · **11 Bible**. Inserted after Sounds together, before Real Life (same style as v21).
+  Old item ids kept; `C.REAL_LIFE` is 10, `C.BIBLE` is 11. `#/level/6/signs`, `#/level/8/signs`, and `#/level/4/menu` still work.
+- **Carries the v21.1 image and -s intro fixes.** Level 8 home tile does not use the removed tent photo (reuses `map`). The word `camp` uses ⛺, not a photo. `-ed` intro speaks “E D at the end of a word can make three sounds.” then plays `letters/t`, `letters/d`, and `patterns/ed-id`.
+- **L5 rent/milk/help** still show blend tiles (`r-e-nt`, etc.). Left as they are; Jeffrey’s call whether Everyday should stay letter-by-letter.
+- **Hardening:** `route()` always calls `S.setNoTts(false)` so a letter/pattern silent flag cannot leak. `level1-test` waits 4 s (was 2.5 s) for “tap the big letter plays M”.
+- **Grapheme tiles:** ending/starting blends stay together (`last` is l-a-st, `strap` is str-a-p). Suffixes `-es`, `-ed` (3 sounds), `-ing` only after a 3+ letter stem, so `red` stays r-e-d and `ring` stays r-i-ng. Doubled consonants (`grabbed` → gr-a-bb-ed). `-ed` /t/ and /d/ reuse Whitney; /ɪd/ is a temporary Kokoro clip.
+- **Pattern sounds:** more temporary Kokoro clips in `audio/patterns/` (st, nt, …, str, es, ed-id, ing). Listed in `tools/audio/pattern-sounds-sources.md` for a human listen.
+- Tests: `tools/v22-levels-test.mjs` (order, ids, segments, decodability, clips, migration, screenshots `screenshots/60-*-<390|320>.png`). `v21-levels-test` uses `C.REAL_LIFE` / `C.BIBLE`. `tools/image-safety-test.mjs` still applies.
+- Cache **`read-aloud-v22-af890202`**. Not pushed. Needs a real-phone listen of the new blend/suffix phonemes, heart words (`one`, `who`, `could` / `would` / `should`), the rewritten `-ed` intro, and new sentences.
+
+## Previous (v21.1 hotfix, branch `hotfix-v21-1`, from live 30a36f9): unsafe/mismatched photos + plural -s intro
 - Removed lesson photos (emoji used instead): tent (unsafe; file deleted, never opened), sun (plain blue sky), van (colour-inverted stone cross), water (kids' Smurfs cartoon glass), fish (market crowd, no clear fish). Level 7 home tile now reuses `lamp`.
 - Plural -s intro no longer puts "sss" / "zzz" in spoken text. `introParts` play `letters/s` and `letters/z`. New clip for the stem "S at the end of a word can say".
-- Cache **`read-aloud-v21-1-447c7bda`**. Test: `tools/image-safety-test.mjs` (fails if a removed photo exists or is referenced); screenshots `screenshots/70-*-<390|320>.png`. Do not push until Jeffrey says so.
-
-# Handoff – Read Aloud (Nov 21, 2026, v21)
+- Cache **`read-aloud-v21-1-447c7bda`**. Test: `tools/image-safety-test.mjs`; screenshots `screenshots/70-*-<390|320>.png`. Do not push until Jeffrey says so.
 
 ## Latest (v21): Hermes 12-book series levels, first two books of new phonics (Spellings + Sounds together)
 - **New level order:** 1 Sounds · 2 Words · 3 Missing Letter · 4 Sentences · 5 Everyday ·

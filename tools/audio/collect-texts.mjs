@@ -162,9 +162,26 @@ const result = {
     { id: 'th',        sound: 'thh',  soundKey: S.clipKey('thh'),  ph: 'θ',   note: 'as in path' },
     { id: 'th-voiced', sound: 'dhh',  soundKey: S.clipKey('dhh'),  ph: 'ð',   note: 'as in that' },
     { id: 'wh',        sound: 'wuh',  soundKey: S.clipKey('wuh'),  ph: 'w',   note: 'as in when; US /w/' },
-    { id: 'ng',        sound: 'nng',  soundKey: S.clipKey('nng'),  ph: 'ŋ',   note: 'as in ring' }
+    { id: 'ng',        sound: 'nng',  soundKey: S.clipKey('nng'),  ph: 'ŋ',   note: 'as in ring' },
+    { id: 'st',  sound: 'st',  soundKey: S.clipKey('st'),  ph: 'st',  note: 'as in last, stop' },
+    { id: 'nt',  sound: 'nt',  soundKey: S.clipKey('nt'),  ph: 'nt',  note: 'as in went' },
+    { id: 'nd',  sound: 'nd',  soundKey: S.clipKey('nd'),  ph: 'nd',  note: 'as in hand' },
+    { id: 'mp',  sound: 'mp',  soundKey: S.clipKey('mp'),  ph: 'mp',  note: 'as in jump' },
+    { id: 'nk',  sound: 'nk',  soundKey: S.clipKey('nk'),  ph: 'ŋk',  note: 'as in bank, think' },
+    { id: 'lk',  sound: 'lk',  soundKey: S.clipKey('lk'),  ph: 'lk',  note: 'as in milk' },
+    { id: 'lp',  sound: 'lp',  soundKey: S.clipKey('lp'),  ph: 'lp',  note: 'as in help' },
+    { id: 'pl',  sound: 'pl',  soundKey: S.clipKey('pl'),  ph: 'pl',  note: 'as in plan' },
+    { id: 'tr',  sound: 'tr',  soundKey: S.clipKey('tr'),  ph: 'tɹ',  note: 'as in truck' },
+    { id: 'dr',  sound: 'dr',  soundKey: S.clipKey('dr'),  ph: 'dɹ',  note: 'as in drop' },
+    { id: 'fl',  sound: 'fl',  soundKey: S.clipKey('fl'),  ph: 'fl',  note: 'as in flag' },
+    { id: 'sl',  sound: 'sl',  soundKey: S.clipKey('sl'),  ph: 'sl',  note: 'as in slip' },
+    { id: 'gr',  sound: 'gr',  soundKey: S.clipKey('gr'),  ph: 'ɡɹ',  note: 'as in grab' },
+    { id: 'str', sound: 'str', soundKey: S.clipKey('str'), ph: 'stɹ', note: 'as in strap' },
+    { id: 'es',    sound: 'iz',  soundKey: S.clipKey('iz'),  ph: 'ɪz', note: 'suffix -es as in boxes' },
+    { id: 'ed-id', sound: 'id',  soundKey: S.clipKey('id'),  ph: 'ɪd', note: 'suffix -ed /ɪd/ as in handed' },
+    { id: 'ing',   sound: 'ing', soundKey: S.clipKey('ing'), ph: 'ɪŋ', note: 'suffix -ing as in fixing' }
   ],
-  slowWords: C.words.concat(C.everydayWords, C.spellWords, C.digraphWords).map((x) => S.clipKey(x.w)),   // blending plays these slowly
+  slowWords: C.words.concat(C.everydayWords, C.spellWords, C.digraphWords, C.endWords, C.startBlendWords, C.suffixWords).map((x) => S.clipKey(x.w)),   // blending plays these slowly
   templates: TEMPLATES,
   uncovered,
   entries

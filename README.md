@@ -56,12 +56,14 @@ Notes
 5. **Everyday** – 10 everyday decodable words and 10 sentences.
 6. **Spellings** – Book 3 heart words (of, said, are, they), then ck, FLOSS (ff, ll, ss, zz), and plural -s, with words and sentences that use them.
 7. **Sounds together** – Book 4 heart words (do, have, what, there, where), then sh, ch, th (path / that), wh, and ng, with words and sentences.
-8. **Real Life 🏙️**
+8. **Ending blends** – Book 5 heart words (from, your, one, come, some), then ending-blend words (last, hand, think, …) and sentences.
+9. **Starting blends** – Book 6 heart words (again, could, would, should, who), then starting blends, -es/-ed/-ing, and sentences.
+10. **Real Life 🏙️**
    - Signs (drawn in CSS): STOP, EXIT, OPEN, CLOSED, PUSH, PULL, RESTROOM, DANGER – with a
      spoken meaning ("Pull. Pull the door toward you.").
    - Menu: Coffee, Eggs, Burger, Fries, Chicken, Soup, Salad, Water, Pizza with prices.
    - Forms: Name, Address, Phone, Date of Birth, Signature – with what to write there.
-9. **Bible** – 8 short **King James Version** verses (John 11:35, 1 Thess 5:16, 5:17,
+11. **Bible** – 8 short **King James Version** verses (John 11:35, 1 Thess 5:16, 5:17,
      Genesis 1:3, Psalm 23:1, Genesis 1:1, Philippians 4:13, Psalm 118:24).
 
 ### Natural voice (pre-recorded clips)

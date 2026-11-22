@@ -1,5 +1,5 @@
 // Run: node tools/v21-levels-test.mjs  (needs local server on :8765; BASE=<url>; SHOTS=0 to skip)
-// v21: Spellings (6) and Sounds together (7) after Everyday; Real Life is 8, Bible is 9.
+// v21 content: Spellings (6) and Sounds together (7) after Everyday; Real Life / Bible stay last (numbers may move in later versions).
 // Old item ids and v20 progress still work. Grapheme tiles. Heart words. Fits at 390 and 320.
 // Writes screenshots/50-*-<390|320>.png
 import { chromium } from 'playwright-core';
@@ -14,10 +14,13 @@ const ctx0 = { window: {} }; vm.createContext(ctx0);
 vm.runInContext(fs.readFileSync(ROOT + 'js/content.js', 'utf8'), ctx0);
 const C = ctx0.window.CONTENT;
 
-check('levels in v21 order', C.levels.map((l) => l.n + l.name).join(',') ===
-  '1Sounds,2Words,3Missing Letter,4Sentences,5Everyday,6Spellings,7Sounds together,8Real Life,9Bible', C.levels.map((l) => l.name));
+const names = C.levels.map((l) => l.n + l.name);
+check('levels 1-7 names unchanged; Real Life and Bible still last',
+  names.slice(0, 7).join(',') === '1Sounds,2Words,3Missing Letter,4Sentences,5Everyday,6Spellings,7Sounds together'
+  && C.levels.at(-2).name === 'Real Life' && C.levels.at(-2).n === C.REAL_LIFE
+  && C.levels.at(-1).name === 'Bible' && C.levels.at(-1).n === C.BIBLE, names);
 check('C.items is in level order (keep going follows the levels)', C.items.every((it, i) => !i || C.items[i - 1].level <= it.level));
-check('REAL_LIFE is 8, BIBLE is 9', C.REAL_LIFE === 8 && C.BIBLE === 9);
+check('REAL_LIFE and BIBLE match the last two shown levels', C.REAL_LIFE === C.levels.at(-2).n && C.BIBLE === C.levels.at(-1).n);
 check('saved v20 ids unchanged', ['L3-s1', 'L3-sw-the', 'L4-sign-stop', 'L4-kjv-john-11-35', 'L5-rent', 'L1-q', 'L3m-cat'].every((id) => C.items.some((x) => x.id === id)));
 check('new ids do not use a display-number prefix', [...C.items.filter((x) => x.level === 6 || x.level === 7)].every((x) => !/^L[67]-/.test(x.id)), C.items.filter((x) => x.level === 6 || x.level === 7).map((x) => x.id).slice(0, 8));
 
@@ -53,7 +56,7 @@ const key = (s) => s.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9 ]+/g
 const need = [...C.levels.map((l) => l.say), ...C.spellHearts.map((x) => x.w), ...C.digraphHearts.map((x) => x.w),
   ...C.spellWords.map((x) => x.w), ...C.digraphWords.map((x) => x.w), ...C.spellSentences, ...C.digraphSentences,
   'This is a heart word. You remember it. It says:', 'Level 6. Spellings.', 'Level 7. Sounds together.',
-  'Level 8. Real life reading.', 'Level 9. Bible verses. King James Version.',
+  C.levels.find((l) => l.name === 'Real Life').say, C.levels.find((l) => l.name === 'Bible').say,
   'Together they make the sound'];
 const noClip = need.filter((t) => !clips.clips[key(t)]);
 check('new spoken lines / words have Kokoro clips', noClip.length === 0, noClip);
@@ -118,20 +121,20 @@ for (const W of [390, 320]) {
     ['#/home', 'home', '.tile'],
     ['#/level/6', 'level6-spellings', '.items .item'],
     ['#/level/7', 'level7-together', '.items .item'],
-    ['#/level/8', 'level8-reallife', '.tile'],
-    ['#/level/9', 'level9-bible', '.items .item']
+    ['#/level/' + C.REAL_LIFE, 'reallife', '.tile'],
+    ['#/level/' + C.BIBLE, 'bible', '.items .item']
   ]) {
     const { ctx, p, errors } = await open(W, hash);
     await p.waitForSelector(sel); await p.waitForTimeout(1200);
     okLayout(`${W} ${name}`, await layout(p)); await shot(p, name, W);
     const s = await said(p);
     check(`${W} ${name}: spoken from clips (${s.length})`, s.length > 0 && s.every((x) => x.startsWith('clip:')), s.slice(0, 8));
-    if (name === 'home') check(`${W} home: 9 level tiles`, (await p.locator('.grid2 .tile').count()) === 9);
+    if (name === 'home') check(`${W} home: all level tiles`, (await p.locator('.grid2 .tile').count()) === C.levels.length, await p.locator('.grid2 .tile').count());
     check(`${W} ${name}: no page errors`, !errors.length, errors);
     await ctx.close();
   }
   // old category routes still work; back link uses the new number
-  for (const hash of ['#/level/6/signs', '#/level/4/menu', '#/level/8/signs']) {
+  for (const hash of ['#/level/6/signs', '#/level/4/menu', '#/level/8/signs', '#/level/' + C.REAL_LIFE + '/signs']) {
     const { ctx, p, errors } = await open(W, hash);
     await p.waitForSelector('.items .item', { timeout: 5000 }).catch(() => {});
     const n = await p.locator('.items .item').count();
@@ -141,13 +144,13 @@ for (const W of [390, 320]) {
   {
     const { ctx, p } = await open(W, '#/lesson/L4-sign-stop');
     await p.waitForSelector('.thing'); await p.locator('header .icon-btn').first().tap(); await p.waitForTimeout(300);
-    check(`${W} sign back -> #/level/8/signs`, p.url().endsWith('#/level/8/signs'), p.url());
+    check(`${W} sign back -> #/level/${C.REAL_LIFE}/signs`, p.url().endsWith('#/level/' + C.REAL_LIFE + '/signs'), p.url());
     await ctx.close();
   }
   {
     const { ctx, p } = await open(W, '#/lesson/L4-kjv-john-11-35');
     await p.waitForSelector('.foot .primary'); await p.locator('header .icon-btn').first().tap(); await p.waitForTimeout(300);
-    check(`${W} Bible back -> #/level/9`, p.url().endsWith('#/level/9'), p.url());
+    check(`${W} Bible back -> #/level/${C.BIBLE}`, p.url().endsWith('#/level/' + C.BIBLE), p.url());
     await ctx.close();
   }
   // heart word + pattern + grapheme word

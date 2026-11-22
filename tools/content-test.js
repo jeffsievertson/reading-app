@@ -26,4 +26,8 @@ const ps = C.items.find((i) => i.id === 'P-s');
 check('plural -s intro text does not include sss or zzz (those are clips)', ps && !/sss|zzz/i.test(ps.intro || ''), ps && ps.intro);
 check('plural -s introParts play letters/s then letters/z', !!(ps && ps.introParts && ps.introParts.some((x) => x.clipName === 'letters/s') && ps.introParts.some((x) => x.clipName === 'letters/z')), ps && ps.introParts);
 check('plural -s intro stem has a clip', !!(ps && m.clips[S.clipKey(ps.intro)]), ps && S.clipKey(ps.intro));
+const ped = C.items.find((i) => i.id === 'P-ed');
+check('-ed intro text does not name t/d/id as letter sounds', ped && !/\bsay t, or d, or id\b/i.test((ped.intro || '') + (ped.introParts || []).map((x) => x.text || '').join(' ')), ped && ped.intro);
+check('-ed introParts play letters/t, letters/d, patterns/ed-id', !!(ped && ped.introParts && ped.introParts.some((x) => x.clipName === 'letters/t') && ped.introParts.some((x) => x.clipName === 'letters/d') && ped.introParts.some((x) => x.clipName === 'patterns/ed-id')), ped && ped.introParts);
+check('-ed intro stem has a clip', !!(ped && m.clips[S.clipKey(ped.intro)]), ped && ped && S.clipKey(ped.intro));
 console.log(fail ? fail + ' FAILED' : 'all passed'); process.exit(fail ? 1 : 0);

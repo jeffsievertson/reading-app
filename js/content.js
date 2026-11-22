@@ -144,22 +144,69 @@ window.CONTENT = (function () {
     { g: 'ch', sound: 'chuh', clip: 'patterns/ch' },
     { g: 'th', sound: 'thh',  clip: 'patterns/th' },
     { g: 'wh', sound: 'wuh',  clip: 'patterns/wh' },
-    { g: 'ng', sound: 'nng',  clip: 'patterns/ng' }
+    { g: 'ng', sound: 'nng',  clip: 'patterns/ng' },
+    // v22 ending / starting blends (temporary Kokoro clips; swap later like digraphs)
+    { g: 'str', sound: 'str', clip: 'patterns/str' },
+    { g: 'st',  sound: 'st',  clip: 'patterns/st' },
+    { g: 'nt',  sound: 'nt',  clip: 'patterns/nt' },
+    { g: 'nd',  sound: 'nd',  clip: 'patterns/nd' },
+    { g: 'mp',  sound: 'mp',  clip: 'patterns/mp' },
+    { g: 'nk',  sound: 'nk',  clip: 'patterns/nk' },
+    { g: 'lk',  sound: 'lk',  clip: 'patterns/lk' },
+    { g: 'lp',  sound: 'lp',  clip: 'patterns/lp' },
+    { g: 'pl',  sound: 'pl',  clip: 'patterns/pl' },
+    { g: 'tr',  sound: 'tr',  clip: 'patterns/tr' },
+    { g: 'dr',  sound: 'dr',  clip: 'patterns/dr' },
+    { g: 'fl',  sound: 'fl',  clip: 'patterns/fl' },
+    { g: 'sl',  sound: 'sl',  clip: 'patterns/sl' },
+    { g: 'gr',  sound: 'gr',  clip: 'patterns/gr' }
   ].sort((a, b) => b.g.length - a.g.length);
   const VOICED_TH = new Set(['that', 'with', 'them', 'then', 'this']);
-  const S_AS_Z = new Set(['bills']); // plural -s says /z/ in these words
+  const S_AS_Z = new Set(['bills', 'his']); // plural or final s says /z/ in these words
+  // Suffix units only at the end, and only after a 3+ letter stem, so "red" stays r-e-d
+  // and "ring" stays r-i-ng (not r-ing).
+  const ED_AS = { wished: 't', missed: 't', grabbed: 'd', handed: 'id' };
+  const SUFFIXES = [
+    { g: 'ing', min: 3, sound: 'ing', clip: 'patterns/ing' },
+    { g: 'es',  min: 3, sound: 'iz',  clip: 'patterns/es' },
+    { g: 'ed',  min: 3 }
+  ];
+  function edParts(word, stem) {
+    const how = ED_AS[word] || (/[td]$/.test(stem) ? 'id' : (/(?:[kpsfx]|ck|ss|sh|ch|th)$/.test(stem) ? 't' : 'd'));
+    if (how === 'id') return { sound: 'id', clip: 'patterns/ed-id' };
+    if (how === 't') return { sound: 't', clip: 'letters/t' };
+    return { sound: 'd', clip: 'letters/d' };
+  }
   function segments(word) {
     const w = String(word || '').toLowerCase();
     const out = [];
     let i = 0;
     while (i < w.length) {
-      let hit = null;
-      for (const p of GRAPHMES) { if (w.startsWith(p.g, i)) { hit = p; break; } }
+      let hit = null, sound, clip, len;
+      for (const sfx of SUFFIXES) {
+        if (i >= sfx.min && i === w.length - sfx.g.length && w.endsWith(sfx.g)) {
+          if (sfx.g === 'ed') {
+            const p = edParts(w, w.slice(0, i));
+            sound = p.sound; clip = p.clip;
+          } else { sound = sfx.sound; clip = sfx.clip; }
+          hit = sfx; len = sfx.g.length;
+          break;
+        }
+      }
+      if (!hit) {
+        for (const p of GRAPHMES) { if (w.startsWith(p.g, i)) { hit = p; break; } }
+        if (hit) {
+          sound = hit.sound; clip = hit.clip; len = hit.g.length;
+          if (hit.g === 'th' && VOICED_TH.has(w)) { sound = 'dhh'; clip = 'patterns/th-voiced'; }
+        }
+      }
       if (hit) {
-        let sound = hit.sound, clip = hit.clip;
-        if (hit.g === 'th' && VOICED_TH.has(w)) { sound = 'dhh'; clip = 'patterns/th-voiced'; }
         out.push({ g: hit.g, sound, clip });
-        i += hit.g.length;
+        i += len;
+      } else if (/[bcdfghjklmnpqrstvwxyz]/.test(w[i]) && w[i + 1] === w[i]) {
+        const ch = w[i];
+        out.push({ g: ch + ch, sound: soundOf[ch] || ch, clip: 'letters/' + ch });
+        i += 2;
       } else {
         const ch = w[i];
         if (ch === 's' && S_AS_Z.has(w) && i === w.length - 1) {
@@ -240,7 +287,73 @@ window.CONTENT = (function () {
     'There is a long path.'
   ];
 
-  // ---------- Level 8: real-life reading (was 6; old item ids kept) ----------
+  // ---------- Level 8: Ending blends (Book 5) + heart words ----------
+  const endHearts = [
+    { w: 'from' }, { w: 'your' }, { w: 'one' }, { w: 'come' }, { w: 'some' }
+  ];
+  const endWords = [
+    ['last', '📋'], ['went', '🚶'], ['best', '⭐'], ['must', '❗'], ['hand', '✋'], ['send', '📤'],
+    ['jump', '⬆️'], ['camp', '⛺'], ['bank', '🏦'], ['think', '💭'], ['rest', '😴'], ['list', '📝']
+  ].map(([w, emoji]) => {
+    return { w, emoji };
+  });
+  const endSentences = [
+    'I went to the shop.',
+    'Send the list from the shop.',
+    'I must rest.',
+    'His hand is on your map.',
+    'Come to the camp on the hill.',
+    'This one is the best.',
+    'I think the bank is shut.',
+    'Get some milk and help with the rent.'
+  ];
+
+  // ---------- Level 9: Starting blends and endings (Book 6) + heart words ----------
+  const startHearts = [
+    { w: 'again' }, { w: 'could' }, { w: 'would' }, { w: 'should' }, { w: 'who' }
+  ];
+  const startPatterns = [
+    { id: 'P-es',  label: '-es',  letters: 'es',  sound: 'iz',  clipName: 'patterns/es',    kw: 'boxes',  pos: 'end', emoji: '📦', intro: 'These letters are E S.', opts: 'es,s,ed' },
+    { id: 'P-ed',  label: '-ed',  letters: 'ed',  sound: 'id',  clipName: 'patterns/ed-id', kw: 'handed', pos: 'end', emoji: '🤲',
+      intro: 'E D at the end of a word can make three sounds.',
+      introParts: [
+        { text: 'E D at the end of a word can make three sounds.', pause: 150 },
+        { clipName: 'letters/t', text: 't', rateMul: 0.8, pause: 350 },
+        { text: 'or', pause: 150 },
+        { clipName: 'letters/d', text: 'd', rateMul: 0.8, pause: 350 },
+        { text: 'or', pause: 150 },
+        { clipName: 'patterns/ed-id', text: 'id', rateMul: 0.8, pause: 700 }
+      ],
+      frame: 'In handed, it says',
+      opts: 'ed,d,t' },
+    { id: 'P-ing', label: '-ing', letters: 'ing', sound: 'ing', clipName: 'patterns/ing',   kw: 'fixing', pos: 'end', emoji: '🔧', intro: 'These letters are I N G.', opts: 'ing,ng,s' }
+  ];
+  const startBlendWords = [
+    ['stop', '🛑'], ['plan', '📋'], ['trust', '🤝'], ['drop', '💧'], ['flag', '🚩'],
+    ['slip', '🦶'], ['trip', '🧳'], ['grab', '✊'], ['truck', '🚚'], ['strap', '🎒']
+  ].map(([w, emoji]) => {
+    const imgs = { stop: 'stop' };
+    return imgs[w] ? { w, emoji, img: imgs[w] } : { w, emoji };
+  });
+  const suffixWords = [
+    ['shops', '🏪'], ['dishes', '🍽️'], ['boxes', '📦'], ['wished', '✨'],
+    ['grabbed', '✊'], ['handed', '🤲'], ['missed', '🚌'], ['fixing', '🔧']
+  ].map(([w, emoji]) => {
+    const imgs = { boxes: 'box', missed: 'bus' };
+    return imgs[w] ? { w, emoji, img: imgs[w] } : { w, emoji };
+  });
+  const startSentences = [
+    'I should stop the truck.',
+    'I could trust him.',
+    'I would drop it in the box.',
+    'The shops are shut.',
+    'I wished I had cash.',
+    'He handed us the list.',
+    'Who missed the bus?',
+    'He is fixing the van again.'
+  ];
+
+  // ---------- Level 10: real-life reading (was 6, then 8; old item ids kept) ----------
   const signs = [
     { t: 'STOP',     style: 'stop',    say: 'Stop',     mean: 'Stop. Do not go.' , img: 'stop' },
     { t: 'EXIT',     style: 'exit',    say: 'Exit',     mean: 'Exit. This is the way out.' , img: 'exit' },
@@ -283,8 +396,8 @@ window.CONTENT = (function () {
 
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-  const REAL_LIFE = 8;   // signs, menu, forms (was 6; shown number moved, item ids unchanged)
-  const BIBLE = 9;       // was 7
+  const REAL_LIFE = 10;  // signs, menu, forms (was 6, then 8; shown number moved, item ids unchanged)
+  const BIBLE = 11;      // was 7, then 9
 
   // ---------- Flatten into a single ordered list of items ----------
   const items = [];
@@ -304,13 +417,22 @@ window.CONTENT = (function () {
   digraphPatterns.forEach((x) => items.push({ level: 7, kind: 'pattern', ...x, opts: x.opts.split(',') }));
   digraphWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 7, kind: 'word', label: x.w, text: x.w, ...x }));
   digraphSentences.forEach((s, i) => items.push({ id: 'S-dg-' + (i + 1), level: 7, kind: 'sentence', label: s, text: s }));
+  // v22: Ending blends then Starting blends, then Real Life / Bible. New ids are stable (no display number).
+  endHearts.forEach((x) => items.push({ id: 'SW-' + slug(x.w), level: 8, kind: 'sight', heart: true, label: x.w, text: x.w, ...x }));
+  endWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 8, kind: 'word', label: x.w, text: x.w, ...x }));
+  endSentences.forEach((s, i) => items.push({ id: 'S-eb-' + (i + 1), level: 8, kind: 'sentence', label: s, text: s }));
+  startHearts.forEach((x) => items.push({ id: 'SW-' + slug(x.w), level: 9, kind: 'sight', heart: true, label: x.w, text: x.w, ...x }));
+  startPatterns.forEach((x) => items.push({ level: 9, kind: 'pattern', ...x, opts: x.opts.split(',') }));
+  startBlendWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 9, kind: 'word', label: x.w, text: x.w, ...x }));
+  suffixWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 9, kind: 'word', label: x.w, text: x.w, ...x }));
+  startSentences.forEach((s, i) => items.push({ id: 'S-sb-' + (i + 1), level: 9, kind: 'sentence', label: s, text: s }));
   signs.forEach((x) => items.push({ id: 'L4-sign-' + slug(x.t), level: REAL_LIFE, cat: 'signs', kind: 'sign', label: x.t, text: x.t, ...x }));
   menu.forEach((x) => items.push({ id: 'L4-menu-' + slug(x.t), level: REAL_LIFE, cat: 'menu', kind: 'menu', label: x.t, text: x.t, ...x }));
   forms.forEach((x) => items.push({ id: 'L4-form-' + slug(x.t), level: REAL_LIFE, cat: 'forms', kind: 'form', label: x.t, text: x.t, ...x }));
-  // Bible verses: still last; old L4-kjv- ids kept so saved progress stays. Shown level is 9.
+  // Bible verses: still last; old L4-kjv- ids kept so saved progress stays. Shown level is 11.
   verses.forEach((x) => items.push({ id: 'L4-kjv-' + slug(x.ref), level: BIBLE, kind: 'verse', label: x.ref, text: x.t, ...x }));
 
-  // v21 order: 1-5 unchanged, 6 Spellings, 7 Sounds together, 8 Real life, 9 Bible.
+  // v22 order: 1-7 unchanged, 8 Ending blends, 9 Starting blends, 10 Real life, 11 Bible.
   // Old ids (L3-…, L4-…) are kept for saved progress; `level` is the shown level number.
   const levels = [
     { n: 1, icon: '🔤', name: 'Sounds',    say: 'Level 1. Letter sounds.', img: 'level-1' },
@@ -320,8 +442,10 @@ window.CONTENT = (function () {
     { n: 5, icon: '🏠', name: 'Everyday',  say: 'Level 5. Everyday reading.', img: 'coffee' },
     { n: 6, icon: '✍️', name: 'Spellings', say: 'Level 6. Spellings.', img: 'box' },
     { n: 7, icon: '🔗', name: 'Sounds together', say: 'Level 7. Sounds together.', img: 'lamp' },
-    { n: 8, icon: '🏙️', name: 'Real Life', say: 'Level 8. Real life reading.', img: 'level-4' },
-    { n: 9, icon: '📖', name: 'Bible',     say: 'Level 9. Bible verses. King James Version.', img: 'bible' }
+    { n: 8, icon: '📎', name: 'Ending blends', say: 'Level 8. Ending blends.', img: 'map' },
+    { n: 9, icon: '🚚', name: 'Starting blends', say: 'Level 9. Starting blends.', img: 'stop' },
+    { n: 10, icon: '🏙️', name: 'Real Life', say: 'Level 10. Real life reading.', img: 'level-4' },
+    { n: 11, icon: '📖', name: 'Bible',     say: 'Level 11. Bible verses. King James Version.', img: 'bible' }
   ];
   const cats = [
     { id: 'signs', icon: '🛑', name: 'Signs', say: 'Signs.', img: 'signs' },
@@ -345,13 +469,17 @@ window.CONTENT = (function () {
     the: ['da', 'duh'], my: ['mi', 'mai'], restroom: ['rest room'], 'date of birth': ['date a birth'],
     which: ['witch'], ring: ['wring'], there: ['their', "they're"], where: ['wear'],
     of: ['ov'], said: ['sed'], are: ['r'], they: ['thay'], do: ['dew', 'due'],
-    have: ['hav'], what: ['wot']
+    have: ['hav'], what: ['wot'],
+    from: ['frm'], your: ["you're", 'yore'], one: ['won', '1'], some: ['sum'],
+    would: ['wood'], could: ['cud'], should: ['shud'], who: ['hoo']
   };
 
   return {
     letters, words, missing, everydayWords, everydaySentences,
     spellHearts, spellPatterns, spellWords, spellSentences,
     digraphHearts, digraphPatterns, digraphWords, digraphSentences,
+    endHearts, endWords, endSentences,
+    startHearts, startPatterns, startBlendWords, suffixWords, startSentences,
     REAL_LIFE, BIBLE, sight, sentences, signs, menu, forms, verses,
     items, levels, cats, soundOf, homophones, segments, GRAPHMES
   };

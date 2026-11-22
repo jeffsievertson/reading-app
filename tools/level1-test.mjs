@@ -189,12 +189,12 @@ const spokenKeys = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => e
   await p.waitForFunction(() => window.Speech.clipCount() > 400); await p.waitForTimeout(500);
   await p.evaluate(() => window.Speech.stop());
   let n0 = (await p.evaluate(() => window.Speech.debugLog().length));
-  await p.locator('.foot .icon-btn').first().tap(); await p.waitForTimeout(2500);
+  await p.locator('.foot .icon-btn').first().tap(); await p.waitForTimeout(4000);
   let L = await clipsAfter(n0);
   check('letter lesson 🔊 button plays the human M clip', human(L, 'm'), L);
   await p.evaluate(() => window.Speech.stop());
   n0 = (await p.evaluate(() => window.Speech.debugLog().length));
-  await p.locator('.big-letter').tap(); await p.waitForTimeout(2500);
+  await p.locator('.big-letter').tap(); await p.waitForTimeout(4000);
   L = await clipsAfter(n0);
   check('tapping the big letter plays the human M clip', human(L, 'm'), L);
   await p.goto(BASE + '#/lesson/L2-sat'); await p.waitForSelector('.tile-letter'); await p.waitForTimeout(500);

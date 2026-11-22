@@ -34,4 +34,34 @@ def make_pattern(voice, pid):
                  P.final_voiced_cont(V, 'lˈɔŋ', 550)]
         x, sc, i = P.best(cands, P.murmur_score)
         return x, f"ng cut from {['end of ring','end of sing','end of long'][i]}, lengthened"
+    # v22 temporary cluster / suffix clips (Kokoro phonemes, trimmed). Swap later like digraphs.
+    CLUSTERS = {
+        'st':  ('st',  'st cluster (as in last, stop)'),
+        'nt':  ('nt',  'nt cluster (as in went)'),
+        'nd':  ('nd',  'nd cluster (as in hand)'),
+        'mp':  ('mp',  'mp cluster (as in jump)'),
+        'nk':  ('ŋk',  'nk cluster (as in bank, think)'),
+        'lk':  ('lk',  'lk cluster (as in milk)'),
+        'lp':  ('lp',  'lp cluster (as in help)'),
+        'pl':  ('pl',  'pl cluster (as in plan)'),
+        'tr':  ('tɹ',  'tr cluster (as in truck)'),
+        'dr':  ('dɹ',  'dr cluster (as in drop)'),
+        'fl':  ('fl',  'fl cluster (as in flag)'),
+        'sl':  ('sl',  'sl cluster (as in slip)'),
+        'gr':  ('ɡɹ',  'gr cluster (as in grab)'),
+        'str': ('stɹ', 'str cluster (as in strap)'),
+        'es':  ('ɪz',  'suffix -es /ɪz/ (as in boxes)'),
+        'ed-id': ('ɪd', 'suffix -ed /ɪd/ (as in handed)'),
+        'ing': ('ɪŋ',  'suffix -ing (as in fixing)')
+    }
+    if pid in CLUSTERS:
+        ph, note = CLUSTERS[pid]
+        x = P.loud(P.fade(P.trim(P.synth_ph(voice, ph) if hasattr(P, 'synth_ph') else __import__('engines').synth(voice, ph=ph, speed=0.9))))
+        if len(x) < int(0.08 * __import__('engines').SR):
+            # too short: seed with a short schwa and keep the tail
+            raw = __import__('engines').synth(voice, ph='ə' + ph, speed=0.9)
+            raw = P.trim(raw)
+            cut = int(0.06 * __import__('engines').SR)
+            x = P.loud(P.fade(raw[cut:] if len(raw) > cut * 2 else raw))
+        return x, note
     raise ValueError(pid)
