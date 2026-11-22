@@ -324,11 +324,25 @@ def main():
     pat_hash = sha(open(os.path.join(HERE, 'patterns.py')).read(), open(os.path.join(HERE, 'phonics.py')).read(), VOICE)
     pattern_files = {}
     pattern_info = []
+    # Editing the silent-e long-vowel recipe must not restamp sh/ch/th/ng or the blends
+    # (those makers are also non-deterministic, so a new hash would remake them).
+    existing_patterns = {}
+    try:
+        existing_patterns = (json.load(open(os.path.join(ROOT, 'audio', 'clips.json'))).get('patterns') or {})
+    except Exception:
+        pass
+    VCE_REMAKE = {'a-e', 'i-e', 'o-e', 'u-e', 'e-e'}
     for P in T.get('patternSounds') or []:
         pid = P['id']
         rel = f"patterns/{pid}-{sha(pat_hash, pid)}.mp3"
         dest = os.path.join(ROOT, 'audio', rel)
-        if a.force or not os.path.exists(dest):
+        prev = existing_patterns.get('patterns/' + pid)
+        prev_path = os.path.join(ROOT, 'audio', prev) if prev else ''
+        if pid not in VCE_REMAKE and prev and os.path.exists(prev_path) and not a.force:
+            rel, dest = prev, prev_path
+            reused += 1
+            how = 'reused (kept existing pattern file)'
+        elif a.force or not os.path.exists(dest):
             x, how = patterns.make_pattern('kokoro:' + VOICE, pid)
             to_mp3(phonics.finish_letter(x), dest); made += 1
         else:

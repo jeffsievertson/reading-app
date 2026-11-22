@@ -63,15 +63,46 @@ def make_pattern(voice, pid):
     }
     if pid in LONG:
         ph, note = LONG[pid]
-        synth = P.synth_ph if hasattr(P, 'synth_ph') else (lambda voice, ph: __import__('engines').synth(voice, ph=ph, speed=0.75))
-        x = P.loud(P.fade(P.trim(synth(voice, ph))))
         SR = __import__('engines').SR
-        # A lone vowel can be too short to hear; stretch or recut from a longer take.
-        if len(x) < int(0.35 * SR):
-            raw = __import__('engines').synth(voice, ph=ph, speed=0.65)
-            x = P.loud(P.fade(P.trim(raw)))
-        if len(x) < int(0.28 * SR) and len(x) > 0:
-            x = P.loud(P.fade(__import__('numpy').concatenate([x, x])))
+        np = __import__('numpy')
+        def fade_in(x, ms=10):
+            n = min(int(SR * ms / 1000), max(1, len(x) // 4))
+            x = x.copy(); x[:n] *= np.linspace(0, 1, n).astype(x.dtype)
+            return x
+        if pid == 'u-e':
+            # Isolated Kokoro "uː" often starts with a /j/ glide ("you"). Cut from
+            # the steady low-F2 tail so the clip is a clean /uː/ as in tube / rule.
+            raw = P.trim(__import__('engines').synth(voice, ph='uː', speed=0.65), thresh_db=-40, pad_ms=0)
+            start = int(0.26 * SR)
+            try:
+                import parselmouth
+                snd = parselmouth.Sound(raw.astype(np.float64), SR)
+                fm = snd.to_formant_burg(time_step=0.01, max_number_of_formants=5, maximum_formant=5500)
+                times = np.arange(0.05, max(0.06, snd.duration - 0.05), 0.01)
+                for t in times:
+                    vals = []
+                    for tt in np.arange(t, min(t + 0.08, snd.duration - 0.02), 0.01):
+                        v = fm.get_value_at_time(2, float(tt))
+                        if v == v: vals.append(v)
+                    if len(vals) >= 4 and float(np.median(vals)) < 1550:
+                        start = int(t * SR); break
+            except Exception:
+                pass
+            x = raw[start:]
+            keep = int(0.50 * SR)
+            if len(x) > keep: x = x[:keep]
+            if len(x) < int(0.35 * SR) and len(x) > 0:
+                x = P.lengthen(x, 500)
+            note = 'long u /uː/ from the steady tail of a Kokoro /uː/, no y-glide (as in tube / rule)'
+        else:
+            synth = P.synth_ph if hasattr(P, 'synth_ph') else (lambda voice, ph: __import__('engines').synth(voice, ph=ph, speed=0.75))
+            x = P.trim(synth(voice, ph))
+            if len(x) < int(0.35 * SR):
+                x = P.trim(__import__('engines').synth(voice, ph=ph, speed=0.65))
+            if len(x) < int(0.28 * SR) and len(x) > 0:
+                x = np.concatenate([x, x])
+        # Short fade-in (about 10 ms) removes the sharp onset click on isolated vowels.
+        x = P.loud(P.fade(fade_in(x, 10), 10))
         return x, note
     if pid in CLUSTERS:
         ph, note = CLUSTERS[pid]

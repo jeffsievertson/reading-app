@@ -1,10 +1,10 @@
 /* Offline support: precache the whole app (including the natural-voice audio clips),
    serve cache-first, update app files in the background. */
-const AUDIO_VERSION = '6a3ebd43'; // stamped by tools/audio/build_audio.py
+const AUDIO_VERSION = 'af9dff89'; // stamped by tools/audio/build_audio.py
 const CACHE = 'read-aloud-v23-' + AUDIO_VERSION;
 const ASSETS = [
   './', './index.html', './manifest.json',
-  './css/styles.css', './js/content.js', './js/speech.js', './js/rewards.js', './js/app.js',
+  './css/styles.css', './js/content.js', './js/credits.js', './js/speech.js', './js/rewards.js', './js/app.js',
   './audio/clips.json',
   './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png',
   './icons/icon-maskable-512.png', './icons/apple-touch-icon.png',

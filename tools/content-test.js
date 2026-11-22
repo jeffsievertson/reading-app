@@ -36,4 +36,9 @@ const vceText = vce.map((it) => [it.intro, ...(it.introParts || []).map((x) => x
 check('silent e intros do not spell sounds as letters in TTS text', !/\b(ay|eye|eee|ooo|yoo|sss|zzz)\b/i.test(vceText), vceText);
 check('silent e introParts play the long-vowel pattern clip', vce.every((it) => (it.introParts || []).some((x) => x.clipName === it.clipName)), vce.map((it) => it.id));
 check('"This e is silent." has a clip', !!m.clips[S.clipKey('This e is silent.')], S.clipKey('This e is silent.'));
+const live = C.items.find((i) => i.id === 'SW-live');
+check('SW-live has say: liv (verb /lɪv/, not /laɪv/)', live && live.say === 'liv' && live.text === 'live' && live.label === 'live', live);
+const ae = C.items.find((i) => i.id === 'P-a-e');
+const aeTts = (ae && ae.introTts) || ((ae && ae.introParts || []).find((p) => p.tts) || {}).tts;
+check('a-e intro has a spoken override so A is not the article', !!(aeTts && /eigh/i.test(aeTts) && !/^These letters are A and E/.test(aeTts)), aeTts);
 console.log(fail ? fail + ' FAILED' : 'all passed'); process.exit(fail ? 1 : 0);

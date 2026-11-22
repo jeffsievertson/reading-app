@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 1211,
+ "count": 1218,
  "letters": [
   {
    "l": "a",
@@ -3756,9 +3756,9 @@
    ]
   },
   {
-   "key": "live",
-   "text": "live",
-   "speak": "live",
+   "key": "liv",
+   "text": "liv",
+   "speak": "liv",
    "kind": "text",
    "sources": [
     "item:SW-live"
@@ -3795,7 +3795,7 @@
   {
    "key": "these letters are a and e with a letter in the middle",
    "text": "These letters are A and E, with a letter in the middle.",
-   "speak": "These letters are A and E, with a letter in the middle.",
+   "speak": "These letters are eigh and E, with a letter in the middle.",
    "kind": "text",
    "sources": [
     "intro:P-a-e",
@@ -6190,9 +6190,9 @@
    ]
   },
   {
-   "key": "this is a heart word you remember it it says live then tap play",
-   "text": "This is a heart word. You remember it. It says: live. Then tap play.",
-   "speak": "This is a heart word. You remember it. It says: live. Then tap play.",
+   "key": "this is a heart word you remember it it says liv then tap play",
+   "text": "This is a heart word. You remember it. It says: liv. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: liv. Then tap play.",
    "kind": "text",
    "sources": [
     "help:sight"
@@ -7432,9 +7432,9 @@
    ]
   },
   {
-   "key": "find the word live",
-   "text": "Find the word: live",
-   "speak": "Find the word: live",
+   "key": "find the word liv",
+   "text": "Find the word: liv",
+   "speak": "Find the word: liv",
    "kind": "text",
    "sources": [
     "help:find"
@@ -11802,6 +11802,69 @@
    "key": "settings change how fast the voice talks pick a voice or turn the microphone on or off",
    "text": "Settings. Change how fast the voice talks, pick a voice, or turn the microphone on or off.",
    "speak": "Settings. Change how fast the voice talks, pick a voice, or turn the microphone on or off.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "who took the photos in this app and the licence for each one",
+   "text": "Who took the photos in this app, and the licence for each one.",
+   "speak": "Who took the photos in this app, and the licence for each one.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "photo credits",
+   "text": "Photo credits",
+   "speak": "Photo credits",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "photo",
+   "text": "Photo: ",
+   "speak": "Photo: ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "licence",
+   "text": "Licence: ",
+   "speak": "Licence: ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "photo credits these photos are used in the app",
+   "text": "Photo credits. These photos are used in the app.",
+   "speak": "Photo credits. These photos are used in the app.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "these photos are used in the app credit goes to the photographers and rights holders below",
+   "text": "These photos are used in the app. Credit goes to the photographers and rights holders below.",
+   "speak": "These photos are used in the app. Credit goes to the photographers and rights holders below.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "these photos are used in the app",
+   "text": "These photos are used in the app.",
+   "speak": "These photos are used in the app.",
    "kind": "text",
    "sources": [
     "app.js"

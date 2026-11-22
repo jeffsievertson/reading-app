@@ -492,6 +492,16 @@ window.Speech = (function () {
             res = await playRun(again, my);
             if (res === 'ok') return my === token;
             if (res === 'cancel') return false;
+            if (res === 'stall') {
+              const keys2 = new Set(again.map((it) => it.key));
+              for (let j = log.length - 1, left = again.length; j >= 0 && left; j--) {
+                if (log[j].how === 'clip' && keys2.has(log[j].key)) {
+                  log[j].how = 'stalled';
+                  log[j].reason = 'audio-stalled';
+                  left--;
+                }
+              }
+            }
           }
           if (my !== token) return false;
           for (const it of items) {

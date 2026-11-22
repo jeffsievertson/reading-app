@@ -422,13 +422,15 @@ window.CONTENT = (function () {
 
   // ---------- Level 10: Silent e (Book 7) + heart words ----------
   const silentHearts = [
-    { w: 'does' }, { w: 'done' }, { w: 'give' }, { w: 'live' }, { w: 'love' }
+    { w: 'does' }, { w: 'done' }, { w: 'give' }, { w: 'live', say: 'liv' }, { w: 'love' }
   ];
   const silentPatterns = [
     { id: 'P-a-e', label: 'a-e', letters: 'a-e', vowel: 'a', sound: 'long a', clipName: 'patterns/a-e', kw: 'cape', pair: 'cap', pos: 'vce', emoji: '🧥',
       intro: 'These letters are A and E, with a letter in the middle.',
+      introTts: 'These letters are eigh and E, with a letter in the middle.',
       introParts: [
-        { text: 'These letters are A and E, with a letter in the middle.', pause: 200 },
+        { text: 'These letters are A and E, with a letter in the middle.',
+          tts: 'These letters are eigh and E, with a letter in the middle.', pause: 200 },
         { text: 'Together they make the sound', pause: 150 },
         { clipName: 'patterns/a-e', text: 'long a', rateMul: 0.8, pause: 350 },
         { clipName: 'patterns/a-e', text: 'long a', rateMul: 0.8, pause: 500 },

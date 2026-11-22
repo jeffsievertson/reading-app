@@ -58,8 +58,8 @@ for (const it of C.items) {
   }
   if (it.kind === 'pattern') {
     add(it.kw, 'keyword');
-    add(it.intro, 'intro:' + it.id);
-    if (it.introParts) it.introParts.forEach((p) => { if (p.text && !p.clipName) add(p.text, 'intro-part:' + it.id); });
+    add(it.intro, 'intro:' + it.id, 'text', it.introTts);
+    if (it.introParts) it.introParts.forEach((p) => { if (p.text && !p.clipName) add(p.text, 'intro-part:' + it.id, 'text', p.tts); });
     if (it.frame) add(it.frame, 'frame:' + it.id);
   }
   if (it.kind === 'sentence' || it.kind === 'verse') for (const w of wordsOf(it.say || it.text)) add(w, 'chip:' + it.id);

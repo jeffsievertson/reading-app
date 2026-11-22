@@ -60,7 +60,7 @@ check('silent-e sentences only use taught words and listed hearts', !badSent.len
 
 const clips = JSON.parse(fs.readFileSync(ROOT + 'audio/clips.json', 'utf8'));
 const key = (s) => s.toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
-const need = [...C.levels.map((l) => l.say), ...C.silentHearts.map((x) => x.w), ...C.silentWords.map((x) => x.w),
+const need = [...C.levels.map((l) => l.say), ...C.silentHearts.map((x) => x.say || x.w), ...C.silentWords.map((x) => x.w),
   ...C.silentSentences, ...C.silentPatterns.map((x) => x.intro), ...C.silentPatterns.map((x) => x.frame).filter(Boolean),
   'This is a heart word. You remember it. It says:',
   'This e is silent.', 'Listen to', 'Now it is', 'Together they make the sound',
@@ -103,6 +103,13 @@ const layout = (p) => p.evaluate(() => {
     const r = n.getBoundingClientRect(); if (!r.width) continue;
     if (r.left < -0.5 || r.right > vw + 0.5) bad.push('off-screen: ' + (n.textContent || n.className).trim().slice(0, 30));
     if (n.scrollWidth > n.clientWidth + 1) bad.push('text spills: ' + n.textContent.trim().slice(0, 30));
+  }
+  for (const n of document.querySelectorAll('.letter-choice')) {
+    const range = document.createRange();
+    range.selectNodeContents(n);
+    const lines = [...range.getClientRects()].filter((r) => r.width);
+    if (lines.length > 1 || n.scrollHeight > n.clientHeight + 1) bad.push('choice wraps: ' + n.textContent.trim());
+    if (n.scrollWidth > n.clientWidth + 1) bad.push('choice spills: ' + n.textContent.trim());
   }
   for (const row of document.querySelectorAll('.tiles, .choices, .foot, .sentence, .grid2, .items, .vce-pair, .keyword')) {
     const k = [...row.children].map((c) => c.getBoundingClientRect()).filter((r) => r.width);
@@ -182,6 +189,35 @@ for (const W of [390, 320]) {
     const s = await said(p);
     check(`${W} ${name}: spoken from clips`, s.length > 0 && s.every((x) => x.startsWith('clip:')), s.slice(0, 10));
     check(`${W} ${name}: no page errors`, !errors.length, errors);
+    await ctx.close();
+  }
+  for (const [id, name] of [
+    ['P-a-e', 'pattern-ae-find'],
+    ['P-i-e', 'pattern-ie-find'],
+    ['P-o-e', 'pattern-oe-find'],
+    ['P-u-e', 'pattern-ue-find'],
+    ['P-e-e', 'pattern-ee-find']
+  ]) {
+    const { ctx, p, errors } = await open(W, '#/lesson/' + id);
+    await p.waitForSelector('.foot .primary', { timeout: 8000 });
+    await p.locator('.foot .primary').tap();
+    await p.waitForSelector('.letter-choice', { timeout: 8000 });
+    await p.waitForTimeout(400);
+    const labels = (await p.locator('.letter-choice').allTextContents()).map((x) => x.replace(/\s+/g, ''));
+    check(`${W} ${name}: three answers, no wrapped hyphen`, labels.length === 3 && labels.every((t) => !t.includes('a-\n') && t.length >= 1), labels);
+    okLayout(`${W} ${name}`, await layout(p)); await shot(p, name, W);
+    check(`${W} ${name}: no page errors`, !errors.length, errors);
+    await ctx.close();
+  }
+  {
+    const { ctx, p, errors } = await open(W, '#/credits');
+    await p.waitForSelector('.credits .credit'); await p.waitForTimeout(400);
+    check(`${W} credits: lists every shipped photo`, (await p.locator('.credits .credit').count()) === 37);
+    okLayout(`${W} credits`, await layout(p)); await shot(p, 'credits', W);
+    await p.evaluate(() => { const m = document.querySelector('main'); if (m) m.scrollTop = m.scrollHeight; });
+    await p.waitForTimeout(200);
+    await shot(p, 'credits-scrolled', W);
+    check(`${W} credits: no page errors`, !errors.length, errors);
     await ctx.close();
   }
   {

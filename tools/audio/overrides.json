@@ -39,6 +39,10 @@
   "orig": "rule",
   "speak": "rule."
  },
+ "these letters are a and e with a letter in the middle": {
+  "orig": "These letters are A and E, with a letter in the middle.",
+  "speak": "These letters are eigh and E, with a letter in the middle."
+ },
  "thumbs up i read it": {
   "orig": "Thumbs up: I read it",
   "speak": "Thumbs up: I red it"

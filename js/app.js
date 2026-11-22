@@ -307,8 +307,10 @@
       const r = b.getBoundingClientRect();
       const range = document.createRange();
       range.selectNodeContents(b);
+      const trs = [...range.getClientRects()];
       const tr = range.getBoundingClientRect();
-      return tr.width > 0 && (tr.left - r.left) >= 8 && (r.right - tr.right) >= 8;
+      return tr.width > 0 && trs.length <= 1 && b.scrollWidth <= b.clientWidth + 0.5 &&
+        (tr.left - r.left) >= 8 && (r.right - tr.right) >= 8;
     });
     while (size > 28 && !fits()) {
       size -= 1;
@@ -699,7 +701,7 @@
       : 'Which letters start the word ' + it.kw + '?';
     // Plural -s is one letter; keep the same wording shape.
     const ask = () => S.say([{ text: prompt, pause: 200 }, { text: it.kw, rateMul: 0.8 }]);
-    const choices = opts.map((g) => el('button', { class: 'choice letter-choice', type: 'button', 'aria-label': g, onclick: (e) => pick(e.currentTarget, g === it.letters, ask) }, g));
+    const choices = opts.map((g) => el('button', { class: 'choice letter-choice', type: 'button', 'aria-label': g, onclick: (e) => pick(e.currentTarget, g === it.letters, ask) }, g.replace(/-/g, '\u2011')));
     lessonScreen({
       help: prompt,
       body: el('div', { class: 'center' },
@@ -1254,10 +1256,44 @@
         el('h2', null, '🗣️ Voice'), voiceSel,
         el('h2', null, '🎤 Microphone'), micRow,
         el('h2', null, '📈 Progress'), el('p', { class: 'note' }, done + ' / ' + C.items.length + ' done. Saved only on this phone.'), reset,
+        el('h2', null, '📷 Photo credits'),
+        el('p', { class: 'note' }, 'Who took the photos in this app, and the licence for each one.'),
+        btn('📷', 'Photo credits', () => go('#/credits'), '', 'Photo credits'),
         el('h2', null, '📲 Install'),
         el('p', { class: 'note' }, 'iPhone: Safari → Share → Add to Home Screen. Android: Chrome menu ⋮ → Install app / Add to Home screen.'),
         el('p', { class: 'note small' }, 'Bible verses: King James Version (public domain). No accounts, no tracking. Works offline after first visit.'))
     });
+  }
+
+  function viewCredits() {
+    const credits = (window.PHOTO_CREDITS || []).slice();
+    const items = credits.map((c) => {
+      const lic = c.licenseUrl
+        ? el('a', { href: c.licenseUrl, target: '_blank', rel: 'noopener noreferrer' }, c.license)
+        : el('span', null, c.license);
+      const src = c.sourceUrl
+        ? el('a', { href: c.sourceUrl, target: '_blank', rel: 'noopener noreferrer' }, 'Source')
+        : null;
+      const bits = [
+        el('img', { class: 'credit-photo', src: 'images/' + c.file, alt: c.subject, width: 72, height: 72 }),
+        el('div', { class: 'credit-body' },
+          el('div', { class: 'credit-title' }, c.subject),
+          el('div', null, 'Photo: ' + c.author),
+          el('div', null, 'Licence: ', lic, src ? el('span', null, ' · ') : null, src),
+          c.modified ? el('div', { class: 'credit-mod' }, c.modified) : null)
+      ];
+      return el('div', { class: 'credit' }, ...bits);
+    });
+    const help = 'Photo credits. These photos are used in the app.';
+    screen({
+      title: '📷 Photo credits',
+      back: '#/settings',
+      help,
+      body: el('div', { class: 'credits' },
+        el('p', { class: 'note' }, 'These photos are used in the app. Credit goes to the photographers and rights holders below.'),
+        ...items)
+    });
+    S.say([{ text: 'Photo credits.', pause: 250 }, { text: 'These photos are used in the app.' }]);
   }
 
   // ---------------------------------------------------------------- install prompt (Android/Chrome)
@@ -1281,11 +1317,12 @@
     if (S.setNoTts) S.setNoTts(false); // do not leak a letter/pattern silent lesson onto the next screen
     picking = false;
     const parts = location.hash.replace(/^#\/?/, '').split('/');
-    if (!state.started && parts[0] !== 'settings') return viewWelcome();
+    if (!state.started && parts[0] !== 'settings' && parts[0] !== 'credits') return viewWelcome();
     switch (parts[0]) {
       case 'level': return parts[2] ? viewCat(parts[2]) : viewLevel(parseInt(parts[1], 10));
       case 'lesson': return viewLesson(decodeURIComponent(parts[1] || ''));
       case 'settings': return viewSettings();
+      case 'credits': return viewCredits();
       case 'words': return viewWords();
       default: return viewHome();
     }
