@@ -50,6 +50,7 @@ for (const c of credits || []) {
   }
   if (rec && rec.page) check(c.file + ': source matches imagery-sources', c.sourceUrl === rec.page, { credit: c.sourceUrl, sources: rec.page });
   if (rec && rec.license) check(c.file + ': licence matches imagery-sources', c.license === rec.license, { credit: c.license, sources: rec.license });
+  if (rec && rec.author) check(c.file + ': author matches imagery-sources', c.author === rec.author, { credit: c.author, sources: rec.author });
 }
 
 const app = fs.readFileSync(path.join(ROOT, 'js/app.js'), 'utf8');

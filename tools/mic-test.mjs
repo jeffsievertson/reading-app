@@ -116,6 +116,22 @@ const st = async (p) => p.evaluate(() => ({
   await ctx.close();
 }
 
+
+// SW-live: saying the displayed word "live" must pass (say:"liv" is speech-only)
+{
+  const { ctx, p, errors } = await page('live');
+  await p.goto(BASE + '#/lesson/SW-live');
+  await p.locator('.foot .primary').click();
+  await p.waitForSelector('.say-target');
+  const shown = await p.locator('.say-target, .big-word').first().textContent();
+  check('SW-live: displayed word is live', /\blive\b/i.test(shown || ''), shown);
+  await p.locator('.mic').click(); await p.waitForTimeout(700);
+  const s = await st(p);
+  check('SW-live: saying "live" is accepted', s.next && /live/i.test(s.status || ''), s);
+  check('SW-live: no page errors', !errors.length, errors);
+  await ctx.close();
+}
+
 console.log(results.join('\n'));
 console.log(failed ? failed + ' FAILED' : 'all passed');
 await b.close();

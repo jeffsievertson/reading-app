@@ -1,6 +1,17 @@
-# Handoff – Read Aloud (Nov 22, 2026, v23 audit fix)
+# Handoff – Read Aloud (Nov 22, 2026, v23 delta fix)
 
-## Latest (v23 audit fix, local main only, on top of ec332ee): Sentinel v23 items
+## Latest (v23 delta fix, local main only, on top of 1fd7e95): Sentinel delta-check items
+- **Cache** `read-aloud-v23-d55fce0f` (was `read-aloud-v23-af9dff89`). Not pushed.
+- **D-FIX 1 (blocking):** `stepSayIt` now uses `answerText(it)` (`it.text || it.label`) as the mic target. `say` is speech-only (help, find, hear, TTS fallback still use `spoken(it)`). Saying “live” on SW-live is accepted; using `say:'liv'` as the target would reject it. `match-test` checks every item with a `say` field; `mic-test` opens SW-live and feeds “live”.
+- **D-FIX 2:** u-e is cut at the F2 rise (~0.22 s of clean low-F2 body), then lengthened to ~450 ms with a 40 ms fade-out. Shipped clip `u-e-2acdeab6`: while voiced (dB > −25, 0.10–0.44 s) F2 is 1074–1581 Hz (median 1184), with no 1800–2300 Hz tail at full volume. Whisper of the whole clip: “No.” (was “Do it.” / tail “Bye.” / “What?”).
+- **D-FIX 3:** the 10 ms fade-in is applied at the detected voice onset (not sample 0). Leading silence is trimmed (`pad_ms=0`) before the fade; `finish_letter` then adds the 40 ms pad. Versus the 1fd7e95 clips, onset high-pass peak dropped 2.9–5.1× and waveform peak 3.1–5.2× on a-e / i-e / o-e / e-e (worst was o-e).
+- **D-FIX 4:** `.credit-body` has `overflow-wrap:anywhere`. v23-levels-test checks that credit text stays inside the viewport and shots the long menu author at 320/390 (`80-credits-menu-*`).
+- **D-FIX 5:** dog credits “Elf (English Wikipedia); derivative by Djmirko”. chicken credits “Uploaded by H Padleckas (photographer not named)”. map source is `https://unsplash.com/photos/photo-1524661135-423995f22d0b`. `photo-credits-test` now fails if a credit author does not match `imagery-sources.json` (also cleaned the duplicated “Unknown authorUnknown author” on danger).
+- **Remade clips (this commit only):** `patterns/a-e-60312f11`, `i-e-617b7879`, `o-e-63d8c41e`, `u-e-2acdeab6`, `e-e-2d8cd669`. **Unchanged:** th-voiced, ng, name, home, and all other clips (build made 5, reused 1384, pruned 5).
+- **Tests:** full suite (content, photo-credits, image-safety, match, rewards, tile-fit, sign-fit, listen-note, level1, v20–v23 with `SHOTS=0` on v20–v22, smoke, clip, mic / mic-timeout / mic-robust). Do **not** push until Jeffrey says so.
+- **Listen list:** SW-live mic check (say “live”); u-e all the way through (no “uh/eh” tail); a-e / i-e / o-e / e-e onsets for residual click; Photo credits long author names at 320.
+
+## Previous (v23 audit fix, local main only, on top of ec332ee): Sentinel v23 items
 - **Cache** `read-aloud-v23-af9dff89` (was `read-aloud-v23-6a3ebd43`). Not pushed.
 - **a-e intro:** speaking “A and E” was read as the article /ɐ/. Spoken override (and `introTts` / intro part `tts`) is “These letters are eigh and E, with a letter in the middle.” Phonemizer: /eɪ/; Whisper still hears “A and E”. “ay” was not used — isolated “ay” phonemizes as /aɪ/.
 - **Find-step wrap:** `.letter-choice` is `white-space:nowrap`, visible labels use a non-breaking hyphen (U+2011), and `fitChoices()` also requires a single client rect and no `scrollWidth` spill. `v23-levels-test` checks every silent-e find step at 320 and 390 and writes `screenshots/80-pattern-*-find-{320,390}.png`. Inspected: a-e / i-e / o-e / u-e / e-e stay on one line at both widths.

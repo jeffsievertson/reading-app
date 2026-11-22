@@ -41,4 +41,11 @@ check('SW-live has say: liv (verb /lɪv/, not /laɪv/)', live && live.say === 'l
 const ae = C.items.find((i) => i.id === 'P-a-e');
 const aeTts = (ae && ae.introTts) || ((ae && ae.introParts || []).find((p) => p.tts) || {}).tts;
 check('a-e intro has a spoken override so A is not the article', !!(aeTts && /eigh/i.test(aeTts) && !/^These letters are A and E/.test(aeTts)), aeTts);
-console.log(fail ? fail + ' FAILED' : 'all passed'); process.exit(fail ? 1 : 0);
+const appSrc = fs.readFileSync(__dirname + '/../js/app.js', 'utf8');
+const sayIt = appSrc.match(/function stepSayIt\([\s\S]*?const target = ([^;]+);/);
+check('stepSayIt mic target is the display text (it.text / answerText), not spoken(it)',
+  !!(sayIt && /answerText\(it\)|it\.text/.test(sayIt[1]) && !/spoken\(it\)/.test(sayIt[1])),
+  sayIt && sayIt[1]);
+
+console.log(fail ? fail + ' FAILED' : 'all passed');
+process.exit(fail ? 1 : 0);

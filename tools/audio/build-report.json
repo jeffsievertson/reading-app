@@ -4,13 +4,13 @@
  "slow_clips": 117,
  "letter_sounds": 26,
  "files": 1389,
- "total_bytes": 15462348,
- "made": 1,
- "reused": 1388,
- "pruned": 0,
+ "total_bytes": 15461196,
+ "made": 5,
+ "reused": 1384,
+ "pruned": 5,
  "uncovered_expressions": [],
- "version": "af9dff89",
- "seconds": 204,
+ "version": "d55fce0f",
+ "seconds": 210,
  "letters": [
   {
    "letter": "a",
@@ -360,36 +360,36 @@
   {
    "id": "a-e",
    "sound": "long a",
-   "file": "patterns/a-e-2944ac06.mp3",
-   "recipe": "reused",
+   "file": "patterns/a-e-60312f11.mp3",
+   "recipe": "long a as in cape",
    "note": "long a as in cape"
   },
   {
    "id": "i-e",
    "sound": "long i",
-   "file": "patterns/i-e-02e64694.mp3",
-   "recipe": "reused",
+   "file": "patterns/i-e-617b7879.mp3",
+   "recipe": "long i as in pine",
    "note": "long i as in pine"
   },
   {
    "id": "o-e",
    "sound": "long o",
-   "file": "patterns/o-e-18204aab.mp3",
-   "recipe": "reused",
+   "file": "patterns/o-e-63d8c41e.mp3",
+   "recipe": "long o as in hope",
    "note": "long o as in hope"
   },
   {
    "id": "u-e",
    "sound": "long u",
-   "file": "patterns/u-e-713475f0.mp3",
-   "recipe": "reused",
+   "file": "patterns/u-e-2acdeab6.mp3",
+   "recipe": "long u /uː/ from the steady low-F2 body of a Kokoro /uː/, trimmed before the fronted tail, lengthened (as in tube / rule)",
    "note": "long u as in tube / rule"
   },
   {
    "id": "e-e",
    "sound": "long e",
-   "file": "patterns/e-e-9ff194c4.mp3",
-   "recipe": "reused",
+   "file": "patterns/e-e-2d8cd669.mp3",
+   "recipe": "long e as in these",
    "note": "long e as in these"
   }
  ],

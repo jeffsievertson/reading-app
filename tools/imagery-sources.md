@@ -16,12 +16,12 @@ Gaps (no suitable free adult photo found; emoji/CSS only): abstract/function wor
 | burger | `images/burger.webp` | https://commons.wikimedia.org/wiki/File:Hamburger.jpg | Public domain | Lucas, cropped from PDphoto.org |
 | bus | `images/bus.webp` | https://commons.wikimedia.org/wiki/File:Bus.jpg | CC BY-SA 3.0 | Ici2015 |
 | cat | `images/cat.webp` | https://commons.wikimedia.org/wiki/File:Cat_November_2010-1a.jpg | CC BY-SA 3.0 | Alvesgaspar |
-| chicken | `images/chicken.webp` | https://commons.wikimedia.org/wiki/File:Roast_chicken.jpg | CC BY-SA 3.0 | H Padleckas |
+| chicken | `images/chicken.webp` | https://commons.wikimedia.org/wiki/File:Roast_chicken.jpg | CC BY-SA 3.0 | Uploaded by H Padleckas (photographer not named) |
 | closed | `images/closed.webp` | https://commons.wikimedia.org/wiki/File:Closed_sign.jpg | CC BY-SA 4.0 | Paul Sherlock |
 | coffee | `images/coffee.webp` | https://commons.wikimedia.org/wiki/File:Espresso_Coffee_01.jpg | CC0 | Jubair1985 |
 | cup | `images/cup.webp` | https://commons.wikimedia.org/wiki/File:White_Ceramic_Cup_(28217866307).jpg | CC0 | Saif Selim |
-| danger | `images/danger.webp` | https://commons.wikimedia.org/wiki/File:Danger_sign.jpg | Public domain | Unknown authorUnknown author |
-| dog | `images/dog.webp` | https://commons.wikimedia.org/wiki/File:YellowLabradorLooking_new.jpg | CC BY-SA 3.0 | derivative work: Djmirko (talk)wereweweewewewg.jpg |
+| danger | `images/danger.webp` | https://commons.wikimedia.org/wiki/File:Danger_sign.jpg | Public domain | Unknown author |
+| dog | `images/dog.webp` | https://commons.wikimedia.org/wiki/File:YellowLabradorLooking_new.jpg | CC BY-SA 3.0 | Elf (English Wikipedia); derivative by Djmirko |
 | eggs | `images/eggs.webp` | https://commons.wikimedia.org/wiki/File:Fried_egg,_sunny_side_up.jpg | Public domain | David Benbennick |
 | exit | `images/exit.webp` | https://commons.wikimedia.org/wiki/File:Green_Luminous_Exit_Sign_001.JPG | CC0 | Dhx1 |
 | fish | REMOVED | was Fish_market.jpg — a beach/market crowd, no clear fish. App now uses 🐟. | — | — |
@@ -36,7 +36,7 @@ Gaps (no suitable free adult photo found; emoji/CSS only): abstract/function wor
 | level-2 | REMOVED | was Serbian-English dictionaries (File:Serbian-English_and_English-Serbian_dictionaries.jpg). Words tile now uses books. | — | — |
 | level-3 | REMOVED | was a Wikipedia “ignore all rules” notebook slogan (File:Ignoreallrules-notebook.jpg). Sentences tile now uses writing. | — | — |
 | level-4 | `images/level-4.webp` | https://commons.wikimedia.org/wiki/File:Street_signs.jpg | Public domain | Ala Beara |
-| map | `images/map.webp` | https://unsplash.com/photos/world-map | Unsplash License | Andrew Stutesman |
+| map | `images/map.webp` | https://unsplash.com/photos/photo-1524661135-423995f22d0b | Unsplash License | Andrew Stutesman |
 | menu | `images/menu.webp` | https://commons.wikimedia.org/wiki/File:Restaurant_menu.jpg | CC BY-SA 4.0 | HarryGeorgiouOrthodoxChristian |
 | open | `images/open.webp` | https://commons.wikimedia.org/wiki/File:The_Store_Next_Door_-_January_2025_-_Sarah_Stierch_04.jpg | CC BY 4.0 | Missvain |
 | pan | `images/pan.webp` | https://commons.wikimedia.org/wiki/File:Castiron-skillets.jpg | Public domain | FiveRings at English Wikipedia |

@@ -49,6 +49,9 @@
   const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const spoken = (it) => it.say || it.text || it.label;
+  // Mic / answer matching uses the displayed word. `say` is a speech-only
+  // respelling (e.g. live → 'liv') and must not become the recognizer target.
+  const answerText = (it) => it.text || it.label;
   const cleanWord = (w) => w.replace(/[^A-Za-z']/g, '');
 
   // ---------------------------------------------------------------- rewards (js/rewards.js)
@@ -929,7 +932,7 @@
   function stepSayIt(it) {
     const my = ++sayToken;
     const alive = () => my === sayToken && lesson && lesson.it === it;
-    const target = spoken(it);
+    const target = answerText(it);
     const iosPwa = !!S.isIOSStandalone;
     const micOn = state.settings.mic && S.canListen() && !micBlocked;
     let fails = 0;
@@ -950,7 +953,7 @@
       ? Math.min(20000, Math.max(8000, Math.ceil((6000 + 500 * String(target).split(/\s+/).filter(Boolean).length) / 1000) * 1000))
       : 7000;
     const reveal = el('div', { class: 'emoji big reveal' });
-    const hear = () => { if (busy) cancel(); S.say(it.kind === 'menu' ? it.t : target); };
+    const hear = () => { if (busy) cancel(); S.say(it.kind === 'menu' ? it.t : spoken(it)); };
     const micBtn = btn('🎤', 'Tap the mic, then say it out loud', () => (busy ? cancel() : listen()), 'mic grow');
     const okBtn = btn('👍', 'Continue anyway', () => onContinue(), 'ok-btn grow');
     const what = it.kind === 'sentence' ? 'sentence' : it.kind === 'verse' ? 'verse' : 'it';

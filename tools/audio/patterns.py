@@ -65,44 +65,98 @@ def make_pattern(voice, pid):
         ph, note = LONG[pid]
         SR = __import__('engines').SR
         np = __import__('numpy')
-        def fade_in(x, ms=10):
-            n = min(int(SR * ms / 1000), max(1, len(x) // 4))
-            x = x.copy(); x[:n] *= np.linspace(0, 1, n).astype(x.dtype)
+
+        def voice_onset(x, thresh_db=-40):
+            """Index of the first frame whose level is within thresh_db of the peak."""
+            if not len(x):
+                return 0
+            fr = max(1, int(SR * 0.005))
+            peak = float(np.max(np.abs(x))) + 1e-12
+            for i in range(0, len(x), fr):
+                rms = float(np.sqrt(np.mean(x[i:i + fr] ** 2) + 1e-12))
+                if 20 * np.log10(rms / peak) > thresh_db:
+                    return i
+            return 0
+
+        def fade_in_at(x, onset, ms=10):
+            """10 ms ramp at the voice onset, not at sample 0 (which may be silence)."""
+            x = x.copy()
+            if onset > 0:
+                x[:onset] = 0
+            n = min(int(SR * ms / 1000), max(1, (len(x) - onset) // 4))
+            if n > 0 and onset < len(x):
+                x[onset:onset + n] *= np.linspace(0, 1, n).astype(x.dtype)
             return x
+
+        def fade_out(x, ms=40):
+            x = x.copy()
+            n = min(int(SR * ms / 1000), max(1, len(x) // 4))
+            if n > 0:
+                x[-n:] *= np.linspace(1, 0, n).astype(x.dtype)
+            return x
+
+        def median_f2(fm, t, win=0.08):
+            vals = []
+            for tt in np.arange(t, min(t + win, fm.xs()[-1] if hasattr(fm, 'xs') else t + win), 0.01):
+                v = fm.get_value_at_time(2, float(tt))
+                if v == v:
+                    vals.append(v)
+            return float(np.median(vals)) if len(vals) >= 4 else None
+
         if pid == 'u-e':
-            # Isolated Kokoro "uː" often starts with a /j/ glide ("you"). Cut from
-            # the steady low-F2 tail so the clip is a clean /uː/ as in tube / rule.
+            # Isolated Kokoro "uː" often starts with a /j/ glide ("you") and can
+            # front again at the end. Keep only the steady low-F2 body, then
+            # lengthen that body so the clip is a natural-length clean /uː/.
             raw = P.trim(__import__('engines').synth(voice, ph='uː', speed=0.65), thresh_db=-40, pad_ms=0)
             start = int(0.26 * SR)
+            end = len(raw)
             try:
                 import parselmouth
                 snd = parselmouth.Sound(raw.astype(np.float64), SR)
                 fm = snd.to_formant_burg(time_step=0.01, max_number_of_formants=5, maximum_formant=5500)
-                times = np.arange(0.05, max(0.06, snd.duration - 0.05), 0.01)
-                for t in times:
-                    vals = []
-                    for tt in np.arange(t, min(t + 0.08, snd.duration - 0.02), 0.01):
-                        v = fm.get_value_at_time(2, float(tt))
-                        if v == v: vals.append(v)
-                    if len(vals) >= 4 and float(np.median(vals)) < 1550:
-                        start = int(t * SR); break
+                dur = snd.duration
+                times = np.arange(0.05, max(0.06, dur - 0.05), 0.01)
+                start_t = None
+                for t0 in times:
+                    m = median_f2(fm, t0)
+                    if m is not None and m < 1550:
+                        start_t = t0
+                        break
+                if start_t is None:
+                    start_t = 0.26
+                start = int(start_t * SR)
+                # Cut at the first later F2 rise (fronted off-glide), with a
+                # short minimum body so we don't stop on a single noisy frame.
+                end_t = dur
+                min_end = start_t + 0.12
+                for t0 in np.arange(start_t + 0.10, max(start_t + 0.11, dur - 0.03), 0.01):
+                    m = median_f2(fm, t0)
+                    if t0 >= min_end and m is not None and m > 1650:
+                        end_t = t0
+                        break
+                end = int(end_t * SR)
             except Exception:
-                pass
-            x = raw[start:]
-            keep = int(0.50 * SR)
-            if len(x) > keep: x = x[:keep]
-            if len(x) < int(0.35 * SR) and len(x) > 0:
-                x = P.lengthen(x, 500)
-            note = 'long u /uː/ from the steady tail of a Kokoro /uː/, no y-glide (as in tube / rule)'
+                end = start + int(0.22 * SR)
+            x = raw[start:end]
+            if len(x) < int(0.10 * SR) and len(raw) > start:
+                x = raw[start:start + int(0.22 * SR)]
+            # Natural isolated-vowel length, then a soft fade-out.
+            if len(x) > 0:
+                x = P.lengthen(x, 450)
+            note = 'long u /uː/ from the steady low-F2 body of a Kokoro /uː/, trimmed before the fronted tail, lengthened (as in tube / rule)'
         else:
             synth = P.synth_ph if hasattr(P, 'synth_ph') else (lambda voice, ph: __import__('engines').synth(voice, ph=ph, speed=0.75))
-            x = P.trim(synth(voice, ph))
+            x = P.trim(synth(voice, ph), thresh_db=-45, pad_ms=0)
             if len(x) < int(0.35 * SR):
-                x = P.trim(__import__('engines').synth(voice, ph=ph, speed=0.65))
+                x = P.trim(__import__('engines').synth(voice, ph=ph, speed=0.65), thresh_db=-45, pad_ms=0)
             if len(x) < int(0.28 * SR) and len(x) > 0:
                 x = np.concatenate([x, x])
-        # Short fade-in (about 10 ms) removes the sharp onset click on isolated vowels.
-        x = P.loud(P.fade(fade_in(x, 10), 10))
+        # Fade at the voice onset (the burst is often 40–100 ms in after padding
+        # or residual quiet). A fade at sample 0 would land in leading silence.
+        onset = voice_onset(x)
+        x = fade_in_at(x, onset, 10)
+        x = fade_out(x, 40 if pid == 'u-e' else 10)
+        x = P.loud(x)
         return x, note
     if pid in CLUSTERS:
         ph, note = CLUSTERS[pid]

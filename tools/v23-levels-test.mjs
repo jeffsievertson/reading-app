@@ -118,6 +118,10 @@ const layout = (p) => p.evaluate(() => {
       if (a.left < c.right - 1 && c.left < a.right - 1 && a.top < c.bottom - 1 && c.top < a.bottom - 1) bad.push('overlap in .' + row.className.split(' ')[0]);
     }
   }
+  for (const n of document.querySelectorAll('.credit, .credit-body, .credit-body *')) {
+    const r = n.getBoundingClientRect(); if (!r.width) continue;
+    if (r.right > vw + 0.5) bad.push('credit overflows: ' + (n.textContent || '').trim().slice(0, 40));
+  }
   const t = document.querySelector('.top .title');
   if (t && !t.querySelector('.dots') && t.textContent && (t.scrollWidth > t.clientWidth + 1 || t.getBoundingClientRect().height > 44)) bad.push('title wraps/spills: ' + t.textContent);
   for (const n of document.querySelectorAll('.tile-name')) if (n.scrollWidth > n.clientWidth + 1 || n.getBoundingClientRect().height > 32) bad.push('tile name wraps/spills: ' + n.textContent);
@@ -214,6 +218,18 @@ for (const W of [390, 320]) {
     await p.waitForSelector('.credits .credit'); await p.waitForTimeout(400);
     check(`${W} credits: lists every shipped photo`, (await p.locator('.credits .credit').count()) === 37);
     okLayout(`${W} credits`, await layout(p)); await shot(p, 'credits', W);
+    const longAuthor = p.locator('.credit', { hasText: 'HarryGeorgiouOrthodoxChristian' });
+    if (await longAuthor.count()) {
+      await longAuthor.first().scrollIntoViewIfNeeded();
+      await p.waitForTimeout(200);
+      await shot(p, 'credits-menu', W);
+      const clipped = await longAuthor.first().evaluate((n, vw) => {
+        const body = n.querySelector('.credit-body');
+        const r = (body || n).getBoundingClientRect();
+        return { right: r.right, vw, text: (body || n).innerText };
+      }, W);
+      check(`${W} credits: long author name wraps inside the screen`, clipped.right <= W + 0.5 && /HarryGeorgiouOrthodoxChristian/.test(clipped.text || ''), clipped);
+    }
     await p.evaluate(() => { const m = document.querySelector('main'); if (m) m.scrollTop = m.scrollHeight; });
     await p.waitForTimeout(200);
     await shot(p, 'credits-scrolled', W);
