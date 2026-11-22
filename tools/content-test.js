@@ -22,4 +22,8 @@ check("the Q letter name is spoken as 'Q.'", (T.entries.find((e) => e.key === 'q
 check('every letter has its name intro "This is the letter X." with a clip', l1.every((i) => i.intro === 'This is the letter ' + i.l.toUpperCase() + '.' && m.clips[S.clipKey(i.intro)]), l1.filter((i) => !m.clips[S.clipKey(i.intro || '')]).map((i) => i.l));
 check('"It makes the sound" has a clip', !!m.clips['it makes the sound']);
 check('built-in voice respells easily misread names (A=ay, I=eye, U=you)', l1.find((i) => i.l === 'a').introTts === 'This is the letter ay.' && l1.find((i) => i.l === 'i').introTts === 'This is the letter eye.' && l1.find((i) => i.l === 'u').introTts === 'This is the letter you.');
+const ps = C.items.find((i) => i.id === 'P-s');
+check('plural -s intro text does not include sss or zzz (those are clips)', ps && !/sss|zzz/i.test(ps.intro || ''), ps && ps.intro);
+check('plural -s introParts play letters/s then letters/z', !!(ps && ps.introParts && ps.introParts.some((x) => x.clipName === 'letters/s') && ps.introParts.some((x) => x.clipName === 'letters/z')), ps && ps.introParts);
+check('plural -s intro stem has a clip', !!(ps && m.clips[S.clipKey(ps.intro)]), ps && S.clipKey(ps.intro));
 console.log(fail ? fail + ' FAILED' : 'all passed'); process.exit(fail ? 1 : 0);

@@ -12,9 +12,9 @@ window.CONTENT = (function () {
   // the lessons are shown and taught in alphabetical order (sorted below).
   // Progress is saved by letter id ('L1-a'), so the order can change freely.
   const letters = [
-    { l: 's', sound: 'sss',  kw: 'sun',     emoji: '☀️' , img: 'sun' },
+    { l: 's', sound: 'sss',  kw: 'sun',     emoji: '☀️' },
     { l: 'a', sound: 'aah',  kw: 'apple',   emoji: '🍎' , img: 'apple' },
-    { l: 't', sound: 'tuh',  kw: 'tent',    emoji: '⛺' , img: 'tent' },
+    { l: 't', sound: 'tuh',  kw: 'tent',    emoji: '⛺' },
     { l: 'p', sound: 'puh',  kw: 'pan',     emoji: '🍳' , img: 'pan' },
     { l: 'i', sound: 'ih',   kw: 'insect',  emoji: '🦗' },
     { l: 'n', sound: 'nnn',  kw: 'nut',     emoji: '🥜' },
@@ -29,11 +29,11 @@ window.CONTENT = (function () {
     { l: 'r', sound: 'rrr',  kw: 'run',     emoji: '🏃' },
     { l: 'h', sound: 'hhh',  kw: 'hat',     emoji: '🧢' , img: 'hat' },
     { l: 'b', sound: 'buh',  kw: 'bus',     emoji: '🚌' , img: 'bus' },
-    { l: 'f', sound: 'fff',  kw: 'fish',    emoji: '🐟' , img: 'fish' },
+    { l: 'f', sound: 'fff',  kw: 'fish',    emoji: '🐟' },
     { l: 'l', sound: 'lll',  kw: 'lamp',    emoji: '💡' , img: 'lamp' },
     { l: 'j', sound: 'juh',  kw: 'jet',     emoji: '✈️' , img: 'jet' },
-    { l: 'w', sound: 'wuh',  kw: 'water',   emoji: '💧' , img: 'water' },
-    { l: 'v', sound: 'vvv',  kw: 'van',     emoji: '🚐' , img: 'van' },
+    { l: 'w', sound: 'wuh',  kw: 'water',   emoji: '💧' },
+    { l: 'v', sound: 'vvv',  kw: 'van',     emoji: '🚐' },
     { l: 'y', sound: 'yuh',  kw: 'yes',     emoji: '✅' },
     { l: 'z', sound: 'zzz',  kw: 'zero',    emoji: '0️⃣' },
     { l: 'x', sound: 'ks',   kw: 'box',     emoji: '📦', pos: 'end' , img: 'box' },
@@ -62,7 +62,7 @@ window.CONTENT = (function () {
     ['wet', '💧'], ['van', '🚐'], ['yes', '✅'], ['zip', '🤐'], ['box', '📦'],
     ['fox', '🦊']
   ].map(([w, emoji]) => {
-    const imgs = {"map": "map", "pan": "pan", "dog": "dog", "cat": "cat", "cup": "cup", "bed": "bed", "bus": "bus", "sun": "sun", "hat": "hat", "jet": "jet", "van": "van", "box": "box", "wet": "water"};
+    const imgs = {"map": "map", "pan": "pan", "dog": "dog", "cat": "cat", "cup": "cup", "bed": "bed", "bus": "bus", "hat": "hat", "jet": "jet", "box": "box"};
     return imgs[w] ? { w, emoji, img: imgs[w] } : { w, emoji };
   });
 
@@ -184,7 +184,13 @@ window.CONTENT = (function () {
     { id: 'P-ss', label: 'ss', letters: 'ss', sound: 'sss',  clipName: 'letters/s', kw: 'mess', pos: 'end',   emoji: '🧹', intro: 'These letters are S S.', opts: 'ss,s,ff' },
     { id: 'P-zz', label: 'zz', letters: 'zz', sound: 'zzz',  clipName: 'letters/z', kw: 'buzz', pos: 'end',   emoji: '🐝', intro: 'These letters are Z Z.', opts: 'zz,z,ss' },
     { id: 'P-s',  label: '-s', letters: 's',  sound: 'zzz',  clipName: 'letters/z', kw: 'bills', pos: 'end',  emoji: '🧾',
-      intro: 'S at the end of a word can say sss, or zzz.',
+      intro: 'S at the end of a word can say',
+      introParts: [
+        { text: 'S at the end of a word can say', pause: 150 },
+        { clipName: 'letters/s', text: 'sss', rateMul: 0.8, pause: 350 },
+        { text: 'or', pause: 150 },
+        { clipName: 'letters/z', text: 'zzz', rateMul: 0.8, pause: 700 }
+      ],
       frame: 'In bills, it says',
       opts: 's,z,f' }
   ];
@@ -253,7 +259,7 @@ window.CONTENT = (function () {
     { t: 'Chicken',  price: '$8.50', emoji: '🍗' , img: 'chicken' },
     { t: 'Soup',     price: '$4.00', emoji: '🍲' , img: 'soup' },
     { t: 'Salad',    price: '$6.00', emoji: '🥗' , img: 'salad' },
-    { t: 'Water',    price: '$1.00', emoji: '💧' , img: 'water' },
+    { t: 'Water',    price: '$1.00', emoji: '💧' },
     { t: 'Pizza',    price: '$9.00', emoji: '🍕', img: 'pizza' }
   ];
   const forms = [
@@ -313,7 +319,7 @@ window.CONTENT = (function () {
     { n: 4, icon: '💬', name: 'Sentences', say: 'Level 4. Sentences.', img: 'level-3' },
     { n: 5, icon: '🏠', name: 'Everyday',  say: 'Level 5. Everyday reading.', img: 'coffee' },
     { n: 6, icon: '✍️', name: 'Spellings', say: 'Level 6. Spellings.', img: 'box' },
-    { n: 7, icon: '🔗', name: 'Sounds together', say: 'Level 7. Sounds together.', img: 'fish' },
+    { n: 7, icon: '🔗', name: 'Sounds together', say: 'Level 7. Sounds together.', img: 'lamp' },
     { n: 8, icon: '🏙️', name: 'Real Life', say: 'Level 8. Real life reading.', img: 'level-4' },
     { n: 9, icon: '📖', name: 'Bible',     say: 'Level 9. Bible verses. King James Version.', img: 'bible' }
   ];

@@ -154,6 +154,7 @@ for (const W of [390, 320]) {
   for (const [id, name, expect] of [
     ['SW-of', 'heart-of', null],
     ['P-ck', 'pattern-ck', null],
+    ['P-s', 'pattern-s', null],
     ['P-sh', 'pattern-sh', null],
     ['W-sock', 'word-sock', 's,o,ck'],
     ['W-shop', 'word-shop', 'sh,o,p'],

@@ -163,15 +163,9 @@
   "checked": "2026-10-26"
  },
  "fish": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Fish_market.jpg/960px-Fish_market.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Fish_market.jpg",
-  "license": "CC BY-SA 4.0",
-  "author": "Thukuk",
-  "mime": "image/jpeg",
-  "bytes": 37748,
-  "title": "File:Fish_market.jpg",
-  "file": "images/fish.webp",
-  "checked": "2026-10-26"
+  "removed": true,
+  "reason": "Photo was a beach/market crowd with no clear fish. The app now uses the fish emoji. Level 7 home tile now reuses lamp.",
+  "removedOn": "2026-11-21"
  },
  "forms": {
   "url": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80&auto=format",
@@ -409,46 +403,23 @@
   "checked": "2026-10-26"
  },
  "sun": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Sky_is_blu.jpg/960px-Sky_is_blu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Sky_is_blu.jpg",
-  "license": "CC0",
-  "author": "Mia Primavera",
-  "title": "File:Sky is blu.jpg",
-  "file": "images/sun.webp",
-  "bytes": 1158,
-  "checked": "2026-10-26"
+  "removed": true,
+  "reason": "Photo was plain blue sky, no sun. The app now uses the sun emoji.",
+  "removedOn": "2026-11-21"
  },
  "tent": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Camping_tent.jpg/960px-Camping_tent.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Camping_tent.jpg",
-  "license": "CC BY 2.0",
-  "author": "andyspb",
-  "mime": "image/jpeg",
-  "bytes": 61436,
-  "title": "File:Camping_tent.jpg",
-  "file": "images/tent.webp",
-  "checked": "2026-10-26"
+  "removed": true,
+  "reason": "Unsafe photo (not a tent). File deleted and not kept. The app now uses the tent emoji.",
+  "removedOn": "2026-11-21"
  },
  "van": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Van.jpg/960px-Van.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Van.jpg",
-  "license": "CC BY-SA 3.0 cz",
-  "author": "User:Acoma",
-  "mime": "image/jpeg",
-  "bytes": 22784,
-  "title": "File:Van.jpg",
-  "file": "images/van.webp",
-  "checked": "2026-10-26"
+  "removed": true,
+  "reason": "Photo was a colour-inverted stone cross, not a van. The app now uses the van emoji.",
+  "removedOn": "2026-11-21"
  },
  "water": {
-  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Glass_of_water.jpg/960px-Glass_of_water.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-  "page": "https://commons.wikimedia.org/wiki/File:Glass_of_water.jpg",
-  "license": "CC BY-SA 4.0",
-  "author": "deavmi",
-  "mime": "image/jpeg",
-  "bytes": 46032,
-  "title": "File:Glass_of_water.jpg",
-  "file": "images/water.webp",
-  "checked": "2026-10-26"
+  "removed": true,
+  "reason": "Photo was a kids' cartoon (Smurfs) glass, not adult imagery. The app now uses the water-drop emoji.",
+  "removedOn": "2026-11-21"
  }
 }

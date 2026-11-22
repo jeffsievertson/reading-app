@@ -75,5 +75,5 @@ Modest WebP photos support home tiles, Level 2 concrete words, Level 4 signs/men
 ## v20 (2026-11-18): no new third-party sources
 Missing-letter and everyday levels use only text written for this project, new Kokoro af_heart clips
 (same Apache-2.0 model as above), Whitney's existing letter sounds, and photos already listed in
-`tools/imagery-sources.md` (Level 3 tile reuses `key`, Level 5 tile reuses `coffee`, Level 7 reuses `bible`).
+`tools/imagery-sources.md` (Level 3 tile reuses `key`, Level 5 tile reuses `coffee`, Level 7 reuses `lamp`).
 Bible verse text is unchanged King James Version (public domain in the US).

@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 941,
+ "count": 942,
  "letters": [
   {
    "l": "a",
@@ -2256,12 +2256,22 @@
    ]
   },
   {
-   "key": "s at the end of a word can say sss or zzz",
-   "text": "S at the end of a word can say sss, or zzz.",
-   "speak": "S at the end of a word can say sss, or zzz.",
+   "key": "s at the end of a word can say",
+   "text": "S at the end of a word can say",
+   "speak": "S at the end of a word can say",
    "kind": "text",
    "sources": [
-    "intro:P-s"
+    "intro:P-s",
+    "intro-part:P-s"
+   ]
+  },
+  {
+   "key": "or",
+   "text": "or",
+   "speak": "or",
+   "kind": "text",
+   "sources": [
+    "intro-part:P-s"
    ]
   },
   {

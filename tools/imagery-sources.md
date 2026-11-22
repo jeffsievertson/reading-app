@@ -23,7 +23,7 @@ Gaps (no suitable free adult photo found; emoji/CSS only): abstract/function wor
 | dog | `images/dog.webp` | https://commons.wikimedia.org/wiki/File:YellowLabradorLooking_new.jpg | CC BY-SA 3.0 | derivative work: Djmirko (talk)wereweweewewewg.jpg |
 | eggs | `images/eggs.webp` | https://commons.wikimedia.org/wiki/File:Fried_egg,_sunny_side_up.jpg | Public domain | David Benbennick |
 | exit | `images/exit.webp` | https://commons.wikimedia.org/wiki/File:Green_Luminous_Exit_Sign_001.JPG | CC0 | Dhx1 |
-| fish | `images/fish.webp` | https://commons.wikimedia.org/wiki/File:Fish_market.jpg | CC BY-SA 4.0 | Thukuk |
+| fish | REMOVED | was Fish_market.jpg — a beach/market crowd, no clear fish. App now uses 🐟. | — | — |
 | forms | `images/forms.webp` | https://unsplash.com/photos/man-writing-on-paper-OQMZwNd3ThU | Unsplash License | Scott Graham |
 | fries | `images/fries.webp` | https://commons.wikimedia.org/wiki/File:French_fries.jpg | CC BY-SA 3.0 | Sidg13 |
 | hat | `images/hat.webp` | https://commons.wikimedia.org/wiki/File:Baseball_cap.jpg | Public domain | TexasRebel |
@@ -46,7 +46,7 @@ Gaps (no suitable free adult photo found; emoji/CSS only): abstract/function wor
 | signs | `images/signs.webp` | https://commons.wikimedia.org/wiki/File:Street_signs.jpg | Public domain | Ala Beara |
 | soup | `images/soup.webp` | https://commons.wikimedia.org/wiki/File:Vegetable_soup.jpg | CC BY-SA 3.0 | ProjectManhattan |
 | stop | `images/stop.webp` | https://commons.wikimedia.org/wiki/File:Blacksburg_apartment_stop_sign_2010.jpg | CC BY-SA 3.0 | Vineet Doshi |
-| sun | `images/sun.webp` | https://commons.wikimedia.org/wiki/File:Sky_is_blu.jpg | CC0 | Mia Primavera |
-| tent | `images/tent.webp` | https://commons.wikimedia.org/wiki/File:Camping_tent.jpg | CC BY 2.0 | andyspb |
-| van | `images/van.webp` | https://commons.wikimedia.org/wiki/File:Van.jpg | CC BY-SA 3.0 cz | User:Acoma |
-| water | `images/water.webp` | https://commons.wikimedia.org/wiki/File:Glass_of_water.jpg | CC BY-SA 4.0 | deavmi |
+| sun | REMOVED | was Sky_is_blu.jpg — plain blue sky, no sun. App now uses ☀️. | — | — |
+| tent | REMOVED | Camping_tent.jpg was unsafe (not a tent photo). File deleted, not kept. App now uses ⛺. | — | — |
+| van | REMOVED | was a colour-inverted stone cross, not a van. App now uses 🚐. | — | — |
+| water | REMOVED | was a kids' cartoon (Smurfs) glass, not adult imagery. App now uses 💧. | — | — |

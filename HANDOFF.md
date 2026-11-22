@@ -1,3 +1,10 @@
+# Handoff – Read Aloud (Nov 21, 2026, v21.1 hotfix)
+
+## Latest (v21.1 hotfix, branch `hotfix-v21-1`, from live 30a36f9): unsafe/mismatched photos + plural -s intro
+- Removed lesson photos (emoji used instead): tent (unsafe; file deleted, never opened), sun (plain blue sky), van (colour-inverted stone cross), water (kids' Smurfs cartoon glass), fish (market crowd, no clear fish). Level 7 home tile now reuses `lamp`.
+- Plural -s intro no longer puts "sss" / "zzz" in spoken text. `introParts` play `letters/s` and `letters/z`. New clip for the stem "S at the end of a word can say".
+- Cache **`read-aloud-v21-1-447c7bda`**. Test: `tools/image-safety-test.mjs` (fails if a removed photo exists or is referenced); screenshots `screenshots/70-*-<390|320>.png`. Do not push until Jeffrey says so.
+
 # Handoff – Read Aloud (Nov 21, 2026, v21)
 
 ## Latest (v21): Hermes 12-book series levels, first two books of new phonics (Spellings + Sounds together)
@@ -19,7 +26,7 @@
 - **Home grid:** 9 photo tiles are compacted so levels 1–9 all fit above the footer at 320 and 390 (844 tall).
 - Tests: `tools/v21-levels-test.mjs` (order, ids, segments, decodability, clips, migration, screenshots `screenshots/50-*-<390|320>.png`).
   `tools/v20-levels-test.mjs` now uses `C.REAL_LIFE` / `C.BIBLE`. rewards-test expected word-bank count is derived from items.
-- Cache **`read-aloud-v21-44c0808b`** (was e26470af; bumped after the plural -s intro clip). Not pushed. Needs a real-phone listen of the new clips (especially digraph phonemes, “said”, the heart frame, “I wish I had cash.”, and “S at the end of a word can say sss, or zzz.”).
+- Cache **`read-aloud-v21-44c0808b`** (was e26470af; bumped after the plural -s intro clip). Not pushed. Needs a real-phone listen of the new clips (especially digraph phonemes, “said”, the heart frame, “I wish I had cash.”, and the plural -s intro — that last line was rewritten in v21.1 so sss/zzz are letter clips, not spoken letter names).
 
 
 ## Latest (v20): tester Chyann Devers' 3 suggestions (approved by Jeffrey Nov 18)

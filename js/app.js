@@ -637,7 +637,7 @@
           el('span', null, patternKw(it)))),
       footer: [btn('🔊', 'Hear the sound', play, 'icon-btn'), nextBtn()]
     });
-    const parts = [{ text: it.intro, pause: 400 }];
+    const parts = it.introParts ? it.introParts.slice() : [{ text: it.intro, pause: 400 }];
     if (!it.frame) {
       parts.push(
         { text: 'Together they make the sound', pause: 150 },
