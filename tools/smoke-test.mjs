@@ -1,4 +1,9 @@
 import { chromium } from 'playwright-core';
+import fs from 'fs'; import vm from 'vm'; import path from 'path'; import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const ctx0 = { window: {} }; vm.createContext(ctx0);
+vm.runInContext(fs.readFileSync(path.join(ROOT, 'js/content.js'), 'utf8'), ctx0);
+const C = ctx0.window.CONTENT;
 const BASE = process.env.BASE || 'http://127.0.0.1:8765/';
 const SHOTS = new URL('../screenshots/', import.meta.url).pathname;
 const errors = [];
@@ -63,7 +68,7 @@ for (const [id, name] of [['L4-sign-stop', '10-sign-stop'], ['L4-sign-pull', '11
 // find step for a sign
 await p.goto(BASE + '#/lesson/L4-sign-exit'); await p.waitForSelector('.thing');
 await tap(p, '.foot .primary'); await p.waitForSelector('.say-target');
-await p.goto(BASE + '#/level/10'); await p.waitForSelector('.tile');
+await p.goto(BASE + '#/level/' + C.REAL_LIFE); await p.waitForSelector('.tile');
 await p.screenshot({ path: SHOTS + '15-reallife.png' });
 await p.goto(BASE + '#/settings'); await p.waitForSelector('.settings');
 await p.screenshot({ path: SHOTS + '16-settings.png' });

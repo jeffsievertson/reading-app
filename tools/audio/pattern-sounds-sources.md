@@ -32,3 +32,19 @@ digraphs: replace the file and keep the `patterns/<id>` key. Do not change `lett
 | ing | /ɪŋ/ | fixing | Kokoro phonemes | suffix -ing |
 
 These are listed for a human listen. Bots cannot hear them.
+
+# Silent e long vowels (v23)
+
+Temporary Kokoro-82M `af_heart` phoneme clips for the long vowel in VCe (a-e, i-e, o-e, u-e, e-e).
+Same swap path: replace the file and keep the `patterns/<id>` key. Do not change `letters/`.
+u-e is taught as /uː/ (tube, rule), not /juː/ (cute).
+
+| id | Sound | Keyword | How it was made | Swap note |
+|---|---|---|---|---|
+| a-e | /eɪ/ | cape | Kokoro phonemes, Nov 21, 2026 | long a |
+| i-e | /aɪ/ | pine | Kokoro phonemes, Nov 21, 2026 | long i |
+| o-e | /oʊ/ | hope | Kokoro phonemes, Nov 21, 2026 | long o |
+| u-e | /uː/ | tube | Kokoro phonemes, Nov 21, 2026 | long u as in tube / rule, not cute |
+| e-e | /iː/ | these | Kokoro phonemes, Nov 21, 2026 | long e |
+
+Also a text clip: “This e is silent.” These are listed for a human listen.

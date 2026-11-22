@@ -254,7 +254,7 @@
     screen({
       title: 'Read Aloud',
       help: [next
-        ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is real life reading. Level 11 is Bible verses.'
+        ? 'Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is silent e. Level 11 is real life reading. Level 12 is Bible verses.'
         : 'You finished everything. Pick any level to go over again.',
       st.say, 'Tap the books to see your word bank.'],
       body: el('div', { class: 'home' }, stats, el('div', { class: 'grid2' }, tiles)),
@@ -440,7 +440,8 @@
       7: 'Sounds together. Letters like S H make one sound. Tap play to start.',
       8: 'Ending blends. Letters at the end of a word can work together. Tap play to start.',
       9: 'Starting blends. Letters at the start of a word can work together, and some words add an ending. Tap play to start.',
-      11: 'Short Bible verses, from the King James Version. Tap play to start.'
+      10: 'Silent e. A vowel and a letter, then a silent e, make a long vowel sound. Tap play to start.',
+      12: 'Short Bible verses, from the King James Version. Tap play to start.'
     }[n];
     screen({ title: lv.icon + ' ' + lv.name, back: '#/home', help,
       body: el('div', { class: 'items' }, list.map(itemTile)),
@@ -629,6 +630,9 @@
   // ---- v21 pattern lessons (ck, sh, …): same shape as a letter lesson, multi-letter label
   function patternKw(it) {
     const w = it.kw, u = it.letters;
+    if (it.pos === 'vce') {
+      return C.segments(w).map((seg) => (seg.vce || seg.silent) ? el('b', null, seg.g) : seg.g);
+    }
     if (it.pos === 'end') return [w.slice(0, w.length - u.length), el('b', null, w.slice(w.length - u.length))];
     return [el('b', null, w.slice(0, u.length)), w.slice(u.length)];
   }
@@ -646,10 +650,19 @@
   }
   function stepLearnPattern(it) {
     const posEnd = it.pos === 'end';
-    const help = posEnd
+    const posVce = it.pos === 'vce';
+    const help = posVce
+      ? 'These letters make the long sound in ' + it.kw + '. Tap the letters to hear the sound again. Then tap play.'
+      : posEnd
       ? 'These letters make the sound at the end of ' + it.kw + '. Tap the letters to hear the sound again. Then tap play.'
       : 'These letters make the first sound in ' + it.kw + '. Tap the letters to hear the sound again. Then tap play.';
     const play = () => playPattern(it);
+    const pair = it.pair
+      ? el('div', { class: 'vce-pair', 'aria-hidden': 'true' },
+          el('span', { class: 'short' }, it.pair),
+          el('span', { class: 'arrow' }, '→'),
+          el('span', { class: 'long' }, it.kw))
+      : null;
     lessonScreen({
       help,
       body: el('div', { class: 'center' },
@@ -657,11 +670,14 @@
           el('span', null, it.label)),
         el('div', { class: 'keyword' },
           el('span', { class: 'emoji', 'aria-hidden': 'true' }, it.emoji),
-          el('span', null, patternKw(it)))),
+          el('span', null, patternKw(it))),
+        pair),
       footer: [btn('🔊', 'Hear the sound', play, 'icon-btn'), nextBtn()]
     });
     const parts = it.introParts ? it.introParts.slice() : [{ text: it.intro, pause: 400 }];
-    if (!it.frame) {
+    if (posVce) {
+      // introParts already includes the letter names, the long-vowel clip, and the short→long pair.
+    } else if (!it.frame) {
       parts.push(
         { text: 'Together they make the sound', pause: 150 },
         { clipName: it.clipName, text: it.sound, rateMul: 0.8, pause: 350 },
@@ -676,7 +692,9 @@
   }
   function stepFindPattern(it) {
     const opts = shuffle(it.opts.slice());
-    const prompt = it.pos === 'end'
+    const prompt = it.pos === 'vce'
+      ? 'Which letters make the long sound in ' + it.kw + '?'
+      : it.pos === 'end'
       ? 'Which letters are at the end of ' + it.kw + '?'
       : 'Which letters start the word ' + it.kw + '?';
     // Plural -s is one letter; keep the same wording shape.
@@ -742,16 +760,35 @@
   function stepLearnWord(it) {
     const parts = C.segments(it.w);
     const tiles = parts.map((part) => el('button', {
-      class: 'tile-letter' + (part.g.length > 1 ? ' graph' : ''), type: 'button', 'data-say': 'Hear this sound',
-      onclick: (e) => { flash(e.currentTarget); S.clipOrSay(part.clip, { text: part.sound, rateMul: 0.8 }); }
+      class: 'tile-letter' + (part.g.length > 1 ? ' graph' : '') + (part.silent ? ' silent' : ''), type: 'button',
+      'data-say': part.silent ? 'This e is silent.' : 'Hear this sound',
+      onclick: (e) => {
+        flash(e.currentTarget);
+        if (part.silent) return S.say('This e is silent.');
+        S.clipOrSay(part.clip, { text: part.sound, rateMul: 0.8 });
+      }
     }, part.g));
-    const blend = () => S.say(
-      parts.map((part, i) => ({ clipName: part.clip, text: part.sound, rateMul: 0.8, pause: 250, onstart: () => highlight(tiles, i) }))
-        .concat([
-          { text: it.w, rateMul: 0.55, pause: 300, onstart: () => tiles.forEach((t) => t.classList.add('on')) },
-          { text: it.w, onstart: () => {} },
-          { text: '', onstart: () => highlight(tiles, -1) }
-        ]));
+    const blend = () => {
+      const seq = [];
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i];
+        if (part.silent) continue; // do not speak "This e is silent" while blending
+        const also = (part.vce && parts[i + 1] && parts[i + 1].silent) ? i + 1 : -1;
+        seq.push({
+          clipName: part.clip, text: part.sound, rateMul: 0.8, pause: 250,
+          onstart: () => {
+            if (also >= 0) tiles.forEach((t, j) => t.classList.toggle('on', j === i || j === also));
+            else highlight(tiles, i);
+          }
+        });
+      }
+      seq.push(
+        { text: it.w, rateMul: 0.55, pause: 300, onstart: () => tiles.forEach((t) => t.classList.add('on')) },
+        { text: it.w, onstart: () => {} },
+        { text: '', onstart: () => highlight(tiles, -1) }
+      );
+      return S.say(seq);
+    };
     lessonScreen({
       help: 'Tap each letter to hear its sound. Then tap Sound it out to put the sounds together. Then tap play.',
       body: el('div', { class: 'center' },

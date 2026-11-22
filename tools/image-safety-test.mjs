@@ -4,15 +4,18 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createHash } from 'crypto';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const FORBIDDEN = ['tent.webp', 'sun.webp', 'van.webp', 'water.webp', 'fish.webp'];
+const FORBIDDEN = ['tent.webp', 'sun.webp', 'van.webp', 'water.webp', 'fish.webp', 'level-2.webp', 'level-3.webp', 'signs.webp'];
 const SLUGS = FORBIDDEN.map((f) => f.replace(/\.webp$/, ''));
 const SKIP_DIR = new Set(['.git', 'node_modules', 'screenshots', 'raw']);
 // This test file must name the forbidden files; HANDOFF may describe the hotfix.
 const SKIP_FILE = new Set([
   path.join(ROOT, 'tools/image-safety-test.mjs'),
-  path.join(ROOT, 'HANDOFF.md')
+  path.join(ROOT, 'HANDOFF.md'),
+  path.join(ROOT, 'tools/imagery-sources.md'),
+  path.join(ROOT, 'tools/imagery-sources.json')
 ]);
 
 let fail = 0;
@@ -32,8 +35,9 @@ for (const f of FORBIDDEN) {
 }
 
 const cacheOk = /const CACHE = 'read-aloud-v21-1-' \+ AUDIO_VERSION;/.test(sw)
-  || /const CACHE = 'read-aloud-v22-' \+ AUDIO_VERSION;/.test(sw);
-check('cache name is a post-removal prefix (v21-1 or v22)', cacheOk, sw.match(/const CACHE = [^;]+/)?.[0]);
+  || /const CACHE = 'read-aloud-v22-' \+ AUDIO_VERSION;/.test(sw)
+  || /const CACHE = 'read-aloud-v23-' \+ AUDIO_VERSION;/.test(sw);
+check('cache name is a post-removal prefix (v21-1, v22, or v23)', cacheOk, sw.match(/const CACHE = [^;]+/)?.[0]);
 
 function walk(dir, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -71,6 +75,16 @@ const onDisk = fs.readdirSync(imagesDir).filter((f) => f.endsWith('.webp')).sort
 const assets = [...sw.matchAll(/'\.\/images\/([^']+\.webp)'/g)].map((m) => m[1]).sort();
 check('every remaining images/*.webp is in the sw.js precache', JSON.stringify(onDisk) === JSON.stringify(assets), { onDisk, assets });
 check('precache lists no removed files', assets.every((f) => !FORBIDDEN.includes(f)), assets.filter((f) => FORBIDDEN.includes(f)));
+
+const hashes = new Map();
+const dupes = [];
+for (const f of onDisk) {
+  const buf = fs.readFileSync(path.join(imagesDir, f));
+  const h = createHash('sha256').update(buf).digest('hex');
+  if (hashes.has(h)) dupes.push([hashes.get(h), f]);
+  else hashes.set(h, f);
+}
+check('no two images/*.webp are byte-identical', dupes.length === 0, dupes);
 
 console.log(fail ? fail + ' FAILED' : 'all passed');
 process.exit(fail ? 1 : 0);

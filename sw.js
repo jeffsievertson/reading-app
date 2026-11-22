@@ -1,7 +1,7 @@
 /* Offline support: precache the whole app (including the natural-voice audio clips),
    serve cache-first, update app files in the background. */
-const AUDIO_VERSION = 'af890202'; // stamped by tools/audio/build_audio.py
-const CACHE = 'read-aloud-v22-' + AUDIO_VERSION;
+const AUDIO_VERSION = '6a3ebd43'; // stamped by tools/audio/build_audio.py
+const CACHE = 'read-aloud-v23-' + AUDIO_VERSION;
 const ASSETS = [
   './', './index.html', './manifest.json',
   './css/styles.css', './js/content.js', './js/speech.js', './js/rewards.js', './js/app.js',
@@ -12,6 +12,7 @@ const ASSETS = [
   './images/apple.webp',
   './images/bed.webp',
   './images/bible.webp',
+  './images/books.webp',
   './images/box.webp',
   './images/burger.webp',
   './images/bus.webp',
@@ -27,12 +28,11 @@ const ASSETS = [
   './images/forms.webp',
   './images/fries.webp',
   './images/hat.webp',
+  './images/house.webp',
   './images/jet.webp',
   './images/key.webp',
   './images/lamp.webp',
   './images/level-1.webp',
-  './images/level-2.webp',
-  './images/level-3.webp',
   './images/level-4.webp',
   './images/map.webp',
   './images/menu.webp',
@@ -43,9 +43,9 @@ const ASSETS = [
   './images/push.webp',
   './images/restroom.webp',
   './images/salad.webp',
-  './images/signs.webp',
   './images/soup.webp',
-  './images/stop.webp'
+  './images/stop.webp',
+  './images/writing.webp'
 ];
 
 // Audio clip files have content-hash names, so a cached copy never goes stale.

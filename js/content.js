@@ -161,7 +161,7 @@ window.CONTENT = (function () {
     { g: 'sl',  sound: 'sl',  clip: 'patterns/sl' },
     { g: 'gr',  sound: 'gr',  clip: 'patterns/gr' }
   ].sort((a, b) => b.g.length - a.g.length);
-  const VOICED_TH = new Set(['that', 'with', 'them', 'then', 'this']);
+  const VOICED_TH = new Set(['that', 'with', 'them', 'then', 'this', 'these']);
   const S_AS_Z = new Set(['bills', 'his']); // plural or final s says /z/ in these words
   // Suffix units only at the end, and only after a 3+ letter stem, so "red" stays r-e-d
   // and "ring" stays r-i-ng (not r-ing).
@@ -217,7 +217,31 @@ window.CONTENT = (function () {
         i += 1;
       }
     }
+    markSilentE(w, out);
     return out;
+  }
+  // Silent e (VCe): name → n|a|m|e. The vowel tile plays the long sound; the final e
+  // is silent. Do not apply to heart-word lookalikes (give, live, love, come, …)
+  // or r-controlled endings (care, fire). "these" uses voiced th and s as /z/.
+  const NOT_VCE = new Set(['give', 'live', 'love', 'does', 'done', 'come', 'some', 'one', 'have', 'gone', 'none', 'were']);
+  const LONG = { a: { sound: 'long a', clip: 'patterns/a-e' }, i: { sound: 'long i', clip: 'patterns/i-e' },
+    o: { sound: 'long o', clip: 'patterns/o-e' }, u: { sound: 'long u', clip: 'patterns/u-e' },
+    e: { sound: 'long e', clip: 'patterns/e-e' } };
+  const VCE_S_AS_Z = new Set(['these']);
+  function isVceWord(w) {
+    if (!w || NOT_VCE.has(w) || /[aeiou]re$/.test(w)) return false;
+    return /[aeiou][^aeiouy]e$/.test(w);
+  }
+  function markSilentE(w, out) {
+    if (!isVceWord(w) || out.length < 3 || out[out.length - 1].g !== 'e') return;
+    const last = out.length - 1, cons = last - 1, vow = last - 2;
+    const vg = out[vow].g;
+    if (!LONG[vg]) return;
+    out[vow] = Object.assign({}, out[vow], { sound: LONG[vg].sound, clip: LONG[vg].clip, vce: true });
+    out[last] = Object.assign({}, out[last], { sound: 'silent', clip: null, silent: true });
+    if (VCE_S_AS_Z.has(w) && out[cons].g === 's') {
+      out[cons] = Object.assign({}, out[cons], { sound: 'zzz', clip: 'letters/z' });
+    }
   }
 
   // ---------- Level 6: Spellings (ck, FLOSS, plural -s) + Book 3 heart words ----------
@@ -396,8 +420,97 @@ window.CONTENT = (function () {
 
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
-  const REAL_LIFE = 10;  // signs, menu, forms (was 6, then 8; shown number moved, item ids unchanged)
-  const BIBLE = 11;      // was 7, then 9
+  // ---------- Level 10: Silent e (Book 7) + heart words ----------
+  const silentHearts = [
+    { w: 'does' }, { w: 'done' }, { w: 'give' }, { w: 'live' }, { w: 'love' }
+  ];
+  const silentPatterns = [
+    { id: 'P-a-e', label: 'a-e', letters: 'a-e', vowel: 'a', sound: 'long a', clipName: 'patterns/a-e', kw: 'cape', pair: 'cap', pos: 'vce', emoji: '🧥',
+      intro: 'These letters are A and E, with a letter in the middle.',
+      introParts: [
+        { text: 'These letters are A and E, with a letter in the middle.', pause: 200 },
+        { text: 'Together they make the sound', pause: 150 },
+        { clipName: 'patterns/a-e', text: 'long a', rateMul: 0.8, pause: 350 },
+        { clipName: 'patterns/a-e', text: 'long a', rateMul: 0.8, pause: 500 },
+        { text: 'Listen to', pause: 150 },
+        { text: 'cap', pause: 400 },
+        { text: 'Now it is', pause: 150 },
+        { text: 'cape', pause: 400 }
+      ],
+      frame: 'In cape, they say',
+      opts: 'a-e,a,i-e' },
+    { id: 'P-i-e', label: 'i-e', letters: 'i-e', vowel: 'i', sound: 'long i', clipName: 'patterns/i-e', kw: 'pine', pair: 'pin', pos: 'vce', emoji: '🌲',
+      intro: 'These letters are I and E, with a letter in the middle.',
+      introParts: [
+        { text: 'These letters are I and E, with a letter in the middle.', pause: 200 },
+        { text: 'Together they make the sound', pause: 150 },
+        { clipName: 'patterns/i-e', text: 'long i', rateMul: 0.8, pause: 350 },
+        { clipName: 'patterns/i-e', text: 'long i', rateMul: 0.8, pause: 500 },
+        { text: 'Listen to', pause: 150 },
+        { text: 'pin', pause: 400 },
+        { text: 'Now it is', pause: 150 },
+        { text: 'pine', pause: 400 }
+      ],
+      frame: 'In pine, they say',
+      opts: 'i-e,i,a-e' },
+    { id: 'P-o-e', label: 'o-e', letters: 'o-e', vowel: 'o', sound: 'long o', clipName: 'patterns/o-e', kw: 'hope', pair: 'hop', pos: 'vce', emoji: '🤞',
+      intro: 'These letters are O and E, with a letter in the middle.',
+      introParts: [
+        { text: 'These letters are O and E, with a letter in the middle.', pause: 200 },
+        { text: 'Together they make the sound', pause: 150 },
+        { clipName: 'patterns/o-e', text: 'long o', rateMul: 0.8, pause: 350 },
+        { clipName: 'patterns/o-e', text: 'long o', rateMul: 0.8, pause: 500 },
+        { text: 'Listen to', pause: 150 },
+        { text: 'hop', pause: 400 },
+        { text: 'Now it is', pause: 150 },
+        { text: 'hope', pause: 400 }
+      ],
+      frame: 'In hope, they say',
+      opts: 'o-e,o,a-e' },
+    { id: 'P-u-e', label: 'u-e', letters: 'u-e', vowel: 'u', sound: 'long u', clipName: 'patterns/u-e', kw: 'tube', pair: 'tub', pos: 'vce', emoji: '🧪',
+      intro: 'These letters are U and E, with a letter in the middle.',
+      introParts: [
+        { text: 'These letters are U and E, with a letter in the middle.', pause: 200 },
+        { text: 'Together they make the sound', pause: 150 },
+        { clipName: 'patterns/u-e', text: 'long u', rateMul: 0.8, pause: 350 },
+        { clipName: 'patterns/u-e', text: 'long u', rateMul: 0.8, pause: 500 },
+        { text: 'Listen to', pause: 150 },
+        { text: 'tub', pause: 400 },
+        { text: 'Now it is', pause: 150 },
+        { text: 'tube', pause: 400 }
+      ],
+      frame: 'In tube, they say',
+      opts: 'u-e,u,o-e' },
+    { id: 'P-e-e', label: 'e-e', letters: 'e-e', vowel: 'e', sound: 'long e', clipName: 'patterns/e-e', kw: 'these', pos: 'vce', emoji: '👉',
+      intro: 'These letters are E and E, with a letter in the middle.',
+      introParts: [
+        { text: 'These letters are E and E, with a letter in the middle.', pause: 200 },
+        { text: 'Together they make the sound', pause: 150 },
+        { clipName: 'patterns/e-e', text: 'long e', rateMul: 0.8, pause: 350 },
+        { clipName: 'patterns/e-e', text: 'long e', rateMul: 0.8, pause: 500 }
+      ],
+      frame: 'In these, they say',
+      opts: 'e-e,e,i-e' }
+  ];
+  const silentWords = [
+    ['name', '🏷️'], ['made', '🛠️'], ['late', '⏰'], ['take', '🫴'],
+    ['time', '⏱️'], ['like', '👍'], ['ride', '🚴'], ['life', '🌱'],
+    ['home', '🏡'], ['hope', '🤞'], ['note', '📝'], ['rule', '📏'],
+    ['these', '👉']
+  ].map(([w, emoji]) => ({ w, emoji }));
+  const silentSentences = [
+    'My name is Sam.',
+    'He got home late.',
+    'I like this job.',
+    'Take time to rest.',
+    'The note is at home.',
+    'This is the rule.',
+    'I hope you like it.',
+    'Ride with us at this time.'
+  ];
+
+  const REAL_LIFE = 11;  // signs, menu, forms (was 6, then 8, then 10; shown number moved, item ids unchanged)
+  const BIBLE = 12;      // was 7, then 9, then 11
 
   // ---------- Flatten into a single ordered list of items ----------
   const items = [];
@@ -426,29 +539,35 @@ window.CONTENT = (function () {
   startBlendWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 9, kind: 'word', label: x.w, text: x.w, ...x }));
   suffixWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 9, kind: 'word', label: x.w, text: x.w, ...x }));
   startSentences.forEach((s, i) => items.push({ id: 'S-sb-' + (i + 1), level: 9, kind: 'sentence', label: s, text: s }));
+  // v23: Silent e, then Real Life / Bible. New ids are stable (no display number).
+  silentHearts.forEach((x) => items.push({ id: 'SW-' + slug(x.w), level: 10, kind: 'sight', heart: true, label: x.w, text: x.w, ...x }));
+  silentPatterns.forEach((x) => items.push({ level: 10, kind: 'pattern', ...x, opts: x.opts.split(',') }));
+  silentWords.forEach((x) => items.push({ id: 'W-' + x.w, level: 10, kind: 'word', label: x.w, text: x.w, ...x }));
+  silentSentences.forEach((s, i) => items.push({ id: 'S-se-' + (i + 1), level: 10, kind: 'sentence', label: s, text: s }));
   signs.forEach((x) => items.push({ id: 'L4-sign-' + slug(x.t), level: REAL_LIFE, cat: 'signs', kind: 'sign', label: x.t, text: x.t, ...x }));
   menu.forEach((x) => items.push({ id: 'L4-menu-' + slug(x.t), level: REAL_LIFE, cat: 'menu', kind: 'menu', label: x.t, text: x.t, ...x }));
   forms.forEach((x) => items.push({ id: 'L4-form-' + slug(x.t), level: REAL_LIFE, cat: 'forms', kind: 'form', label: x.t, text: x.t, ...x }));
-  // Bible verses: still last; old L4-kjv- ids kept so saved progress stays. Shown level is 11.
+  // Bible verses: still last; old L4-kjv- ids kept so saved progress stays. Shown level is 12.
   verses.forEach((x) => items.push({ id: 'L4-kjv-' + slug(x.ref), level: BIBLE, kind: 'verse', label: x.ref, text: x.t, ...x }));
 
-  // v22 order: 1-7 unchanged, 8 Ending blends, 9 Starting blends, 10 Real life, 11 Bible.
+  // v23 order: 1-9 unchanged, 10 Silent e, 11 Real life, 12 Bible.
   // Old ids (L3-…, L4-…) are kept for saved progress; `level` is the shown level number.
   const levels = [
     { n: 1, icon: '🔤', name: 'Sounds',    say: 'Level 1. Letter sounds.', img: 'level-1' },
-    { n: 2, icon: '🧩', name: 'Words',     say: 'Level 2. Words.', img: 'level-2' },
+    { n: 2, icon: '🧩', name: 'Words',     say: 'Level 2. Words.', img: 'books' },
     { n: 3, icon: '🔡', name: 'Missing Letter',  say: 'Level 3. Missing letter.', img: 'key' },
-    { n: 4, icon: '💬', name: 'Sentences', say: 'Level 4. Sentences.', img: 'level-3' },
+    { n: 4, icon: '💬', name: 'Sentences', say: 'Level 4. Sentences.', img: 'writing' },
     { n: 5, icon: '🏠', name: 'Everyday',  say: 'Level 5. Everyday reading.', img: 'coffee' },
     { n: 6, icon: '✍️', name: 'Spellings', say: 'Level 6. Spellings.', img: 'box' },
     { n: 7, icon: '🔗', name: 'Sounds together', say: 'Level 7. Sounds together.', img: 'lamp' },
     { n: 8, icon: '📎', name: 'Ending blends', say: 'Level 8. Ending blends.', img: 'map' },
     { n: 9, icon: '🚚', name: 'Starting blends', say: 'Level 9. Starting blends.', img: 'stop' },
-    { n: 10, icon: '🏙️', name: 'Real Life', say: 'Level 10. Real life reading.', img: 'level-4' },
-    { n: 11, icon: '📖', name: 'Bible',     say: 'Level 11. Bible verses. King James Version.', img: 'bible' }
+    { n: 10, icon: '🏡', name: 'Silent e', say: 'Level 10. Silent e.', img: 'house' },
+    { n: 11, icon: '🏙️', name: 'Real Life', say: 'Level 11. Real life reading.', img: 'level-4' },
+    { n: 12, icon: '📖', name: 'Bible',     say: 'Level 12. Bible verses. King James Version.', img: 'bible' }
   ];
   const cats = [
-    { id: 'signs', icon: '🛑', name: 'Signs', say: 'Signs.', img: 'signs' },
+    { id: 'signs', icon: '🛑', name: 'Signs', say: 'Signs.', img: 'exit' },
     { id: 'menu',  icon: '🍔', name: 'Menu',  say: 'Menu.', img: 'menu' },
     { id: 'forms', icon: '📝', name: 'Forms', say: 'Forms.', img: 'forms' }
   ];
@@ -471,7 +590,9 @@ window.CONTENT = (function () {
     of: ['ov'], said: ['sed'], are: ['r'], they: ['thay'], do: ['dew', 'due'],
     have: ['hav'], what: ['wot'],
     from: ['frm'], your: ["you're", 'yore'], one: ['won', '1'], some: ['sum'],
-    would: ['wood'], could: ['cud'], should: ['shud'], who: ['hoo']
+    would: ['wood'], could: ['cud'], should: ['shud'], who: ['hoo'],
+    does: ['duz'], done: ['dun'], give: ['giv'], live: ['liv'], love: ['luv'],
+    made: ['maid'], these: ['theez']
   };
 
   return {
@@ -480,6 +601,7 @@ window.CONTENT = (function () {
     digraphHearts, digraphPatterns, digraphWords, digraphSentences,
     endHearts, endWords, endSentences,
     startHearts, startPatterns, startBlendWords, suffixWords, startSentences,
+    silentHearts, silentPatterns, silentWords, silentSentences,
     REAL_LIFE, BIBLE, sight, sentences, signs, menu, forms, verses,
     items, levels, cats, soundOf, homophones, segments, GRAPHMES
   };

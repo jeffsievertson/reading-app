@@ -4,6 +4,11 @@
 // audio is locked, the speed setting changes clip speed, blends are gapless, the voice
 // setting switches between natural voice and phone voice, and every spoken text has a clip.
 import { chromium } from 'playwright-core';
+import fs from 'fs'; import vm from 'vm'; import path from 'path'; import { fileURLToPath } from 'url';
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const ctx0 = { window: {} }; vm.createContext(ctx0);
+vm.runInContext(fs.readFileSync(path.join(ROOT, 'js/content.js'), 'utf8'), ctx0);
+const C = ctx0.window.CONTENT;
 const BASE = process.env.BASE || 'http://127.0.0.1:8765/';
 const IPHONE = 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1';
 const b = await chromium.launch({ executablePath: process.env.CHROME || '/usr/bin/google-chrome', args: ['--no-sandbox', '--autoplay-policy=user-gesture-required'] }); // like iPhone: audio needs a tap
@@ -318,7 +323,7 @@ for (const [id, word] of [['L3-s1', 'sentence'], ['L4-kjv-psalm-23-1', 'verse']]
   check('word lesson shows photo', await p.locator('.lesson-photo').count() >= 1, await p.locator('img.photo').count());
   await p.goto(BASE + '#/lesson/L4-sign-stop'); await p.waitForSelector('.thing');
   check('STOP sign lesson shows photo', await p.locator('.sign-photo').count() >= 1, await p.locator('img.photo').count());
-  await p.goto(BASE + '#/level/10'); await p.waitForSelector('.tile');
+  await p.goto(BASE + '#/level/' + C.REAL_LIFE); await p.waitForSelector('.tile');
   check('Real Life category tiles show photos', await p.locator('.tile-photo').count() >= 3, await p.locator('.tile-photo').count());
   await ctx.close();
 }

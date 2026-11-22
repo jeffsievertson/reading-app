@@ -14,10 +14,10 @@ const ctx0 = { window: {} }; vm.createContext(ctx0);
 vm.runInContext(fs.readFileSync(ROOT + 'js/content.js', 'utf8'), ctx0);
 const C = ctx0.window.CONTENT;
 
-check('levels in v22 order', C.levels.map((l) => l.n + l.name).join(',') ===
-  '1Sounds,2Words,3Missing Letter,4Sentences,5Everyday,6Spellings,7Sounds together,8Ending blends,9Starting blends,10Real Life,11Bible', C.levels.map((l) => l.name));
+check('v22 levels 1-9 stay in order', C.levels.slice(0, 9).map((l) => l.n + l.name).join(',') ===
+  '1Sounds,2Words,3Missing Letter,4Sentences,5Everyday,6Spellings,7Sounds together,8Ending blends,9Starting blends', C.levels.map((l) => l.name));
+check('Real Life and Bible are the last two levels', C.levels.at(-2).name === 'Real Life' && C.levels.at(-2).n === C.REAL_LIFE && C.levels.at(-1).name === 'Bible' && C.levels.at(-1).n === C.BIBLE, C.levels.map((l) => l.n + l.name));
 check('C.items is in level order (keep going follows the levels)', C.items.every((it, i) => !i || C.items[i - 1].level <= it.level));
-check('REAL_LIFE is 10, BIBLE is 11', C.REAL_LIFE === 10 && C.BIBLE === 11);
 check('saved v20/v21 ids unchanged', ['L3-s1', 'L3-sw-the', 'L4-sign-stop', 'L4-kjv-john-11-35', 'L5-rent', 'L1-q', 'L3m-cat', 'SW-of', 'SW-do', 'P-ck', 'P-sh', 'W-shop', 'S-dg-1'].every((id) => C.items.some((x) => x.id === id)));
 check('new ids do not use a display-number prefix', [...C.items.filter((x) => x.level === 8 || x.level === 9)].every((x) => !/^L(8|9)-/.test(x.id)), C.items.filter((x) => x.level === 8 || x.level === 9).map((x) => x.id).slice(0, 8));
 
@@ -62,7 +62,7 @@ const need = [...C.levels.map((l) => l.say), ...C.endHearts.map((x) => x.w), ...
   ...C.endSentences, ...C.startSentences,
   'This is a heart word. You remember it. It says:',
   'Level 8. Ending blends.', 'Level 9. Starting blends.',
-  'Level 10. Real life reading.', 'Level 11. Bible verses. King James Version.'];
+  ...C.levels.filter((l) => l.n >= 10).map((l) => l.say)];
 const noClip = need.filter((t) => !clips.clips[key(t)]);
 check('new spoken lines / words have Kokoro clips', noClip.length === 0, noClip);
 check('every new word has a slow blending clip', C.endWords.concat(C.startBlendWords, C.suffixWords).every((x) => clips.slow[key(x.w)]), C.endWords.concat(C.startBlendWords, C.suffixWords).filter((x) => !clips.slow[key(x.w)]).map((x) => x.w));
@@ -126,8 +126,8 @@ for (const W of [390, 320]) {
     ['#/home', 'home', '.tile'],
     ['#/level/8', 'level8-ending', '.items .item'],
     ['#/level/9', 'level9-starting', '.items .item'],
-    ['#/level/10', 'level10-reallife', '.tile'],
-    ['#/level/11', 'level11-bible', '.items .item']
+    ['#/level/' + C.REAL_LIFE, 'reallife', '.tile'],
+    ['#/level/' + C.BIBLE, 'bible', '.items .item']
   ]) {
     const { ctx, p, errors } = await open(W, hash);
     await p.waitForSelector(sel); await p.waitForTimeout(1200);
@@ -136,7 +136,7 @@ for (const W of [390, 320]) {
       await p.evaluate(() => { const m = document.querySelector('main'); if (m) m.scrollTop = m.scrollHeight; });
       await p.waitForTimeout(200);
       await shot(p, 'home-scrolled', W);
-      check(`${W} home: 11 level tiles`, (await p.locator('.grid2 .tile').count()) === 11);
+      check(`${W} home: ${C.levels.length} level tiles`, (await p.locator('.grid2 .tile').count()) === C.levels.length);
     }
     const s = await said(p);
     check(`${W} ${name}: spoken from clips (${s.length})`, s.length > 0 && s.every((x) => x.startsWith('clip:')), s.slice(0, 8));

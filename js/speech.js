@@ -465,7 +465,8 @@ window.Speech = (function () {
           // The start was already logged as a clip, but the clock never moved. Retag so tests
           // can tell a stalled attempt from a clip the learner actually heard.
           const keys = new Set(items.map((it) => it.key));
-          for (let i = log.length - 1, left = keys.size; i >= 0 && left; i--) {
+          // Retag every matching recent clip entry, including the same clip logged twice.
+          for (let i = log.length - 1, left = items.length; i >= 0 && left; i--) {
             if (log[i].how === 'clip' && keys.has(log[i].key)) {
               log[i].how = 'stalled';
               log[i].reason = 'audio-stalled';

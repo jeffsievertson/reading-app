@@ -1,4 +1,8 @@
 {
+ "cape": {
+  "orig": "cape",
+  "speak": "cape."
+ },
  "find the word cup": {
   "orig": "Find the word: cup",
   "speak": "Find the word: cup..."
@@ -23,9 +27,29 @@
   "orig": "Hear this sound",
   "speak": "Hear this sound..."
  },
+ "live": {
+  "orig": "live",
+  "speak": "liv"
+ },
+ "ride": {
+  "orig": "ride",
+  "speak": "ride."
+ },
+ "rule": {
+  "orig": "rule",
+  "speak": "rule."
+ },
  "thumbs up i read it": {
   "orig": "Thumbs up: I read it",
   "speak": "Thumbs up: I red it"
+ },
+ "tub": {
+  "orig": "tub",
+  "speak": "tub."
+ },
+ "tube": {
+  "orig": "tube",
+  "speak": "tube."
  },
  "yes you read it": {
   "orig": "Yes. You read it.",

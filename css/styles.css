@@ -133,6 +133,11 @@ button:focus-visible, select:focus-visible { outline: 4px solid var(--focus); ou
 .big-letter .lower { color: var(--accent); }
 .keyword { display: flex; align-items: center; gap: 16px; font-size: 2.6rem; font-weight: 600; }
 .keyword b { color: var(--accent); }
+.vce-pair { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 16px; font-size: 2.2rem; font-weight: 700; }
+.vce-pair .arrow { color: var(--muted); font-weight: 500; }
+.vce-pair .short { opacity: .85; }
+.vce-pair .long { color: var(--accent); }
+.tile-letter.silent { color: var(--muted); }
 .emoji { font-size: 3.4rem; line-height: 1; }
 .emoji.big { font-size: 5rem; min-height: 5rem; }
 .badge { font-size: 2.6rem; }

@@ -1,6 +1,6 @@
 {
  "generatedBy": "tools/audio/collect-texts.mjs",
- "count": 1108,
+ "count": 1211,
  "letters": [
   {
    "l": "a",
@@ -320,6 +320,41 @@
    "soundKey": "ing",
    "ph": "ɪŋ",
    "note": "suffix -ing as in fixing"
+  },
+  {
+   "id": "a-e",
+   "sound": "long a",
+   "soundKey": "long a",
+   "ph": "eɪ",
+   "note": "long a as in cape"
+  },
+  {
+   "id": "i-e",
+   "sound": "long i",
+   "soundKey": "long i",
+   "ph": "aɪ",
+   "note": "long i as in pine"
+  },
+  {
+   "id": "o-e",
+   "sound": "long o",
+   "soundKey": "long o",
+   "ph": "oʊ",
+   "note": "long o as in hope"
+  },
+  {
+   "id": "u-e",
+   "sound": "long u",
+   "soundKey": "long u",
+   "ph": "uː",
+   "note": "long u as in tube / rule"
+  },
+  {
+   "id": "e-e",
+   "sound": "long e",
+   "soundKey": "long e",
+   "ph": "iː",
+   "note": "long e as in these"
   }
  ],
  "slowWords": [
@@ -426,7 +461,20 @@
   "grabbed",
   "handed",
   "missed",
-  "fixing"
+  "fixing",
+  "name",
+  "made",
+  "late",
+  "take",
+  "time",
+  "like",
+  "ride",
+  "life",
+  "home",
+  "hope",
+  "note",
+  "rule",
+  "these"
  ],
  "templates": [
   "'This letter makes the sound at the end of ' + it.kw",
@@ -436,7 +484,7 @@
   "prompt + ' ' + name",
   "name + ' speech'",
   "Rewards.streakText (all states, 1-100 days, 0-2 skips)",
-  "'You know ' + n + ' words.' (0-200)",
+  "'You know ' + n + ' words.' (0-218)",
   "Rewards.describe (milestone messages)"
  ],
  "uncovered": [],
@@ -523,18 +571,27 @@
    ]
   },
   {
-   "key": "level 10 real life reading",
-   "text": "Level 10. Real life reading.",
-   "speak": "Level 10. Real life reading.",
+   "key": "level 10 silent e",
+   "text": "Level 10. Silent e.",
+   "speak": "Level 10. Silent e.",
    "kind": "text",
    "sources": [
     "level"
    ]
   },
   {
-   "key": "level 11 bible verses king james version",
-   "text": "Level 11. Bible verses. King James Version.",
-   "speak": "Level 11. Bible verses. King James Version.",
+   "key": "level 11 real life reading",
+   "text": "Level 11. Real life reading.",
+   "speak": "Level 11. Real life reading.",
+   "kind": "text",
+   "sources": [
+    "level"
+   ]
+  },
+  {
+   "key": "level 12 bible verses king james version",
+   "text": "Level 12. Bible verses. King James Version.",
+   "speak": "Level 12. Bible verses. King James Version.",
    "kind": "text",
    "sources": [
     "level"
@@ -841,6 +898,8 @@
     "chip:S-sb-2",
     "chip:S-sb-3",
     "chip:S-sb-5",
+    "chip:S-se-3",
+    "chip:S-se-7",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-philippians-4-13"
    ]
@@ -1399,7 +1458,8 @@
    "kind": "text",
    "sources": [
     "item:L2-pin",
-    "item:L3m-pin"
+    "item:L3m-pin",
+    "intro-part:P-i-e"
    ]
   },
   {
@@ -1645,6 +1705,8 @@
     "chip:S-sb-6",
     "chip:S-sb-7",
     "chip:S-sb-8",
+    "chip:S-se-5",
+    "chip:S-se-6",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-genesis-1-1",
     "chip:L4-kjv-psalm-118-24"
@@ -1675,6 +1737,9 @@
     "chip:S-eb-6",
     "chip:S-eb-7",
     "chip:S-sb-8",
+    "chip:S-se-1",
+    "chip:S-se-5",
+    "chip:S-se-6",
     "chip:L4-kjv-psalm-23-1",
     "chip:L4-kjv-psalm-118-24"
    ]
@@ -1689,7 +1754,8 @@
     "chip:L3-s13",
     "chip:S-sp-5",
     "chip:S-eb-1",
-    "chip:S-eb-5"
+    "chip:S-eb-5",
+    "chip:S-se-4"
    ]
   },
   {
@@ -1700,6 +1766,7 @@
    "sources": [
     "item:L3-sw-my",
     "chip:L3-s7",
+    "chip:S-se-1",
     "chip:L4-kjv-psalm-23-1"
    ]
   },
@@ -1723,7 +1790,8 @@
     "item:L3-sw-he",
     "chip:L3-s11",
     "chip:S-sb-6",
-    "chip:S-sb-8"
+    "chip:S-sb-8",
+    "chip:S-se-2"
    ]
   },
   {
@@ -1757,7 +1825,8 @@
     "chip:L5-s2",
     "chip:L5-s10",
     "chip:S-dg-3",
-    "chip:S-dg-4"
+    "chip:S-dg-4",
+    "chip:S-se-7"
    ]
   },
   {
@@ -1986,6 +2055,7 @@
     "chip:S-sp-4",
     "chip:S-dg-5",
     "chip:S-sb-3",
+    "chip:S-se-7",
     "chip:L4-kjv-psalm-118-24"
    ]
   },
@@ -2023,7 +2093,8 @@
    "kind": "text",
    "sources": [
     "item:L5-job",
-    "chip:L5-s1"
+    "chip:L5-s1",
+    "chip:S-se-3"
    ]
   },
   {
@@ -2112,7 +2183,8 @@
    "speak": "got",
    "kind": "text",
    "sources": [
-    "chip:L5-s1"
+    "chip:L5-s1",
+    "chip:S-se-2"
    ]
   },
   {
@@ -2139,7 +2211,9 @@
    "speak": "at",
    "kind": "text",
    "sources": [
-    "chip:L5-s3"
+    "chip:L5-s3",
+    "chip:S-se-5",
+    "chip:S-se-8"
    ]
   },
   {
@@ -2922,7 +2996,8 @@
    "kind": "text",
    "sources": [
     "item:W-with",
-    "chip:S-eb-8"
+    "chip:S-eb-8",
+    "chip:S-se-8"
    ]
   },
   {
@@ -3163,7 +3238,8 @@
    "kind": "text",
    "sources": [
     "item:W-rest",
-    "chip:S-eb-3"
+    "chip:S-eb-3",
+    "chip:S-se-4"
    ]
   },
   {
@@ -3247,6 +3323,9 @@
    "kind": "text",
    "sources": [
     "chip:S-eb-6",
+    "chip:S-se-3",
+    "chip:S-se-6",
+    "chip:S-se-8",
     "chip:L4-kjv-psalm-118-24"
    ]
   },
@@ -3627,7 +3706,8 @@
    "speak": "us",
    "kind": "text",
    "sources": [
-    "chip:S-sb-6"
+    "chip:S-sb-6",
+    "chip:S-se-8"
    ]
   },
   {
@@ -3646,6 +3726,504 @@
    "kind": "text",
    "sources": [
     "item:S-sb-8"
+   ]
+  },
+  {
+   "key": "does",
+   "text": "does",
+   "speak": "does",
+   "kind": "text",
+   "sources": [
+    "item:SW-does"
+   ]
+  },
+  {
+   "key": "done",
+   "text": "done",
+   "speak": "done",
+   "kind": "text",
+   "sources": [
+    "item:SW-done"
+   ]
+  },
+  {
+   "key": "give",
+   "text": "give",
+   "speak": "give",
+   "kind": "text",
+   "sources": [
+    "item:SW-give"
+   ]
+  },
+  {
+   "key": "live",
+   "text": "live",
+   "speak": "live",
+   "kind": "text",
+   "sources": [
+    "item:SW-live"
+   ]
+  },
+  {
+   "key": "love",
+   "text": "love",
+   "speak": "love",
+   "kind": "text",
+   "sources": [
+    "item:SW-love"
+   ]
+  },
+  {
+   "key": "a e",
+   "text": "a-e",
+   "speak": "a-e",
+   "kind": "text",
+   "sources": [
+    "item:P-a-e"
+   ]
+  },
+  {
+   "key": "cape",
+   "text": "cape",
+   "speak": "cape",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "intro-part:P-a-e"
+   ]
+  },
+  {
+   "key": "these letters are a and e with a letter in the middle",
+   "text": "These letters are A and E, with a letter in the middle.",
+   "speak": "These letters are A and E, with a letter in the middle.",
+   "kind": "text",
+   "sources": [
+    "intro:P-a-e",
+    "intro-part:P-a-e"
+   ]
+  },
+  {
+   "key": "together they make the sound",
+   "text": "Together they make the sound",
+   "speak": "Together they make the sound",
+   "kind": "text",
+   "sources": [
+    "intro-part:P-a-e",
+    "intro-part:P-i-e",
+    "intro-part:P-o-e",
+    "intro-part:P-u-e",
+    "intro-part:P-e-e",
+    "app.js"
+   ]
+  },
+  {
+   "key": "listen to",
+   "text": "Listen to",
+   "speak": "Listen to",
+   "kind": "text",
+   "sources": [
+    "intro-part:P-a-e",
+    "intro-part:P-i-e",
+    "intro-part:P-o-e",
+    "intro-part:P-u-e"
+   ]
+  },
+  {
+   "key": "cap",
+   "text": "cap",
+   "speak": "cap",
+   "kind": "text",
+   "sources": [
+    "intro-part:P-a-e"
+   ]
+  },
+  {
+   "key": "now it is",
+   "text": "Now it is",
+   "speak": "Now it is",
+   "kind": "text",
+   "sources": [
+    "intro-part:P-a-e",
+    "intro-part:P-i-e",
+    "intro-part:P-o-e",
+    "intro-part:P-u-e"
+   ]
+  },
+  {
+   "key": "in cape they say",
+   "text": "In cape, they say",
+   "speak": "In cape, they say",
+   "kind": "text",
+   "sources": [
+    "frame:P-a-e"
+   ]
+  },
+  {
+   "key": "i e",
+   "text": "i-e",
+   "speak": "i-e",
+   "kind": "text",
+   "sources": [
+    "item:P-i-e"
+   ]
+  },
+  {
+   "key": "pine",
+   "text": "pine",
+   "speak": "pine",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "intro-part:P-i-e"
+   ]
+  },
+  {
+   "key": "these letters are i and e with a letter in the middle",
+   "text": "These letters are I and E, with a letter in the middle.",
+   "speak": "These letters are I and E, with a letter in the middle.",
+   "kind": "text",
+   "sources": [
+    "intro:P-i-e",
+    "intro-part:P-i-e"
+   ]
+  },
+  {
+   "key": "in pine they say",
+   "text": "In pine, they say",
+   "speak": "In pine, they say",
+   "kind": "text",
+   "sources": [
+    "frame:P-i-e"
+   ]
+  },
+  {
+   "key": "o e",
+   "text": "o-e",
+   "speak": "o-e",
+   "kind": "text",
+   "sources": [
+    "item:P-o-e"
+   ]
+  },
+  {
+   "key": "hope",
+   "text": "hope",
+   "speak": "hope",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "intro-part:P-o-e",
+    "item:W-hope",
+    "chip:S-se-7"
+   ]
+  },
+  {
+   "key": "these letters are o and e with a letter in the middle",
+   "text": "These letters are O and E, with a letter in the middle.",
+   "speak": "These letters are O and E, with a letter in the middle.",
+   "kind": "text",
+   "sources": [
+    "intro:P-o-e",
+    "intro-part:P-o-e"
+   ]
+  },
+  {
+   "key": "hop",
+   "text": "hop",
+   "speak": "hop",
+   "kind": "text",
+   "sources": [
+    "intro-part:P-o-e"
+   ]
+  },
+  {
+   "key": "in hope they say",
+   "text": "In hope, they say",
+   "speak": "In hope, they say",
+   "kind": "text",
+   "sources": [
+    "frame:P-o-e"
+   ]
+  },
+  {
+   "key": "u e",
+   "text": "u-e",
+   "speak": "u-e",
+   "kind": "text",
+   "sources": [
+    "item:P-u-e"
+   ]
+  },
+  {
+   "key": "tube",
+   "text": "tube",
+   "speak": "tube",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "intro-part:P-u-e"
+   ]
+  },
+  {
+   "key": "these letters are u and e with a letter in the middle",
+   "text": "These letters are U and E, with a letter in the middle.",
+   "speak": "These letters are U and E, with a letter in the middle.",
+   "kind": "text",
+   "sources": [
+    "intro:P-u-e",
+    "intro-part:P-u-e"
+   ]
+  },
+  {
+   "key": "tub",
+   "text": "tub",
+   "speak": "tub",
+   "kind": "text",
+   "sources": [
+    "intro-part:P-u-e"
+   ]
+  },
+  {
+   "key": "in tube they say",
+   "text": "In tube, they say",
+   "speak": "In tube, they say",
+   "kind": "text",
+   "sources": [
+    "frame:P-u-e"
+   ]
+  },
+  {
+   "key": "e e",
+   "text": "e-e",
+   "speak": "e-e",
+   "kind": "text",
+   "sources": [
+    "item:P-e-e"
+   ]
+  },
+  {
+   "key": "these",
+   "text": "these",
+   "speak": "these",
+   "kind": "text",
+   "sources": [
+    "keyword",
+    "item:W-these"
+   ]
+  },
+  {
+   "key": "these letters are e and e with a letter in the middle",
+   "text": "These letters are E and E, with a letter in the middle.",
+   "speak": "These letters are E and E, with a letter in the middle.",
+   "kind": "text",
+   "sources": [
+    "intro:P-e-e",
+    "intro-part:P-e-e"
+   ]
+  },
+  {
+   "key": "in these they say",
+   "text": "In these, they say",
+   "speak": "In these, they say",
+   "kind": "text",
+   "sources": [
+    "frame:P-e-e"
+   ]
+  },
+  {
+   "key": "name",
+   "text": "name",
+   "speak": "name",
+   "kind": "text",
+   "sources": [
+    "item:W-name",
+    "chip:S-se-1",
+    "item:L4-form-name",
+    "form"
+   ]
+  },
+  {
+   "key": "made",
+   "text": "made",
+   "speak": "made",
+   "kind": "text",
+   "sources": [
+    "item:W-made",
+    "chip:L4-kjv-psalm-118-24"
+   ]
+  },
+  {
+   "key": "late",
+   "text": "late",
+   "speak": "late",
+   "kind": "text",
+   "sources": [
+    "item:W-late",
+    "chip:S-se-2"
+   ]
+  },
+  {
+   "key": "take",
+   "text": "take",
+   "speak": "take",
+   "kind": "text",
+   "sources": [
+    "item:W-take",
+    "chip:S-se-4"
+   ]
+  },
+  {
+   "key": "time",
+   "text": "time",
+   "speak": "time",
+   "kind": "text",
+   "sources": [
+    "item:W-time",
+    "chip:S-se-4",
+    "chip:S-se-8"
+   ]
+  },
+  {
+   "key": "like",
+   "text": "like",
+   "speak": "like",
+   "kind": "text",
+   "sources": [
+    "item:W-like",
+    "chip:S-se-3",
+    "chip:S-se-7"
+   ]
+  },
+  {
+   "key": "ride",
+   "text": "ride",
+   "speak": "ride",
+   "kind": "text",
+   "sources": [
+    "item:W-ride",
+    "chip:S-se-8"
+   ]
+  },
+  {
+   "key": "life",
+   "text": "life",
+   "speak": "life",
+   "kind": "text",
+   "sources": [
+    "item:W-life"
+   ]
+  },
+  {
+   "key": "home",
+   "text": "home",
+   "speak": "home",
+   "kind": "text",
+   "sources": [
+    "item:W-home",
+    "chip:S-se-2",
+    "chip:S-se-5",
+    "app.js"
+   ]
+  },
+  {
+   "key": "note",
+   "text": "note",
+   "speak": "note",
+   "kind": "text",
+   "sources": [
+    "item:W-note",
+    "chip:S-se-5"
+   ]
+  },
+  {
+   "key": "rule",
+   "text": "rule",
+   "speak": "rule",
+   "kind": "text",
+   "sources": [
+    "item:W-rule",
+    "chip:S-se-6"
+   ]
+  },
+  {
+   "key": "my name is sam",
+   "text": "My name is Sam.",
+   "speak": "My name is Sam.",
+   "kind": "text",
+   "sources": [
+    "item:S-se-1"
+   ]
+  },
+  {
+   "key": "sam",
+   "text": "Sam",
+   "speak": "Sam",
+   "kind": "text",
+   "sources": [
+    "chip:S-se-1"
+   ]
+  },
+  {
+   "key": "he got home late",
+   "text": "He got home late.",
+   "speak": "He got home late.",
+   "kind": "text",
+   "sources": [
+    "item:S-se-2"
+   ]
+  },
+  {
+   "key": "i like this job",
+   "text": "I like this job.",
+   "speak": "I like this job.",
+   "kind": "text",
+   "sources": [
+    "item:S-se-3"
+   ]
+  },
+  {
+   "key": "take time to rest",
+   "text": "Take time to rest.",
+   "speak": "Take time to rest.",
+   "kind": "text",
+   "sources": [
+    "item:S-se-4"
+   ]
+  },
+  {
+   "key": "the note is at home",
+   "text": "The note is at home.",
+   "speak": "The note is at home.",
+   "kind": "text",
+   "sources": [
+    "item:S-se-5"
+   ]
+  },
+  {
+   "key": "this is the rule",
+   "text": "This is the rule.",
+   "speak": "This is the rule.",
+   "kind": "text",
+   "sources": [
+    "item:S-se-6"
+   ]
+  },
+  {
+   "key": "i hope you like it",
+   "text": "I hope you like it.",
+   "speak": "I hope you like it.",
+   "kind": "text",
+   "sources": [
+    "item:S-se-7"
+   ]
+  },
+  {
+   "key": "ride with us at this time",
+   "text": "Ride with us at this time.",
+   "speak": "Ride with us at this time.",
+   "kind": "text",
+   "sources": [
+    "item:S-se-8"
    ]
   },
   {
@@ -3932,16 +4510,6 @@
    "kind": "text",
    "sources": [
     "price"
-   ]
-  },
-  {
-   "key": "name",
-   "text": "Name",
-   "speak": "Name",
-   "kind": "text",
-   "sources": [
-    "item:L4-form-name",
-    "form"
    ]
   },
   {
@@ -4425,15 +4993,6 @@
    "key": "hath",
    "text": "hath",
    "speak": "hath",
-   "kind": "text",
-   "sources": [
-    "chip:L4-kjv-psalm-118-24"
-   ]
-  },
-  {
-   "key": "made",
-   "text": "made",
-   "speak": "made",
    "kind": "text",
    "sources": [
     "chip:L4-kjv-psalm-118-24"
@@ -5243,6 +5802,96 @@
    ]
   },
   {
+   "key": "these letters make the long sound in cape tap the letters to hear the sound again then tap play",
+   "text": "These letters make the long sound in cape. Tap the letters to hear the sound again. Then tap play.",
+   "speak": "These letters make the long sound in cape. Tap the letters to hear the sound again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:pattern"
+   ]
+  },
+  {
+   "key": "which letters make the long sound in cape",
+   "text": "Which letters make the long sound in cape?",
+   "speak": "Which letters make the long sound in cape?",
+   "kind": "text",
+   "sources": [
+    "prompt:pattern"
+   ]
+  },
+  {
+   "key": "these letters make the long sound in pine tap the letters to hear the sound again then tap play",
+   "text": "These letters make the long sound in pine. Tap the letters to hear the sound again. Then tap play.",
+   "speak": "These letters make the long sound in pine. Tap the letters to hear the sound again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:pattern"
+   ]
+  },
+  {
+   "key": "which letters make the long sound in pine",
+   "text": "Which letters make the long sound in pine?",
+   "speak": "Which letters make the long sound in pine?",
+   "kind": "text",
+   "sources": [
+    "prompt:pattern"
+   ]
+  },
+  {
+   "key": "these letters make the long sound in hope tap the letters to hear the sound again then tap play",
+   "text": "These letters make the long sound in hope. Tap the letters to hear the sound again. Then tap play.",
+   "speak": "These letters make the long sound in hope. Tap the letters to hear the sound again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:pattern"
+   ]
+  },
+  {
+   "key": "which letters make the long sound in hope",
+   "text": "Which letters make the long sound in hope?",
+   "speak": "Which letters make the long sound in hope?",
+   "kind": "text",
+   "sources": [
+    "prompt:pattern"
+   ]
+  },
+  {
+   "key": "these letters make the long sound in tube tap the letters to hear the sound again then tap play",
+   "text": "These letters make the long sound in tube. Tap the letters to hear the sound again. Then tap play.",
+   "speak": "These letters make the long sound in tube. Tap the letters to hear the sound again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:pattern"
+   ]
+  },
+  {
+   "key": "which letters make the long sound in tube",
+   "text": "Which letters make the long sound in tube?",
+   "speak": "Which letters make the long sound in tube?",
+   "kind": "text",
+   "sources": [
+    "prompt:pattern"
+   ]
+  },
+  {
+   "key": "these letters make the long sound in these tap the letters to hear the sound again then tap play",
+   "text": "These letters make the long sound in these. Tap the letters to hear the sound again. Then tap play.",
+   "speak": "These letters make the long sound in these. Tap the letters to hear the sound again. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:pattern"
+   ]
+  },
+  {
+   "key": "which letters make the long sound in these",
+   "text": "Which letters make the long sound in these?",
+   "speak": "Which letters make the long sound in these?",
+   "kind": "text",
+   "sources": [
+    "prompt:pattern"
+   ]
+  },
+  {
    "key": "this is a tricky word it does not sound out the normal way just remember it it says the then tap play",
    "text": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: the. Then tap play.",
    "speak": "This is a tricky word. It does not sound out the normal way. Just remember it. It says: the. Then tap play.",
@@ -5508,6 +6157,51 @@
    "key": "this is a heart word you remember it it says who then tap play",
    "text": "This is a heart word. You remember it. It says: who. Then tap play.",
    "speak": "This is a heart word. You remember it. It says: who. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says does then tap play",
+   "text": "This is a heart word. You remember it. It says: does. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: does. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says done then tap play",
+   "text": "This is a heart word. You remember it. It says: done. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: done. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says give then tap play",
+   "text": "This is a heart word. You remember it. It says: give. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: give. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says live then tap play",
+   "text": "This is a heart word. You remember it. It says: live. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: live. Then tap play.",
+   "kind": "text",
+   "sources": [
+    "help:sight"
+   ]
+  },
+  {
+   "key": "this is a heart word you remember it it says love then tap play",
+   "text": "This is a heart word. You remember it. It says: love. Then tap play.",
+   "speak": "This is a heart word. You remember it. It says: love. Then tap play.",
    "kind": "text",
    "sources": [
     "help:sight"
@@ -6705,6 +7399,168 @@
    "key": "find the word fixing",
    "text": "Find the word: fixing",
    "speak": "Find the word: fixing",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word does",
+   "text": "Find the word: does",
+   "speak": "Find the word: does",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word done",
+   "text": "Find the word: done",
+   "speak": "Find the word: done",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word give",
+   "text": "Find the word: give",
+   "speak": "Find the word: give",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word live",
+   "text": "Find the word: live",
+   "speak": "Find the word: live",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word love",
+   "text": "Find the word: love",
+   "speak": "Find the word: love",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word name",
+   "text": "Find the word: name",
+   "speak": "Find the word: name",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word made",
+   "text": "Find the word: made",
+   "speak": "Find the word: made",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word late",
+   "text": "Find the word: late",
+   "speak": "Find the word: late",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word take",
+   "text": "Find the word: take",
+   "speak": "Find the word: take",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word time",
+   "text": "Find the word: time",
+   "speak": "Find the word: time",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word like",
+   "text": "Find the word: like",
+   "speak": "Find the word: like",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word ride",
+   "text": "Find the word: ride",
+   "speak": "Find the word: ride",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word life",
+   "text": "Find the word: life",
+   "speak": "Find the word: life",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word home",
+   "text": "Find the word: home",
+   "speak": "Find the word: home",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word hope",
+   "text": "Find the word: hope",
+   "speak": "Find the word: hope",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word note",
+   "text": "Find the word: note",
+   "speak": "Find the word: note",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word rule",
+   "text": "Find the word: rule",
+   "speak": "Find the word: rule",
+   "kind": "text",
+   "sources": [
+    "help:find"
+   ]
+  },
+  {
+   "key": "find the word these",
+   "text": "Find the word: these",
+   "speak": "Find the word: these",
    "kind": "text",
    "sources": [
     "help:find"
@@ -9736,6 +10592,168 @@
    ]
   },
   {
+   "key": "you know 201 words",
+   "text": "You know 201 words.",
+   "speak": "You know two hundred one words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 202 words",
+   "text": "You know 202 words.",
+   "speak": "You know two hundred two words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 203 words",
+   "text": "You know 203 words.",
+   "speak": "You know two hundred three words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 204 words",
+   "text": "You know 204 words.",
+   "speak": "You know two hundred four words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 205 words",
+   "text": "You know 205 words.",
+   "speak": "You know two hundred five words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 206 words",
+   "text": "You know 206 words.",
+   "speak": "You know two hundred six words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 207 words",
+   "text": "You know 207 words.",
+   "speak": "You know two hundred seven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 208 words",
+   "text": "You know 208 words.",
+   "speak": "You know two hundred eight words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 209 words",
+   "text": "You know 209 words.",
+   "speak": "You know two hundred nine words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 210 words",
+   "text": "You know 210 words.",
+   "speak": "You know two hundred ten words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 211 words",
+   "text": "You know 211 words.",
+   "speak": "You know two hundred eleven words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 212 words",
+   "text": "You know 212 words.",
+   "speak": "You know two hundred twelve words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 213 words",
+   "text": "You know 213 words.",
+   "speak": "You know two hundred thirteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 214 words",
+   "text": "You know 214 words.",
+   "speak": "You know two hundred fourteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 215 words",
+   "text": "You know 215 words.",
+   "speak": "You know two hundred fifteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 216 words",
+   "text": "You know 216 words.",
+   "speak": "You know two hundred sixteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 217 words",
+   "text": "You know 217 words.",
+   "speak": "You know two hundred seventeen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
+   "key": "you know 218 words",
+   "text": "You know 218 words.",
+   "speak": "You know two hundred eighteen words.",
+   "kind": "reward",
+   "sources": [
+    "words"
+   ]
+  },
+  {
    "key": "no words yet",
    "text": "No words yet.",
    "speak": "No words yet.",
@@ -9806,15 +10824,6 @@
    "kind": "reward",
    "sources": [
     "milestone"
-   ]
-  },
-  {
-   "key": "home",
-   "text": "Home",
-   "speak": "Home",
-   "kind": "text",
-   "sources": [
-    "app.js"
    ]
   },
   {
@@ -9917,9 +10926,9 @@
    ]
   },
   {
-   "key": "tap the big play button at the bottom to keep going or pick a level level 1 is letter sounds level 2 is words level 3 is the missing letter level 4 is sentences level 5 is everyday reading level 6 is spellings level 7 is sounds together level 8 is ending blends level 9 is starting blends level 10 is real life reading level 11 is bible verses",
-   "text": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is real life reading. Level 11 is Bible verses.",
-   "speak": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is real life reading. Level 11 is Bible verses.",
+   "key": "tap the big play button at the bottom to keep going or pick a level level 1 is letter sounds level 2 is words level 3 is the missing letter level 4 is sentences level 5 is everyday reading level 6 is spellings level 7 is sounds together level 8 is ending blends level 9 is starting blends level 10 is silent e level 11 is real life reading level 12 is bible verses",
+   "text": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is silent e. Level 11 is real life reading. Level 12 is Bible verses.",
+   "speak": "Tap the big play button at the bottom to keep going. Or pick a level. Level 1 is letter sounds. Level 2 is words. Level 3 is the missing letter. Level 4 is sentences. Level 5 is everyday reading. Level 6 is spellings. Level 7 is sounds together. Level 8 is ending blends. Level 9 is starting blends. Level 10 is silent e. Level 11 is real life reading. Level 12 is Bible verses.",
    "kind": "text",
    "sources": [
     "app.js"
@@ -10052,6 +11061,15 @@
    ]
   },
   {
+   "key": "silent e a vowel and a letter then a silent e make a long vowel sound tap play to start",
+   "text": "Silent e. A vowel and a letter, then a silent e, make a long vowel sound. Tap play to start.",
+   "speak": "Silent e. A vowel and a letter, then a silent e, make a long vowel sound. Tap play to start.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
    "key": "short bible verses from the king james version tap play to start",
    "text": "Short Bible verses, from the King James Version. Tap play to start.",
    "speak": "Short Bible verses, from the King James Version. Tap play to start.",
@@ -10160,6 +11178,15 @@
    ]
   },
   {
+   "key": "these letters make the long sound in",
+   "text": "These letters make the long sound in ",
+   "speak": "These letters make the long sound in ",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
    "key": "these letters make the sound at the end of",
    "text": "These letters make the sound at the end of ",
    "speak": "These letters make the sound at the end of ",
@@ -10178,9 +11205,9 @@
    ]
   },
   {
-   "key": "together they make the sound",
-   "text": "Together they make the sound",
-   "speak": "Together they make the sound",
+   "key": "which letters make the long sound in",
+   "text": "Which letters make the long sound in ",
+   "speak": "Which letters make the long sound in ",
    "kind": "text",
    "sources": [
     "app.js"
@@ -10235,6 +11262,15 @@
    "key": "tap the letter that goes in the gap",
    "text": "Tap the letter that goes in the gap.",
    "speak": "Tap the letter that goes in the gap.",
+   "kind": "text",
+   "sources": [
+    "app.js"
+   ]
+  },
+  {
+   "key": "this e is silent",
+   "text": "This e is silent.",
+   "speak": "This e is silent.",
    "kind": "text",
    "sources": [
     "app.js"

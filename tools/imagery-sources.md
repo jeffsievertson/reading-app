@@ -12,6 +12,7 @@ Gaps (no suitable free adult photo found; emoji/CSS only): abstract/function wor
 | bed | `images/bed.webp` | https://commons.wikimedia.org/wiki/File:Bed.jpg | CC BY-SA 4.0 | Gausanchennai |
 | bible | `images/bible.webp` | https://commons.wikimedia.org/wiki/File:Open_bible_isaiah.jpg | CC BY 2.0 | Ken Horn |
 | box | `images/box.webp` | https://commons.wikimedia.org/wiki/File:Cardboard_box.jpg | CC BY-SA 4.0 | MrBeastRapper |
+| books | `images/books.webp` | https://commons.wikimedia.org/wiki/File:Stack_of_books2.jpg | CC BY-SA 4.0 | Auntieruth55 |
 | burger | `images/burger.webp` | https://commons.wikimedia.org/wiki/File:Hamburger.jpg | Public domain | Lucas, cropped from PDphoto.org |
 | bus | `images/bus.webp` | https://commons.wikimedia.org/wiki/File:Bus.jpg | CC BY-SA 3.0 | Ici2015 |
 | cat | `images/cat.webp` | https://commons.wikimedia.org/wiki/File:Cat_November_2010-1a.jpg | CC BY-SA 3.0 | Alvesgaspar |
@@ -27,12 +28,13 @@ Gaps (no suitable free adult photo found; emoji/CSS only): abstract/function wor
 | forms | `images/forms.webp` | https://unsplash.com/photos/man-writing-on-paper-OQMZwNd3ThU | Unsplash License | Scott Graham |
 | fries | `images/fries.webp` | https://commons.wikimedia.org/wiki/File:French_fries.jpg | CC BY-SA 3.0 | Sidg13 |
 | hat | `images/hat.webp` | https://commons.wikimedia.org/wiki/File:Baseball_cap.jpg | Public domain | TexasRebel |
+| house | `images/house.webp` | https://commons.wikimedia.org/wiki/File:The_1902_Lathrop_House_in_Montrose,_Colorado,_built_for_local_hardware_store_owner_John_V._Lathrop._Before_returning_to_single-family_ownership,_the_dwelling_served_as_a_boarding_house_in_the_1930s_LCCN2015632511.tif | Public domain | Carol M. Highsmith (Library of Congress, LCCN 2015632511) |
 | jet | `images/jet.webp` | https://commons.wikimedia.org/wiki/File:Airplane_sunset.jpg | CC BY 2.0 | Melissa Clark |
 | key | `images/key.webp` | https://commons.wikimedia.org/wiki/File:Key.jpg | Public domain | Tnicol01 |
 | lamp | `images/lamp.webp` | https://commons.wikimedia.org/wiki/File:Desk_lamp.jpg | CC BY-SA 3.0 | hunterdt |
 | level-1 | `images/level-1.webp` | https://commons.wikimedia.org/wiki/File:Metal_movable_type.jpg | CC BY 2.5 | Willi Heidelbach |
-| level-2 | `images/level-2.webp` | https://commons.wikimedia.org/wiki/File:Serbian-English_and_English-Serbian_dictionaries.jpg | CC BY-SA 4.0 | Milica Buha |
-| level-3 | `images/level-3.webp` | https://commons.wikimedia.org/wiki/File:Ignoreallrules-notebook.jpg | Public domain | Chardish at en.wikipedia |
+| level-2 | REMOVED | was Serbian-English dictionaries (File:Serbian-English_and_English-Serbian_dictionaries.jpg). Words tile now uses books. | — | — |
+| level-3 | REMOVED | was a Wikipedia “ignore all rules” notebook slogan (File:Ignoreallrules-notebook.jpg). Sentences tile now uses writing. | — | — |
 | level-4 | `images/level-4.webp` | https://commons.wikimedia.org/wiki/File:Street_signs.jpg | Public domain | Ala Beara |
 | map | `images/map.webp` | https://unsplash.com/photos/world-map | Unsplash License | Andrew Stutesman |
 | menu | `images/menu.webp` | https://commons.wikimedia.org/wiki/File:Restaurant_menu.jpg | CC BY-SA 4.0 | HarryGeorgiouOrthodoxChristian |
@@ -43,9 +45,10 @@ Gaps (no suitable free adult photo found; emoji/CSS only): abstract/function wor
 | push | `images/push.webp` | https://commons.wikimedia.org/wiki/File:Set_of_Crash_Bar_Doors.jpg | CC BY-SA 4.0 | Scott Brody |
 | restroom | `images/restroom.webp` | https://commons.wikimedia.org/wiki/File:Restroom_sign.jpg | CC0 | MarkBuckawicki |
 | salad | `images/salad.webp` | https://commons.wikimedia.org/wiki/File:Greek_salad.jpg | CC BY 2.0 | pastitio |
-| signs | `images/signs.webp` | https://commons.wikimedia.org/wiki/File:Street_signs.jpg | Public domain | Ala Beara |
+| signs | REMOVED | was a byte-identical copy of level-4 (File:Street_signs.jpg). Signs category now reuses the already-reviewed exit photo. Real Life keeps level-4. | — | — |
 | soup | `images/soup.webp` | https://commons.wikimedia.org/wiki/File:Vegetable_soup.jpg | CC BY-SA 3.0 | ProjectManhattan |
 | stop | `images/stop.webp` | https://commons.wikimedia.org/wiki/File:Blacksburg_apartment_stop_sign_2010.jpg | CC BY-SA 3.0 | Vineet Doshi |
+| writing | `images/writing.webp` | https://commons.wikimedia.org/wiki/File:Fountain_pen_writing_(literacy).jpg | CC BY-SA 4.0 | Petar Milošević |
 | sun | REMOVED | was Sky_is_blu.jpg — plain blue sky, no sun. App now uses ☀️. | — | — |
 | tent | REMOVED | Camping_tent.jpg was unsafe (not a tent photo). File deleted, not kept. App now uses ⛺. | — | — |
 | van | REMOVED | was a colour-inverted stone cross, not a van. App now uses 🚐. | — | — |

@@ -54,6 +54,25 @@ def make_pattern(voice, pid):
         'ed-id': ('ɪd', 'suffix -ed /ɪd/ (as in handed)'),
         'ing': ('ɪŋ',  'suffix -ing (as in fixing)')
     }
+    LONG = {
+        'a-e': ('eɪ', 'long a as in cape'),
+        'i-e': ('aɪ', 'long i as in pine'),
+        'o-e': ('oʊ', 'long o as in hope'),
+        'u-e': ('uː', 'long u as in tube / rule'),
+        'e-e': ('iː', 'long e as in these')
+    }
+    if pid in LONG:
+        ph, note = LONG[pid]
+        synth = P.synth_ph if hasattr(P, 'synth_ph') else (lambda voice, ph: __import__('engines').synth(voice, ph=ph, speed=0.75))
+        x = P.loud(P.fade(P.trim(synth(voice, ph))))
+        SR = __import__('engines').SR
+        # A lone vowel can be too short to hear; stretch or recut from a longer take.
+        if len(x) < int(0.35 * SR):
+            raw = __import__('engines').synth(voice, ph=ph, speed=0.65)
+            x = P.loud(P.fade(P.trim(raw)))
+        if len(x) < int(0.28 * SR) and len(x) > 0:
+            x = P.loud(P.fade(__import__('numpy').concatenate([x, x])))
+        return x, note
     if pid in CLUSTERS:
         ph, note = CLUSTERS[pid]
         x = P.loud(P.fade(P.trim(P.synth_ph(voice, ph) if hasattr(P, 'synth_ph') else __import__('engines').synth(voice, ph=ph, speed=0.9))))

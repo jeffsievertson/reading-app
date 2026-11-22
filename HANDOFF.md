@@ -1,6 +1,16 @@
-# Handoff – Read Aloud (Nov 21, 2026, v22)
+# Handoff – Read Aloud (Nov 21, 2026, v23)
 
-## Latest (v22, rebased on v21.1 hotfix): Ending blends + Starting blends (Books 5–6)
+## Latest (v23, local main only): Silent e (Book 7) + safer Words/Sentences/Signs photos
+- **New level order:** 1–9 unchanged · **10 Silent e** (Book 7 hearts `does, done, give, live, love`, then a-e / i-e / o-e / u-e / e-e with cap/cape-style pairs, 13 words including `these`, 8 sentences) · **11 Real Life** · **12 Bible**. Inserted after Starting blends, before Real Life (same style as v21/v22).
+  Old item ids kept; `C.REAL_LIFE` is 11, `C.BIBLE` is 12. `#/level/6/signs`, `#/level/8/signs`, `#/level/10/signs`, and `#/level/4/menu` still work.
+- **Silent e teaching:** VCe post-pass on `segments()` (`name` → n|a|m|e). Tapping the vowel plays the long-vowel clip; tapping final e says “This e is silent.” Blending highlights the vowel and e together and plays the long vowel once (does not say “silent” during the blend). Heart-word lookalikes (`give`, `live`, `love`, `does`, `done`, `come`, `some`, `have`, …) and r-controlled endings (`care`, `fire`) are not treated as VCe. `these` is th-voiced | long e | s as /z/ | silent e.
+- **Long-vowel sounds** are temporary Kokoro clips (`patterns/a-e` … `e-e`), never phoneme spellings in TTS text. u-e is taught as /uː/ (tube, rule), not /juː/ (cute).
+- **Images (inspected):** replaced the Words tile (Serbian-English dictionaries, `level-2.webp` removed) with `books.webp` (Auntieruth55, CC BY-SA 4.0, stack of history books). Replaced the Sentences tile (Wikipedia “ignore all rules” notebook, `level-3.webp` removed) with `writing.webp` (Petar Milošević, CC BY-SA 4.0, fountain pen on handwriting). Silent e home tile is `house.webp` (Carol M. Highsmith, Public domain, Lathrop House, Montrose, CO). `signs.webp` was a byte-identical copy of `level-4.webp` and was removed; Signs now reuses the already-reviewed `exit` photo; Real Life keeps the fingerpost. `tools/image-safety-test.mjs` forbids the removed files, allows the v23 cache prefix, and fails on duplicate image hashes.
+- **Stall relabel:** if a clip in a stalled run was logged twice, every matching entry is marked `how:'stalled'` (was unique-key count).
+- **Audio:** overrides for `live` (verb /lɪv/, speak `liv`), and end-punctuated `ride.`, `cape.`, `tube.`, `tub.`, `rule.` after a focused Whisper check. New cache **`read-aloud-v23-6a3ebd43`**.
+- Tests: `tools/v23-levels-test.mjs` (order, ids, VCe segments, decodability, clips, migration, screenshots `screenshots/80-*-<390|320>.png`). `v22-levels-test` now uses `C.REAL_LIFE` / `C.BIBLE` / `C.levels.length`. Full suite passed (content, image-safety, match, rewards, tile-fit, sign-fit, listen-note, level1, v20–v23, smoke, clip, mic / mic-timeout / mic-robust). Do **not** push until Jeffrey says so.
+
+## Previous (v22, rebased on v21.1 hotfix): Ending blends + Starting blends (Books 5–6)
 - **New level order:** 1–7 unchanged · **8 Ending blends** (Book 5 hearts `from, your, one, come, some`, then 12 words and 8 sentences) · **9 Starting blends** (Book 6 hearts `again, could, would, should, who`, then -es/-ed/-ing, 10 blend words, 8 suffix words, 8 sentences) · **10 Real Life** · **11 Bible**. Inserted after Sounds together, before Real Life (same style as v21).
   Old item ids kept; `C.REAL_LIFE` is 10, `C.BIBLE` is 11. `#/level/6/signs`, `#/level/8/signs`, and `#/level/4/menu` still work.
 - **Carries the v21.1 image and -s intro fixes.** Level 8 home tile does not use the removed tent photo (reuses `map`). The word `camp` uses ⛺, not a photo. `-ed` intro speaks “E D at the end of a word can make three sounds.” then plays `letters/t`, `letters/d`, and `patterns/ed-id`.

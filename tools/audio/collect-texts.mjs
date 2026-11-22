@@ -78,10 +78,15 @@ tpl("'Which letter is at the end of ' + it.kw", () => C.items.filter((i) => i.ki
   add(it.pos === 'end' ? 'Which letter is at the end of ' + it.kw + '?' : 'Which letter starts the word ' + it.kw + '?', 'prompt:letter');
 }));
 tpl("pattern help + find prompts", () => C.items.filter((i) => i.kind === 'pattern').forEach((it) => {
-  add((it.pos === 'end' ? 'These letters make the sound at the end of ' : 'These letters make the first sound in ') + it.kw + '. Tap the letters to hear the sound again. Then tap play.', 'help:pattern');
-  add(it.pos === 'end' ? 'Which letters are at the end of ' + it.kw + '?' : 'Which letters start the word ' + it.kw + '?', 'prompt:pattern');
-  add(it.pos === 'end' ? 'This is the sound at the end of' : 'This is the first sound in', 'pattern-frame');
-  if (it.frame) add('This is the sound at the end of ' + it.kw + '.', 'pattern-frame-done');
+  if (it.pos === 'vce') {
+    add('These letters make the long sound in ' + it.kw + '. Tap the letters to hear the sound again. Then tap play.', 'help:pattern');
+    add('Which letters make the long sound in ' + it.kw + '?', 'prompt:pattern');
+  } else {
+    add((it.pos === 'end' ? 'These letters make the sound at the end of ' : 'These letters make the first sound in ') + it.kw + '. Tap the letters to hear the sound again. Then tap play.', 'help:pattern');
+    add(it.pos === 'end' ? 'Which letters are at the end of ' + it.kw + '?' : 'Which letters start the word ' + it.kw + '?', 'prompt:pattern');
+    add(it.pos === 'end' ? 'This is the sound at the end of' : 'This is the first sound in', 'pattern-frame');
+  }
+  if (it.frame && it.pos !== 'vce') add('This is the sound at the end of ' + it.kw + '.', 'pattern-frame-done');
 }));
 tpl("'This is a tricky word. It does not sound out the normal way. Just remember it. It says: ' + spoken(it)", () => C.items.filter((i) => i.kind === 'sight').forEach((it) => {
   if (it.heart) {
@@ -179,9 +184,14 @@ const result = {
     { id: 'str', sound: 'str', soundKey: S.clipKey('str'), ph: 'stɹ', note: 'as in strap' },
     { id: 'es',    sound: 'iz',  soundKey: S.clipKey('iz'),  ph: 'ɪz', note: 'suffix -es as in boxes' },
     { id: 'ed-id', sound: 'id',  soundKey: S.clipKey('id'),  ph: 'ɪd', note: 'suffix -ed /ɪd/ as in handed' },
-    { id: 'ing',   sound: 'ing', soundKey: S.clipKey('ing'), ph: 'ɪŋ', note: 'suffix -ing as in fixing' }
+    { id: 'ing',   sound: 'ing', soundKey: S.clipKey('ing'), ph: 'ɪŋ', note: 'suffix -ing as in fixing' },
+    { id: 'a-e', sound: 'long a', soundKey: S.clipKey('long a'), ph: 'eɪ', note: 'long a as in cape' },
+    { id: 'i-e', sound: 'long i', soundKey: S.clipKey('long i'), ph: 'aɪ', note: 'long i as in pine' },
+    { id: 'o-e', sound: 'long o', soundKey: S.clipKey('long o'), ph: 'oʊ', note: 'long o as in hope' },
+    { id: 'u-e', sound: 'long u', soundKey: S.clipKey('long u'), ph: 'uː', note: 'long u as in tube / rule' },
+    { id: 'e-e', sound: 'long e', soundKey: S.clipKey('long e'), ph: 'iː', note: 'long e as in these' }
   ],
-  slowWords: C.words.concat(C.everydayWords, C.spellWords, C.digraphWords, C.endWords, C.startBlendWords, C.suffixWords).map((x) => S.clipKey(x.w)),   // blending plays these slowly
+  slowWords: C.words.concat(C.everydayWords, C.spellWords, C.digraphWords, C.endWords, C.startBlendWords, C.suffixWords, C.silentWords).map((x) => S.clipKey(x.w)),   // blending plays these slowly
   templates: TEMPLATES,
   uncovered,
   entries
