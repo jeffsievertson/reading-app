@@ -1080,7 +1080,7 @@
           status.textContent = '“' + res.alts[0] + '”';
           status.className = 'status no';
           if (!(await S.say({ text: 'Not quite. Listen.', pause: 200 })) || !alive()) return;
-          if (!(await S.say({ text: target, rateMul: 0.8, pause: 300 }, { queue: true })) || !alive()) return;
+          if (!(await S.say({ text: spoken(it), rateMul: 0.8, pause: 300 }, { queue: true })) || !alive()) return;
           S.say(offerContinue ? SAY.continueHint : 'Try again.', { queue: true });
         } else {
           status.textContent = '🔇';
@@ -1105,7 +1105,7 @@
       else if (it.emoji && it.kind !== 'letter') reveal.textContent = it.emoji;
       ui.foot.replaceChildren(hearBtn, nextBtn('pulse'));
       await S.say({ text: heard ? 'Yes. You read it.' : 'Got it.', tts: heard ? ['Yes.', 'You', 'red', 'it.'].join(' ') : undefined, pause: 250 });
-      if (alive() && (it.kind === 'word' || it.kind === 'sight' || it.kind === 'missing')) S.say(target, { queue: true });
+      if (alive() && (it.kind === 'word' || it.kind === 'sight' || it.kind === 'missing')) S.say(spoken(it), { queue: true });
     }
   }
 

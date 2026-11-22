@@ -1,6 +1,14 @@
-# Handoff – Read Aloud (Nov 22, 2026, v23 delta fix)
+# Handoff – Read Aloud (Nov 22, 2026, v23 delta-3)
 
-## Latest (v23 delta fix, local main only, on top of 1fd7e95): Sentinel delta-check items
+## Latest (v23 delta-3, local main only, on top of a369b03): Sentinel delta-2 items
+- **Cache** `read-aloud-v23-4d617b2e` (was `read-aloud-v23-d55fce0f`). Audio files were not remade; the cache name was stamped for the app/credits change. Not pushed.
+- **E-FIX 1:** after a mic miss or success, `stepSayIt` now speaks `spoken(it)`, not `answerText(it)`. `answerText` is used only for `S.matches` and the listen-window length. On SW-live the follow-up word plays `clip:liv`, not `tts:live:no-clip`. `mic-test` checks the speech log after a miss and a success. A source check in `content-test` forbids `S.say(target)` in `stepSayIt`. Grep: the only other `S.say` hit mentioning “target” is `e.target.value` on the voice dropdown, not the mic target.
+- **E-FIX 2:** map source is `https://unsplash.com/photos/blue-green-and-yellow-world-map-l68Z6eF2peA`, author `Andrew Stutesman (@drwmrk)`. curl is blocked by Unsplash’s bot check (401, not a 404). Headless Chrome loaded the photo page: Andrew Stutesman / drwmrk, Unsplash License, og:image `photo-1524661135-423995f22d0b`. The short `/photos/l68Z6eF2peA` form shows the same page.
+- **E-ITEM 4 (quick):** the credit-overflow test now uses `Range.getClientRects()` and `scrollWidth`, not box edges. At 320 it temporarily turns off `overflow-wrap` and asserts that this check would have caught the unwrapped `HarryGeorgiouOrthodoxChristian` name.
+- Vowel clips were not touched.
+- **Tests:** full suite. Do **not** push until Jeffrey says so.
+
+## Previous (v23 delta fix, local main only, on top of 1fd7e95): Sentinel delta-check items
 - **Cache** `read-aloud-v23-d55fce0f` (was `read-aloud-v23-af9dff89`). Not pushed.
 - **D-FIX 1 (blocking):** `stepSayIt` now uses `answerText(it)` (`it.text || it.label`) as the mic target. `say` is speech-only (help, find, hear, TTS fallback still use `spoken(it)`). Saying “live” on SW-live is accepted; using `say:'liv'` as the target would reject it. `match-test` checks every item with a `say` field; `mic-test` opens SW-live and feeds “live”.
 - **D-FIX 2:** u-e is cut at the F2 rise (~0.22 s of clean low-F2 body), then lengthened to ~450 ms with a 40 ms fade-out. Shipped clip `u-e-2acdeab6`: while voiced (dB > −25, 0.10–0.44 s) F2 is 1074–1581 Hz (median 1184), with no 1800–2300 Hz tail at full volume. Whisper of the whole clip: “No.” (was “Do it.” / tail “Bye.” / “What?”).

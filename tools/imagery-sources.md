@@ -36,7 +36,7 @@ Gaps (no suitable free adult photo found; emoji/CSS only): abstract/function wor
 | level-2 | REMOVED | was Serbian-English dictionaries (File:Serbian-English_and_English-Serbian_dictionaries.jpg). Words tile now uses books. | — | — |
 | level-3 | REMOVED | was a Wikipedia “ignore all rules” notebook slogan (File:Ignoreallrules-notebook.jpg). Sentences tile now uses writing. | — | — |
 | level-4 | `images/level-4.webp` | https://commons.wikimedia.org/wiki/File:Street_signs.jpg | Public domain | Ala Beara |
-| map | `images/map.webp` | https://unsplash.com/photos/photo-1524661135-423995f22d0b | Unsplash License | Andrew Stutesman |
+| map | `images/map.webp` | https://unsplash.com/photos/blue-green-and-yellow-world-map-l68Z6eF2peA | Unsplash License | Andrew Stutesman (@drwmrk) |
 | menu | `images/menu.webp` | https://commons.wikimedia.org/wiki/File:Restaurant_menu.jpg | CC BY-SA 4.0 | HarryGeorgiouOrthodoxChristian |
 | open | `images/open.webp` | https://commons.wikimedia.org/wiki/File:The_Store_Next_Door_-_January_2025_-_Sarah_Stierch_04.jpg | CC BY 4.0 | Missvain |
 | pan | `images/pan.webp` | https://commons.wikimedia.org/wiki/File:Castiron-skillets.jpg | Public domain | FiveRings at English Wikipedia |

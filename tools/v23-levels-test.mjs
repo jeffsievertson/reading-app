@@ -118,9 +118,14 @@ const layout = (p) => p.evaluate(() => {
       if (a.left < c.right - 1 && c.left < a.right - 1 && a.top < c.bottom - 1 && c.top < a.bottom - 1) bad.push('overlap in .' + row.className.split(' ')[0]);
     }
   }
-  for (const n of document.querySelectorAll('.credit, .credit-body, .credit-body *')) {
-    const r = n.getBoundingClientRect(); if (!r.width) continue;
-    if (r.right > vw + 0.5) bad.push('credit overflows: ' + (n.textContent || '').trim().slice(0, 40));
+  for (const n of document.querySelectorAll('.credit-body, .credit-body *')) {
+    if (n.scrollWidth > n.clientWidth + 1) bad.push('credit text spills: ' + (n.textContent || '').trim().slice(0, 40));
+    if (!n.firstChild) continue;
+    const range = document.createRange();
+    range.selectNodeContents(n);
+    for (const r of [...range.getClientRects()].filter((r) => r.width)) {
+      if (r.right > vw + 0.5) bad.push('credit text extent: ' + (n.textContent || '').trim().slice(0, 40));
+    }
   }
   const t = document.querySelector('.top .title');
   if (t && !t.querySelector('.dots') && t.textContent && (t.scrollWidth > t.clientWidth + 1 || t.getBoundingClientRect().height > 44)) bad.push('title wraps/spills: ' + t.textContent);
@@ -223,12 +228,31 @@ for (const W of [390, 320]) {
       await longAuthor.first().scrollIntoViewIfNeeded();
       await p.waitForTimeout(200);
       await shot(p, 'credits-menu', W);
-      const clipped = await longAuthor.first().evaluate((n, vw) => {
-        const body = n.querySelector('.credit-body');
-        const r = (body || n).getBoundingClientRect();
-        return { right: r.right, vw, text: (body || n).innerText };
-      }, W);
-      check(`${W} credits: long author name wraps inside the screen`, clipped.right <= W + 0.5 && /HarryGeorgiouOrthodoxChristian/.test(clipped.text || ''), clipped);
+    }
+    const creditTextOverflow = () => p.evaluate((vw) => {
+      const bad = [];
+      for (const n of document.querySelectorAll('.credit-body, .credit-body *')) {
+        if (n.scrollWidth > n.clientWidth + 1) bad.push({ how: 'scrollWidth', text: (n.textContent || '').trim().slice(0, 50), scroll: n.scrollWidth, client: n.clientWidth });
+        if (!n.firstChild) continue;
+        const range = document.createRange();
+        range.selectNodeContents(n);
+        for (const r of [...range.getClientRects()].filter((r) => r.width)) {
+          if (r.right > vw + 0.5) bad.push({ how: 'range', text: (n.textContent || '').trim().slice(0, 50), right: r.right, vw });
+        }
+      }
+      return bad;
+    }, W);
+    const wrapped = await creditTextOverflow();
+    check(`${W} credits: author text stays inside the screen (Range / scrollWidth)`, wrapped.length === 0, wrapped);
+    if (W === 320) {
+      await p.evaluate(() => {
+        document.querySelectorAll('.credit-body').forEach((n) => { n.style.overflowWrap = 'normal'; n.style.wordBreak = 'normal'; });
+      });
+      const unwrapped = await creditTextOverflow();
+      check('320 credits: text-extent check would have caught the unwrapped author', unwrapped.length > 0, unwrapped);
+      await p.evaluate(() => {
+        document.querySelectorAll('.credit-body').forEach((n) => { n.style.overflowWrap = ''; n.style.wordBreak = ''; });
+      });
     }
     await p.evaluate(() => { const m = document.querySelector('main'); if (m) m.scrollTop = m.scrollHeight; });
     await p.waitForTimeout(200);

@@ -1,6 +1,6 @@
 /* Offline support: precache the whole app (including the natural-voice audio clips),
    serve cache-first, update app files in the background. */
-const AUDIO_VERSION = 'd55fce0f'; // stamped by tools/audio/build_audio.py
+const AUDIO_VERSION = '4d617b2e'; // stamped for v23 delta-3 (app/credits; audio files unchanged from d55fce0f)
 const CACHE = 'read-aloud-v23-' + AUDIO_VERSION;
 const ASSETS = [
   './', './index.html', './manifest.json',

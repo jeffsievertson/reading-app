@@ -305,10 +305,10 @@ window.PHOTO_CREDITS = [
     "file": "map.webp",
     "slug": "map",
     "subject": "World map",
-    "author": "Andrew Stutesman",
+    "author": "Andrew Stutesman (@drwmrk)",
     "license": "Unsplash License",
     "licenseUrl": "https://unsplash.com/license",
-    "sourceUrl": "https://unsplash.com/photos/photo-1524661135-423995f22d0b",
+    "sourceUrl": "https://unsplash.com/photos/blue-green-and-yellow-world-map-l68Z6eF2peA",
     "publicDomain": false,
     "cc0": false,
     "modified": "Resized and converted to WebP."

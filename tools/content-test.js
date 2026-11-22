@@ -46,6 +46,12 @@ const sayIt = appSrc.match(/function stepSayIt\([\s\S]*?const target = ([^;]+);/
 check('stepSayIt mic target is the display text (it.text / answerText), not spoken(it)',
   !!(sayIt && /answerText\(it\)|it\.text/.test(sayIt[1]) && !/spoken\(it\)/.test(sayIt[1])),
   sayIt && sayIt[1]);
+const sayItFn = (appSrc.match(/function stepSayIt\([\s\S]*?\n  \}/) || [])[0] || '';
+check('stepSayIt miss/success speak spoken(it), not answerText or target',
+  /S\.say\(\{\s*text:\s*spoken\(it\)/.test(sayItFn) && /S\.say\(spoken\(it\)/.test(sayItFn)
+    && !/S\.say\(\{\s*text:\s*target/.test(sayItFn) && !/S\.say\(target\b/.test(sayItFn)
+    && !/S\.say\(answerText/.test(sayItFn),
+  sayItFn && sayItFn.match(/S\.say\([^\n]+/g));
 
 console.log(fail ? fail + ' FAILED' : 'all passed');
 process.exit(fail ? 1 : 0);

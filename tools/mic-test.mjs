@@ -117,17 +117,60 @@ const st = async (p) => p.evaluate(() => ({
 }
 
 
-// SW-live: saying the displayed word "live" must pass (say:"liv" is speech-only)
-{
-  const { ctx, p, errors } = await page('live');
+// SW-live: saying the displayed word "live" must pass (say:"liv" is speech-only).
+// After a miss and after a success the follow-up word must play clip:liv, never tts:live:no-clip.
+async function openLive(transcript) {
+  const ctx = await b.newContext({ viewport: { width: 390, height: 844 } });
+  await ctx.addInitScript((transcript) => {
+    localStorage.setItem('readAloud.v1', JSON.stringify({ started: true, done: {}, settings: {} }));
+    window.SpeechRecognition = window.webkitSpeechRecognition = class {
+      start() {
+        setTimeout(() => {
+          this.onstart && this.onstart();
+          this.onresult && this.onresult({ results: [[{ transcript }]] });
+          this.onend && this.onend();
+        }, 50);
+      }
+      stop() {} abort() {}
+    };
+  }, transcript);
+  const p = await ctx.newPage();
+  const errors = [];
+  p.on('pageerror', (e) => errors.push(e.message));
   await p.goto(BASE + '#/lesson/SW-live');
   await p.locator('.foot .primary').click();
   await p.waitForSelector('.say-target');
+  return { ctx, p, errors };
+}
+const speechLog = (p) => p.evaluate(() => window.Speech.debugLog().map((e) => ({
+  how: e.how, key: e.key, text: e.text, reason: e.reason
+})));
+const livClip = (log) => log.some((e) => e.how === 'clip' && (e.key === 'liv' || e.text === 'liv'));
+const ttsLiveNoClip = (log) => log.some((e) => e.how === 'tts' && e.reason === 'no-clip' && (e.key === 'live' || e.text === 'live'));
+
+{
+  const { ctx, p, errors } = await openLive('love');
+  await p.locator('.mic').click();
+  await p.waitForTimeout(2800);
+  const log = await speechLog(p);
+  const s = await st(p);
+  check('SW-live miss: "love" is rejected', !s.next, s);
+  check('SW-live miss: follow-up plays clip:liv', livClip(log), log);
+  check('SW-live miss: no tts:live:no-clip', !ttsLiveNoClip(log), log);
+  check('SW-live miss: no page errors', !errors.length, errors);
+  await ctx.close();
+}
+{
+  const { ctx, p, errors } = await openLive('live');
   const shown = await p.locator('.say-target, .big-word').first().textContent();
   check('SW-live: displayed word is live', /\blive\b/i.test(shown || ''), shown);
-  await p.locator('.mic').click(); await p.waitForTimeout(700);
+  await p.locator('.mic').click();
+  await p.waitForTimeout(2800);
+  const log = await speechLog(p);
   const s = await st(p);
   check('SW-live: saying "live" is accepted', s.next && /live/i.test(s.status || ''), s);
+  check('SW-live success: follow-up plays clip:liv', livClip(log), log);
+  check('SW-live success: no tts:live:no-clip', !ttsLiveNoClip(log), log);
   check('SW-live: no page errors', !errors.length, errors);
   await ctx.close();
 }
